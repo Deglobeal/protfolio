@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Deglobeal</title>
+    <link href="https://fonts.googleapis.com/css?family=Handlee" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=home" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>  
+</head>
+<body>
+    <!-- Side Menu -->
+    <div class="vertical-nav">
+        <div class="nav-header">
+    <img src="{% static 'images/1.png' %}" alt="Profile Picture" class="profile-img-full">
+    <h1 class="user-name">Gerard Ugwu</h1>
+</div>
+
+        <ul class="nav-sections">
+            <li class="nav-title">General</li>
+            <li><a href="/"><i class="fa-solid fa-home"></i> Home</a></li>
+            <li><a href="/profile"><i class="fa-regular fa-newspaper"></i> Profile</a></li>
+            <li><a href="/certificate"><i class="fa-solid fa-business-time"></i> Certificate</a></li>
+            <li><a href="/project"><i class="fa-solid fa-tools"></i> Projects</a></li>
+            <li><a href="/resume"><i class="fa-solid fa-tasks"></i> Resume</a></li>
+            <li><a href="/skills"><i class="fa-solid fa-tools"></i> Skills</a></li>
+
+            <li class="nav-title">Contact Me</li>
+            <li><a href="/contact"><i class="fa-solid fa-edit"></i> Contacts</a></li>
+            <li><a href="/social"><i class="fa-regular fa-address-book"></i> Social</a></li>
+            <li><a href="/email"><i class="fa-solid fa-envelope"></i> Email Me</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="main-inner">
+            <h1>Gerard Ugwu</h1>
+            <h2>Welcome to My Page</h2>
+            <p>This is my page. Feel free to look around and leave an 
+                <a href="/email"><span>Email</span></a> for positive feedback and updates!
+            </p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="copyright">
+            &copy; 2015 My Blog. All rights reserved.
+        </div>
+    </footer>
+
+    <div class="snow-container">
+        <div class="snow"></div>
+        <div class="snow"></div>
+        <div class="snow"></div>
+    </div>
+</body>
+</html>
