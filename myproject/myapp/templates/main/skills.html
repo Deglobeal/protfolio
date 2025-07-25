@@ -1,9 +1,37 @@
-{% extends "main/base.html" %}
-
-{% block title %}Home{% endblock %}
+{% extends 'main/base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>My Skills</h1>
-    <h2>Welcome to the Home Page! ugwu gerard onyedikachi</h2>
-    <p>This is the main landing page.</p>
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Skills</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Here are the technologies and skills I've mastered
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for skill in skills %}
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        {% if skill.icon_class %}
+                        <i class="{{ skill.icon_class }} text-blue-600 mr-3"></i>
+                        {% endif %}
+                        <h3 class="text-lg font-semibold text-gray-900">{{ skill.name }}</h3>
+                    </div>
+                    <span class="text-sm text-gray-600">{{ skill.level }}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                        class="bg-blue-600 h-2 rounded-full progress-bar"
+                        style="width: {{ skill.level }}%"
+                    ></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}

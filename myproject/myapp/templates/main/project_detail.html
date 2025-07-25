@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-8">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-96 object-cover rounded-lg">
+            </div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{{ project.title }}</h1>
+            
+            <div class="prose max-w-none mb-8">
+                {{ project.description|linebreaks }}
+            </div>
+            
+            <div class="flex flex-wrap gap-4">
+                {% if project.url %}
+                <a href="{{ project.url }}" target="_blank" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                    Live Demo
+                </a>
+                {% endif %}
+                
+                {% if project.github_url %}
+                <a href="{{ project.github_url }}" target="_blank" class="border border-gray-300 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-100 transition-colors">
+                    <i class="fab fa-github mr-2"></i> GitHub
+                </a>
+                {% endif %}
+                
+                <a href="{% url 'projects' %}" class="text-gray-600 hover:text-blue-600 flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Projects
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
