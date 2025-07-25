@@ -1,40 +1,388 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+{% block title %}Certificates & Achievements | My Portfolio{% endblock %}
+
 {% block content %}
-<section class="py-20 bg-white">
+<!-- Hero Section -->
+<section class="pt-24 pb-16 hero-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Certifications</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Certifications that validate my expertise in various technologies
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                Certificates & Achievements
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Professional certifications, course completions, and awards that demonstrate my commitment to continuous learning and excellence
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for certificate in certificates %}
-            <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-                <div class="p-4 bg-white">
-                    <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" class="w-full h-64 object-contain">
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ certificate.title }}</h3>
-                    <p class="text-gray-600 mb-2"><strong>Issued by:</strong> {{ certificate.issued_by }}</p>
-                    <p class="text-gray-600 mb-4"><strong>Date:</strong> {{ certificate.date_issued }}</p>
-                    
-                    {% if certificate.description %}
-                    <p class="text-gray-700 mb-4">{{ certificate.description }}</p>
-                    {% endif %}
-                    
-                    {% if certificate.certificate_url %}
-                    <a href="{{ certificate.certificate_url }}" target="_blank" class="text-blue-600 hover:underline">
-                        View Certificate <i class="fas fa-external-link-alt ml-1"></i>
-                    </a>
-                    {% endif %}
-                </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
+                <div class="text-3xl font-bold text-blue-600 mb-2">8</div>
+                <div class="text-gray-600">Certifications</div>
             </div>
-            {% endfor %}
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
+                <div class="text-3xl font-bold text-green-600 mb-2">6</div>
+                <div class="text-gray-600">Active</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
+                <div class="text-3xl font-bold text-purple-600 mb-2">4</div>
+                <div class="text-gray-600">Awards</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
+                <div class="text-3xl font-bold text-orange-600 mb-2">12</div>
+                <div class="text-gray-600">Skill Areas</div>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- Certificates Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
+                Professional Certifications
+            </h2>
+            
+            <div class="flex flex-wrap justify-center gap-4 mb-8" id="category-buttons">
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-blue-600 text-white category-btn active" data-category="all">
+                    All Certificates (8)
+                </button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="cloud">
+                    Cloud Computing (2)
+                </button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="development">
+                    Development (2)
+                </button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="devops">
+                    DevOps (2)
+                </button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="database">
+                    Database (1)
+                </button>
+                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="design">
+                    Design (1)
+                </button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="certificates-container">
+            <!-- Certificates will be dynamically inserted here -->
+        </div>
+    </div>
+</section>
+
+<!-- Awards Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Awards & Recognition
+            </h2>
+            <p class="text-lg text-gray-600">
+                Recognition for excellence in technology, innovation, and professional achievement
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Best Innovation Award</h3>
+                        <p class="text-blue-600 font-medium mb-1">TechCorp Inc.</p>
+                        <p class="text-gray-500 text-sm">2024</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">Recognized for developing an AI-powered customer service solution that improved response time by 60%.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Hackathon Winner - Best Mobile App</h3>
+                        <p class="text-blue-600 font-medium mb-1">Silicon Valley Tech Meetup</p>
+                        <p class="text-gray-500 text-sm">2023</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">First place winner for developing a sustainable transportation app during 48-hour hackathon.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Dean's List</h3>
+                        <p class="text-blue-600 font-medium mb-1">Stanford University</p>
+                        <p class="text-gray-500 text-sm">2019-2020</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">Academic excellence recognition for maintaining GPA above 3.7 throughout graduate program.</p>
+            </div>
+            
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+                <div class="flex items-start mb-4">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
+                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="text-xl font-bold text-gray-900 mb-1">Open Source Contributor of the Year</h3>
+                        <p class="text-blue-600 font-medium mb-1">GitHub</p>
+                        <p class="text-gray-500 text-sm">2023</p>
+                    </div>
+                </div>
+                <p class="text-gray-600">Recognition for significant contributions to open source projects with over 1000 stars combined.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                Skill Badges
+            </h2>
+            <p class="text-lg text-gray-600">
+                Key technologies and skills validated through certifications and practical experience
+            </p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-aws text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">AWS</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-google text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Google Cloud</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-react text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">React</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-js text-yellow-500"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">JavaScript</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-database text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">MongoDB</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-docker text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Docker</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-kubernetes text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Kubernetes</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-paint-brush text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Figma</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-code text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">HTML/CSS</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fab fa-python text-blue-700"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Python</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-server text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">System Design</h3>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                    <i class="fas fa-shield-alt text-blue-600"></i>
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Security</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Continuous Learning Journey
+        </h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            I believe in lifelong learning and staying current with the latest technologies and industry best practices. These certifications represent my commitment to professional growth and excellence.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'projects' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                View All Projects
+            </a>
+            <a href="{% url 'resume' %}" class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:border-gray-400 transition-colors">
+                Download Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Certificate data
+    window.certificatesData = [
+        {
+            id: 1,
+            title: "AWS Certified Solutions Architect - Professional",
+            organization: "Amazon Web Services",
+            date: "2024",
+            category: "cloud",
+            type: "Professional Certification",
+            description: "Advanced certification demonstrating expertise in designing distributed applications and systems on AWS platform.",
+            skills: ["AWS", "Cloud Architecture", "System Design", "Security"],
+            verificationLink: "https://aws.amazon.com/verification",
+            credentialId: "AWS-PSA-2024-001",
+            status: "active",
+            expiryDate: "2027"
+        },
+        {
+            id: 2,
+            title: "Google Cloud Professional Developer",
+            organization: "Google Cloud",
+            date: "2023",
+            category: "cloud",
+            type: "Professional Certification",
+            description: "Certification validating skills in developing scalable applications using Google Cloud technologies.",
+            skills: ["Google Cloud", "Kubernetes", "App Engine", "Cloud Functions"],
+            verificationLink: "https://cloud.google.com/certification",
+            credentialId: "GCP-PD-2023-045",
+            status: "active",
+            expiryDate: "2026"
+        },
+        {
+            id: 3,
+            title: "Meta Front-End Developer Professional Certificate",
+            organization: "Meta (Facebook)",
+            date: "2023",
+            category: "development",
+            type: "Professional Certificate",
+            description: "Comprehensive program covering modern front-end development with React, JavaScript, and UI/UX principles.",
+            skills: ["React", "JavaScript", "HTML/CSS", "UI/UX Design"],
+            verificationLink: "https://coursera.org/verify",
+            credentialId: "META-FED-2023-789",
+            status: "completed",
+            expiryDate: null
+        },
+        {
+            id: 4,
+            title: "MongoDB Certified Developer Associate",
+            organization: "MongoDB University",
+            date: "2023",
+            category: "database",
+            type: "Professional Certification",
+            description: "Certification demonstrating proficiency in MongoDB database design, development, and administration.",
+            skills: ["MongoDB", "NoSQL", "Database Design", "Aggregation"],
+            verificationLink: "https://university.mongodb.com/verify",
+            credentialId: "MDB-DEV-2023-456",
+            status: "active",
+            expiryDate: "2026"
+        },
+        {
+            id: 5,
+            title: "Full Stack Web Development Bootcamp",
+            organization: "Le Wagon",
+            date: "2022",
+            category: "development",
+            type: "Bootcamp Certificate",
+            description: "Intensive 24-week program covering full-stack web development from front-end to back-end technologies.",
+            skills: ["Ruby on Rails", "JavaScript", "PostgreSQL", "Git"],
+            verificationLink: "https://lewagon.com/verify",
+            credentialId: "LW-FS-2022-123",
+            status: "completed",
+            expiryDate: null
+        },
+        {
+            id: 6,
+            title: "Certified Kubernetes Administrator (CKA)",
+            organization: "Cloud Native Computing Foundation",
+            date: "2024",
+            category: "devops",
+            type: "Professional Certification",
+            description: "Hands-on certification validating skills in Kubernetes cluster administration and troubleshooting.",
+            skills: ["Kubernetes", "Container Orchestration", "DevOps", "Linux"],
+            verificationLink: "https://cncf.io/verify",
+            credentialId: "CKA-2024-789",
+            status: "active",
+            expiryDate: "2027"
+        },
+        {
+            id: 7,
+            title: "Docker Certified Associate",
+            organization: "Docker Inc.",
+            date: "2023",
+            category: "devops",
+            type: "Professional Certification",
+            description: "Certification demonstrating expertise in containerization, Docker architecture, and container orchestration.",
+            skills: ["Docker", "Containerization", "DevOps", "Microservices"],
+            verificationLink: "https://docker.com/verify",
+            credentialId: "DCA-2023-567",
+            status: "active",
+            expiryDate: "2026"
+        },
+        {
+            id: 8,
+            title: "UX Design Professional Certificate",
+            organization: "Google",
+            date: "2022",
+            category: "design",
+            type: "Professional Certificate",
+            description: "Comprehensive UX design program covering user research, wireframing, prototyping, and usability testing.",
+            skills: ["UX Design", "User Research", "Prototyping", "Figma"],
+            verificationLink: "https://coursera.org/verify",
+            credentialId: "GOOGLE-UX-2022-890",
+            status: "completed",
+            expiryDate: null
+        }
+    ];
+</script>
 {% endblock %}

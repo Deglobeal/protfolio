@@ -1,35 +1,301 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+{% block title %}Projects Portfolio | My Portfolio{% endblock %}
+
 {% block content %}
-<section class="py-20 bg-white">
+<!-- Hero Section -->
+<section class="pt-24 pb-16 hero-bg">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Projects</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                A collection of projects I've developed to solve real-world problems
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                My Projects
+            </h1>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                A showcase of web applications, mobile apps, and design projects that demonstrate my skills and passion for creating exceptional digital experiences
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for project in projects %}
-            <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
-                <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ project.title }}</h3>
-                    <p class="text-gray-600 mb-4">{{ project.description|truncatewords:25 }}</p>
-                    <div class="flex justify-between">
-                        <a href="{% url 'project_detail' project.id %}" class="text-blue-600 hover:underline">View Details</a>
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" target="_blank" class="text-gray-600 hover:text-blue-600">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        {% endif %}
-                    </div>
-                </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-blue-600 mb-2">6</div>
+                <div class="text-gray-600">Total Projects</div>
             </div>
-            {% endfor %}
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-green-600 mb-2">5</div>
+                <div class="text-gray-600">Live Projects</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
+                <div class="text-gray-600">Technologies</div>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
+                <div class="text-3xl font-bold text-orange-600 mb-2">5</div>
+                <div class="text-gray-600">Happy Clients</div>
+            </div>
         </div>
     </div>
 </section>
+
+<!-- Projects Section -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12">
+            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 lg:mb-0">
+                    Featured Work
+                </h2>
+                
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Filter by Category
+                        </label>
+                        <select id="category-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="all">All Projects (6)</option>
+                            <option value="web">Web Applications (3)</option>
+                            <option value="mobile">Mobile Apps (2)</option>
+                            <option value="design">Design Projects (1)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Filter by Technology
+                        </label>
+                        <select id="tech-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="all">All Technologies</option>
+                            <option value="React">React</option>
+                            <option value="Node.js">Node.js</option>
+                            <option value="React Native">React Native</option>
+                            <option value="Vue.js">Vue.js</option>
+                            <option value="Python">Python</option>
+                            <option value="MongoDB">MongoDB</option>
+                            <option value="PostgreSQL">PostgreSQL</option>
+                            <option value="Firebase">Firebase</option>
+                            <option value="AWS">AWS</option>
+                            <option value="TypeScript">TypeScript</option>
+                            <option value="Flutter">Flutter</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+            <!-- Projects will be dynamically inserted here -->
+        </div>
+
+        <div id="no-projects-message" class="hidden text-center py-12">
+            <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
+            <h3 class="text-xl font-medium text-gray-900 mb-2">
+                No projects found
+            </h3>
+            <p class="text-gray-600">
+                Try adjusting your filters to see more projects.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Project Detail Modal -->
+<div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4 modal-overlay">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content">
+        <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
+            <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+        </div>
+
+        <div class="p-6">
+            <div id="modal-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            Ready to Start Your Project?
+        </h2>
+        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            I'm always excited to work on new projects and bring innovative ideas to life. Let's discuss how we can collaborate to create something amazing together.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'contact' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Start a Project
+            </a>
+            <a href="{% url 'resume' %}" class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:border-gray-400 transition-colors">
+                View Resume
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Project data
+    window.projectsData = [
+        {
+            id: 1,
+            title: "E-Commerce Platform",
+            category: "web",
+            type: "Full Stack Web Application",
+            description: "A modern e-commerce platform with real-time inventory management, payment processing, and admin dashboard.",
+            longDescription: "Built a comprehensive e-commerce solution from the ground up, featuring user authentication, product catalog, shopping cart, payment integration with Stripe, order management, and an admin panel for inventory control. The platform handles over 10,000 products and serves 5,000+ active users.",
+            technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe", "AWS"],
+            liveDemo: "https://demo-ecommerce.alexjohnson.dev",
+            github: "https://github.com/alexjohnson/ecommerce-platform",
+            status: "Live",
+            duration: "4 months",
+            client: "RetailCorp Inc.",
+            features: [
+                "User authentication & profiles",
+                "Product catalog with search & filters",
+                "Shopping cart & wishlist",
+                "Secure payment processing",
+                "Order tracking & history",
+                "Admin dashboard",
+                "Inventory management",
+                "Email notifications"
+            ],
+            challenges: "Implementing real-time inventory updates across multiple user sessions and optimizing database queries for large product catalogs.",
+            results: "Increased client's online sales by 150% and reduced cart abandonment rate by 30%."
+        },
+        {
+            id: 2,
+            title: "Task Management Mobile App",
+            category: "mobile",
+            type: "React Native Mobile Application",
+            description: "Cross-platform mobile app for team collaboration and project management with offline capabilities.",
+            longDescription: "Developed a comprehensive task management application that works seamlessly across iOS and Android platforms. Features include real-time collaboration, offline sync, push notifications, and advanced project analytics. The app supports teams of up to 100 members.",
+            technologies: ["React Native", "Firebase", "Redux", "TypeScript", "Expo"],
+            liveDemo: "https://apps.apple.com/taskmanager",
+            github: "https://github.com/alexjohnson/task-manager-app",
+            status: "Live",
+            duration: "6 months",
+            client: "ProductivityPro",
+            features: [
+                "Cross-platform compatibility",
+                "Real-time collaboration",
+                "Offline synchronization",
+                "Push notifications",
+                "File attachments",
+                "Time tracking",
+                "Project analytics",
+                "Team management"
+            ],
+            challenges: "Implementing robust offline functionality and ensuring data consistency when syncing across multiple devices.",
+            results: "App reached 50,000+ downloads within 3 months and maintains a 4.8-star rating on app stores."
+        },
+        {
+            id: 3,
+            title: "Healthcare Dashboard",
+            category: "web",
+            type: "Data Visualization Web App",
+            description: "Interactive dashboard for healthcare providers to monitor patient data and analytics in real-time.",
+            longDescription: "Created a sophisticated healthcare dashboard that aggregates patient data from multiple sources, providing healthcare professionals with real-time insights and analytics. Features HIPAA-compliant security, customizable widgets, and advanced reporting capabilities.",
+            technologies: ["Vue.js", "D3.js", "Python", "PostgreSQL", "Docker", "AWS"],
+            liveDemo: "https://healthcare-demo.alexjohnson.dev",
+            github: "https://github.com/alexjohnson/healthcare-dashboard",
+            status: "Live",
+            duration: "5 months",
+            client: "MedTech Solutions",
+            features: [
+                "Real-time data visualization",
+                "HIPAA-compliant security",
+                "Customizable dashboards",
+                "Advanced analytics",
+                "Report generation",
+                "Multi-user access control",
+                "Data export capabilities",
+                "Mobile responsive design"
+            ],
+            challenges: "Ensuring HIPAA compliance while maintaining performance with large datasets and implementing secure multi-tenant architecture.",
+            results: "Reduced data analysis time by 60% for healthcare providers and improved patient outcome tracking efficiency."
+        },
+        {
+            id: 4,
+            title: "Brand Identity System",
+            category: "design",
+            type: "UI/UX Design & Branding",
+            description: "Complete brand identity and design system for a fintech startup, including logo, guidelines, and digital assets.",
+            longDescription: "Developed a comprehensive brand identity system for a fintech startup, including logo design, color palette, typography, iconography, and digital asset creation. Created detailed brand guidelines and implemented the design system across web and mobile platforms.",
+            technologies: ["Figma", "Adobe Creative Suite", "Sketch", "InVision"],
+            liveDemo: "https://brand-showcase.alexjohnson.dev",
+            github: null,
+            status: "Completed",
+            duration: "3 months",
+            client: "FinanceFlow",
+            features: [
+                "Logo design & variations",
+                "Color palette & guidelines",
+                "Typography system",
+                "Icon library",
+                "Brand guidelines document",
+                "Digital asset templates",
+                "Social media assets",
+                "Print collateral designs"
+            ],
+            challenges: "Creating a trustworthy yet modern brand identity that appeals to both tech-savvy millennials and traditional finance users.",
+            results: "Brand recognition increased by 200% and user trust metrics improved by 45% after rebrand implementation."
+        },
+        {
+            id: 5,
+            title: "Real Estate Platform",
+            category: "web",
+            type: "Full Stack Web Application",
+            description: "Comprehensive real estate platform with property listings, virtual tours, and mortgage calculator.",
+            longDescription: "Built a full-featured real estate platform that connects buyers, sellers, and agents. Includes advanced search functionality, interactive maps, virtual tour integration, mortgage calculators, and a comprehensive CRM system for real estate professionals.",
+            technologies: ["Next.js", "GraphQL", "Prisma", "PostgreSQL", "Mapbox", "Vercel"],
+            liveDemo: "https://realestate-demo.alexjohnson.dev",
+            github: "https://github.com/alexjohnson/realestate-platform",
+            status: "Live",
+            duration: "7 months",
+            client: "PropertyPro",
+            features: [
+                "Advanced property search",
+                "Interactive maps integration",
+                "Virtual tour support",
+                "Mortgage calculator",
+                "Agent CRM system",
+                "Favorites & saved searches",
+                "Property comparison tool",
+                "Lead management"
+            ],
+            challenges: "Integrating multiple MLS data sources and optimizing map performance with thousands of property markers.",
+            results: "Platform now hosts 25,000+ property listings and generates 500+ qualified leads monthly for agents."
+        },
+        {
+            id: 6,
+            title: "Fitness Tracking App",
+            category: "mobile",
+            type: "iOS & Android Mobile App",
+            description: "Personal fitness tracking app with workout plans, progress monitoring, and social features.",
+            longDescription: "Developed a comprehensive fitness tracking application that helps users monitor their workouts, track progress, and connect with a community of fitness enthusiasts. Features include custom workout plans, nutrition tracking, and social challenges.",
+            technologies: ["Flutter", "Dart", "Firebase", "HealthKit", "Google Fit"],
+            liveDemo: "https://play.google.com/fitnesstrack",
+            github: "https://github.com/alexjohnson/fitness-tracker",
+            status: "Live",
+            duration: "4 months",
+            client: "FitLife Inc.",
+            features: [
+                "Workout tracking & logging",
+                "Custom exercise plans",
+                "Progress analytics",
+                "Nutrition tracking",
+                "Social challenges",
+                "Achievement system",
+                "Wearable device sync",
+                "Offline workout mode"
+            ],
+            challenges: "Integrating with multiple health platforms and ensuring accurate data synchronization across devices.",
+            results: "App achieved 100,000+ downloads and maintains 4.7-star rating with active community of 25,000+ users."
+        }
+    ];
+</script>
 {% endblock %}
