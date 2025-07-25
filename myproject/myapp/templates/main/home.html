@@ -1,16 +1,100 @@
 {% extends "main/base.html" %}
 
-{% block title %}Home{% endblock %}
+{% load static %}
 
 {% block content %}
-    <div>
-        <div>
-            <h1>Gerard Ugwu</h1>
-            <h2>Welcome to My Page</h2>
-            <p>This is my page. Feel free to look around and leave an 
-                <a href="/email"><span>Email</span></a> for positive feedback and updates!
-            </p>
-            <p> Fiath is a very shy person and doesn't like to talk much, but she is very friendly and loves to help others.</p>
+<section id="home" class="pt-16 bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="text-center">
+            <!-- ... existing hero section ... -->
+
+            <!-- Projects Preview -->
+            <div class="mt-20">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {% for project in projects %}
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                        <img src="{{ project.image.url }}" alt="{{ project.title }}" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">{{ project.title }}</h3>
+                            <p class="text-gray-600 mb-4">{{ project.description|truncatewords:20 }}</p>
+                            <a href="{% url 'project_detail' project.id %}" class="text-blue-600 hover:underline">View Details</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
+</section>
+
+<!-- Skills Section (updated) -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Skills & Expertise</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Here are some of the technologies and skills I work with to bring ideas to life
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for skill in skills %}
+            <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        {% if skill.icon_class %}
+                        <i class="{{ skill.icon_class }} text-blue-600 mr-3"></i>
+                        {% endif %}
+                        <h3 class="text-lg font-semibold text-gray-900">{{ skill.name }}</h3>
+                    </div>
+                    <span class="text-sm text-gray-600">{{ skill.level }}%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div 
+                        class="bg-blue-600 h-2 rounded-full progress-bar"
+                        style="width: {{ skill.level }}%"
+                    ></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Preview -->
+<section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Recent Certifications</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Certifications that validate my expertise in various technologies
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {% for certificate in certificates %}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" class="w-full h-48 object-contain p-4">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ certificate.title }}</h3>
+                    <p class="text-gray-600 mb-2">Issued by: {{ certificate.issued_by }}</p>
+                    <p class="text-gray-600 mb-4">Date: {{ certificate.date_issued }}</p>
+                    {% if certificate.certificate_url %}
+                    <a href="{{ certificate.certificate_url }}" target="_blank" class="text-blue-600 hover:underline">View Certificate</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-12">
+            <a href="{% url 'certificates' %}" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                View All Certificates
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ... existing CTA section ... -->
 {% endblock %}

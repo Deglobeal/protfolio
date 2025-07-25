@@ -1,8 +1,40 @@
-{% extends "main/base.html" %}
-
-{% block title %}Home{% endblock %}
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Welcome to the Home Page! ugwu gerard onyedikachi</h2>
-    <p>This is the main landing page.</p>
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Certifications</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Certifications that validate my expertise in various technologies
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for certificate in certificates %}
+            <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden">
+                <div class="p-4 bg-white">
+                    <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}" class="w-full h-64 object-contain">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">{{ certificate.title }}</h3>
+                    <p class="text-gray-600 mb-2"><strong>Issued by:</strong> {{ certificate.issued_by }}</p>
+                    <p class="text-gray-600 mb-4"><strong>Date:</strong> {{ certificate.date_issued }}</p>
+                    
+                    {% if certificate.description %}
+                    <p class="text-gray-700 mb-4">{{ certificate.description }}</p>
+                    {% endif %}
+                    
+                    {% if certificate.certificate_url %}
+                    <a href="{{ certificate.certificate_url }}" target="_blank" class="text-blue-600 hover:underline">
+                        View Certificate <i class="fas fa-external-link-alt ml-1"></i>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
 {% endblock %}
