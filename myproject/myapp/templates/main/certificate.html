@@ -1,681 +1,368 @@
-function MainComponent() {
-  return (
-    <div>
-      {/* Header section with navigation */}
-      <header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Certificates & Achievements</title>
+</head>
+<body>
+    <!-- Header section with navigation -->
+    <header>
         <div>
-          {/* Page title */}
-          <h1>John Doe - Certificates & Achievements</h1>
-
-          {/* Navigation menu */}
-          <nav>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li>
-                <a href="/skills">Skills</a>
-              </li>
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-              <li>
-                <a href="/resume">Resume</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-            </ul>
-          </nav>
+            <h1>John Doe - Certificates & Achievements</h1>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/skills">Skills</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/social">Social</a></li>
+                </ul>
+            </nav>
         </div>
-      </header>
+    </header>
 
-      {/* Main content area */}
-      <main>
-        {/* Certificates overview section */}
+    <main>
+        <!-- Certificates overview section -->
         <section>
-          <h2>Professional Certifications & Achievements</h2>
-          <p>
-            Here's a comprehensive collection of my professional certifications, 
-            online course completions, awards, and achievements that demonstrate 
-            my commitment to continuous learning and professional development.
-          </p>
-        </section>
-
-        {/* Professional Certifications section */}
-        <section>
-          <h3>Professional Certifications</h3>
-
-          {/* AWS Certified Developer certification */}
-          <div>
-            <h4>AWS Certified Developer - Associate</h4>
-            
-            {/* Certificate details */}
-            <div>
-              <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
-              <p><strong>Issue Date:</strong> March 2024</p>
-              <p><strong>Expiration Date:</strong> March 2027</p>
-              <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
-              <p><strong>Verification URL:</strong> 
-                <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
-                   target="_blank" rel="noopener noreferrer">
-                  Verify Certificate
-                </a>
-              </p>
-            </div>
-
-            {/* Certificate description */}
-            <div>
-              <p>
-                This certification validates my expertise in developing and maintaining 
-                applications on the AWS platform. It demonstrates proficiency in core 
-                AWS services, security best practices, and deployment strategies.
-              </p>
-              
-              {/* Skills covered */}
-              <div>
-                <h5>Skills Validated:</h5>
-                <ul>
-                  <li>AWS Lambda and serverless architecture</li>
-                  <li>Amazon EC2 and container services</li>
-                  <li>AWS database services (RDS, DynamoDB)</li>
-                  <li>API Gateway and microservices</li>
-                  <li>AWS security and IAM best practices</li>
-                  <li>Monitoring and troubleshooting applications</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Google Cloud Professional certification */}
-          <div>
-            <h4>Google Cloud Professional Cloud Developer</h4>
-            
-            {/* Certificate details */}
-            <div>
-              <p><strong>Issuing Organization:</strong> Google Cloud</p>
-              <p><strong>Issue Date:</strong> January 2024</p>
-              <p><strong>Expiration Date:</strong> January 2026</p>
-              <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
-              <p><strong>Verification URL:</strong> 
-                <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
-                   target="_blank" rel="noopener noreferrer">
-                  Verify Certificate
-                </a>
-              </p>
-            </div>
-
-            {/* Certificate description */}
-            <div>
-              <p>
-                This certification demonstrates my ability to design, build, and deploy 
-                scalable applications using Google Cloud Platform services and tools.
-              </p>
-              
-              {/* Skills covered */}
-              <div>
-                <h5>Skills Validated:</h5>
-                <ul>
-                  <li>Google App Engine and Cloud Functions</li>
-                  <li>Kubernetes Engine and container orchestration</li>
-                  <li>Cloud Storage and database solutions</li>
-                  <li>CI/CD pipelines with Cloud Build</li>
-                  <li>Monitoring and logging with Stackdriver</li>
-                  <li>Security and identity management</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Microsoft Azure certification */}
-          <div>
-            <h4>Microsoft Certified: Azure Developer Associate</h4>
-            
-            {/* Certificate details */}
-            <div>
-              <p><strong>Issuing Organization:</strong> Microsoft</p>
-              <p><strong>Issue Date:</strong> November 2023</p>
-              <p><strong>Expiration Date:</strong> November 2025</p>
-              <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
-              <p><strong>Verification URL:</strong> 
-                <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
-                   target="_blank" rel="noopener noreferrer">
-                  Verify Certificate
-                </a>
-              </p>
-            </div>
-
-            {/* Certificate description */}
-            <div>
-              <p>
-                This certification validates my skills in developing cloud solutions 
-                that leverage Azure services, including compute, storage, and security.
-              </p>
-              
-              {/* Skills covered */}
-              <div>
-                <h5>Skills Validated:</h5>
-                <ul>
-                  <li>Azure App Service and Functions</li>
-                  <li>Azure Storage and Cosmos DB</li>
-                  <li>Azure Active Directory integration</li>
-                  <li>Container solutions with Azure Container Instances</li>
-                  <li>API Management and Service Bus</li>
-                  <li>Monitoring and optimization</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Online Course Completions section */}
-        <section>
-          <h3>Online Course Completions</h3>
-
-          {/* React Advanced Patterns course */}
-          <div>
-            <h4>Advanced React Patterns and Performance</h4>
-            
-            {/* Course details */}
-            <div>
-              <p><strong>Platform:</strong> Frontend Masters</p>
-              <p><strong>Instructor:</strong> Kent C. Dodds</p>
-              <p><strong>Completion Date:</strong> February 2024</p>
-              <p><strong>Duration:</strong> 8 hours</p>
-              <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
-            </div>
-
-            {/* Course description */}
-            <div>
-              <p>
-                Comprehensive course covering advanced React patterns, performance 
-                optimization techniques, and best practices for building scalable 
-                React applications.
-              </p>
-              
-              {/* Topics covered */}
-              <div>
-                <h5>Topics Covered:</h5>
-                <ul>
-                  <li>Advanced React Hooks patterns</li>
-                  <li>Render props and higher-order components</li>
-                  <li>Performance optimization with React.memo</li>
-                  <li>Code splitting and lazy loading</li>
-                  <li>Context API optimization</li>
-                  <li>Testing advanced React components</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Full Stack JavaScript course */}
-          <div>
-            <h4>Complete Node.js Developer Course</h4>
-            
-            {/* Course details */}
-            <div>
-              <p><strong>Platform:</strong> Udemy</p>
-              <p><strong>Instructor:</strong> Andrew Mead</p>
-              <p><strong>Completion Date:</strong> December 2023</p>
-              <p><strong>Duration:</strong> 35 hours</p>
-              <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
-            </div>
-
-            {/* Course description */}
-            <div>
-              <p>
-                Comprehensive Node.js course covering server-side JavaScript 
-                development, API creation, database integration, and deployment.
-              </p>
-              
-              {/* Topics covered */}
-              <div>
-                <h5>Topics Covered:</h5>
-                <ul>
-                  <li>Node.js fundamentals and modules</li>
-                  <li>Express.js framework and middleware</li>
-                  <li>MongoDB and Mongoose ODM</li>
-                  <li>Authentication and authorization</li>
-                  <li>File uploads and email sending</li>
-                  <li>Testing with Jest and Supertest</li>
-                  <li>Deployment to Heroku and AWS</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* TypeScript course */}
-          <div>
-            <h4>TypeScript: The Complete Developer's Guide</h4>
-            
-            {/* Course details */}
-            <div>
-              <p><strong>Platform:</strong> Udemy</p>
-              <p><strong>Instructor:</strong> Stephen Grider</p>
-              <p><strong>Completion Date:</strong> October 2023</p>
-              <p><strong>Duration:</strong> 24 hours</p>
-              <p><strong>Certificate ID:</strong> UC-TS-2023-JD-123</p>
-            </div>
-
-            {/* Course description */}
-            <div>
-              <p>
-                In-depth TypeScript course covering type systems, advanced features, 
-                and integration with popular frameworks and libraries.
-              </p>
-              
-              {/* Topics covered */}
-              <div>
-                <h5>Topics Covered:</h5>
-                <ul>
-                  <li>TypeScript fundamentals and type annotations</li>
-                  <li>Interfaces, classes, and inheritance</li>
-                  <li>Generics and advanced types</li>
-                  <li>Decorators and metadata</li>
-                  <li>Integration with React and Express</li>
-                  <li>TypeScript with popular libraries</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Database Design course */}
-          <div>
-            <h4>Database Design and PostgreSQL</h4>
-            
-            {/* Course details */}
-            <div>
-              <p><strong>Platform:</strong> Coursera</p>
-              <p><strong>Institution:</strong> University of California, Davis</p>
-              <p><strong>Completion Date:</strong> September 2023</p>
-              <p><strong>Duration:</strong> 6 weeks</p>
-              <p><strong>Certificate ID:</strong> COURSERA-DB-2023-JD-789</p>
-            </div>
-
-            {/* Course description */}
-            <div>
-              <p>
-                Comprehensive database design course focusing on relational database 
-                concepts, normalization, and PostgreSQL implementation.
-              </p>
-              
-              {/* Topics covered */}
-              <div>
-                <h5>Topics Covered:</h5>
-                <ul>
-                  <li>Database design principles and normalization</li>
-                  <li>Entity-relationship modeling</li>
-                  <li>SQL query optimization</li>
-                  <li>PostgreSQL advanced features</li>
-                  <li>Indexing and performance tuning</li>
-                  <li>Database security and backup strategies</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Awards and Recognition section */}
-        <section>
-          <h3>Awards & Recognition</h3>
-
-          {/* Employee of the Year award */}
-          <div>
-            <h4>Employee of the Year 2024</h4>
-            
-            {/* Award details */}
-            <div>
-              <p><strong>Organization:</strong> TechCorp Solutions</p>
-              <p><strong>Date Received:</strong> December 2024</p>
-              <p><strong>Category:</strong> Technical Excellence</p>
-            </div>
-
-            {/* Award description */}
-            <div>
-              <p>
-                Recognized for outstanding technical contributions, leadership in 
-                complex projects, and mentoring junior developers. This award 
-                acknowledges exceptional performance and dedication to code quality.
-              </p>
-              
-              {/* Achievements that led to award */}
-              <div>
-                <h5>Key Achievements:</h5>
-                <ul>
-                  <li>Led development of company's flagship e-commerce platform</li>
-                  <li>Improved application performance by 40% through optimization</li>
-                  <li>Mentored 5 junior developers, with 100% retention rate</li>
-                  <li>Implemented automated testing, increasing coverage to 95%</li>
-                  <li>Contributed to open-source projects used company-wide</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Hackathon winner */}
-          <div>
-            <h4>First Place - Bay Area Tech Hackathon 2024</h4>
-            
-            {/* Award details */}
-            <div>
-              <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
-              <p><strong>Date:</strong> August 2024</p>
-              <p><strong>Team Size:</strong> 4 developers</p>
-              <p><strong>Prize:</strong> $10,000 and mentorship program</p>
-            </div>
-
-            {/* Award description */}
-            <div>
-              <p>
-                Won first place in a 48-hour hackathon with over 200 participants. 
-                Our team developed an AI-powered accessibility tool for web applications 
-                that automatically identifies and suggests fixes for accessibility issues.
-              </p>
-              
-              {/* Project details */}
-              <div>
-                <h5>Winning Project - AccessibilityAI:</h5>
-                <ul>
-                  <li>Real-time accessibility scanning and reporting</li>
-                  <li>AI-powered suggestions for WCAG compliance</li>
-                  <li>Browser extension with developer tools integration</li>
-                  <li>Machine learning model trained on accessibility patterns</li>
-                  <li>Automated testing integration for CI/CD pipelines</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Open Source Contribution award */}
-          <div>
-            <h4>Outstanding Open Source Contributor</h4>
-            
-            {/* Award details */}
-            <div>
-              <p><strong>Organization:</strong> React Community</p>
-              <p><strong>Date Received:</strong> June 2024</p>
-              <p><strong>Recognition Type:</strong> Community Award</p>
-            </div>
-
-            {/* Award description */}
-            <div>
-              <p>
-                Recognized by the React community for significant contributions to 
-                popular React libraries and helping maintain several open-source projects.
-              </p>
-              
-              {/* Contributions */}
-              <div>
-                <h5>Notable Contributions:</h5>
-                <ul>
-                  <li>50+ merged pull requests across various React projects</li>
-                  <li>Maintained React component library with 10k+ weekly downloads</li>
-                  <li>Created comprehensive documentation and tutorials</li>
-                  <li>Mentored new contributors in the community</li>
-                  <li>Spoke at 3 React meetups about best practices</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Academic Achievements section */}
-        <section>
-          <h3>Academic Achievements</h3>
-
-          {/* Dean's List achievement */}
-          <div>
-            <h4>Dean's List Recognition</h4>
-            
-            {/* Achievement details */}
-            <div>
-              <p><strong>Institution:</strong> University of California, Berkeley</p>
-              <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
-              <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
-            </div>
-
-            {/* Achievement description */}
-            <div>
-              <p>
-                Achieved Dean's List recognition for three consecutive semesters, 
-                maintaining high academic standards while pursuing Computer Science degree.
-              </p>
-            </div>
-          </div>
-
-          {/* Graduation honors */}
-          <div>
-            <h4>Magna Cum Laude Graduate</h4>
-            
-            {/* Achievement details */}
-            <div>
-              <p><strong>Institution:</strong> University of California, Berkeley</p>
-              <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
-              <p><strong>Graduation Date:</strong> May 2019</p>
-              <p><strong>Final GPA:</strong> 3.8/4.0</p>
-            </div>
-
-            {/* Achievement description */}
-            <div>
-              <p>
-                Graduated Magna Cum Laude with distinction in Computer Science, 
-                demonstrating consistent academic excellence throughout the program.
-              </p>
-            </div>
-          </div>
-
-          {/* Senior Capstone Project award */}
-          <div>
-            <h4>Best Senior Capstone Project</h4>
-            
-            {/* Achievement details */}
-            <div>
-              <p><strong>Institution:</strong> University of California, Berkeley</p>
-              <p><strong>Project Title:</strong> "Distributed Task Scheduling System"</p>
-              <p><strong>Date:</strong> May 2019</p>
-              <p><strong>Team Size:</strong> 4 students</p>
-            </div>
-
-            {/* Achievement description */}
-            <div>
-              <p>
-                Led a team of 4 students to develop a distributed task scheduling 
-                system that won the award for Best Senior Capstone Project in the 
-                Computer Science department.
-              </p>
-              
-              {/* Project highlights */}
-              <div>
-                <h5>Project Highlights:</h5>
-                <ul>
-                  <li>Implemented fault-tolerant distributed architecture</li>
-                  <li>Achieved 99.9% uptime in stress testing</li>
-                  <li>Handled 10,000+ concurrent tasks efficiently</li>
-                  <li>Created comprehensive documentation and user guides</li>
-                  <li>Presented findings at university research symposium</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Professional Memberships section */}
-        <section>
-          <h3>Professional Memberships</h3>
-
-          {/* IEEE membership */}
-          <div>
-            <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
-            
-            {/* Membership details */}
-            <div>
-              <p><strong>Membership Type:</strong> Professional Member</p>
-              <p><strong>Member Since:</strong> January 2020</p>
-              <p><strong>Member ID:</strong> IEEE-94567123</p>
-              <p><strong>Status:</strong> Active</p>
-            </div>
-
-            {/* Membership benefits and activities */}
-            <div>
-              <p>
-                Active member participating in professional development activities, 
-                technical conferences, and networking events in the software engineering field.
-              </p>
-            </div>
-          </div>
-
-          {/* ACM membership */}
-          <div>
-            <h4>Association for Computing Machinery (ACM)</h4>
-            
-            {/* Membership details */}
-            <div>
-              <p><strong>Membership Type:</strong> Professional Member</p>
-              <p><strong>Member Since:</strong> March 2020</p>
-              <p><strong>Member ID:</strong> ACM-8901234</p>
-              <p><strong>Status:</strong> Active</p>
-            </div>
-
-            {/* Membership benefits and activities */}
-            <div>
-              <p>
-                Engaged member accessing cutting-edge research, participating in 
-                special interest groups, and staying current with computing trends 
-                and best practices.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Continuing Education section */}
-        <section>
-          <h3>Continuing Education & Training</h3>
-
-          {/* Workshop attendance */}
-          <div>
-            <h4>Advanced JavaScript Performance Workshop</h4>
-            
-            {/* Training details */}
-            <div>
-              <p><strong>Provider:</strong> Google Developers</p>
-              <p><strong>Date:</strong> March 2024</p>
-              <p><strong>Duration:</strong> 2 days</p>
-              <p><strong>Location:</strong> San Francisco, CA</p>
-            </div>
-
-            {/* Training description */}
-            <div>
-              <p>
-                Intensive workshop focusing on JavaScript performance optimization, 
-                memory management, and advanced debugging techniques for web applications.
-              </p>
-            </div>
-          </div>
-
-          {/* Conference attendance */}
-          <div>
-            <h4>React Conf 2024</h4>
-            
-            {/* Conference details */}
-            <div>
-              <p><strong>Event:</strong> React Conference</p>
-              <p><strong>Date:</strong> May 2024</p>
-              <p><strong>Location:</strong> Las Vegas, NV</p>
-              <p><strong>Attendance Type:</strong> In-person</p>
-            </div>
-
-            {/* Conference description */}
-            <div>
-              <p>
-                Attended the premier React conference featuring the latest updates, 
-                best practices, and future roadmap presentations from the React core team.
-              </p>
-            </div>
-          </div>
-
-          {/* Security training */}
-          <div>
-            <h4>Web Application Security Training</h4>
-            
-            {/* Training details */}
-            <div>
-              <p><strong>Provider:</strong> OWASP Foundation</p>
-              <p><strong>Date:</strong> January 2024</p>
-              <p><strong>Duration:</strong> 16 hours</p>
-              <p><strong>Format:</strong> Online</p>
-            </div>
-
-            {/* Training description */}
-            <div>
-              <p>
-                Comprehensive security training covering OWASP Top 10 vulnerabilities, 
-                secure coding practices, and penetration testing fundamentals.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Verification and Validation section */}
-        <section>
-          <h3>Certificate Verification</h3>
-          <p>
-            All certificates and achievements listed on this page are verifiable 
-            through the respective issuing organizations. Verification links are 
-            provided where available, and additional documentation can be provided 
-            upon request.
-          </p>
-
-          {/* Verification process */}
-          <div>
-            <h4>How to Verify:</h4>
-            <ol>
-              <li>Click on the verification links provided with each certificate</li>
-              <li>Enter the credential ID on the issuing organization's website</li>
-              <li>Contact me directly for additional verification documentation</li>
-              <li>Request official transcripts or certificates from institutions</li>
-            </ol>
-          </div>
-
-          {/* Contact for verification */}
-          <div>
+            <h2>Professional Certifications & Achievements</h2>
             <p>
-              <strong>For verification inquiries:</strong> 
-              <a href="/contact">Contact me directly</a> or email john.doe@email.com
+                Here's a comprehensive collection of my professional certifications, 
+                online course completions, awards, and achievements that demonstrate 
+                my commitment to continuous learning and professional development.
             </p>
-          </div>
         </section>
 
-        {/* Call to action section */}
+        <!-- Professional Certifications section -->
         <section>
-          <h3>Ready to Work Together?</h3>
-          <p>
-            These certifications and achievements demonstrate my commitment to 
-            professional excellence and continuous learning. I'm always eager to 
-            apply my skills to new challenges and projects.
-          </p>
+            <h3>Professional Certifications</h3>
 
-          {/* Call to action links */}
-          <div>
-            <a href="/projects">View My Projects</a>
-            <a href="/skills">See My Skills</a>
-            <a href="/contact">Start a Conversation</a>
-          </div>
+            <!-- AWS Certified Developer certification -->
+            <div>
+                <h4>AWS Certified Developer - Associate</h4>
+                <div>
+                    <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
+                    <p><strong>Issue Date:</strong> March 2024</p>
+                    <p><strong>Expiration Date:</strong> March 2027</p>
+                    <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
+                    <p><strong>Verification URL:</strong> 
+                        <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
+                        target="_blank" rel="noopener noreferrer">
+                            Verify Certificate
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This certification validates my expertise in developing and maintaining 
+                        applications on the AWS platform.
+                    </p>
+                    <div>
+                        <h5>Skills Validated:</h5>
+                        <ul>
+                            <li>AWS Lambda and serverless architecture</li>
+                            <li>Amazon EC2 and container services</li>
+                            <li>AWS database services (RDS, DynamoDB)</li>
+                            <li>API Gateway and microservices</li>
+                            <li>AWS security and IAM best practices</li>
+                            <li>Monitoring and troubleshooting applications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Google Cloud Professional certification -->
+            <div>
+                <h4>Google Cloud Professional Cloud Developer</h4>
+                <div>
+                    <p><strong>Issuing Organization:</strong> Google Cloud</p>
+                    <p><strong>Issue Date:</strong> January 2024</p>
+                    <p><strong>Expiration Date:</strong> January 2026</p>
+                    <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
+                    <p><strong>Verification URL:</strong> 
+                        <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
+                        target="_blank" rel="noopener noreferrer">
+                            Verify Certificate
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This certification demonstrates my ability to design, build, and deploy 
+                        scalable applications using Google Cloud Platform.
+                    </p>
+                    <div>
+                        <h5>Skills Validated:</h5>
+                        <ul>
+                            <li>Google App Engine and Cloud Functions</li>
+                            <li>Kubernetes Engine and container orchestration</li>
+                            <li>Cloud Storage and database solutions</li>
+                            <li>CI/CD pipelines with Cloud Build</li>
+                            <li>Monitoring and logging with Stackdriver</li>
+                            <li>Security and identity management</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Microsoft Azure certification -->
+            <div>
+                <h4>Microsoft Certified: Azure Developer Associate</h4>
+                <div>
+                    <p><strong>Issuing Organization:</strong> Microsoft</p>
+                    <p><strong>Issue Date:</strong> November 2023</p>
+                    <p><strong>Expiration Date:</strong> November 2025</p>
+                    <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
+                    <p><strong>Verification URL:</strong> 
+                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
+                        target="_blank" rel="noopener noreferrer">
+                            Verify Certificate
+                        </a>
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        This certification validates my skills in developing cloud solutions 
+                        that leverage Azure services.
+                    </p>
+                    <div>
+                        <h5>Skills Validated:</h5>
+                        <ul>
+                            <li>Azure App Service and Functions</li>
+                            <li>Azure Storage and Cosmos DB</li>
+                            <li>Azure Active Directory integration</li>
+                            <li>Container solutions with Azure Container Instances</li>
+                            <li>API Management and Service Bus</li>
+                            <li>Monitoring and optimization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
-      </main>
 
-      {/* Footer section */}
-      <footer>
+        <!-- Online Course Completions section -->
+        <section>
+            <h3>Online Course Completions</h3>
+
+            <!-- React Advanced Patterns course -->
+            <div>
+                <h4>Advanced React Patterns and Performance</h4>
+                <div>
+                    <p><strong>Platform:</strong> Frontend Masters</p>
+                    <p><strong>Instructor:</strong> Kent C. Dodds</p>
+                    <p><strong>Completion Date:</strong> February 2024</p>
+                    <p><strong>Duration:</strong> 8 hours</p>
+                    <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
+                </div>
+                <div>
+                    <p>
+                        Comprehensive course covering advanced React patterns, performance 
+                        optimization techniques.
+                    </p>
+                    <div>
+                        <h5>Topics Covered:</h5>
+                        <ul>
+                            <li>Advanced React Hooks patterns</li>
+                            <li>Render props and higher-order components</li>
+                            <li>Performance optimization with React.memo</li>
+                            <li>Code splitting and lazy loading</li>
+                            <li>Context API optimization</li>
+                            <li>Testing advanced React components</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Full Stack JavaScript course -->
+            <div>
+                <h4>Complete Node.js Developer Course</h4>
+                <div>
+                    <p><strong>Platform:</strong> Udemy</p>
+                    <p><strong>Instructor:</strong> Andrew Mead</p>
+                    <p><strong>Completion Date:</strong> December 2023</p>
+                    <p><strong>Duration:</strong> 35 hours</p>
+                    <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
+                </div>
+                <div>
+                    <p>
+                        Comprehensive Node.js course covering server-side JavaScript 
+                        development, API creation, database integration.
+                    </p>
+                    <div>
+                        <h5>Topics Covered:</h5>
+                        <ul>
+                            <li>Node.js fundamentals and modules</li>
+                            <li>Express.js framework and middleware</li>
+                            <li>MongoDB and Mongoose ODM</li>
+                            <li>Authentication and authorization</li>
+                            <li>File uploads and email sending</li>
+                            <li>Testing with Jest and Supertest</li>
+                            <li>Deployment to Heroku and AWS</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Awards and Recognition section -->
+        <section>
+            <h3>Awards & Recognition</h3>
+
+            <!-- Employee of the Year award -->
+            <div>
+                <h4>Employee of the Year 2024</h4>
+                <div>
+                    <p><strong>Organization:</strong> TechCorp Solutions</p>
+                    <p><strong>Date Received:</strong> December 2024</p>
+                    <p><strong>Category:</strong> Technical Excellence</p>
+                </div>
+                <div>
+                    <p>
+                        Recognized for outstanding technical contributions, leadership in 
+                        complex projects, and mentoring junior developers.
+                    </p>
+                    <div>
+                        <h5>Key Achievements:</h5>
+                        <ul>
+                            <li>Led development of company's flagship e-commerce platform</li>
+                            <li>Improved application performance by 40%</li>
+                            <li>Mentored 5 junior developers</li>
+                            <li>Implemented automated testing</li>
+                            <li>Contributed to open-source projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hackathon winner -->
+            <div>
+                <h4>First Place - Bay Area Tech Hackathon 2024</h4>
+                <div>
+                    <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
+                    <p><strong>Date:</strong> August 2024</p>
+                    <p><strong>Team Size:</strong> 4 developers</p>
+                    <p><strong>Prize:</strong> $10,000 and mentorship program</p>
+                </div>
+                <div>
+                    <p>
+                        Won first place in a 48-hour hackathon with over 200 participants.
+                    </p>
+                    <div>
+                        <h5>Winning Project - AccessibilityAI:</h5>
+                        <ul>
+                            <li>Real-time accessibility scanning and reporting</li>
+                            <li>AI-powered suggestions for WCAG compliance</li>
+                            <li>Browser extension with developer tools integration</li>
+                            <li>Machine learning model</li>
+                            <li>Automated testing integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Achievements section -->
+        <section>
+            <h3>Academic Achievements</h3>
+
+            <!-- Dean's List achievement -->
+            <div>
+                <h4>Dean's List Recognition</h4>
+                <div>
+                    <p><strong>Institution:</strong> University of California, Berkeley</p>
+                    <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
+                    <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
+                </div>
+                <div>
+                    <p>
+                        Achieved Dean's List recognition for three consecutive semesters.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Graduation honors -->
+            <div>
+                <h4>Magna Cum Laude Graduate</h4>
+                <div>
+                    <p><strong>Institution:</strong> University of California, Berkeley</p>
+                    <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
+                    <p><strong>Graduation Date:</strong> May 2019</p>
+                    <p><strong>Final GPA:</strong> 3.8/4.0</p>
+                </div>
+                <div>
+                    <p>
+                        Graduated Magna Cum Laude with distinction in Computer Science.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Memberships section -->
+        <section>
+            <h3>Professional Memberships</h3>
+
+            <!-- IEEE membership -->
+            <div>
+                <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
+                <div>
+                    <p><strong>Membership Type:</strong> Professional Member</p>
+                    <p><strong>Member Since:</strong> January 2020</p>
+                    <p><strong>Member ID:</strong> IEEE-94567123</p>
+                    <p><strong>Status:</strong> Active</p>
+                </div>
+                <div>
+                    <p>
+                        Active member participating in professional development activities.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Verification and Validation section -->
+        <section>
+            <h3>Certificate Verification</h3>
+            <p>
+                All certificates and achievements listed on this page are verifiable 
+                through the respective issuing organizations.
+            </p>
+            <div>
+                <h4>How to Verify:</h4>
+                <ol>
+                    <li>Click on the verification links provided with each certificate</li>
+                    <li>Enter the credential ID on the issuing organization's website</li>
+                    <li>Contact me directly for additional verification documentation</li>
+                    <li>Request official transcripts or certificates from institutions</li>
+                </ol>
+            </div>
+            <div>
+                <p>
+                    <strong>For verification inquiries:</strong> 
+                    <a href="/contact">Contact me directly</a> or email john.doe@email.com
+                </p>
+            </div>
+        </section>
+
+        <!-- Call to action section -->
+        <section>
+            <h3>Ready to Work Together?</h3>
+            <p>
+                These certifications and achievements demonstrate my commitment to 
+                professional excellence and continuous learning.
+            </p>
+            <div>
+                <a href="/projects">View My Projects</a>
+                <a href="/skills">See My Skills</a>
+                <a href="/contact">Start a Conversation</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer section -->
+    <footer>
         <p>© 2025 John Doe. All rights reserved.</p>
         <p>Connect with me on social media or send me an email!</p>
-      </footer>
-    </div>
-  );
-}
-
-
+    </footer>
+</body>
+</html>

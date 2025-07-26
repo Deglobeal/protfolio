@@ -1,846 +1,930 @@
-function MainComponent() {
-  return (
-    <div>
-      {/* Header section with navigation */}
-      <header>
-        <div>
-          {/* Page title */}
-          <h1>John Doe - Social Media & Professional Networks</h1>
-
-          {/* Navigation menu */}
-          <nav>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li>
-                <a href="/skills">Skills</a>
-              </li>
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-              <li>
-                <a href="/certificates">Certificates</a>
-              </li>
-              <li>
-                <a href="/resume">Resume</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </header>
-
-      {/* Main content area */}
-      <main>
-        {/* Social media page introduction section */}
-        <section>
-          <h2>Connect With Me Online</h2>
-          <p>
-            Stay connected and follow my journey across various social media platforms and professional networks. Each platform offers unique content and insights into my work, interests, and professional development.
-          </p>
-          <p>
-            From technical discussions and code snippets to behind-the-scenes content and industry insights, you'll find different aspects of my professional and personal interests across these platforms.
-          </p>
-        </section>
-
-        {/* Professional Networks section */}
-        <section>
-          <h3>Professional Networks</h3>
-          <p>
-            Connect with me on professional platforms where I share career updates, industry insights, and engage with the developer community.
-          </p>
-
-          {/* LinkedIn profile */}
-          <div>
-            <h4>LinkedIn</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Social Media & Professional Networks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(120deg, var(--primary), #4a6491);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--danger), var(--warning));
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            gap: 15px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 40px 30px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f7;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2, h3, h4, h5, h6 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-top: 30px;
+            color: var(--secondary);
+        }
+        
+        h4 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        h5 {
+            font-size: 1.2rem;
+            color: var(--secondary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .intro {
+            text-align: center;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 40px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .platform-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .platform-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+        
+        .platform-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .content-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .content-list li {
+            padding: 8px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .content-list li::before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 10px;
+        }
+        
+        .popular-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .popular-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .popular-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .platform-cta {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .platform-cta:hover {
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .strategy-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 3px solid var(--accent);
+        }
+        
+        .strategy-card h6 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .strategy-card h6 i {
+            margin-right: 10px;
+        }
+        
+        .philosophy-box {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+        
+        .collaboration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .collaboration-type {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--success);
+        }
+        
+        .cta-container {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .cta-buttons a {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-buttons a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
-                  linkedin.com/in/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 2,500+
-              </p>
-              <p>
-                <strong>Connections:</strong> 1,200+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Daily posts and engagement
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>What I Share:</h5>
-              <ul>
-                <li>Professional achievements and career milestones</li>
-                <li>Industry insights and technology trends</li>
-                <li>Project updates and case studies</li>
-                <li>Thought leadership articles on web development</li>
-                <li>Team accomplishments and company news</li>
-                <li>Professional development and learning experiences</li>
-                <li>Networking and collaboration opportunities</li>
-              </ul>
-            </div>
-
-            {/* Recent activity examples */}
-            <div>
-              <h5>Recent Activity:</h5>
-              <ul>
-                <li>Shared insights on React 18 performance improvements</li>
-                <li>Posted about completing AWS certification</li>
-                <li>Celebrated team's successful product launch</li>
-                <li>Discussed best practices for remote development teams</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Connect with me</strong> to stay updated on my professional journey and engage in meaningful industry discussions.
-              </p>
-            </div>
-          </div>
-
-          {/* GitHub profile */}
-          <div>
-            <h4>GitHub</h4>
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-                  github.com/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 800+
-              </p>
-              <p>
-                <strong>Public Repositories:</strong> 45+
-              </p>
-              <p>
-                <strong>Contributions:</strong> 1,200+ in the last year
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Regular commits and contributions
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>What You'll Find:</h5>
-              <ul>
-                <li>Open source projects and contributions</li>
-                <li>Personal coding experiments and prototypes</li>
-                <li>Code samples and technical demonstrations</li>
-                <li>Collaborative projects with other developers</li>
-                <li>Documentation and technical guides</li>
-                <li>Bug fixes and feature improvements for popular libraries</li>
-                <li>Educational repositories for learning purposes</li>
-              </ul>
-            </div>
-
-            {/* Popular repositories */}
-            <div>
-              <h5>Popular Repositories:</h5>
-              <ul>
-                <li>react-component-library (150+ stars)</li>
-                <li>web-performance-toolkit (89+ stars)</li>
-                <li>javascript-algorithms (67+ stars)</li>
-                <li>responsive-design-patterns (45+ stars)</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> to see my latest code projects and contribute to open source initiatives.
-              </p>
-            </div>
-          </div>
-
-          {/* Stack Overflow profile */}
-          <div>
-            <h4>Stack Overflow</h4>
+            section {
+                padding: 20px 15px;
+            }
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://stackoverflow.com/users/johndoe" target="_blank" rel="noopener noreferrer">
-                  stackoverflow.com/users/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Reputation:</strong> 15,000+
-              </p>
-              <p>
-                <strong>Answers Posted:</strong> 200+
-              </p>
-              <p>
-                <strong>Questions Asked:</strong> 25+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Weekly participation
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>My Contributions:</h5>
-              <ul>
-                <li>Detailed answers to JavaScript and React questions</li>
-                <li>Solutions for web development challenges</li>
-                <li>Code examples and best practice recommendations</li>
-                <li>Debugging help and troubleshooting guides</li>
-                <li>Performance optimization techniques</li>
-                <li>Framework-specific solutions and workarounds</li>
-              </ul>
-            </div>
-
-            {/* Expertise areas */}
-            <div>
-              <h5>Top Tags:</h5>
-              <ul>
-                <li>JavaScript (Gold Badge)</li>
-                <li>React (Silver Badge)</li>
-                <li>Node.js (Silver Badge)</li>
-                <li>CSS (Bronze Badge)</li>
-                <li>HTML (Bronze Badge)</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Check out my answers</strong> to learn from real-world problem-solving examples.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Social Media Platforms section */}
-        <section>
-          <h3>Social Media Platforms</h3>
-          <p>
-            Follow me on social media for a more personal look at my work, interests, and daily experiences in the tech world.
-          </p>
-
-          {/* Twitter profile */}
-          <div>
-            <h4>Twitter</h4>
+            h2 {
+                font-size: 1.8rem;
+            }
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Handle:</strong> 
-                <a href="https://twitter.com/johndoedev" target="_blank" rel="noopener noreferrer">
-                  @johndoedev
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 3,200+
-              </p>
-              <p>
-                <strong>Following:</strong> 800+
-              </p>
-              <p>
-                <strong>Tweets:</strong> 1,500+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Daily tweets and interactions
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>What I Tweet About:</h5>
-              <ul>
-                <li>Quick tech tips and coding tricks</li>
-                <li>Industry news and trending topics</li>
-                <li>Live-tweeting from conferences and events</li>
-                <li>Thoughts on new technologies and frameworks</li>
-                <li>Behind-the-scenes development process</li>
-                <li>Retweets of interesting developer content</li>
-                <li>Engagement with the developer community</li>
-              </ul>
-            </div>
-
-            {/* Recent tweet examples */}
-            <div>
-              <h5>Recent Tweets:</h5>
-              <ul>
-                <li>"Just discovered this amazing CSS Grid trick that saves so much time! 🎉"</li>
-                <li>"React 18's concurrent features are game-changing for UX #ReactJS"</li>
-                <li>"Coffee ☕ + Code 💻 + Friday afternoon = Perfect combo"</li>
-                <li>"Attending #ReactConf2024 - excited to learn about the latest updates!"</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> for daily tech insights and join the conversation about web development.
-              </p>
-            </div>
-          </div>
-
-          {/* Instagram profile */}
-          <div>
-            <h4>Instagram</h4>
+            h3 {
+                font-size: 1.5rem;
+            }
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Handle:</strong> 
-                <a href="https://instagram.com/johndoedev" target="_blank" rel="noopener noreferrer">
-                  @johndoedev
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 1,800+
-              </p>
-              <p>
-                <strong>Following:</strong> 500+
-              </p>
-              <p>
-                <strong>Posts:</strong> 250+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> 3-4 posts per week
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Visual Content I Share:</h5>
-              <ul>
-                <li>Workspace setup and desk organization photos</li>
-                <li>Code snippets with beautiful syntax highlighting</li>
-                <li>Behind-the-scenes development process videos</li>
-                <li>Tech event photos and conference moments</li>
-                <li>Inspirational quotes about programming and creativity</li>
-                <li>Setup tours and gear recommendations</li>
-                <li>Time-lapse coding sessions and project builds</li>
-              </ul>
-            </div>
-
-            {/* Popular content types */}
-            <div>
-              <h5>Popular Content Types:</h5>
-              <ul>
-                <li>Workspace Wednesday posts (weekly series)</li>
-                <li>Code Challenge Friday solutions</li>
-                <li>Tech stack spotlight posts</li>
-                <li>Developer life moments and experiences</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> for visual inspiration and a peek into the daily life of a web developer.
-              </p>
-            </div>
-          </div>
-
-          {/* YouTube channel */}
-          <div>
-            <h4>YouTube</h4>
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
             
-            {/* Platform details */}
+            .cta-buttons a {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
             <div>
-              <p>
-                <strong>Channel:</strong> 
-                <a href="https://youtube.com/johndoedev" target="_blank" rel="noopener noreferrer">
-                  John Doe Dev
-                </a>
-              </p>
-              <p>
-                <strong>Subscribers:</strong> 5,500+
-              </p>
-              <p>
-                <strong>Total Views:</strong> 150,000+
-              </p>
-              <p>
-                <strong>Videos:</strong> 75+
-              </p>
-              <p>
-                <strong>Upload Schedule:</strong> Weekly tutorials and monthly project reviews
-              </p>
+                <h1>John Doe - Social Media & Professional Networks</h1>
+                <nav>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/certificates">Certificates</a></li>
+                        <li><a href="/resume">Resume</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </nav>
             </div>
+        </header>
 
-            {/* Content description */}
-            <div>
-              <h5>Video Content:</h5>
-              <ul>
-                <li>Step-by-step coding tutorials and walkthroughs</li>
-                <li>Project build series from start to finish</li>
-                <li>Technology reviews and comparisons</li>
-                <li>Live coding sessions and problem-solving</li>
-                <li>Career advice and developer tips</li>
-                <li>Tool and software recommendations</li>
-                <li>Q&A sessions with subscribers</li>
-              </ul>
-            </div>
+        <main>
+            <section class="intro">
+                <h2>Connect With Me Online</h2>
+                <p>Stay connected and follow my journey across various social media platforms and professional networks. Each platform offers unique content and insights into my work, interests, and professional development.</p>
+                <p>From technical discussions and code snippets to behind-the-scenes content and industry insights, you'll find different aspects of my professional and personal interests across these platforms.</p>
+            </section>
 
-            {/* Popular video series */}
-            <div>
-              <h5>Popular Video Series:</h5>
-              <ul>
-                <li>"React from Scratch" - 12-part tutorial series</li>
-                <li>"Building a Full-Stack App" - 8-part project series</li>
-                <li>"Developer Tools Deep Dive" - Monthly reviews</li>
-                <li>"Code Review Fridays" - Weekly community code reviews</li>
-              </ul>
-            </div>
+            <section>
+                <h3>Professional Networks</h3>
+                <p>Connect with me on professional platforms where I share career updates, industry insights, and engage with the developer community.</p>
 
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Subscribe</strong> for in-depth tutorials and join our growing community of developers.
-              </p>
-            </div>
-          </div>
-        </section>
+                <div class="platform-grid">
+                    <!-- LinkedIn Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-linkedin platform-icon"></i>
+                            <h4>LinkedIn</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">2,500+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1,200+</div>
+                                <div class="stat-label">Connections</div>
+                            </div>
+                        </div>
+                        <p><strong>Profile:</strong> <a href="https://linkedin.com/in/johndoe" target="_blank">linkedin.com/in/johndoe</a></p>
+                        
+                        <h5>What I Share:</h5>
+                        <ul class="content-list">
+                            <li>Professional achievements and career milestones</li>
+                            <li>Industry insights and technology trends</li>
+                            <li>Project updates and case studies</li>
+                            <li>Thought leadership articles</li>
+                        </ul>
+                        
+                        <h5>Recent Activity:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">React 18 insights</div>
+                            <div class="popular-item">AWS certification</div>
+                            <div class="popular-item">Product launch</div>
+                        </div>
+                        
+                        <a href="https://linkedin.com/in/johndoe" target="_blank" class="platform-cta">Connect on LinkedIn</a>
+                    </div>
 
-        {/* Developer Community Platforms section */}
-        <section>
-          <h3>Developer Community Platforms</h3>
-          <p>
-            Engage with me on specialized developer platforms where I share knowledge, participate in discussions, and contribute to the tech community.
-          </p>
+                    <!-- GitHub Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-github platform-icon"></i>
+                            <h4>GitHub</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">800+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">45+</div>
+                                <div class="stat-label">Repositories</div>
+                            </div>
+                        </div>
+                        <p><strong>Profile:</strong> <a href="https://github.com/johndoe" target="_blank">github.com/johndoe</a></p>
+                        
+                        <h5>What You'll Find:</h5>
+                        <ul class="content-list">
+                            <li>Open source projects</li>
+                            <li>Personal coding experiments</li>
+                            <li>Code samples and demos</li>
+                            <li>Collaborative projects</li>
+                        </ul>
+                        
+                        <h5>Popular Repositories:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">react-component-library</div>
+                            <div class="popular-item">web-performance-toolkit</div>
+                            <div class="popular-item">javascript-algorithms</div>
+                        </div>
+                        
+                        <a href="https://github.com/johndoe" target="_blank" class="platform-cta">Follow on GitHub</a>
+                    </div>
 
-          {/* Dev.to profile */}
-          <div>
-            <h4>Dev.to</h4>
+                    <!-- Stack Overflow Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-stack-overflow platform-icon"></i>
+                            <h4>Stack Overflow</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">15k+</div>
+                                <div class="stat-label">Reputation</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">200+</div>
+                                <div class="stat-label">Answers</div>
+                            </div>
+                        </div>
+                        <p><strong>Profile:</strong> <a href="https://stackoverflow.com/users/johndoe" target="_blank">stackoverflow.com/users/johndoe</a></p>
+                        
+                        <h5>My Contributions:</h5>
+                        <ul class="content-list">
+                            <li>JavaScript and React answers</li>
+                            <li>Web development solutions</li>
+                            <li>Code examples</li>
+                            <li>Debugging help</li>
+                        </ul>
+                        
+                        <h5>Top Tags:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">JavaScript</div>
+                            <div class="popular-item">React</div>
+                            <div class="popular-item">Node.js</div>
+                        </div>
+                        
+                        <a href="https://stackoverflow.com/users/johndoe" target="_blank" class="platform-cta">View Profile</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Social Media Platforms</h3>
+                <p>Follow me on social media for a more personal look at my work, interests, and daily experiences in the tech world.</p>
+
+                <div class="platform-grid">
+                    <!-- Twitter Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-twitter platform-icon"></i>
+                            <h4>Twitter</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">3.2k+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">1.5k+</div>
+                                <div class="stat-label">Tweets</div>
+                            </div>
+                        </div>
+                        <p><strong>Handle:</strong> <a href="https://twitter.com/johndoedev" target="_blank">@johndoedev</a></p>
+                        
+                        <h5>What I Tweet About:</h5>
+                        <ul class="content-list">
+                            <li>Tech tips and coding tricks</li>
+                            <li>Industry news and trends</li>
+                            <li>Conference live-tweeting</li>
+                            <li>Developer community engagement</li>
+                        </ul>
+                        
+                        <h5>Recent Tweets:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">CSS Grid trick</div>
+                            <div class="popular-item">React 18 features</div>
+                            <div class="popular-item">ReactConf 2024</div>
+                        </div>
+                        
+                        <a href="https://twitter.com/johndoedev" target="_blank" class="platform-cta">Follow on Twitter</a>
+                    </div>
+
+                    <!-- Instagram Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-instagram platform-icon"></i>
+                            <h4>Instagram</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">1.8k+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">250+</div>
+                                <div class="stat-label">Posts</div>
+                            </div>
+                        </div>
+                        <p><strong>Handle:</strong> <a href="https://instagram.com/johndoedev" target="_blank">@johndoedev</a></p>
+                        
+                        <h5>Visual Content:</h5>
+                        <ul class="content-list">
+                            <li>Workspace setup photos</li>
+                            <li>Beautiful code snippets</li>
+                            <li>Development process videos</li>
+                            <li>Tech event moments</li>
+                        </ul>
+                        
+                        <h5>Popular Series:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">Workspace Wednesday</div>
+                            <div class="popular-item">Code Challenge Friday</div>
+                            <div class="popular-item">Tech stack spotlight</div>
+                        </div>
+                        
+                        <a href="https://instagram.com/johndoedev" target="_blank" class="platform-cta">Follow on Instagram</a>
+                    </div>
+
+                    <!-- YouTube Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-youtube platform-icon"></i>
+                            <h4>YouTube</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">5.5k+</div>
+                                <div class="stat-label">Subscribers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">75+</div>
+                                <div class="stat-label">Videos</div>
+                            </div>
+                        </div>
+                        <p><strong>Channel:</strong> <a href="https://youtube.com/johndoedev" target="_blank">John Doe Dev</a></p>
+                        
+                        <h5>Video Content:</h5>
+                        <ul class="content-list">
+                            <li>Coding tutorials</li>
+                            <li>Project build series</li>
+                            <li>Technology reviews</li>
+                            <li>Live coding sessions</li>
+                        </ul>
+                        
+                        <h5>Popular Series:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">React from Scratch</div>
+                            <div class="popular-item">Full-Stack App</div>
+                            <div class="popular-item">Tools Deep Dive</div>
+                        </div>
+                        
+                        <a href="https://youtube.com/johndoedev" target="_blank" class="platform-cta">Subscribe on YouTube</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Developer Community Platforms</h3>
+                <p>Engage with me on specialized developer platforms where I share knowledge, participate in discussions, and contribute to the tech community.</p>
+
+                <div class="platform-grid">
+                    <!-- Dev.to Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-dev platform-icon"></i>
+                            <h4>Dev.to</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">1.2k+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">35+</div>
+                                <div class="stat-label">Articles</div>
+                            </div>
+                        </div>
+                        <p><strong>Profile:</strong> <a href="https://dev.to/johndoe" target="_blank">dev.to/johndoe</a></p>
+                        
+                        <h5>Article Topics:</h5>
+                        <ul class="content-list">
+                            <li>Technical tutorials</li>
+                            <li>Best practices</li>
+                            <li>Framework comparisons</li>
+                            <li>Career development</li>
+                        </ul>
+                        
+                        <h5>Popular Articles:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">10 React Hooks</div>
+                            <div class="popular-item">Scalable Node.js</div>
+                            <div class="popular-item">CSS Grid vs Flexbox</div>
+                        </div>
+                        
+                        <a href="https://dev.to/johndoe" target="_blank" class="platform-cta">Follow on Dev.to</a>
+                    </div>
+
+                    <!-- Hashnode Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fas fa-blog platform-icon"></i>
+                            <h4>Hashnode</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">800+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">25+</div>
+                                <div class="stat-label">Articles</div>
+                            </div>
+                        </div>
+                        <p><strong>Blog:</strong> <a href="https://johndoe.hashnode.dev" target="_blank">johndoe.hashnode.dev</a></p>
+                        
+                        <h5>Blog Content:</h5>
+                        <ul class="content-list">
+                            <li>Project case studies</li>
+                            <li>Technical deep-dives</li>
+                            <li>Learning journey</li>
+                            <li>Industry trends</li>
+                        </ul>
+                        
+                        <a href="https://johndoe.hashnode.dev" target="_blank" class="platform-cta">Subscribe to Blog</a>
+                    </div>
+
+                    <!-- CodePen Card -->
+                    <div class="platform-card">
+                        <div class="platform-header">
+                            <i class="fab fa-codepen platform-icon"></i>
+                            <h4>CodePen</h4>
+                        </div>
+                        <div class="platform-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">600+</div>
+                                <div class="stat-label">Followers</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">120+</div>
+                                <div class="stat-label">Pens</div>
+                            </div>
+                        </div>
+                        <p><strong>Profile:</strong> <a href="https://codepen.io/johndoe" target="_blank">codepen.io/johndoe</a></p>
+                        
+                        <h5>Creative Projects:</h5>
+                        <ul class="content-list">
+                            <li>CSS animations</li>
+                            <li>JavaScript games</li>
+                            <li>UI prototypes</li>
+                            <li>Data visualizations</li>
+                        </ul>
+                        
+                        <h5>Popular Pens:</h5>
+                        <div class="popular-items">
+                            <div class="popular-item">CSS Spinners</div>
+                            <div class="popular-item">JS Calculator</div>
+                            <div class="popular-item">Card Layouts</div>
+                        </div>
+                        
+                        <a href="https://codepen.io/johndoe" target="_blank" class="platform-cta">Follow on CodePen</a>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>My Social Media Strategy</h3>
+                <p>Each platform serves a unique purpose in my professional and personal brand. Here's how I approach content creation and community engagement across different channels.</p>
+
+                <div class="strategy-grid">
+                    <div class="strategy-card">
+                        <h6><i class="fab fa-linkedin"></i> LinkedIn - Professional Growth</h6>
+                        <ul class="content-list">
+                            <li>Share industry insights and thought leadership</li>
+                            <li>Engage with professional network</li>
+                            <li>Post about career milestones</li>
+                            <li>Participate in group discussions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <h6><i class="fab fa-twitter"></i> Twitter - Real-Time Engagement</h6>
+                        <ul class="content-list">
+                            <li>Share quick tips and coding tricks</li>
+                            <li>Engage in tech community conversations</li>
+                            <li>Live-tweet from conferences</li>
+                            <li>Retweet developer content</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <h6><i class="fab fa-instagram"></i> Instagram - Visual Storytelling</h6>
+                        <ul class="content-list">
+                            <li>Showcase workspace and environment</li>
+                            <li>Create appealing code snippets</li>
+                            <li>Share behind-the-scenes</li>
+                            <li>Post inspirational content</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="strategy-card">
+                        <h6><i class="fab fa-youtube"></i> YouTube - Educational Content</h6>
+                        <ul class="content-list">
+                            <li>Create comprehensive tutorials</li>
+                            <li>Build project series</li>
+                            <li>Review tools and technologies</li>
+                            <li>Host live coding sessions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="philosophy-box">
+                    <h4>Community Engagement Philosophy</h4>
+                    <p>I believe in authentic engagement and providing value to the developer community. My approach focuses on:</p>
+                    <ul class="content-list">
+                        <li>Sharing knowledge and helping others learn</li>
+                        <li>Being genuine and transparent in interactions</li>
+                        <li>Responding thoughtfully to comments and questions</li>
+                        <li>Supporting fellow developers and projects</li>
+                        <li>Contributing to meaningful discussions</li>
+                        <li>Maintaining professionalism while showing personality</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Let's Connect and Collaborate</h3>
+                <p>I'm always excited to connect with fellow developers, designers, and tech enthusiasts. Whether you want to collaborate on a project, discuss technology, or just say hello, I'd love to hear from you!</p>
+
+                <div class="collaboration-grid">
+                    <div class="collaboration-type">
+                        <h5>Professional Networking</h5>
+                        <ul class="content-list">
+                            <li><strong>LinkedIn:</strong> Career opportunities and professional discussions</li>
+                            <li><strong>GitHub:</strong> Code collaboration and open source contributions</li>
+                            <li><strong>Stack Overflow:</strong> Technical questions and problem-solving</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="collaboration-type">
+                        <h5>Casual Interaction</h5>
+                        <ul class="content-list">
+                            <li><strong>Twitter:</strong> Quick questions and tech discussions</li>
+                            <li><strong>Instagram:</strong> Behind-the-scenes and personal interests</li>
+                            <li><strong>YouTube:</strong> Learning requests and tutorial suggestions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="collaboration-type">
+                        <h5>Creative Collaboration</h5>
+                        <ul class="content-list">
+                            <li><strong>Dribbble:</strong> Design feedback and creative projects</li>
+                            <li><strong>CodePen:</strong> Code experiments and creative coding</li>
+                            <li><strong>Behance:</strong> Portfolio reviews and design discussions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="cta-container">
+                    <h4>Ready to Connect?</h4>
+                    <p>Choose your preferred platform and let's start a conversation! I'm always happy to discuss technology, share knowledge, or explore potential collaborations.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://linkedin.com/in/johndoe" target="_blank">Connect on LinkedIn</a>
+                        <a href="https://twitter.com/johndoedev" target="_blank">Follow on Twitter</a>
+                        <a href="https://github.com/johndoe" target="_blank">Collaborate on GitHub</a>
+                        <a href="/contact">Send Direct Message</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2025 John Doe. All rights reserved.</p>
+            <p>Connect with me on social media or send me an email!</p>
             
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://dev.to/johndoe" target="_blank" rel="noopener noreferrer">
-                  dev.to/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 1,200+
-              </p>
-              <p>
-                <strong>Articles Published:</strong> 35+
-              </p>
-              <p>
-                <strong>Total Reactions:</strong> 5,000+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> 2-3 articles per month
-              </p>
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/johndoe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/johndoe" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/johndoedev" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/johndoedev" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/johndoedev" target="_blank"><i class="fab fa-youtube"></i></a>
             </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Article Topics:</h5>
-              <ul>
-                <li>In-depth technical tutorials and guides</li>
-                <li>Best practices and coding standards</li>
-                <li>Framework comparisons and reviews</li>
-                <li>Career development and learning paths</li>
-                <li>Open source project spotlights</li>
-                <li>Performance optimization techniques</li>
-                <li>Developer productivity tips and tools</li>
-              </ul>
-            </div>
-
-            {/* Popular articles */}
-            <div>
-              <h5>Most Popular Articles:</h5>
-              <ul>
-                <li>"10 React Hooks Every Developer Should Know" (2,500+ reactions)</li>
-                <li>"Building Scalable Node.js Applications" (1,800+ reactions)</li>
-                <li>"CSS Grid vs Flexbox: When to Use Which" (1,200+ reactions)</li>
-                <li>"My Journey from Junior to Senior Developer" (900+ reactions)</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> for detailed technical articles and join the discussion in the comments.
-              </p>
-            </div>
-          </div>
-
-          {/* Hashnode blog */}
-          <div>
-            <h4>Hashnode</h4>
-            
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Blog URL:</strong> 
-                <a href="https://johndoe.hashnode.dev" target="_blank" rel="noopener noreferrer">
-                  johndoe.hashnode.dev
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 800+
-              </p>
-              <p>
-                <strong>Articles:</strong> 25+
-              </p>
-              <p>
-                <strong>Total Views:</strong> 50,000+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Monthly deep-dive articles
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Blog Content:</h5>
-              <ul>
-                <li>Comprehensive project case studies</li>
-                <li>Technical deep-dives and analysis</li>
-                <li>Learning journey documentation</li>
-                <li>Industry trend analysis and predictions</li>
-                <li>Tool and technology evaluations</li>
-                <li>Personal development experiences</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Subscribe</strong> to my newsletter for monthly insights and detailed technical content.
-              </p>
-            </div>
-          </div>
-
-          {/* CodePen profile */}
-          <div>
-            <h4>CodePen</h4>
-            
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://codepen.io/johndoe" target="_blank" rel="noopener noreferrer">
-                  codepen.io/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 600+
-              </p>
-              <p>
-                <strong>Pens:</strong> 120+
-              </p>
-              <p>
-                <strong>Hearts:</strong> 3,000+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Weekly creative coding experiments
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Creative Coding Projects:</h5>
-              <ul>
-                <li>Interactive CSS animations and effects</li>
-                <li>JavaScript games and interactive demos</li>
-                <li>UI component prototypes and experiments</li>
-                <li>Creative data visualizations</li>
-                <li>Responsive design patterns and layouts</li>
-                <li>CSS art and creative illustrations</li>
-              </ul>
-            </div>
-
-            {/* Popular pens */}
-            <div>
-              <h5>Most Popular Pens:</h5>
-              <ul>
-                <li>"Animated CSS Loading Spinner Collection" (500+ hearts)</li>
-                <li>"Interactive JavaScript Calculator" (350+ hearts)</li>
-                <li>"Responsive Card Layout with Hover Effects" (280+ hearts)</li>
-                <li>"CSS-only Animated Navigation Menu" (220+ hearts)</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> for creative coding inspiration and interactive web experiments.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Freelance and Portfolio Platforms section */}
-        <section>
-          <h3>Freelance & Portfolio Platforms</h3>
-          <p>
-            Connect with me on professional freelance platforms where I showcase my work and collaborate with clients worldwide.
-          </p>
-
-          {/* Dribbble profile */}
-          <div>
-            <h4>Dribbble</h4>
-            
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Profile URL:</strong> 
-                <a href="https://dribbble.com/johndoe" target="_blank" rel="noopener noreferrer">
-                  dribbble.com/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 400+
-              </p>
-              <p>
-                <strong>Shots:</strong> 45+
-              </p>
-              <p>
-                <strong>Likes:</strong> 2,000+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Monthly design showcases
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Design Work:</h5>
-              <ul>
-                <li>Web interface designs and mockups</li>
-                <li>Mobile app UI concepts and prototypes</li>
-                <li>Brand identity and logo designs</li>
-                <li>User experience flow diagrams</li>
-                <li>Color palette and typography explorations</li>
-                <li>Icon sets and illustration work</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>Follow me</strong> to see my latest design work and creative projects.
-              </p>
-            </div>
-          </div>
-
-          {/* Behance portfolio */}
-          <div>
-            <h4>Behance</h4>
-            
-            {/* Platform details */}
-            <div>
-              <p>
-                <strong>Portfolio URL:</strong> 
-                <a href="https://behance.net/johndoe" target="_blank" rel="noopener noreferrer">
-                  behance.net/johndoe
-                </a>
-              </p>
-              <p>
-                <strong>Followers:</strong> 300+
-              </p>
-              <p>
-                <strong>Projects:</strong> 20+
-              </p>
-              <p>
-                <strong>Appreciations:</strong> 1,500+
-              </p>
-              <p>
-                <strong>Activity Level:</strong> Quarterly project showcases
-              </p>
-            </div>
-
-            {/* Content description */}
-            <div>
-              <h5>Portfolio Projects:</h5>
-              <ul>
-                <li>Complete website design case studies</li>
-                <li>Mobile application design processes</li>
-                <li>Branding and identity projects</li>
-                <li>User research and testing documentation</li>
-                <li>Before and after redesign comparisons</li>
-                <li>Client testimonials and project outcomes</li>
-              </ul>
-            </div>
-
-            {/* Call to action */}
-            <div>
-              <p>
-                <strong>View my portfolio</strong> to see detailed case studies of my design and development work.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Social Media Strategy section */}
-        <section>
-          <h3>My Social Media Strategy</h3>
-          <p>
-            Each platform serves a unique purpose in my professional and personal brand. Here's how I approach content creation and community engagement across different channels.
-          </p>
-
-          {/* Content strategy */}
-          <div>
-            <h4>Content Strategy</h4>
-            
-            {/* Platform-specific strategies */}
-            <div>
-              <h5>Platform-Specific Approaches:</h5>
-              
-              {/* LinkedIn strategy */}
-              <div>
-                <h6>LinkedIn - Professional Growth</h6>
-                <ul>
-                  <li>Share industry insights and thought leadership content</li>
-                  <li>Engage with professional network through meaningful comments</li>
-                  <li>Post about career milestones and learning experiences</li>
-                  <li>Participate in relevant group discussions</li>
-                </ul>
-              </div>
-
-              {/* Twitter strategy */}
-              <div>
-                <h6>Twitter - Real-Time Engagement</h6>
-                <ul>
-                  <li>Share quick tips and coding tricks</li>
-                  <li>Engage in tech community conversations</li>
-                  <li>Live-tweet from conferences and events</li>
-                  <li>Retweet and comment on interesting developer content</li>
-                </ul>
-              </div>
-
-              {/* Instagram strategy */}
-              <div>
-                <h6>Instagram - Visual Storytelling</h6>
-                <ul>
-                  <li>Showcase workspace and development environment</li>
-                  <li>Create visually appealing code snippets</li>
-                  <li>Share behind-the-scenes development process</li>
-                  <li>Post inspirational and motivational content</li>
-                </ul>
-              </div>
-
-              {/* YouTube strategy */}
-              <div>
-                <h6>YouTube - Educational Content</h6>
-                <ul>
-                  <li>Create comprehensive tutorials and walkthroughs</li>
-                  <li>Build project series from start to finish</li>
-                  <li>Review tools and technologies in detail</li>
-                  <li>Host live coding sessions and Q&A</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Engagement philosophy */}
-          <div>
-            <h4>Community Engagement Philosophy</h4>
-            <p>
-              I believe in authentic engagement and providing value to the developer community. My approach focuses on:
-            </p>
-            <ul>
-              <li>Sharing knowledge and helping others learn</li>
-              <li>Being genuine and transparent in all interactions</li>
-              <li>Responding thoughtfully to comments and questions</li>
-              <li>Supporting fellow developers and their projects</li>
-              <li>Contributing to meaningful discussions and debates</li>
-              <li>Maintaining professionalism while showing personality</li>
-            </ul>
-          </div>
-        </section>
-
-        {/* Contact and Collaboration section */}
-        <section>
-          <h3>Let's Connect and Collaborate</h3>
-          <p>
-            I'm always excited to connect with fellow developers, designers, and tech enthusiasts. Whether you want to collaborate on a project, discuss technology, or just say hello, I'd love to hear from you!
-          </p>
-
-          {/* Best platforms for different purposes */}
-          <div>
-            <h4>Best Platforms for Different Purposes:</h4>
-            
-            {/* Professional networking */}
-            <div>
-              <h5>Professional Networking</h5>
-              <ul>
-                <li><strong>LinkedIn:</strong> Career opportunities and professional discussions</li>
-                <li><strong>GitHub:</strong> Code collaboration and open source contributions</li>
-                <li><strong>Stack Overflow:</strong> Technical questions and problem-solving</li>
-              </ul>
-            </div>
-
-            {/* Casual interaction */}
-            <div>
-              <h5>Casual Interaction</h5>
-              <ul>
-                <li><strong>Twitter:</strong> Quick questions and tech discussions</li>
-                <li><strong>Instagram:</strong> Behind-the-scenes and personal interests</li>
-                <li><strong>YouTube:</strong> Learning requests and tutorial suggestions</li>
-              </ul>
-            </div>
-
-            {/* Creative collaboration */}
-            <div>
-              <h5>Creative Collaboration</h5>
-              <ul>
-                <li><strong>Dribbble:</strong> Design feedback and creative projects</li>
-                <li><strong>CodePen:</strong> Code experiments and creative coding</li>
-                <li><strong>Behance:</strong> Portfolio reviews and design discussions</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Call to action */}
-          <div>
-            <h4>Ready to Connect?</h4>
-            <p>
-              Choose your preferred platform and let's start a conversation! I'm always happy to discuss technology, share knowledge, or explore potential collaborations.
-            </p>
-            
-            {/* Quick access links */}
-            <div>
-              <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
-                Connect on LinkedIn
-              </a>
-              <a href="https://twitter.com/johndoedev" target="_blank" rel="noopener noreferrer">
-                Follow on Twitter
-              </a>
-              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-                Collaborate on GitHub
-              </a>
-              <a href="/contact">Send Direct Message</a>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer section */}
-      <footer>
-        <p>© 2025 John Doe. All rights reserved.</p>
-        <p>Connect with me on social media or send me an email!</p>
-      </footer>
+        </footer>
     </div>
-  );
-}
-
-
+</body>
+</html>

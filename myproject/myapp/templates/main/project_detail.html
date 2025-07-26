@@ -1,906 +1,921 @@
-function MainComponent() {
-  return (
-    <div>
-      {/* Header section with navigation */}
-      <header>
-        <div>
-          {/* Page title */}
-          <h1>John Doe - Projects</h1>
-
-          {/* Navigation menu */}
-          <nav>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li>
-                <a href="/skills">Skills</a>
-              </li>
-              <li>
-                <a href="/certificates">Certificates</a>
-              </li>
-              <li>
-                <a href="/resume">Resume</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-            </ul>
-          </nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe - Projects Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #e11d48;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 10px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* Project Cards */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .project-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-item {
+            background: var(--light-gray);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--dark);
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            flex: 1;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+        
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Additional Sections */
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+        
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .challenge-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .challenge-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .challenge-card p {
+            margin-bottom: 10px;
+        }
+        
+        .challenge-card strong {
+            color: var(--accent);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-item {
+            padding: 30px 20px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 60px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-light:hover {
+            background: var(--light);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .mobile-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            
+            .mobile-nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-links {
+                flex-direction: column;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">John<span>Doe</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/skills">Skills</a></li>
+                    <li><a href="/certificates">Certificates</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/social">Social</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-      </header>
+    </header>
 
-      {/* Main content area */}
-      <main>
-        {/* Projects overview section */}
-        <section>
-          <h2>My Portfolio Projects</h2>
-          <p>
-            Here's a collection of projects I've worked on, showcasing my skills in web development, 
-            design, and problem-solving. Each project demonstrates different aspects of my technical expertise.
-          </p>
-        </section>
-
-        {/* Featured Projects section */}
-        <section>
-          <h3>Featured Projects</h3>
-
-          {/* Project 1: E-commerce Platform */}
-          <div>
-            <h4>E-commerce Platform</h4>
-            
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - E-commerce Platform]</p>
-            </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                A full-stack e-commerce platform built for a local retail business. Features include 
-                product catalog, shopping cart, user authentication, payment processing, and admin dashboard.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Responsive product catalog with search and filtering</li>
-                  <li>Secure user authentication and profile management</li>
-                  <li>Shopping cart with persistent storage</li>
-                  <li>Stripe payment integration</li>
-                  <li>Admin dashboard for inventory management</li>
-                  <li>Order tracking and email notifications</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> React, TypeScript, Tailwind CSS, React Router
-                </p>
-                <p>
-                  <strong>Backend:</strong> Node.js, Express.js, PostgreSQL
-                </p>
-                <p>
-                  <strong>Other:</strong> Stripe API, JWT Authentication, AWS S3, Docker
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://demo-ecommerce.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/ecommerce-platform" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 3 months (2024)</p>
-                <p><strong>Role:</strong> Full Stack Developer</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 2: Task Management App */}
-          <div>
-            <h4>Task Management Application</h4>
-            
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - Task Management App]</p>
-            </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                A collaborative task management application designed for small teams. Built with modern 
-                web technologies and real-time synchronization capabilities.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Real-time collaboration with WebSocket integration</li>
-                  <li>Drag-and-drop task organization</li>
-                  <li>Team member assignment and notifications</li>
-                  <li>Project timeline and progress tracking</li>
-                  <li>File attachment and commenting system</li>
-                  <li>Mobile-responsive design</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> Vue.js, Vuex, Vue Router, SCSS
-                </p>
-                <p>
-                  <strong>Backend:</strong> Node.js, Socket.io, MongoDB
-                </p>
-                <p>
-                  <strong>Other:</strong> JWT Authentication, Cloudinary, Heroku
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://taskmanager-demo.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/task-manager" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 2 months (2024)</p>
-                <p><strong>Role:</strong> Lead Developer</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 3: Weather Dashboard */}
-          <div>
-            <h4>Weather Dashboard</h4>
-            
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - Weather Dashboard]</p>
-            </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                An interactive weather dashboard that provides current weather conditions, forecasts, 
-                and weather maps for multiple locations. Features a clean, intuitive interface with 
-                data visualization.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Current weather conditions and 7-day forecast</li>
-                  <li>Interactive weather maps and radar</li>
-                  <li>Location search with autocomplete</li>
-                  <li>Favorite locations management</li>
-                  <li>Weather alerts and notifications</li>
-                  <li>Responsive charts and data visualization</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> React, Chart.js, Leaflet Maps, CSS Modules
-                </p>
-                <p>
-                  <strong>APIs:</strong> OpenWeatherMap API, Mapbox API
-                </p>
-                <p>
-                  <strong>Other:</strong> Local Storage, Service Workers, PWA
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://weather-dashboard.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/weather-dashboard" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 1 month (2023)</p>
-                <p><strong>Role:</strong> Frontend Developer</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Additional Projects section */}
-        <section>
-          <h3>Additional Projects</h3>
-
-          {/* Project 4: Blog Platform */}
-          <div>
-            <h4>Personal Blog Platform</h4>
-            <p>
-              A content management system for personal blogging with markdown support, 
-              SEO optimization, and social sharing features.
-            </p>
-            
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> Next.js, Prisma, PostgreSQL, Tailwind CSS</p>
-            </div>
-
-            {/* Project links */}
-            <div>
-              <a href="https://blog-platform.example.com" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/blog-platform" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
-            </div>
-          </div>
-
-          {/* Project 5: Recipe Finder */}
-          <div>
-            <h4>Recipe Finder App</h4>
-            <p>
-              A mobile-first web application that helps users discover recipes based on 
-              available ingredients, dietary preferences, and cooking time.
-            </p>
-            
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> React Native, Firebase, Spoonacular API</p>
-            </div>
-
-            {/* Project links */}
-            <div>
-              <a href="https://recipe-finder.example.com" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/recipe-finder" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
-            </div>
-          </div>
-
-          {/* Project 6: Portfolio Website */}
-          <div>
-            <h4>Portfolio Website</h4>
-            <p>
-              This very website! A responsive portfolio showcasing my work, skills, 
-              and professional experience with a focus on clean design and performance.
-            </p>
-            
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> React, CSS3, HTML5, Responsive Design</p>
-            </div>
-
-            {/* Project links */}
-            <div>
-              <a href="/" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/portfolio" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Open Source Contributions section */}
-        <section>
-          <h3>Open Source Contributions</h3>
-          <p>
-            I actively contribute to open source projects and believe in giving back to the 
-            developer community. Here are some of my notable contributions:
-          </p>
-
-          {/* Contribution 1 */}
-          <div>
-            <h4>React Component Library</h4>
-            <p>
-              Contributed multiple reusable components and bug fixes to a popular React 
-              component library used by thousands of developers.
-            </p>
-            <div>
-              <a href="https://github.com/example/react-components" target="_blank" rel="noopener noreferrer">
-                View Contributions
-              </a>
-            </div>
-          </div>
-
-          {/* Contribution 2 */}
-          <div>
-            <h4>Documentation Improvements</h4>
-            <p>
-              Enhanced documentation and created tutorials for various open source projects, 
-              making them more accessible to new contributors.
-            </p>
-            <div>
-              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-                View GitHub Profile
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Technical Challenges section */}
-        <section>
-          <h3>Technical Challenges & Solutions</h3>
-          <p>
-            Each project presented unique challenges that required creative problem-solving 
-            and technical expertise. Here are some notable examples:
-          </p>
-
-          {/* Challenge 1 */}
-          <div>
-            <h4>Performance Optimization</h4>
-            <p>
-              <strong>Challenge:</strong> E-commerce platform was experiencing slow load times 
-              with large product catalogs.
-            </p>
-            <p>
-              <strong>Solution:</strong> Implemented lazy loading, image optimization, code 
-              splitting, and database query optimization, reducing load times by 60%.
-            </p>
-          </div>
-
-          {/* Challenge 2 */}
-          <div>
-            <h4>Real-time Synchronization</h4>
-            <p>
-              <strong>Challenge:</strong> Task management app needed real-time updates across 
-              multiple users without conflicts.
-            </p>
-            <p>
-              <strong>Solution:</strong> Implemented WebSocket connections with conflict 
-              resolution algorithms and optimistic UI updates.
-            </p>
-          </div>
-
-          {/* Challenge 3 */}
-          <div>
-            <h4>Cross-browser Compatibility</h4>
-            <p>
-              <strong>Challenge:</strong> Weather dashboard needed to work consistently across 
-              all modern browsers and devices.
-            </p>
-            <p>
-              <strong>Solution:</strong> Used progressive enhancement, polyfills, and extensive 
-              cross-browser testing to ensure compatibility.
-            </p>
-          </div>
-        </section>
-
-        {/* Project Statistics section */}
-        <section>
-          <h3>Project Statistics</h3>
-          <div>
-            <div>
-              <h4>15+</h4>
-              <p>Completed Projects</p>
-            </div>
-            <div>
-              <h4>50,000+</h4>
-              <p>Lines of Code Written</p>
-            </div>
-            <div>
-              <h4>10+</h4>
-              <p>Technologies Mastered</p>
-            </div>
-            <div>
-              <h4>100%</h4>
-              <p>Client Satisfaction</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Call to action section */}
-        <section>
-          <h3>Interested in Working Together?</h3>
-          <p>
-            I'm always excited to take on new challenges and collaborate on interesting projects. 
-            Whether you need a full-stack web application, a responsive website, or technical consultation, 
-            I'd love to hear from you.
-          </p>
-
-          {/* Call to action links */}
-          <div>
-            <a href="/contact">Get In Touch</a>
-            <a href="/resume">View My Resume</a>
-            <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-              GitHub Profile
-            </a>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer section */}
-      <footer>
-        <p>© 2025 John Doe. All rights reserved.</p>
-        <p>Connect with me on social media or send me an email!</p>
-      </footer>
-    </div>
-  );
-}
-
-
-function MainComponent() {
-  return (
-    <div>
-      {/* Header section with navigation */}
-      <header>
-        <div>
-          {/* Page title */}
-          <h1>John Doe - Projects</h1>
-
-          {/* Navigation menu */}
-          <nav>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li>
-                <a href="/skills">Skills</a>
-              </li>
-              <li>
-                <a href="/certificates">Certificates</a>
-              </li>
-              <li>
-                <a href="/resume">Resume</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-            </ul>
-          </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>My Portfolio Projects</h1>
+            <p>Here's a collection of projects I've worked on, showcasing my skills in web development, design, and problem-solving. Each project demonstrates different aspects of my technical expertise.</p>
         </div>
-      </header>
+    </section>
 
-      {/* Main content area */}
-      <main>
-        {/* Projects overview section */}
-        <section>
-          <h2>My Portfolio Projects</h2>
-          <p>
-            Here's a collection of projects I've worked on, showcasing my skills in web development, 
-            design, and problem-solving. Each project demonstrates different aspects of my technical expertise.
-          </p>
-        </section>
-
-        {/* Featured Projects section */}
-        <section>
-          <h3>Featured Projects</h3>
-
-          {/* Project 1: E-commerce Platform */}
-          <div>
-            <h4>E-commerce Platform</h4>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Featured Projects -->
+        <div class="section-title">
+            <h2>Featured Projects</h2>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="E-commerce Platform">
+                    <div class="project-tag">Full Stack</div>
+                </div>
+                <div class="project-content">
+                    <h3>E-commerce Platform</h3>
+                    <p>A full-stack e-commerce platform built for a local retail business. Features include product catalog, shopping cart, user authentication, payment processing, and admin dashboard.</p>
+                    
+                    <div class="project-meta">
+                        <div><i class="far fa-calendar"></i> 3 months (2024)</div>
+                        <div><i class="fas fa-user-tie"></i> Full Stack Developer</div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">TypeScript</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">Stripe</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://demo-ecommerce.example.com" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/ecommerce-platform" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
             
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - E-commerce Platform]</p>
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="Task Management App">
+                    <div class="project-tag">Real-time</div>
+                </div>
+                <div class="project-content">
+                    <h3>Task Management Application</h3>
+                    <p>A collaborative task management application designed for small teams. Built with modern web technologies and real-time synchronization capabilities.</p>
+                    
+                    <div class="project-meta">
+                        <div><i class="far fa-calendar"></i> 2 months (2024)</div>
+                        <div><i class="fas fa-user-tie"></i> Lead Developer</div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">Socket.io</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">SCSS</span>
+                        <span class="tech-item">JWT</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://taskmanager-demo.example.com" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/task-manager" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                A full-stack e-commerce platform built for a local retail business. Features include 
-                product catalog, shopping cart, user authentication, payment processing, and admin dashboard.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Responsive product catalog with search and filtering</li>
-                  <li>Secure user authentication and profile management</li>
-                  <li>Shopping cart with persistent storage</li>
-                  <li>Stripe payment integration</li>
-                  <li>Admin dashboard for inventory management</li>
-                  <li>Order tracking and email notifications</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> React, TypeScript, Tailwind CSS, React Router
-                </p>
-                <p>
-                  <strong>Backend:</strong> Node.js, Express.js, PostgreSQL
-                </p>
-                <p>
-                  <strong>Other:</strong> Stripe API, JWT Authentication, AWS S3, Docker
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://demo-ecommerce.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/ecommerce-platform" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 3 months (2024)</p>
-                <p><strong>Role:</strong> Full Stack Developer</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 2: Task Management App */}
-          <div>
-            <h4>Task Management Application</h4>
             
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - Task Management App]</p>
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1580193769210-b8d1c049a7d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="Weather Dashboard">
+                    <div class="project-tag">Data Visualization</div>
+                </div>
+                <div class="project-content">
+                    <h3>Weather Dashboard</h3>
+                    <p>An interactive weather dashboard that provides current conditions, forecasts, and weather maps for multiple locations with a clean, intuitive interface.</p>
+                    
+                    <div class="project-meta">
+                        <div><i class="far fa-calendar"></i> 1 month (2023)</div>
+                        <div><i class="fas fa-user-tie"></i> Frontend Developer</div>
+                    </div>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Chart.js</span>
+                        <span class="tech-item">Leaflet Maps</span>
+                        <span class="tech-item">Weather API</span>
+                        <span class="tech-item">PWA</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://weather-dashboard.example.com" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/weather-dashboard" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                A collaborative task management application designed for small teams. Built with modern 
-                web technologies and real-time synchronization capabilities.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Real-time collaboration with WebSocket integration</li>
-                  <li>Drag-and-drop task organization</li>
-                  <li>Team member assignment and notifications</li>
-                  <li>Project timeline and progress tracking</li>
-                  <li>File attachment and commenting system</li>
-                  <li>Mobile-responsive design</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> Vue.js, Vuex, Vue Router, SCSS
-                </p>
-                <p>
-                  <strong>Backend:</strong> Node.js, Socket.io, MongoDB
-                </p>
-                <p>
-                  <strong>Other:</strong> JWT Authentication, Cloudinary, Heroku
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://taskmanager-demo.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/task-manager" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 2 months (2024)</p>
-                <p><strong>Role:</strong> Lead Developer</p>
-              </div>
+        </div>
+        
+        <!-- Additional Projects -->
+        <div class="section-title">
+            <h2>Additional Projects</h2>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="Blog Platform">
+                    <div class="project-tag">CMS</div>
+                </div>
+                <div class="project-content">
+                    <h3>Personal Blog Platform</h3>
+                    <p>A content management system for personal blogging with markdown support, SEO optimization, and social sharing features.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">Next.js</span>
+                        <span class="tech-item">Prisma</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">Tailwind CSS</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://blog-platform.example.com" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/blog-platform" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          {/* Project 3: Weather Dashboard */}
-          <div>
-            <h4>Weather Dashboard</h4>
             
-            {/* Project image placeholder */}
-            <div>
-              <p>[Project Screenshot - Weather Dashboard]</p>
+            <!-- Project 5 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="Recipe Finder">
+                    <div class="project-tag">Mobile App</div>
+                </div>
+                <div class="project-content">
+                    <h3>Recipe Finder App</h3>
+                    <p>A mobile-first web application that helps users discover recipes based on available ingredients, dietary preferences, and cooking time.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">React Native</span>
+                        <span class="tech-item">Firebase</span>
+                        <span class="tech-item">Spoonacular API</span>
+                        <span class="tech-item">Redux</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="https://recipe-finder.example.com" class="btn btn-primary" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/recipe-finder" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
-
-            {/* Project description */}
-            <div>
-              <p>
-                An interactive weather dashboard that provides current weather conditions, forecasts, 
-                and weather maps for multiple locations. Features a clean, intuitive interface with 
-                data visualization.
-              </p>
-              
-              {/* Key features */}
-              <div>
-                <h5>Key Features:</h5>
-                <ul>
-                  <li>Current weather conditions and 7-day forecast</li>
-                  <li>Interactive weather maps and radar</li>
-                  <li>Location search with autocomplete</li>
-                  <li>Favorite locations management</li>
-                  <li>Weather alerts and notifications</li>
-                  <li>Responsive charts and data visualization</li>
-                </ul>
-              </div>
-
-              {/* Technologies used */}
-              <div>
-                <h5>Technologies Used:</h5>
-                <p>
-                  <strong>Frontend:</strong> React, Chart.js, Leaflet Maps, CSS Modules
-                </p>
-                <p>
-                  <strong>APIs:</strong> OpenWeatherMap API, Mapbox API
-                </p>
-                <p>
-                  <strong>Other:</strong> Local Storage, Service Workers, PWA
-                </p>
-              </div>
-
-              {/* Project links */}
-              <div>
-                <a href="https://weather-dashboard.example.com" target="_blank" rel="noopener noreferrer">
-                  Live Demo
-                </a>
-                <a href="https://github.com/johndoe/weather-dashboard" target="_blank" rel="noopener noreferrer">
-                  GitHub Repository
-                </a>
-              </div>
-
-              {/* Project timeline */}
-              <div>
-                <p><strong>Timeline:</strong> 1 month (2023)</p>
-                <p><strong>Role:</strong> Frontend Developer</p>
-              </div>
+            
+            <!-- Project 6 -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&h=600&q=80" alt="Portfolio Website">
+                    <div class="project-tag">Portfolio</div>
+                </div>
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>This very website! A responsive portfolio showcasing my work, skills, and professional experience with a focus on clean design and performance.</p>
+                    
+                    <div class="tech-stack">
+                        <span class="tech-item">HTML5</span>
+                        <span class="tech-item">CSS3</span>
+                        <span class="tech-item">JavaScript</span>
+                        <span class="tech-item">Responsive Design</span>
+                    </div>
+                    
+                    <div class="project-links">
+                        <a href="/" class="btn btn-primary">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/johndoe/portfolio" class="btn btn-outline" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                    </div>
+                </div>
             </div>
-          </div>
-        </section>
-
-        {/* Additional Projects section */}
-        <section>
-          <h3>Additional Projects</h3>
-
-          {/* Project 4: Blog Platform */}
-          <div>
-            <h4>Personal Blog Platform</h4>
-            <p>
-              A content management system for personal blogging with markdown support, 
-              SEO optimization, and social sharing features.
+        </div>
+        
+        <!-- Open Source Contributions -->
+        <div class="section">
+            <h3>Open Source Contributions</h3>
+            <p class="section-description">
+                I actively contribute to open source projects and believe in giving back to the developer community. 
+                Here are some of my notable contributions:
             </p>
             
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> Next.js, Prisma, PostgreSQL, Tailwind CSS</p>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h4>React Component Library</h4>
+                    <p>Contributed multiple reusable components and bug fixes to a popular React component library used by thousands of developers.</p>
+                    <a href="https://github.com/example/react-components" class="btn btn-outline" target="_blank">
+                        View Contributions
+                    </a>
+                </div>
+                
+                <div class="challenge-card">
+                    <h4>Documentation Improvements</h4>
+                    <p>Enhanced documentation and created tutorials for various open source projects, making them more accessible to new contributors.</p>
+                    <a href="https://github.com/johndoe" class="btn btn-outline" target="_blank">
+                        View GitHub Profile
+                    </a>
+                </div>
             </div>
-
-            {/* Project links */}
-            <div>
-              <a href="https://blog-platform.example.com" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/blog-platform" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
-            </div>
-          </div>
-
-          {/* Project 5: Recipe Finder */}
-          <div>
-            <h4>Recipe Finder App</h4>
-            <p>
-              A mobile-first web application that helps users discover recipes based on 
-              available ingredients, dietary preferences, and cooking time.
+        </div>
+        
+        <!-- Technical Challenges -->
+        <div class="section">
+            <h3>Technical Challenges & Solutions</h3>
+            <p class="section-description">
+                Each project presented unique challenges that required creative problem-solving and technical expertise. 
+                Here are some notable examples:
             </p>
             
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> React Native, Firebase, Spoonacular API</p>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h4>Performance Optimization</h4>
+                    <p><strong>Challenge:</strong> E-commerce platform was experiencing slow load times with large product catalogs.</p>
+                    <p><strong>Solution:</strong> Implemented lazy loading, image optimization, code splitting, and database query optimization, reducing load times by 60%.</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <h4>Real-time Synchronization</h4>
+                    <p><strong>Challenge:</strong> Task management app needed real-time updates across multiple users without conflicts.</p>
+                    <p><strong>Solution:</strong> Implemented WebSocket connections with conflict resolution algorithms and optimistic UI updates.</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <h4>Cross-browser Compatibility</h4>
+                    <p><strong>Challenge:</strong> Weather dashboard needed to work consistently across all modern browsers and devices.</p>
+                    <p><strong>Solution:</strong> Used progressive enhancement, polyfills, and extensive cross-browser testing to ensure compatibility.</p>
+                </div>
             </div>
-
-            {/* Project links */}
-            <div>
-              <a href="https://recipe-finder.example.com" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/recipe-finder" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
+        </div>
+        
+        <!-- Project Statistics -->
+        <div class="section">
+            <h3>Project Statistics</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>15+</h3>
+                    <p>Completed Projects</p>
+                </div>
+                <div class="stat-item">
+                    <h3>50k+</h3>
+                    <p>Lines of Code</p>
+                </div>
+                <div class="stat-item">
+                    <h3>10+</h3>
+                    <p>Technologies Mastered</p>
+                </div>
+                <div class="stat-item">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
             </div>
-          </div>
-
-          {/* Project 6: Portfolio Website */}
-          <div>
-            <h4>Portfolio Website</h4>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h3>Interested in Working Together?</h3>
             <p>
-              This very website! A responsive portfolio showcasing my work, skills, 
-              and professional experience with a focus on clean design and performance.
+                I'm always excited to take on new challenges and collaborate on interesting projects. 
+                Whether you need a full-stack web application, a responsive website, or technical consultation, 
+                I'd love to hear from you.
             </p>
+            <div class="cta-buttons">
+                <a href="/contact" class="btn btn-light">Get In Touch</a>
+                <a href="/resume" class="btn btn-outline" style="background: rgba(255,255,255,0.1); color: white; border-color: white;">View My Resume</a>
+                <a href="https://github.com/johndoe" class="btn btn-light" target="_blank">
+                    <i class="fab fa-github"></i> GitHub Profile
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>John Doe</h3>
+                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/resume">Resume</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Me</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> john.doe@email.com</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
             
-            {/* Technologies used */}
-            <div>
-              <p><strong>Technologies:</strong> React, CSS3, HTML5, Responsive Design</p>
+            <div class="copyright">
+                <p>© 2025 John Doe. All rights reserved. Designed with ❤️ and ☕</p>
             </div>
+        </div>
+    </footer>
 
-            {/* Project links */}
-            <div>
-              <a href="/" target="_blank" rel="noopener noreferrer">
-                Live Demo
-              </a>
-              <a href="https://github.com/johndoe/portfolio" target="_blank" rel="noopener noreferrer">
-                GitHub Repository
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Open Source Contributions section */}
-        <section>
-          <h3>Open Source Contributions</h3>
-          <p>
-            I actively contribute to open source projects and believe in giving back to the 
-            developer community. Here are some of my notable contributions:
-          </p>
-
-          {/* Contribution 1 */}
-          <div>
-            <h4>React Component Library</h4>
-            <p>
-              Contributed multiple reusable components and bug fixes to a popular React 
-              component library used by thousands of developers.
-            </p>
-            <div>
-              <a href="https://github.com/example/react-components" target="_blank" rel="noopener noreferrer">
-                View Contributions
-              </a>
-            </div>
-          </div>
-
-          {/* Contribution 2 */}
-          <div>
-            <h4>Documentation Improvements</h4>
-            <p>
-              Enhanced documentation and created tutorials for various open source projects, 
-              making them more accessible to new contributors.
-            </p>
-            <div>
-              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-                View GitHub Profile
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* Technical Challenges section */}
-        <section>
-          <h3>Technical Challenges & Solutions</h3>
-          <p>
-            Each project presented unique challenges that required creative problem-solving 
-            and technical expertise. Here are some notable examples:
-          </p>
-
-          {/* Challenge 1 */}
-          <div>
-            <h4>Performance Optimization</h4>
-            <p>
-              <strong>Challenge:</strong> E-commerce platform was experiencing slow load times 
-              with large product catalogs.
-            </p>
-            <p>
-              <strong>Solution:</strong> Implemented lazy loading, image optimization, code 
-              splitting, and database query optimization, reducing load times by 60%.
-            </p>
-          </div>
-
-          {/* Challenge 2 */}
-          <div>
-            <h4>Real-time Synchronization</h4>
-            <p>
-              <strong>Challenge:</strong> Task management app needed real-time updates across 
-              multiple users without conflicts.
-            </p>
-            <p>
-              <strong>Solution:</strong> Implemented WebSocket connections with conflict 
-              resolution algorithms and optimistic UI updates.
-            </p>
-          </div>
-
-          {/* Challenge 3 */}
-          <div>
-            <h4>Cross-browser Compatibility</h4>
-            <p>
-              <strong>Challenge:</strong> Weather dashboard needed to work consistently across 
-              all modern browsers and devices.
-            </p>
-            <p>
-              <strong>Solution:</strong> Used progressive enhancement, polyfills, and extensive 
-              cross-browser testing to ensure compatibility.
-            </p>
-          </div>
-        </section>
-
-        {/* Project Statistics section */}
-        <section>
-          <h3>Project Statistics</h3>
-          <div>
-            <div>
-              <h4>15+</h4>
-              <p>Completed Projects</p>
-            </div>
-            <div>
-              <h4>50,000+</h4>
-              <p>Lines of Code Written</p>
-            </div>
-            <div>
-              <h4>10+</h4>
-              <p>Technologies Mastered</p>
-            </div>
-            <div>
-              <h4>100%</h4>
-              <p>Client Satisfaction</p>
-            </div>
-          </div>
-        </section>
-
-        {/* Call to action section */}
-        <section>
-          <h3>Interested in Working Together?</h3>
-          <p>
-            I'm always excited to take on new challenges and collaborate on interesting projects. 
-            Whether you need a full-stack web application, a responsive website, or technical consultation, 
-            I'd love to hear from you.
-          </p>
-
-          {/* Call to action links */}
-          <div>
-            <a href="/contact">Get In Touch</a>
-            <a href="/resume">View My Resume</a>
-            <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
-              GitHub Profile
-            </a>
-          </div>
-        </section>
-      </main>
-
-      {/* Footer section */}
-      <footer>
-        <p>© 2025 John Doe. All rights reserved.</p>
-        <p>Connect with me on social media or send me an email!</p>
-      </footer>
-    </div>
-  );
-}
-
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.classList.add('mobile-nav');
+            }
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const nav = document.querySelector('nav ul');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (nav.style.display === 'flex' && 
+                !nav.contains(e.target) && 
+                !mobileMenu.contains(e.target)) {
+                nav.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
 
