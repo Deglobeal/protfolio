@@ -1,301 +1,453 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Projects</h1>
 
-{% block title %}Projects Portfolio | My Portfolio{% endblock %}
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-{% block content %}
-<!-- Hero Section -->
-<section class="pt-24 pb-16 hero-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                My Projects
-            </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                A showcase of web applications, mobile apps, and design projects that demonstrate my skills and passion for creating exceptional digital experiences
+      {/* Main content area */}
+      <main>
+        {/* Projects overview section */}
+        <section>
+          <h2>My Portfolio Projects</h2>
+          <p>
+            Here's a collection of projects I've worked on, showcasing my skills in web development, 
+            design, and problem-solving. Each project demonstrates different aspects of my technical expertise.
+          </p>
+        </section>
+
+        {/* Featured Projects section */}
+        <section>
+          <h3>Featured Projects</h3>
+
+          {/* Project 1: E-commerce Platform */}
+          <div>
+            <h4>E-commerce Platform</h4>
+            
+            {/* Project image placeholder */}
+            <div>
+              <p>[Project Screenshot - E-commerce Platform]</p>
+            </div>
+
+            {/* Project description */}
+            <div>
+              <p>
+                A full-stack e-commerce platform built for a local retail business. Features include 
+                product catalog, shopping cart, user authentication, payment processing, and admin dashboard.
+              </p>
+              
+              {/* Key features */}
+              <div>
+                <h5>Key Features:</h5>
+                <ul>
+                  <li>Responsive product catalog with search and filtering</li>
+                  <li>Secure user authentication and profile management</li>
+                  <li>Shopping cart with persistent storage</li>
+                  <li>Stripe payment integration</li>
+                  <li>Admin dashboard for inventory management</li>
+                  <li>Order tracking and email notifications</li>
+                </ul>
+              </div>
+
+              {/* Technologies used */}
+              <div>
+                <h5>Technologies Used:</h5>
+                <p>
+                  <strong>Frontend:</strong> React, TypeScript, Tailwind CSS, React Router
+                </p>
+                <p>
+                  <strong>Backend:</strong> Node.js, Express.js, PostgreSQL
+                </p>
+                <p>
+                  <strong>Other:</strong> Stripe API, JWT Authentication, AWS S3, Docker
+                </p>
+              </div>
+
+              {/* Project links */}
+              <div>
+                <a href="https://demo-ecommerce.example.com" target="_blank" rel="noopener noreferrer">
+                  Live Demo
+                </a>
+                <a href="https://github.com/johndoe/ecommerce-platform" target="_blank" rel="noopener noreferrer">
+                  GitHub Repository
+                </a>
+              </div>
+
+              {/* Project timeline */}
+              <div>
+                <p><strong>Timeline:</strong> 3 months (2024)</p>
+                <p><strong>Role:</strong> Full Stack Developer</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 2: Task Management App */}
+          <div>
+            <h4>Task Management Application</h4>
+            
+            {/* Project image placeholder */}
+            <div>
+              <p>[Project Screenshot - Task Management App]</p>
+            </div>
+
+            {/* Project description */}
+            <div>
+              <p>
+                A collaborative task management application designed for small teams. Built with modern 
+                web technologies and real-time synchronization capabilities.
+              </p>
+              
+              {/* Key features */}
+              <div>
+                <h5>Key Features:</h5>
+                <ul>
+                  <li>Real-time collaboration with WebSocket integration</li>
+                  <li>Drag-and-drop task organization</li>
+                  <li>Team member assignment and notifications</li>
+                  <li>Project timeline and progress tracking</li>
+                  <li>File attachment and commenting system</li>
+                  <li>Mobile-responsive design</li>
+                </ul>
+              </div>
+
+              {/* Technologies used */}
+              <div>
+                <h5>Technologies Used:</h5>
+                <p>
+                  <strong>Frontend:</strong> Vue.js, Vuex, Vue Router, SCSS
+                </p>
+                <p>
+                  <strong>Backend:</strong> Node.js, Socket.io, MongoDB
+                </p>
+                <p>
+                  <strong>Other:</strong> JWT Authentication, Cloudinary, Heroku
+                </p>
+              </div>
+
+              {/* Project links */}
+              <div>
+                <a href="https://taskmanager-demo.example.com" target="_blank" rel="noopener noreferrer">
+                  Live Demo
+                </a>
+                <a href="https://github.com/johndoe/task-manager" target="_blank" rel="noopener noreferrer">
+                  GitHub Repository
+                </a>
+              </div>
+
+              {/* Project timeline */}
+              <div>
+                <p><strong>Timeline:</strong> 2 months (2024)</p>
+                <p><strong>Role:</strong> Lead Developer</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Project 3: Weather Dashboard */}
+          <div>
+            <h4>Weather Dashboard</h4>
+            
+            {/* Project image placeholder */}
+            <div>
+              <p>[Project Screenshot - Weather Dashboard]</p>
+            </div>
+
+            {/* Project description */}
+            <div>
+              <p>
+                An interactive weather dashboard that provides current weather conditions, forecasts, 
+                and weather maps for multiple locations. Features a clean, intuitive interface with 
+                data visualization.
+              </p>
+              
+              {/* Key features */}
+              <div>
+                <h5>Key Features:</h5>
+                <ul>
+                  <li>Current weather conditions and 7-day forecast</li>
+                  <li>Interactive weather maps and radar</li>
+                  <li>Location search with autocomplete</li>
+                  <li>Favorite locations management</li>
+                  <li>Weather alerts and notifications</li>
+                  <li>Responsive charts and data visualization</li>
+                </ul>
+              </div>
+
+              {/* Technologies used */}
+              <div>
+                <h5>Technologies Used:</h5>
+                <p>
+                  <strong>Frontend:</strong> React, Chart.js, Leaflet Maps, CSS Modules
+                </p>
+                <p>
+                  <strong>APIs:</strong> OpenWeatherMap API, Mapbox API
+                </p>
+                <p>
+                  <strong>Other:</strong> Local Storage, Service Workers, PWA
+                </p>
+              </div>
+
+              {/* Project links */}
+              <div>
+                <a href="https://weather-dashboard.example.com" target="_blank" rel="noopener noreferrer">
+                  Live Demo
+                </a>
+                <a href="https://github.com/johndoe/weather-dashboard" target="_blank" rel="noopener noreferrer">
+                  GitHub Repository
+                </a>
+              </div>
+
+              {/* Project timeline */}
+              <div>
+                <p><strong>Timeline:</strong> 1 month (2023)</p>
+                <p><strong>Role:</strong> Frontend Developer</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Additional Projects section */}
+        <section>
+          <h3>Additional Projects</h3>
+
+          {/* Project 4: Blog Platform */}
+          <div>
+            <h4>Personal Blog Platform</h4>
+            <p>
+              A content management system for personal blogging with markdown support, 
+              SEO optimization, and social sharing features.
             </p>
-        </div>
+            
+            {/* Technologies used */}
+            <div>
+              <p><strong>Technologies:</strong> Next.js, Prisma, PostgreSQL, Tailwind CSS</p>
+            </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <div class="text-3xl font-bold text-blue-600 mb-2">6</div>
-                <div class="text-gray-600">Total Projects</div>
+            {/* Project links */}
+            <div>
+              <a href="https://blog-platform.example.com" target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </a>
+              <a href="https://github.com/johndoe/blog-platform" target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <div class="text-3xl font-bold text-green-600 mb-2">5</div>
-                <div class="text-gray-600">Live Projects</div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
-                <div class="text-gray-600">Technologies</div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center">
-                <div class="text-3xl font-bold text-orange-600 mb-2">5</div>
-                <div class="text-gray-600">Happy Clients</div>
-            </div>
-        </div>
-    </div>
-</section>
+          </div>
 
-<!-- Projects Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-12">
-            <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 lg:mb-0">
-                    Featured Work
-                </h2>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Filter by Category
-                        </label>
-                        <select id="category-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option value="all">All Projects (6)</option>
-                            <option value="web">Web Applications (3)</option>
-                            <option value="mobile">Mobile Apps (2)</option>
-                            <option value="design">Design Projects (1)</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">
-                            Filter by Technology
-                        </label>
-                        <select id="tech-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                            <option value="all">All Technologies</option>
-                            <option value="React">React</option>
-                            <option value="Node.js">Node.js</option>
-                            <option value="React Native">React Native</option>
-                            <option value="Vue.js">Vue.js</option>
-                            <option value="Python">Python</option>
-                            <option value="MongoDB">MongoDB</option>
-                            <option value="PostgreSQL">PostgreSQL</option>
-                            <option value="Firebase">Firebase</option>
-                            <option value="AWS">AWS</option>
-                            <option value="TypeScript">TypeScript</option>
-                            <option value="Flutter">Flutter</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
-            <!-- Projects will be dynamically inserted here -->
-        </div>
-
-        <div id="no-projects-message" class="hidden text-center py-12">
-            <i class="fas fa-search text-4xl text-gray-400 mb-4"></i>
-            <h3 class="text-xl font-medium text-gray-900 mb-2">
-                No projects found
-            </h3>
-            <p class="text-gray-600">
-                Try adjusting your filters to see more projects.
+          {/* Project 5: Recipe Finder */}
+          <div>
+            <h4>Recipe Finder App</h4>
+            <p>
+              A mobile-first web application that helps users discover recipes based on 
+              available ingredients, dietary preferences, and cooking time.
             </p>
-        </div>
-    </div>
-</section>
+            
+            {/* Technologies used */}
+            <div>
+              <p><strong>Technologies:</strong> React Native, Firebase, Spoonacular API</p>
+            </div>
 
-<!-- Project Detail Modal -->
-<div id="project-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4 modal-overlay">
-    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto modal-content">
-        <div class="sticky top-0 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-            <h2 id="modal-title" class="text-2xl font-bold text-gray-900"></h2>
-            <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
-                <i class="fas fa-times text-xl"></i>
-            </button>
-        </div>
+            {/* Project links */}
+            <div>
+              <a href="https://recipe-finder.example.com" target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </a>
+              <a href="https://github.com/johndoe/recipe-finder" target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
+            </div>
+          </div>
 
-        <div class="p-6">
-            <div id="modal-content"></div>
-        </div>
-    </div>
-</div>
+          {/* Project 6: Portfolio Website */}
+          <div>
+            <h4>Portfolio Website</h4>
+            <p>
+              This very website! A responsive portfolio showcasing my work, skills, 
+              and professional experience with a focus on clean design and performance.
+            </p>
+            
+            {/* Technologies used */}
+            <div>
+              <p><strong>Technologies:</strong> React, CSS3, HTML5, Responsive Design</p>
+            </div>
 
-<!-- CTA Section -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Ready to Start Your Project?
-        </h2>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            I'm always excited to work on new projects and bring innovative ideas to life. Let's discuss how we can collaborate to create something amazing together.
-        </p>
+            {/* Project links */}
+            <div>
+              <a href="/" target="_blank" rel="noopener noreferrer">
+                Live Demo
+              </a>
+              <a href="https://github.com/johndoe/portfolio" target="_blank" rel="noopener noreferrer">
+                GitHub Repository
+              </a>
+            </div>
+          </div>
+        </section>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{% url 'contact' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                Start a Project
+        {/* Open Source Contributions section */}
+        <section>
+          <h3>Open Source Contributions</h3>
+          <p>
+            I actively contribute to open source projects and believe in giving back to the 
+            developer community. Here are some of my notable contributions:
+          </p>
+
+          {/* Contribution 1 */}
+          <div>
+            <h4>React Component Library</h4>
+            <p>
+              Contributed multiple reusable components and bug fixes to a popular React 
+              component library used by thousands of developers.
+            </p>
+            <div>
+              <a href="https://github.com/example/react-components" target="_blank" rel="noopener noreferrer">
+                View Contributions
+              </a>
+            </div>
+          </div>
+
+          {/* Contribution 2 */}
+          <div>
+            <h4>Documentation Improvements</h4>
+            <p>
+              Enhanced documentation and created tutorials for various open source projects, 
+              making them more accessible to new contributors.
+            </p>
+            <div>
+              <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+                View GitHub Profile
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Technical Challenges section */}
+        <section>
+          <h3>Technical Challenges & Solutions</h3>
+          <p>
+            Each project presented unique challenges that required creative problem-solving 
+            and technical expertise. Here are some notable examples:
+          </p>
+
+          {/* Challenge 1 */}
+          <div>
+            <h4>Performance Optimization</h4>
+            <p>
+              <strong>Challenge:</strong> E-commerce platform was experiencing slow load times 
+              with large product catalogs.
+            </p>
+            <p>
+              <strong>Solution:</strong> Implemented lazy loading, image optimization, code 
+              splitting, and database query optimization, reducing load times by 60%.
+            </p>
+          </div>
+
+          {/* Challenge 2 */}
+          <div>
+            <h4>Real-time Synchronization</h4>
+            <p>
+              <strong>Challenge:</strong> Task management app needed real-time updates across 
+              multiple users without conflicts.
+            </p>
+            <p>
+              <strong>Solution:</strong> Implemented WebSocket connections with conflict 
+              resolution algorithms and optimistic UI updates.
+            </p>
+          </div>
+
+          {/* Challenge 3 */}
+          <div>
+            <h4>Cross-browser Compatibility</h4>
+            <p>
+              <strong>Challenge:</strong> Weather dashboard needed to work consistently across 
+              all modern browsers and devices.
+            </p>
+            <p>
+              <strong>Solution:</strong> Used progressive enhancement, polyfills, and extensive 
+              cross-browser testing to ensure compatibility.
+            </p>
+          </div>
+        </section>
+
+        {/* Project Statistics section */}
+        <section>
+          <h3>Project Statistics</h3>
+          <div>
+            <div>
+              <h4>15+</h4>
+              <p>Completed Projects</p>
+            </div>
+            <div>
+              <h4>50,000+</h4>
+              <p>Lines of Code Written</p>
+            </div>
+            <div>
+              <h4>10+</h4>
+              <p>Technologies Mastered</p>
+            </div>
+            <div>
+              <h4>100%</h4>
+              <p>Client Satisfaction</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Call to action section */}
+        <section>
+          <h3>Interested in Working Together?</h3>
+          <p>
+            I'm always excited to take on new challenges and collaborate on interesting projects. 
+            Whether you need a full-stack web application, a responsive website, or technical consultation, 
+            I'd love to hear from you.
+          </p>
+
+          {/* Call to action links */}
+          <div>
+            <a href="/contact">Get In Touch</a>
+            <a href="/resume">View My Resume</a>
+            <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+              GitHub Profile
             </a>
-            <a href="{% url 'resume' %}" class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:border-gray-400 transition-colors">
-                View Resume
-            </a>
-        </div>
-    </div>
-</section>
-{% endblock %}
+          </div>
+        </section>
+      </main>
 
-{% block extra_js %}
-<script>
-    // Project data
-    window.projectsData = [
-        {
-            id: 1,
-            title: "E-Commerce Platform",
-            category: "web",
-            type: "Full Stack Web Application",
-            description: "A modern e-commerce platform with real-time inventory management, payment processing, and admin dashboard.",
-            longDescription: "Built a comprehensive e-commerce solution from the ground up, featuring user authentication, product catalog, shopping cart, payment integration with Stripe, order management, and an admin panel for inventory control. The platform handles over 10,000 products and serves 5,000+ active users.",
-            technologies: ["React", "Node.js", "MongoDB", "Express", "Stripe", "AWS"],
-            liveDemo: "https://demo-ecommerce.alexjohnson.dev",
-            github: "https://github.com/alexjohnson/ecommerce-platform",
-            status: "Live",
-            duration: "4 months",
-            client: "RetailCorp Inc.",
-            features: [
-                "User authentication & profiles",
-                "Product catalog with search & filters",
-                "Shopping cart & wishlist",
-                "Secure payment processing",
-                "Order tracking & history",
-                "Admin dashboard",
-                "Inventory management",
-                "Email notifications"
-            ],
-            challenges: "Implementing real-time inventory updates across multiple user sessions and optimizing database queries for large product catalogs.",
-            results: "Increased client's online sales by 150% and reduced cart abandonment rate by 30%."
-        },
-        {
-            id: 2,
-            title: "Task Management Mobile App",
-            category: "mobile",
-            type: "React Native Mobile Application",
-            description: "Cross-platform mobile app for team collaboration and project management with offline capabilities.",
-            longDescription: "Developed a comprehensive task management application that works seamlessly across iOS and Android platforms. Features include real-time collaboration, offline sync, push notifications, and advanced project analytics. The app supports teams of up to 100 members.",
-            technologies: ["React Native", "Firebase", "Redux", "TypeScript", "Expo"],
-            liveDemo: "https://apps.apple.com/taskmanager",
-            github: "https://github.com/alexjohnson/task-manager-app",
-            status: "Live",
-            duration: "6 months",
-            client: "ProductivityPro",
-            features: [
-                "Cross-platform compatibility",
-                "Real-time collaboration",
-                "Offline synchronization",
-                "Push notifications",
-                "File attachments",
-                "Time tracking",
-                "Project analytics",
-                "Team management"
-            ],
-            challenges: "Implementing robust offline functionality and ensuring data consistency when syncing across multiple devices.",
-            results: "App reached 50,000+ downloads within 3 months and maintains a 4.8-star rating on app stores."
-        },
-        {
-            id: 3,
-            title: "Healthcare Dashboard",
-            category: "web",
-            type: "Data Visualization Web App",
-            description: "Interactive dashboard for healthcare providers to monitor patient data and analytics in real-time.",
-            longDescription: "Created a sophisticated healthcare dashboard that aggregates patient data from multiple sources, providing healthcare professionals with real-time insights and analytics. Features HIPAA-compliant security, customizable widgets, and advanced reporting capabilities.",
-            technologies: ["Vue.js", "D3.js", "Python", "PostgreSQL", "Docker", "AWS"],
-            liveDemo: "https://healthcare-demo.alexjohnson.dev",
-            github: "https://github.com/alexjohnson/healthcare-dashboard",
-            status: "Live",
-            duration: "5 months",
-            client: "MedTech Solutions",
-            features: [
-                "Real-time data visualization",
-                "HIPAA-compliant security",
-                "Customizable dashboards",
-                "Advanced analytics",
-                "Report generation",
-                "Multi-user access control",
-                "Data export capabilities",
-                "Mobile responsive design"
-            ],
-            challenges: "Ensuring HIPAA compliance while maintaining performance with large datasets and implementing secure multi-tenant architecture.",
-            results: "Reduced data analysis time by 60% for healthcare providers and improved patient outcome tracking efficiency."
-        },
-        {
-            id: 4,
-            title: "Brand Identity System",
-            category: "design",
-            type: "UI/UX Design & Branding",
-            description: "Complete brand identity and design system for a fintech startup, including logo, guidelines, and digital assets.",
-            longDescription: "Developed a comprehensive brand identity system for a fintech startup, including logo design, color palette, typography, iconography, and digital asset creation. Created detailed brand guidelines and implemented the design system across web and mobile platforms.",
-            technologies: ["Figma", "Adobe Creative Suite", "Sketch", "InVision"],
-            liveDemo: "https://brand-showcase.alexjohnson.dev",
-            github: null,
-            status: "Completed",
-            duration: "3 months",
-            client: "FinanceFlow",
-            features: [
-                "Logo design & variations",
-                "Color palette & guidelines",
-                "Typography system",
-                "Icon library",
-                "Brand guidelines document",
-                "Digital asset templates",
-                "Social media assets",
-                "Print collateral designs"
-            ],
-            challenges: "Creating a trustworthy yet modern brand identity that appeals to both tech-savvy millennials and traditional finance users.",
-            results: "Brand recognition increased by 200% and user trust metrics improved by 45% after rebrand implementation."
-        },
-        {
-            id: 5,
-            title: "Real Estate Platform",
-            category: "web",
-            type: "Full Stack Web Application",
-            description: "Comprehensive real estate platform with property listings, virtual tours, and mortgage calculator.",
-            longDescription: "Built a full-featured real estate platform that connects buyers, sellers, and agents. Includes advanced search functionality, interactive maps, virtual tour integration, mortgage calculators, and a comprehensive CRM system for real estate professionals.",
-            technologies: ["Next.js", "GraphQL", "Prisma", "PostgreSQL", "Mapbox", "Vercel"],
-            liveDemo: "https://realestate-demo.alexjohnson.dev",
-            github: "https://github.com/alexjohnson/realestate-platform",
-            status: "Live",
-            duration: "7 months",
-            client: "PropertyPro",
-            features: [
-                "Advanced property search",
-                "Interactive maps integration",
-                "Virtual tour support",
-                "Mortgage calculator",
-                "Agent CRM system",
-                "Favorites & saved searches",
-                "Property comparison tool",
-                "Lead management"
-            ],
-            challenges: "Integrating multiple MLS data sources and optimizing map performance with thousands of property markers.",
-            results: "Platform now hosts 25,000+ property listings and generates 500+ qualified leads monthly for agents."
-        },
-        {
-            id: 6,
-            title: "Fitness Tracking App",
-            category: "mobile",
-            type: "iOS & Android Mobile App",
-            description: "Personal fitness tracking app with workout plans, progress monitoring, and social features.",
-            longDescription: "Developed a comprehensive fitness tracking application that helps users monitor their workouts, track progress, and connect with a community of fitness enthusiasts. Features include custom workout plans, nutrition tracking, and social challenges.",
-            technologies: ["Flutter", "Dart", "Firebase", "HealthKit", "Google Fit"],
-            liveDemo: "https://play.google.com/fitnesstrack",
-            github: "https://github.com/alexjohnson/fitness-tracker",
-            status: "Live",
-            duration: "4 months",
-            client: "FitLife Inc.",
-            features: [
-                "Workout tracking & logging",
-                "Custom exercise plans",
-                "Progress analytics",
-                "Nutrition tracking",
-                "Social challenges",
-                "Achievement system",
-                "Wearable device sync",
-                "Offline workout mode"
-            ],
-            challenges: "Integrating with multiple health platforms and ensuring accurate data synchronization across devices.",
-            results: "App achieved 100,000+ downloads and maintains 4.7-star rating with active community of 25,000+ users."
-        }
-    ];
-</script>
-{% endblock %}
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
+    </div>
+  );
+}
+
+

@@ -1,45 +1,103 @@
 from django.db import models
-from django.urls import reverse
-
-class Project(models.Model):
-    title = models.CharField(max_length=200)
-    description = models.TextField()
-    image = models.ImageField(upload_to='projects/')
-    url = models.URLField(blank=True)
-    github_url = models.URLField(blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
-    
-    def __str__(self):
-        return self.title
-    
-    def get_absolute_url(self):
-        return reverse('project_detail', args=[str(self.id)])
 
 class Certificate(models.Model):
-    title = models.CharField(max_length=200)
-    issued_by = models.CharField(max_length=200)
-    description = models.TextField(blank=True)
-    date_issued = models.DateField()
-    certificate_url = models.URLField(blank=True)
-    image = models.ImageField(upload_to='certificates/')
-    
-    def __str__(self):
-        return self.title
+    title = models.CharField(max_length=255)
+    issuing_organization = models.CharField(max_length=255)
+    issue_date = models.DateField()
+    expiration_date = models.DateField(null=True, blank=True)
+    credential_id = models.CharField(max_length=100)
+    verification_url = models.URLField()
+    description = models.TextField()
+    skills_validated = models.TextField()
+
+class Project(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    key_features = models.TextField()
+    technologies = models.TextField()
+    live_url = models.URLField()
+    github_url = models.URLField()
+    timeline = models.CharField(max_length=100)
+    role = models.CharField(max_length=100)
+    is_featured = models.BooleanField(default=False) 
 
 class Skill(models.Model):
-    name = models.CharField(max_length=100)
-    level = models.IntegerField()
-    icon_class = models.CharField(max_length=50, blank=True, help_text="Font Awesome icon class")
+    CATEGORY_CHOICES = [
+        ('lang', 'Programming Languages'),
+        ('frontend', 'Frontend Frameworks'),
+        ('backend', 'Backend Technologies'),
+        ('db', 'Database Technologies'),
+        ('tools', 'Development Tools'),
+        ('testing', 'Testing & QA'),
+        ('design', 'Design & UI Tools'),
+        ('soft', 'Professional Skills'),
+    ]
     
-    def __str__(self):
-        return self.name
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    competency_level = models.CharField(max_length=100)
+    description = models.TextField()
+    skill_level = models.PositiveIntegerField()  # 1-5 scale
 
-class ContactMessage(models.Model):
+class ContactSubmission(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
     subject = models.CharField(max_length=200)
     message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+class EmailTemplate(models.Model):
+    TEMPLATE_CHOICES = [
+        ('project', 'Project Inquiry'),
+        ('collab', 'Collaboration Request'),
+        ('tech', 'Technical Question'),
+        ('networking', 'Professional Networking'),
+    ]
     
-    def __str__(self):
-        return f"Message from {self.name} - {self.subject}"
+    template_type = models.CharField(max_length=20, choices=TEMPLATE_CHOICES)
+    subject = models.CharField(max_length=255)
+    content = models.TextField()
+
+class Profile(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    location = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    about_me = models.TextField()
+    education = models.TextField()
+    experience = models.TextField()
+    background = models.TextField()
+    interests = models.TextField()
+    philosophy = models.TextField()
+
+class Resume(models.Model):
+    title = models.CharField(max_length=100)
+    summary = models.TextField()
+    competencies = models.TextField()
+    experience = models.TextField()
+    education = models.TextField()
+    certifications = models.TextField()
+    projects = models.TextField()
+    awards = models.TextField()
+    languages = models.TextField()
+    volunteer = models.TextField()
+
+class SocialProfile(models.Model):
+    PLATFORM_CHOICES = [
+        ('linkedin', 'LinkedIn'),
+        ('github', 'GitHub'),
+        ('twitter', 'Twitter'),
+        ('instagram', 'Instagram'),
+        ('youtube', 'YouTube'),
+        ('stackoverflow', 'Stack Overflow'),
+        ('devto', 'Dev.to'),
+        ('dribbble', 'Dribbble'),
+    ]
+    
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
+    url = models.URLField()
+    handle = models.CharField(max_length=100)
+    description = models.TextField()
+    followers = models.PositiveIntegerField()
+    content_types = models.TextField()

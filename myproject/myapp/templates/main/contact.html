@@ -1,276 +1,372 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Message Sent Successfully</h1>
 
-{% block title %}Contact Me - My Portfolio{% endblock %}
-
-{% block content %}
-<!-- Hero Section -->
-<section class="pt-24 pb-16 bg-gradient-to-br from-blue-50 to-indigo-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Get In Touch
-            </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Have a project in mind or just want to chat? I'd love to hear from
-                you. Let's discuss how we can work together to bring your ideas to
-                life.
-            </p>
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-    </div>
-</section>
+      </header>
 
-<!-- Contact Methods -->
-<section class="py-12 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-envelope text-2xl text-blue-600"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    Email
-                </h3>
-                <a href="mailto:gerard.ugwu@example.com" class="text-blue-600 font-medium hover:text-blue-700 transition-colors block mb-1">
-                    gerard.ugwu@example.com
-                </a>
-                <p class="text-gray-600 text-sm">Send me an email anytime</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-phone text-2xl text-blue-600"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    Phone
-                </h3>
-                <a href="tel:+2348100000000" class="text-blue-600 font-medium hover:text-blue-700 transition-colors block mb-1">
-                    +234 810 000 0000
-                </a>
-                <p class="text-gray-600 text-sm">Call me during business hours</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-map-marker-alt text-2xl text-blue-600"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    Location
-                </h3>
-                <p class="text-blue-600 font-medium mb-1">Nigeria</p>
-                <p class="text-gray-600 text-sm">Available for remote work</p>
-            </div>
-            
-            <div class="text-center">
-                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-calendar text-2xl text-blue-600"></i>
-                </div>
-                <h3 class="text-lg font-bold text-gray-900 mb-2">
-                    Schedule
-                </h3>
-                <a href="#" class="text-blue-600 font-medium hover:text-blue-700 transition-colors block mb-1">
-                    Book a Meeting
-                </a>
-                <p class="text-gray-600 text-sm">Schedule a consultation</p>
-            </div>
-        </div>
-    </div>
-</section>
+      {/* Main content area */}
+      <main>
+        {/* Success confirmation section */}
+        <section>
+          {/* Success message heading */}
+          <h2>Thank You for Your Message!</h2>
+          
+          {/* Success icon or visual indicator */}
+          <div>
+            <p>✅</p>
+          </div>
 
-<!-- Contact Form Section -->
-<section class="py-12 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <!-- Left Column - Contact Form -->
+          {/* Primary confirmation message */}
+          <p>
+            Your message has been successfully sent and received. I appreciate you taking the time to reach out!
+          </p>
+
+          {/* Additional confirmation details */}
+          <p>
+            I've received your inquiry and will review it carefully. You can expect a personal response from me within 24 hours, often much sooner.
+          </p>
+        </section>
+
+        {/* What happens next section */}
+        <section>
+          <h3>What Happens Next?</h3>
+          
+          {/* Step-by-step process explanation */}
+          <div>
+            <h4>Here's what you can expect:</h4>
+            
+            {/* Step 1 */}
             <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                    Send Me a Message
-                </h2>
-                <p class="text-lg text-gray-600 mb-8">
-                    Fill out the form below and I'll get back to you as soon as
-                    possible. I typically respond within 24 hours.
-                </p>
-
-                <form id="contact-form" class="space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                                Full Name *
-                            </label>
-                            <input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors" placeholder="Your full name">
-                            <p id="name-error" class="mt-1 text-sm text-red-600 hidden"></p>
-                        </div>
-
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                                Email Address *
-                            </label>
-                            <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors" placeholder="your.email@example.com">
-                            <p id="email-error" class="mt-1 text-sm text-red-600 hidden"></p>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">
-                            Subject *
-                        </label>
-                        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors" placeholder="What's this about?">
-                        <p id="subject-error" class="mt-1 text-sm text-red-600 hidden"></p>
-                    </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                            Message *
-                        </label>
-                        <textarea id="message" name="message" rows="6" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none" placeholder="Tell me about your project or what you'd like to discuss..."></textarea>
-                        <p id="message-error" class="mt-1 text-sm text-red-600 hidden"></p>
-                    </div>
-
-                    <div id="success-message" class="bg-green-50 border border-green-200 rounded-lg p-4 hidden">
-                        <div class="flex items-center">
-                            <i class="fas fa-check-circle text-green-600 mr-3"></i>
-                            <p class="text-green-800">
-                                Thank you! Your message has been sent successfully. I'll
-                                get back to you soon.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div id="error-message" class="bg-red-50 border border-red-200 rounded-lg p-4 hidden">
-                        <div class="flex items-center">
-                            <i class="fas fa-exclamation-circle text-red-600 mr-3"></i>
-                            <p class="text-red-800">
-                                Sorry, there was an error sending your message. Please
-                                try again.
-                            </p>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="w-full bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center">
-                        <i class="fas fa-paper-plane mr-2"></i>
-                        Send Message
-                    </button>
-                </form>
+              <h5>1. Message Review</h5>
+              <p>
+                I'll carefully read through your message and any project details you've provided to understand your needs and requirements.
+              </p>
             </div>
 
-            <!-- Right Column - Contact Info -->
+            {/* Step 2 */}
             <div>
-                <h2 class="text-3xl font-bold text-gray-900 mb-6">
-                    Let's Connect
-                </h2>
-                <p class="text-lg text-gray-600 mb-8">
-                    Find me on social media or reach out through any of these
-                    platforms. I'm always happy to connect with fellow developers
-                    and potential collaborators.
-                </p>
-
-                <div class="grid grid-cols-2 gap-4 mb-12">
-                    <a href="#" class="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 hover:text-gray-900">
-                        <i class="fab fa-github text-xl mr-3 text-gray-600"></i>
-                        <span class="font-medium text-gray-900">GitHub</span>
-                    </a>
-                    <a href="#" class="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 hover:text-blue-600">
-                        <i class="fab fa-linkedin text-xl mr-3 text-gray-600"></i>
-                        <span class="font-medium text-gray-900">LinkedIn</span>
-                    </a>
-                    <a href="#" class="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 hover:text-blue-400">
-                        <i class="fab fa-twitter text-xl mr-3 text-gray-600"></i>
-                        <span class="font-medium text-gray-900">Twitter</span>
-                    </a>
-                    <a href="#" class="flex items-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all border border-gray-200 hover:text-pink-600">
-                        <i class="fab fa-instagram text-xl mr-3 text-gray-600"></i>
-                        <span class="font-medium text-gray-900">Instagram</span>
-                    </a>
-                </div>
-
-                <div class="bg-white p-8 rounded-lg shadow-sm border border-gray-200">
-                    <h3 class="text-xl font-bold text-gray-900 mb-4">
-                        <i class="fas fa-map-marker-alt text-blue-600 mr-2"></i>
-                        Location & Availability
-                    </h3>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="font-medium text-gray-900">
-                                Based in Nigeria
-                            </p>
-                            <p class="text-gray-600">
-                                Available for remote work worldwide
-                            </p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-900">Response Time</p>
-                            <p class="text-gray-600">Usually within 24 hours</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-900">Time Zone</p>
-                            <p class="text-gray-600">West Africa Time (WAT)</p>
-                        </div>
-                        <div>
-                            <p class="font-medium text-gray-900">Availability</p>
-                            <p class="text-gray-600">
-                                Monday - Friday, 9 AM - 6 PM WAT
-                            </p>
-                        </div>
-                    </div>
-                </div>
+              <h5>2. Personal Response</h5>
+              <p>
+                Within 24 hours, you'll receive a personalized response from me addressing your specific questions or project inquiry.
+              </p>
             </div>
-        </div>
-    </div>
-</section>
 
-<!-- FAQ Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                Frequently Asked Questions
-            </h2>
-            <p class="text-lg text-gray-600">
-                Quick answers to common questions
+            {/* Step 3 */}
+            <div>
+              <h5>3. Follow-up Discussion</h5>
+              <p>
+                If your project seems like a good fit, I'll suggest scheduling a brief call or video chat to discuss details and next steps.
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div>
+              <h5>4. Project Proposal</h5>
+              <p>
+                For project inquiries, I'll provide a detailed proposal outlining scope, timeline, and investment within 2-3 business days.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Response time information section */}
+        <section>
+          <h3>Response Time Information</h3>
+          
+          {/* Response time details */}
+          <div>
+            <p>
+              <strong>Typical Response Time:</strong> Within 24 hours
             </p>
-        </div>
+            <p>
+              <strong>Business Hours:</strong> Monday - Friday, 9 AM - 6 PM PST
+            </p>
+            <p>
+              <strong>Weekend Messages:</strong> Reviewed on Monday morning
+            </p>
+            <p>
+              <strong>Urgent Inquiries:</strong> Call (555) 123-4567 for immediate assistance
+            </p>
+          </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-lg font-bold text-gray-900 mb-3">
-                    What's your typical response time?
-                </h3>
-                <p class="text-gray-600">
-                    I aim to respond to all inquiries within 24 hours during
-                    business days. For urgent matters, feel free to call directly.
-                </p>
+          {/* Email confirmation note */}
+          <div>
+            <h4>Email Confirmation</h4>
+            <p>
+              You should receive an automatic email confirmation shortly. If you don't see it in your inbox within a few minutes, please check your spam folder.
+            </p>
+            <p>
+              The confirmation email will include a copy of your message for your records.
+            </p>
+          </div>
+        </section>
+
+        {/* While you wait section */}
+        <section>
+          <h3>While You Wait</h3>
+          <p>
+            Feel free to explore more of my work and learn about my experience:
+          </p>
+
+          {/* Suggested actions while waiting */}
+          <div>
+            <h4>Explore My Portfolio</h4>
+            
+            {/* Portfolio exploration options */}
+            <div>
+              <a href="/projects">View My Recent Projects</a>
+              <p>
+                Check out detailed case studies of my recent work, including the technologies used and challenges solved.
+              </p>
             </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-lg font-bold text-gray-900 mb-3">
-                    Do you work with international clients?
-                </h3>
-                <p class="text-gray-600">
-                    Absolutely! I work with clients worldwide and am comfortable
-                    with remote collaboration across different time zones.
-                </p>
+            <div>
+              <a href="/skills">See My Technical Skills</a>
+              <p>
+                Learn about my expertise in various programming languages, frameworks, and development tools.
+              </p>
             </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-lg font-bold text-gray-900 mb-3">
-                    What types of projects do you take on?
-                </h3>
-                <p class="text-gray-600">
-                    I specialize in web applications, mobile apps, and UI/UX design.
-                    From small business websites to complex enterprise solutions.
-                </p>
+            <div>
+              <a href="/certificates">View My Certifications</a>
+              <p>
+                Explore my professional certifications, completed courses, and ongoing education in web development.
+              </p>
             </div>
 
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <h3 class="text-lg font-bold text-gray-900 mb-3">
-                    How do you handle project timelines?
-                </h3>
-                <p class="text-gray-600">
-                    I provide detailed project timelines upfront and maintain
-                    regular communication throughout the development process.
-                </p>
+            <div>
+              <a href="/resume">Download My Resume</a>
+              <p>
+                Get a comprehensive overview of my professional experience, education, and achievements.
+              </p>
             </div>
-        </div>
+          </div>
+        </section>
+
+        {/* Social media and additional contact section */}
+        <section>
+          <h3>Stay Connected</h3>
+          <p>
+            While you wait for my response, feel free to connect with me on social media for updates and insights:
+          </p>
+
+          {/* Social media links */}
+          <div>
+            <h4>Follow Me Online</h4>
+            
+            {/* Professional social media */}
+            <div>
+              <h5>Professional Networks</h5>
+              <ul>
+                <li>
+                  <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
+                    LinkedIn - Professional updates and industry insights
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+                    GitHub - Latest code projects and contributions
+                  </a>
+                </li>
+                <li>
+                  <a href="https://stackoverflow.com/users/johndoe" target="_blank" rel="noopener noreferrer">
+                    Stack Overflow - Technical discussions and solutions
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social media platforms */}
+            <div>
+              <h5>Social Media</h5>
+              <ul>
+                <li>
+                  <a href="https://twitter.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    Twitter - Tech insights and project updates
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    Instagram - Behind-the-scenes content and workspace
+                  </a>
+                </li>
+                <li>
+                  <a href="https://youtube.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    YouTube - Coding tutorials and project walkthroughs
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Alternative contact methods section */}
+        <section>
+          <h3>Need to Reach Me Sooner?</h3>
+          <p>
+            If your inquiry is urgent or you prefer alternative contact methods:
+          </p>
+
+          {/* Alternative contact options */}
+          <div>
+            <h4>Direct Contact Options</h4>
+            
+            {/* Phone contact */}
+            <div>
+              <h5>Phone</h5>
+              <p>
+                <strong>Mobile:</strong> <a href="tel:+15551234567">(555) 123-4567</a>
+              </p>
+              <p>
+                Available for calls Monday through Friday, 9 AM to 6 PM PST. Leave a voicemail if I don't answer, and I'll call back the same day.
+              </p>
+            </div>
+
+            {/* Email contact */}
+            <div>
+              <h5>Direct Email</h5>
+              <p>
+                <strong>Primary:</strong> <a href="mailto:john.doe@email.com">john.doe@email.com</a>
+              </p>
+              <p>
+                <strong>Business:</strong> <a href="mailto:john@johndoedev.com">john@johndoedev.com</a>
+              </p>
+              <p>
+                For urgent matters, email directly with "URGENT" in the subject line.
+              </p>
+            </div>
+
+            {/* Scheduling option */}
+            <div>
+              <h5>Schedule a Call</h5>
+              <p>
+                <a href="https://calendly.com/johndoe" target="_blank" rel="noopener noreferrer">
+                  Book a Free 30-Minute Consultation
+                </a>
+              </p>
+              <p>
+                Skip the email back-and-forth and schedule a direct conversation about your project.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ section for common post-contact questions */}
+        <section>
+          <h3>Frequently Asked Questions</h3>
+          
+          {/* Common questions after contact form submission */}
+          <div>
+            <h4>Common Questions After Reaching Out</h4>
+            
+            {/* FAQ item 1 */}
+            <div>
+              <h5>What if I don't hear back within 24 hours?</h5>
+              <p>
+                If you haven't received a response within 24 hours, please check your spam folder first. If still nothing, feel free to call me directly or send a follow-up email.
+              </p>
+            </div>
+
+            {/* FAQ item 2 */}
+            <div>
+              <h5>Can I send additional information about my project?</h5>
+              <p>
+                Absolutely! Feel free to send any additional details, documents, or clarifications to john.doe@email.com. Reference your original message in the subject line.
+              </p>
+            </div>
+
+            {/* FAQ item 3 */}
+            <div>
+              <h5>Do you provide free consultations?</h5>
+              <p>
+                Yes! I offer free 30-minute consultation calls to discuss your project, understand your needs, and determine if we're a good fit for working together.
+              </p>
+            </div>
+
+            {/* FAQ item 4 */}
+            <div>
+              <h5>What information do you need for a project quote?</h5>
+              <p>
+                For accurate quotes, I need project scope, timeline, budget range, technical requirements, and any design preferences. The more details you provide, the better I can assist you.
+              </p>
+            </div>
+
+            {/* FAQ item 5 */}
+            <div>
+              <h5>Do you work with clients internationally?</h5>
+              <p>
+                Yes! I work with clients worldwide and am experienced in remote collaboration across different time zones. I'll accommodate your schedule for meetings and communication.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Thank you and closing section */}
+        <section>
+          <h3>Thank You Again!</h3>
+          <p>
+            I'm genuinely excited about the possibility of working together and helping bring your project to life. Your message is important to me, and I'll give it the attention it deserves.
+          </p>
+          
+          {/* Closing message */}
+          <p>
+            Whether you're looking to build a new website, improve an existing application, or discuss a complex development project, I'm here to help make your vision a reality.
+          </p>
+
+          {/* Final call to action */}
+          <div>
+            <h4>In the Meantime</h4>
+            <div>
+              <a href="/">Return to Homepage</a>
+              <a href="/projects">Explore My Work</a>
+              <a href="/contact">Send Another Message</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
-{% endblock %}
+  );
+}
+
+

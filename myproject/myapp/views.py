@@ -1,53 +1,58 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Project, Certificate, Skill
-from .forms import ContactForm
+from django.shortcuts import render
+from .models import (
+    Certificate, Project, Skill, ContactSubmission, 
+    EmailTemplate, Profile, Resume, SocialProfile
+)
 
-def home(request):
-    skills = Skill.objects.all()
-    projects = Project.objects.all()[:3]
-    certificates = Certificate.objects.all()[:3]
-    
-    return render(request, 'main/home.html', {
-        'skills': skills,
-        'projects': projects,
-        'certificates': certificates
+def certificate_view(request):
+    certificates = Certificate.objects.all()
+    return render(request, 'main/certificate.html', {'certificates': certificates})
+
+def project_view(request):
+    featured_projects = Project.objects.filter(is_featured=True)
+    additional_projects = Project.objects.filter(is_featured=False)
+    return render(request, 'main/project.html', {
+        'featured_projects': featured_projects,
+        'additional_projects': additional_projects
     })
 
-def profile(request):
-    return render(request, 'main/profile.html')
-
-def resume(request):
-    return render(request, 'main/resume.html')
-
-def certificates(request):
-    certificates = Certificate.objects.all()
-    return render(request, 'main/certificates.html', {'certificates': certificates})
-
-def skills(request):
-    skills = Skill.objects.all()
+def skill_view(request):
+    skills = Skill.objects.all().order_by('category', 'name')
     return render(request, 'main/skills.html', {'skills': skills})
 
-def contact(request):
+def contact_view(request):
     if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'main/contact_success.html')
-    else:
-        form = ContactForm()
-    
-    return render(request, 'main/contact.html', {'form': form})
+        # Process form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        ContactSubmission.objects.create(
+            name=name,
+            email=email,
+            subject=subject,
+            message=message
+        )
+        return render(request, 'main/contact_success.html')
+        
+    return render(request, 'main/contact.html')
 
-def social(request):
-    return render(request, 'main/social.html')
+def email_view(request):
+    templates = EmailTemplate.objects.all()
+    return render(request, 'main/email.html', {'templates': templates})
 
-def email(request):
-    return render(request, 'main/email.html')
+def profile_view(request):
+    profile = Profile.objects.first()
+    return render(request, 'main/profile.html', {'profile': profile})
 
-def projects(request):
-    projects = Project.objects.all()
-    return render(request, 'main/projects.html', {'projects': projects})
+def resume_view(request):
+    resume = Resume.objects.first()
+    return render(request, 'main/resume.html', {'resume': resume})
 
-def project_detail(request, pk):
-    project = get_object_or_404(Project, id=pk)
-    return render(request, 'main/project_detail.html', {'project': project})
+def social_view(request):
+    profiles = SocialProfile.objects.all()
+    return render(request, 'main/social.html', {'profiles': profiles})
+
+def home_view(request):
+    return render(request, 'main/home.html')

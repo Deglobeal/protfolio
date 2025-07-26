@@ -1,22 +1,443 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Resume</h1>
 
-{% block content %}
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Resume</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Download my resume to learn more about my qualifications
-            </p>
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </header>
 
-        <div class="max-w-3xl mx-auto text-center">
-            <a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors inline-block mb-8">
-                <i class="fas fa-download mr-2"></i> Download Resume
+      {/* Main content area */}
+      <main>
+        {/* Resume download section */}
+        <section>
+          <h2>Professional Resume</h2>
+          <p>
+            Download my complete resume or view the detailed version below.
+          </p>
+          
+          {/* Download buttons */}
+          <div>
+            <a 
+              href="/resume.pdf" 
+              download="John_Doe_Resume.pdf"
+            >
+              Download PDF Resume
             </a>
-            <div class="bg-gray-100 border-2 border-dashed rounded-xl w-full h-96"></div>
+            <a 
+              href="/resume.docx" 
+              download="John_Doe_Resume.docx"
+            >
+              Download Word Resume
+            </a>
+          </div>
+        </section>
+
+        {/* Resume content container */}
+        <div>
+          {/* Personal information header */}
+          <section>
+            <h2>John Doe</h2>
+            <h3>Senior Web Developer & UI/UX Designer</h3>
+            
+            {/* Contact information */}
+            <div>
+              <p>San Francisco, CA | john.doe@email.com | (555) 123-4567</p>
+              <p>
+                <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
+                  LinkedIn
+                </a> | 
+                <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+                  GitHub
+                </a> | 
+                <a href="https://johndoe.dev" target="_blank" rel="noopener noreferrer">
+                  Portfolio
+                </a>
+              </p>
+            </div>
+          </section>
+
+          {/* Professional summary section */}
+          <section>
+            <h3>Professional Summary</h3>
+            <p>
+              Experienced Senior Web Developer with 5+ years of expertise in full-stack development, 
+              specializing in React, Node.js, and modern web technologies. Proven track record of 
+              delivering high-quality, scalable applications that serve 100K+ daily active users. 
+              Strong background in UI/UX design with a passion for creating intuitive, accessible 
+              user experiences. Demonstrated leadership in mentoring junior developers and driving 
+              technical excellence across development teams.
+            </p>
+          </section>
+
+          {/* Core competencies section */}
+          <section>
+            <h3>Core Competencies</h3>
+            
+            {/* Technical skills subsection */}
+            <div>
+              <h4>Technical Skills</h4>
+              <ul>
+                <li><strong>Frontend:</strong> React, Vue.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, SASS</li>
+                <li><strong>Backend:</strong> Node.js, Express.js, Python, PHP, RESTful APIs, GraphQL</li>
+                <li><strong>Databases:</strong> PostgreSQL, MongoDB, MySQL, Redis</li>
+                <li><strong>Cloud & DevOps:</strong> AWS (EC2, S3, Lambda), Docker, CI/CD, Git, GitHub Actions</li>
+                <li><strong>Tools & Frameworks:</strong> Next.js, Webpack, Jest, Cypress, Figma, Adobe Creative Suite</li>
+              </ul>
+            </div>
+
+            {/* Soft skills subsection */}
+            <div>
+              <h4>Professional Skills</h4>
+              <ul>
+                <li>Team Leadership & Mentoring</li>
+                <li>Agile/Scrum Methodologies</li>
+                <li>Project Management</li>
+                <li>Client Communication</li>
+                <li>Problem Solving & Debugging</li>
+                <li>Code Review & Quality Assurance</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Professional experience section */}
+          <section>
+            <h3>Professional Experience</h3>
+
+            {/* Current position */}
+            <div>
+              <h4>Senior Web Developer</h4>
+              <p><strong>TechCorp Solutions</strong> | San Francisco, CA | <em>March 2022 - Present</em></p>
+              
+              {/* Job responsibilities and achievements */}
+              <ul>
+                <li>Lead development of responsive web applications serving 100K+ daily active users, resulting in 40% increase in user engagement</li>
+                <li>Mentor team of 5 junior developers, conducting code reviews and technical training sessions, achieving 100% team retention rate</li>
+                <li>Architect and implement scalable frontend solutions using React, TypeScript, and modern development practices</li>
+                <li>Optimize application performance through code splitting, lazy loading, and caching strategies, reducing load times by 45%</li>
+                <li>Collaborate with cross-functional teams including designers, product managers, and backend developers to deliver high-quality features</li>
+                <li>Implement automated testing suites using Jest and Cypress, increasing code coverage from 60% to 95%</li>
+                <li>Drive adoption of best practices including TypeScript migration, component library development, and documentation standards</li>
+              </ul>
+
+              {/* Key achievements */}
+              <div>
+                <h5>Key Achievements:</h5>
+                <ul>
+                  <li>Awarded "Employee of the Year 2024" for technical excellence and leadership</li>
+                  <li>Led successful migration of legacy codebase to modern React architecture</li>
+                  <li>Reduced customer support tickets by 30% through improved UI/UX design</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Previous position */}
+            <div>
+              <h4>Full Stack Developer</h4>
+              <p><strong>StartupXYZ</strong> | Palo Alto, CA | <em>June 2020 - February 2022</em></p>
+              
+              {/* Job responsibilities and achievements */}
+              <ul>
+                <li>Developed and maintained multiple client-facing web applications from concept to deployment using Vue.js and Node.js</li>
+                <li>Built RESTful APIs and integrated third-party services including Stripe, SendGrid, and AWS services</li>
+                <li>Implemented responsive designs that improved mobile user engagement by 35% and reduced bounce rate by 25%</li>
+                <li>Worked in agile environment, participating in sprint planning, daily standups, and retrospectives</li>
+                <li>Collaborated directly with stakeholders to gather requirements and translate business needs into technical solutions</li>
+                <li>Maintained and optimized database performance, reducing query response times by 50%</li>
+                <li>Implemented comprehensive error handling and logging systems for improved debugging and monitoring</li>
+              </ul>
+
+              {/* Key achievements */}
+              <div>
+                <h5>Key Achievements:</h5>
+                <ul>
+                  <li>Successfully launched 3 major product features ahead of schedule</li>
+                  <li>Improved application security by implementing JWT authentication and input validation</li>
+                  <li>Contributed to 200% increase in monthly active users through feature development</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* First position */}
+            <div>
+              <h4>Junior Web Developer</h4>
+              <p><strong>Digital Agency Pro</strong> | San Francisco, CA | <em>August 2019 - May 2020</em></p>
+              
+              {/* Job responsibilities and achievements */}
+              <ul>
+                <li>Developed custom WordPress themes and plugins for diverse client projects across various industries</li>
+                <li>Converted PSD and Figma designs to pixel-perfect, responsive HTML/CSS/JavaScript implementations</li>
+                <li>Performed website maintenance, updates, and troubleshooting for 20+ existing client websites</li>
+                <li>Assisted in SEO optimization efforts, improving average client site rankings by 25% in search results</li>
+                <li>Participated in client meetings to discuss project requirements and provide technical recommendations</li>
+                <li>Collaborated with design team to ensure technical feasibility of proposed designs</li>
+                <li>Implemented Google Analytics and tracking solutions for client websites</li>
+              </ul>
+
+              {/* Key achievements */}
+              <div>
+                <h5>Key Achievements:</h5>
+                <ul>
+                  <li>Delivered 15+ client projects on time and within budget</li>
+                  <li>Received "Rising Star" award for exceptional performance in first year</li>
+                  <li>Improved team workflow by introducing version control best practices</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Education section */}
+          <section>
+            <h3>Education</h3>
+
+            {/* Primary degree */}
+            <div>
+              <h4>Bachelor of Science in Computer Science</h4>
+              <p><strong>University of California, Berkeley</strong> | Berkeley, CA | <em>2015 - 2019</em></p>
+              <p><strong>GPA:</strong> 3.8/4.0 | <strong>Magna Cum Laude</strong></p>
+              
+              {/* Relevant coursework */}
+              <div>
+                <h5>Relevant Coursework:</h5>
+                <ul>
+                  <li>Data Structures and Algorithms</li>
+                  <li>Software Engineering</li>
+                  <li>Database Systems</li>
+                  <li>Web Development</li>
+                  <li>Human-Computer Interaction</li>
+                  <li>Computer Networks</li>
+                  <li>Operating Systems</li>
+                </ul>
+              </div>
+
+              {/* Academic achievements */}
+              <div>
+                <h5>Academic Achievements:</h5>
+                <ul>
+                  <li>Dean's List: Fall 2017, Spring 2018, Fall 2018</li>
+                  <li>Best Senior Capstone Project Award for "Distributed Task Scheduling System"</li>
+                  <li>Computer Science Department Scholarship Recipient</li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Additional certification */}
+            <div>
+              <h4>Certificate in UX/UI Design</h4>
+              <p><strong>Stanford Continuing Studies</strong> | Stanford, CA | <em>2020</em></p>
+              <p>6-month intensive program covering user research, wireframing, prototyping, and design systems</p>
+            </div>
+          </section>
+
+          {/* Certifications section */}
+          <section>
+            <h3>Professional Certifications</h3>
+            
+            {/* List of certifications */}
+            <ul>
+              <li><strong>AWS Certified Developer - Associate</strong> | Amazon Web Services | March 2024 - March 2027</li>
+              <li><strong>Google Cloud Professional Cloud Developer</strong> | Google Cloud | January 2024 - January 2026</li>
+              <li><strong>Microsoft Certified: Azure Developer Associate</strong> | Microsoft | November 2023 - November 2025</li>
+            </ul>
+          </section>
+
+          {/* Projects section */}
+          <section>
+            <h3>Notable Projects</h3>
+
+            {/* Project 1 */}
+            <div>
+              <h4>E-commerce Platform</h4>
+              <p><em>Full-Stack Web Application | 2024</em></p>
+              <ul>
+                <li>Developed comprehensive e-commerce solution with React, Node.js, and PostgreSQL</li>
+                <li>Implemented secure payment processing with Stripe integration</li>
+                <li>Built admin dashboard for inventory and order management</li>
+                <li>Achieved 99.9% uptime and 2.3-second average page load time</li>
+              </ul>
+              <p><strong>Technologies:</strong> React, TypeScript, Node.js, PostgreSQL, AWS, Docker</p>
+            </div>
+
+            {/* Project 2 */}
+            <div>
+              <h4>Task Management Application</h4>
+              <p><em>Collaborative Web Application | 2024</em></p>
+              <ul>
+                <li>Built real-time collaborative task management system with WebSocket integration</li>
+                <li>Implemented drag-and-drop functionality and team collaboration features</li>
+                <li>Designed mobile-responsive interface with progressive web app capabilities</li>
+              </ul>
+              <p><strong>Technologies:</strong> Vue.js, Socket.io, MongoDB, Node.js</p>
+            </div>
+
+            {/* Project 3 */}
+            <div>
+              <h4>Weather Dashboard</h4>
+              <p><em>Data Visualization Application | 2023</em></p>
+              <ul>
+                <li>Created interactive weather dashboard with real-time data and forecasting</li>
+                <li>Integrated multiple weather APIs and implemented data caching strategies</li>
+                <li>Built responsive charts and maps using Chart.js and Leaflet</li>
+              </ul>
+              <p><strong>Technologies:</strong> React, Chart.js, OpenWeatherMap API, Leaflet Maps</p>
+            </div>
+          </section>
+
+          {/* Awards and recognition section */}
+          <section>
+            <h3>Awards & Recognition</h3>
+            
+            {/* List of awards */}
+            <ul>
+              <li><strong>Employee of the Year 2024</strong> | TechCorp Solutions | Technical Excellence Category</li>
+              <li><strong>First Place - Bay Area Tech Hackathon 2024</strong> | AI-Powered Accessibility Tool | $10,000 Prize</li>
+              <li><strong>Outstanding Open Source Contributor</strong> | React Community | June 2024</li>
+              <li><strong>Rising Star Award</strong> | Digital Agency Pro | 2020</li>
+            </ul>
+          </section>
+
+          {/* Professional memberships section */}
+          <section>
+            <h3>Professional Memberships</h3>
+            
+            {/* List of memberships */}
+            <ul>
+              <li><strong>Institute of Electrical and Electronics Engineers (IEEE)</strong> | Professional Member | 2020 - Present</li>
+              <li><strong>Association for Computing Machinery (ACM)</strong> | Professional Member | 2020 - Present</li>
+            </ul>
+          </section>
+
+          {/* Languages section */}
+          <section>
+            <h3>Languages</h3>
+            
+            {/* List of languages */}
+            <ul>
+              <li><strong>English:</strong> Native</li>
+              <li><strong>Spanish:</strong> Conversational</li>
+              <li><strong>Mandarin:</strong> Basic</li>
+            </ul>
+          </section>
+
+          {/* Volunteer experience section */}
+          <section>
+            <h3>Volunteer Experience</h3>
+
+            {/* Volunteer position 1 */}
+            <div>
+              <h4>Technical Mentor</h4>
+              <p><strong>Code for America</strong> | <em>2022 - Present</em></p>
+              <ul>
+                <li>Mentor aspiring developers in web development fundamentals and best practices</li>
+                <li>Conduct weekly coding workshops for underrepresented communities</li>
+                <li>Contribute to open-source civic technology projects</li>
+              </ul>
+            </div>
+
+            {/* Volunteer position 2 */}
+            <div>
+              <h4>Web Development Instructor</h4>
+              <p><strong>Local Community College</strong> | <em>2021 - 2022</em></p>
+              <ul>
+                <li>Taught evening web development courses for adult learners</li>
+                <li>Developed curriculum covering HTML, CSS, JavaScript, and React fundamentals</li>
+                <li>Helped 50+ students transition into technology careers</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* References section */}
+          <section>
+            <h3>References</h3>
+            <p>Professional references available upon request.</p>
+          </section>
         </div>
+
+        {/* Additional download section */}
+        <section>
+          <h3>Download Resume</h3>
+          <p>
+            For your convenience, you can download my resume in multiple formats:
+          </p>
+          
+          {/* Download options */}
+          <div>
+            <a 
+              href="/resume.pdf" 
+              download="John_Doe_Resume.pdf"
+            >
+              Download PDF Version
+            </a>
+            <a 
+              href="/resume.docx" 
+              download="John_Doe_Resume.docx"
+            >
+              Download Word Version
+            </a>
+            <a 
+              href="/resume.txt" 
+              download="John_Doe_Resume.txt"
+            >
+              Download Text Version
+            </a>
+          </div>
+        </section>
+
+        {/* Contact call to action */}
+        <section>
+          <h3>Let's Connect</h3>
+          <p>
+            Interested in discussing opportunities or learning more about my experience? 
+            I'd love to hear from you.
+          </p>
+          
+          {/* Contact links */}
+          <div>
+            <a href="/contact">Contact Me</a>
+            <a href="/projects">View My Projects</a>
+            <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
+              LinkedIn Profile
+            </a>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
-{% endblock %}
+  );
+}
+
+

@@ -1,37 +1,490 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Skills</h1>
 
-{% block content %}
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">My Skills</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Here are the technologies and skills I've mastered
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main content area */}
+      <main>
+        {/* Skills overview section */}
+        <section>
+          <h2>Technical Skills Overview</h2>
+          <p>
+            Here's a comprehensive overview of my technical skills and expertise levels.
+            I continuously update and expand my skill set to stay current with industry trends.
+          </p>
+        </section>
+
+        {/* Programming Languages section */}
+        <section>
+          <h3>Programming Languages</h3>
+          
+          {/* JavaScript skill */}
+          <div>
+            <h4>JavaScript</h4>
+            <p><strong>Competency Level:</strong> Expert (5+ years)</p>
+            <p>
+              Advanced knowledge of ES6+, async/await, closures, prototypes, and modern JavaScript patterns.
+              Experience with both client-side and server-side development.
             </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for skill in skills %}
-            <div class="bg-gray-50 p-6 rounded-lg">
-                <div class="flex justify-between items-center mb-3">
-                    <div class="flex items-center">
-                        {% if skill.icon_class %}
-                        <i class="{{ skill.icon_class }} text-blue-600 mr-3"></i>
-                        {% endif %}
-                        <h3 class="text-lg font-semibold text-gray-900">{{ skill.name }}</h3>
-                    </div>
-                    <span class="text-sm text-gray-600">{{ skill.level }}%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                    <div 
-                        class="bg-blue-600 h-2 rounded-full progress-bar"
-                        style="width: {{ skill.level }}%"
-                    ></div>
-                </div>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★★</span>
             </div>
-            {% endfor %}
-        </div>
+          </div>
+
+          {/* TypeScript skill */}
+          <div>
+            <h4>TypeScript</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Strong understanding of type systems, interfaces, generics, and advanced TypeScript features.
+              Used extensively in large-scale applications.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Python skill */}
+          <div>
+            <h4>Python</h4>
+            <p><strong>Competency Level:</strong> Intermediate (2+ years)</p>
+            <p>
+              Proficient in Python for web development, automation, and data processing.
+              Experience with Django, Flask, and various Python libraries.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* PHP skill */}
+          <div>
+            <h4>PHP</h4>
+            <p><strong>Competency Level:</strong> Intermediate (3+ years)</p>
+            <p>
+              Solid experience with PHP for web development, including object-oriented programming
+              and working with various PHP frameworks.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* HTML skill */}
+          <div>
+            <h4>HTML5</h4>
+            <p><strong>Competency Level:</strong> Expert (5+ years)</p>
+            <p>
+              Comprehensive knowledge of semantic HTML, accessibility best practices,
+              and modern HTML5 features including APIs and form validation.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★★</span>
+            </div>
+          </div>
+
+          {/* CSS skill */}
+          <div>
+            <h4>CSS3</h4>
+            <p><strong>Competency Level:</strong> Expert (5+ years)</p>
+            <p>
+              Advanced CSS including Flexbox, Grid, animations, responsive design,
+              and CSS preprocessors. Strong understanding of CSS architecture.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★★</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Frontend Frameworks section */}
+        <section>
+          <h3>Frontend Frameworks & Libraries</h3>
+
+          {/* React skill */}
+          <div>
+            <h4>React</h4>
+            <p><strong>Competency Level:</strong> Expert (4+ years)</p>
+            <p>
+              Deep expertise in React ecosystem including hooks, context, state management,
+              performance optimization, and testing. Experience with React 18 features.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★★</span>
+            </div>
+          </div>
+
+          {/* Vue.js skill */}
+          <div>
+            <h4>Vue.js</h4>
+            <p><strong>Competency Level:</strong> Advanced (2+ years)</p>
+            <p>
+              Strong knowledge of Vue 3, Composition API, Vuex for state management,
+              and Vue ecosystem tools. Built several production applications.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Angular skill */}
+          <div>
+            <h4>Angular</h4>
+            <p><strong>Competency Level:</strong> Intermediate (1+ years)</p>
+            <p>
+              Working knowledge of Angular framework, TypeScript integration,
+              services, dependency injection, and Angular CLI.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* jQuery skill */}
+          <div>
+            <h4>jQuery</h4>
+            <p><strong>Competency Level:</strong> Advanced (4+ years)</p>
+            <p>
+              Extensive experience with jQuery for DOM manipulation, AJAX requests,
+              animations, and plugin development. Legacy project maintenance.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Backend Technologies section */}
+        <section>
+          <h3>Backend Technologies</h3>
+
+          {/* Node.js skill */}
+          <div>
+            <h4>Node.js</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Proficient in building scalable server-side applications, RESTful APIs,
+              and microservices using Node.js and Express.js.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Express.js skill */}
+          <div>
+            <h4>Express.js</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Expert in building web applications and APIs with Express.js,
+              middleware implementation, and security best practices.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Django skill */}
+          <div>
+            <h4>Django</h4>
+            <p><strong>Competency Level:</strong> Intermediate (1+ years)</p>
+            <p>
+              Working knowledge of Django framework, ORM, admin interface,
+              and building web applications with Python.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Database Technologies section */}
+        <section>
+          <h3>Database Technologies</h3>
+
+          {/* PostgreSQL skill */}
+          <div>
+            <h4>PostgreSQL</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Strong experience with PostgreSQL, complex queries, indexing,
+              performance optimization, and database design.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* MongoDB skill */}
+          <div>
+            <h4>MongoDB</h4>
+            <p><strong>Competency Level:</strong> Intermediate (2+ years)</p>
+            <p>
+              Proficient in NoSQL database design, aggregation pipelines,
+              indexing strategies, and MongoDB Atlas cloud services.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* MySQL skill */}
+          <div>
+            <h4>MySQL</h4>
+            <p><strong>Competency Level:</strong> Intermediate (3+ years)</p>
+            <p>
+              Solid experience with MySQL database administration, query optimization,
+              stored procedures, and integration with web applications.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Development Tools section */}
+        <section>
+          <h3>Development Tools & Technologies</h3>
+
+          {/* Git skill */}
+          <div>
+            <h4>Git & Version Control</h4>
+            <p><strong>Competency Level:</strong> Expert (5+ years)</p>
+            <p>
+              Advanced Git workflows, branching strategies, merge conflict resolution,
+              and collaboration using GitHub, GitLab, and Bitbucket.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★★</span>
+            </div>
+          </div>
+
+          {/* Docker skill */}
+          <div>
+            <h4>Docker</h4>
+            <p><strong>Competency Level:</strong> Intermediate (2+ years)</p>
+            <p>
+              Experience with containerization, Docker Compose, multi-stage builds,
+              and deploying applications in containerized environments.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* AWS skill */}
+          <div>
+            <h4>AWS (Amazon Web Services)</h4>
+            <p><strong>Competency Level:</strong> Intermediate (2+ years)</p>
+            <p>
+              Working knowledge of EC2, S3, Lambda, RDS, CloudFront,
+              and other AWS services for web application deployment.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+
+          {/* Webpack skill */}
+          <div>
+            <h4>Webpack & Build Tools</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Proficient in configuring Webpack, Vite, Parcel, and other build tools
+              for optimizing and bundling web applications.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Testing & Quality Assurance section */}
+        <section>
+          <h3>Testing & Quality Assurance</h3>
+
+          {/* Jest skill */}
+          <div>
+            <h4>Jest & Unit Testing</h4>
+            <p><strong>Competency Level:</strong> Advanced (3+ years)</p>
+            <p>
+              Extensive experience writing unit tests, integration tests,
+              and test-driven development using Jest and related testing libraries.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Cypress skill */}
+          <div>
+            <h4>Cypress & E2E Testing</h4>
+            <p><strong>Competency Level:</strong> Intermediate (1+ years)</p>
+            <p>
+              Experience with end-to-end testing using Cypress,
+              automated testing workflows, and continuous integration.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Design & UI Tools section */}
+        <section>
+          <h3>Design & UI Tools</h3>
+
+          {/* Figma skill */}
+          <div>
+            <h4>Figma</h4>
+            <p><strong>Competency Level:</strong> Advanced (2+ years)</p>
+            <p>
+              Proficient in creating wireframes, prototypes, design systems,
+              and collaborating with design teams using Figma.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★★☆</span>
+            </div>
+          </div>
+
+          {/* Adobe Creative Suite skill */}
+          <div>
+            <h4>Adobe Creative Suite</h4>
+            <p><strong>Competency Level:</strong> Intermediate (3+ years)</p>
+            <p>
+              Working knowledge of Photoshop, Illustrator, and XD
+              for web design, image editing, and UI/UX design tasks.
+            </p>
+            <div>
+              <strong>Skill Level:</strong>
+              <span>★★★☆☆</span>
+            </div>
+          </div>
+        </section>
+
+        {/* Soft Skills section */}
+        <section>
+          <h3>Professional Skills</h3>
+
+          {/* Problem Solving */}
+          <div>
+            <h4>Problem Solving</h4>
+            <p>
+              Strong analytical thinking and debugging skills.
+              Ability to break down complex problems into manageable solutions.
+            </p>
+          </div>
+
+          {/* Team Collaboration */}
+          <div>
+            <h4>Team Collaboration</h4>
+            <p>
+              Excellent communication skills and experience working in agile teams.
+              Comfortable with code reviews and pair programming.
+            </p>
+          </div>
+
+          {/* Project Management */}
+          <div>
+            <h4>Project Management</h4>
+            <p>
+              Experience with Agile/Scrum methodologies, sprint planning,
+              and delivering projects on time and within scope.
+            </p>
+          </div>
+
+          {/* Continuous Learning */}
+          <div>
+            <h4>Continuous Learning</h4>
+            <p>
+              Committed to staying updated with latest technologies and best practices.
+              Regular participation in workshops, conferences, and online courses.
+            </p>
+          </div>
+        </section>
+
+        {/* Skills summary section */}
+        <section>
+          <h3>Skills Summary</h3>
+          <p>
+            My technical expertise spans the full web development stack,
+            from frontend user interfaces to backend server architecture.
+            I'm passionate about writing clean, maintainable code and
+            creating exceptional user experiences.
+          </p>
+
+          {/* Call to action links */}
+          <div>
+            <a href="/projects">See My Projects</a>
+            <a href="/certificates">View Certificates</a>
+            <a href="/contact">Discuss a Project</a>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
-{% endblock %}
+  );
+}
+
+

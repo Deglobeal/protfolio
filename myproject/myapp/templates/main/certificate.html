@@ -1,388 +1,681 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Certificates & Achievements</h1>
 
-{% block title %}Certificates & Achievements | My Portfolio{% endblock %}
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
 
-{% block content %}
-<!-- Hero Section -->
-<section class="pt-24 pb-16 hero-bg">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Certificates & Achievements
-            </h1>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-                Professional certifications, course completions, and awards that demonstrate my commitment to continuous learning and excellence
+      {/* Main content area */}
+      <main>
+        {/* Certificates overview section */}
+        <section>
+          <h2>Professional Certifications & Achievements</h2>
+          <p>
+            Here's a comprehensive collection of my professional certifications, 
+            online course completions, awards, and achievements that demonstrate 
+            my commitment to continuous learning and professional development.
+          </p>
+        </section>
+
+        {/* Professional Certifications section */}
+        <section>
+          <h3>Professional Certifications</h3>
+
+          {/* AWS Certified Developer certification */}
+          <div>
+            <h4>AWS Certified Developer - Associate</h4>
+            
+            {/* Certificate details */}
+            <div>
+              <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
+              <p><strong>Issue Date:</strong> March 2024</p>
+              <p><strong>Expiration Date:</strong> March 2027</p>
+              <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
+              <p><strong>Verification URL:</strong> 
+                <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
+                   target="_blank" rel="noopener noreferrer">
+                  Verify Certificate
+                </a>
+              </p>
+            </div>
+
+            {/* Certificate description */}
+            <div>
+              <p>
+                This certification validates my expertise in developing and maintaining 
+                applications on the AWS platform. It demonstrates proficiency in core 
+                AWS services, security best practices, and deployment strategies.
+              </p>
+              
+              {/* Skills covered */}
+              <div>
+                <h5>Skills Validated:</h5>
+                <ul>
+                  <li>AWS Lambda and serverless architecture</li>
+                  <li>Amazon EC2 and container services</li>
+                  <li>AWS database services (RDS, DynamoDB)</li>
+                  <li>API Gateway and microservices</li>
+                  <li>AWS security and IAM best practices</li>
+                  <li>Monitoring and troubleshooting applications</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Google Cloud Professional certification */}
+          <div>
+            <h4>Google Cloud Professional Cloud Developer</h4>
+            
+            {/* Certificate details */}
+            <div>
+              <p><strong>Issuing Organization:</strong> Google Cloud</p>
+              <p><strong>Issue Date:</strong> January 2024</p>
+              <p><strong>Expiration Date:</strong> January 2026</p>
+              <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
+              <p><strong>Verification URL:</strong> 
+                <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
+                   target="_blank" rel="noopener noreferrer">
+                  Verify Certificate
+                </a>
+              </p>
+            </div>
+
+            {/* Certificate description */}
+            <div>
+              <p>
+                This certification demonstrates my ability to design, build, and deploy 
+                scalable applications using Google Cloud Platform services and tools.
+              </p>
+              
+              {/* Skills covered */}
+              <div>
+                <h5>Skills Validated:</h5>
+                <ul>
+                  <li>Google App Engine and Cloud Functions</li>
+                  <li>Kubernetes Engine and container orchestration</li>
+                  <li>Cloud Storage and database solutions</li>
+                  <li>CI/CD pipelines with Cloud Build</li>
+                  <li>Monitoring and logging with Stackdriver</li>
+                  <li>Security and identity management</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Microsoft Azure certification */}
+          <div>
+            <h4>Microsoft Certified: Azure Developer Associate</h4>
+            
+            {/* Certificate details */}
+            <div>
+              <p><strong>Issuing Organization:</strong> Microsoft</p>
+              <p><strong>Issue Date:</strong> November 2023</p>
+              <p><strong>Expiration Date:</strong> November 2025</p>
+              <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
+              <p><strong>Verification URL:</strong> 
+                <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
+                   target="_blank" rel="noopener noreferrer">
+                  Verify Certificate
+                </a>
+              </p>
+            </div>
+
+            {/* Certificate description */}
+            <div>
+              <p>
+                This certification validates my skills in developing cloud solutions 
+                that leverage Azure services, including compute, storage, and security.
+              </p>
+              
+              {/* Skills covered */}
+              <div>
+                <h5>Skills Validated:</h5>
+                <ul>
+                  <li>Azure App Service and Functions</li>
+                  <li>Azure Storage and Cosmos DB</li>
+                  <li>Azure Active Directory integration</li>
+                  <li>Container solutions with Azure Container Instances</li>
+                  <li>API Management and Service Bus</li>
+                  <li>Monitoring and optimization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Online Course Completions section */}
+        <section>
+          <h3>Online Course Completions</h3>
+
+          {/* React Advanced Patterns course */}
+          <div>
+            <h4>Advanced React Patterns and Performance</h4>
+            
+            {/* Course details */}
+            <div>
+              <p><strong>Platform:</strong> Frontend Masters</p>
+              <p><strong>Instructor:</strong> Kent C. Dodds</p>
+              <p><strong>Completion Date:</strong> February 2024</p>
+              <p><strong>Duration:</strong> 8 hours</p>
+              <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
+            </div>
+
+            {/* Course description */}
+            <div>
+              <p>
+                Comprehensive course covering advanced React patterns, performance 
+                optimization techniques, and best practices for building scalable 
+                React applications.
+              </p>
+              
+              {/* Topics covered */}
+              <div>
+                <h5>Topics Covered:</h5>
+                <ul>
+                  <li>Advanced React Hooks patterns</li>
+                  <li>Render props and higher-order components</li>
+                  <li>Performance optimization with React.memo</li>
+                  <li>Code splitting and lazy loading</li>
+                  <li>Context API optimization</li>
+                  <li>Testing advanced React components</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Full Stack JavaScript course */}
+          <div>
+            <h4>Complete Node.js Developer Course</h4>
+            
+            {/* Course details */}
+            <div>
+              <p><strong>Platform:</strong> Udemy</p>
+              <p><strong>Instructor:</strong> Andrew Mead</p>
+              <p><strong>Completion Date:</strong> December 2023</p>
+              <p><strong>Duration:</strong> 35 hours</p>
+              <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
+            </div>
+
+            {/* Course description */}
+            <div>
+              <p>
+                Comprehensive Node.js course covering server-side JavaScript 
+                development, API creation, database integration, and deployment.
+              </p>
+              
+              {/* Topics covered */}
+              <div>
+                <h5>Topics Covered:</h5>
+                <ul>
+                  <li>Node.js fundamentals and modules</li>
+                  <li>Express.js framework and middleware</li>
+                  <li>MongoDB and Mongoose ODM</li>
+                  <li>Authentication and authorization</li>
+                  <li>File uploads and email sending</li>
+                  <li>Testing with Jest and Supertest</li>
+                  <li>Deployment to Heroku and AWS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* TypeScript course */}
+          <div>
+            <h4>TypeScript: The Complete Developer's Guide</h4>
+            
+            {/* Course details */}
+            <div>
+              <p><strong>Platform:</strong> Udemy</p>
+              <p><strong>Instructor:</strong> Stephen Grider</p>
+              <p><strong>Completion Date:</strong> October 2023</p>
+              <p><strong>Duration:</strong> 24 hours</p>
+              <p><strong>Certificate ID:</strong> UC-TS-2023-JD-123</p>
+            </div>
+
+            {/* Course description */}
+            <div>
+              <p>
+                In-depth TypeScript course covering type systems, advanced features, 
+                and integration with popular frameworks and libraries.
+              </p>
+              
+              {/* Topics covered */}
+              <div>
+                <h5>Topics Covered:</h5>
+                <ul>
+                  <li>TypeScript fundamentals and type annotations</li>
+                  <li>Interfaces, classes, and inheritance</li>
+                  <li>Generics and advanced types</li>
+                  <li>Decorators and metadata</li>
+                  <li>Integration with React and Express</li>
+                  <li>TypeScript with popular libraries</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Database Design course */}
+          <div>
+            <h4>Database Design and PostgreSQL</h4>
+            
+            {/* Course details */}
+            <div>
+              <p><strong>Platform:</strong> Coursera</p>
+              <p><strong>Institution:</strong> University of California, Davis</p>
+              <p><strong>Completion Date:</strong> September 2023</p>
+              <p><strong>Duration:</strong> 6 weeks</p>
+              <p><strong>Certificate ID:</strong> COURSERA-DB-2023-JD-789</p>
+            </div>
+
+            {/* Course description */}
+            <div>
+              <p>
+                Comprehensive database design course focusing on relational database 
+                concepts, normalization, and PostgreSQL implementation.
+              </p>
+              
+              {/* Topics covered */}
+              <div>
+                <h5>Topics Covered:</h5>
+                <ul>
+                  <li>Database design principles and normalization</li>
+                  <li>Entity-relationship modeling</li>
+                  <li>SQL query optimization</li>
+                  <li>PostgreSQL advanced features</li>
+                  <li>Indexing and performance tuning</li>
+                  <li>Database security and backup strategies</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Awards and Recognition section */}
+        <section>
+          <h3>Awards & Recognition</h3>
+
+          {/* Employee of the Year award */}
+          <div>
+            <h4>Employee of the Year 2024</h4>
+            
+            {/* Award details */}
+            <div>
+              <p><strong>Organization:</strong> TechCorp Solutions</p>
+              <p><strong>Date Received:</strong> December 2024</p>
+              <p><strong>Category:</strong> Technical Excellence</p>
+            </div>
+
+            {/* Award description */}
+            <div>
+              <p>
+                Recognized for outstanding technical contributions, leadership in 
+                complex projects, and mentoring junior developers. This award 
+                acknowledges exceptional performance and dedication to code quality.
+              </p>
+              
+              {/* Achievements that led to award */}
+              <div>
+                <h5>Key Achievements:</h5>
+                <ul>
+                  <li>Led development of company's flagship e-commerce platform</li>
+                  <li>Improved application performance by 40% through optimization</li>
+                  <li>Mentored 5 junior developers, with 100% retention rate</li>
+                  <li>Implemented automated testing, increasing coverage to 95%</li>
+                  <li>Contributed to open-source projects used company-wide</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Hackathon winner */}
+          <div>
+            <h4>First Place - Bay Area Tech Hackathon 2024</h4>
+            
+            {/* Award details */}
+            <div>
+              <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
+              <p><strong>Date:</strong> August 2024</p>
+              <p><strong>Team Size:</strong> 4 developers</p>
+              <p><strong>Prize:</strong> $10,000 and mentorship program</p>
+            </div>
+
+            {/* Award description */}
+            <div>
+              <p>
+                Won first place in a 48-hour hackathon with over 200 participants. 
+                Our team developed an AI-powered accessibility tool for web applications 
+                that automatically identifies and suggests fixes for accessibility issues.
+              </p>
+              
+              {/* Project details */}
+              <div>
+                <h5>Winning Project - AccessibilityAI:</h5>
+                <ul>
+                  <li>Real-time accessibility scanning and reporting</li>
+                  <li>AI-powered suggestions for WCAG compliance</li>
+                  <li>Browser extension with developer tools integration</li>
+                  <li>Machine learning model trained on accessibility patterns</li>
+                  <li>Automated testing integration for CI/CD pipelines</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Open Source Contribution award */}
+          <div>
+            <h4>Outstanding Open Source Contributor</h4>
+            
+            {/* Award details */}
+            <div>
+              <p><strong>Organization:</strong> React Community</p>
+              <p><strong>Date Received:</strong> June 2024</p>
+              <p><strong>Recognition Type:</strong> Community Award</p>
+            </div>
+
+            {/* Award description */}
+            <div>
+              <p>
+                Recognized by the React community for significant contributions to 
+                popular React libraries and helping maintain several open-source projects.
+              </p>
+              
+              {/* Contributions */}
+              <div>
+                <h5>Notable Contributions:</h5>
+                <ul>
+                  <li>50+ merged pull requests across various React projects</li>
+                  <li>Maintained React component library with 10k+ weekly downloads</li>
+                  <li>Created comprehensive documentation and tutorials</li>
+                  <li>Mentored new contributors in the community</li>
+                  <li>Spoke at 3 React meetups about best practices</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Academic Achievements section */}
+        <section>
+          <h3>Academic Achievements</h3>
+
+          {/* Dean's List achievement */}
+          <div>
+            <h4>Dean's List Recognition</h4>
+            
+            {/* Achievement details */}
+            <div>
+              <p><strong>Institution:</strong> University of California, Berkeley</p>
+              <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
+              <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
+            </div>
+
+            {/* Achievement description */}
+            <div>
+              <p>
+                Achieved Dean's List recognition for three consecutive semesters, 
+                maintaining high academic standards while pursuing Computer Science degree.
+              </p>
+            </div>
+          </div>
+
+          {/* Graduation honors */}
+          <div>
+            <h4>Magna Cum Laude Graduate</h4>
+            
+            {/* Achievement details */}
+            <div>
+              <p><strong>Institution:</strong> University of California, Berkeley</p>
+              <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
+              <p><strong>Graduation Date:</strong> May 2019</p>
+              <p><strong>Final GPA:</strong> 3.8/4.0</p>
+            </div>
+
+            {/* Achievement description */}
+            <div>
+              <p>
+                Graduated Magna Cum Laude with distinction in Computer Science, 
+                demonstrating consistent academic excellence throughout the program.
+              </p>
+            </div>
+          </div>
+
+          {/* Senior Capstone Project award */}
+          <div>
+            <h4>Best Senior Capstone Project</h4>
+            
+            {/* Achievement details */}
+            <div>
+              <p><strong>Institution:</strong> University of California, Berkeley</p>
+              <p><strong>Project Title:</strong> "Distributed Task Scheduling System"</p>
+              <p><strong>Date:</strong> May 2019</p>
+              <p><strong>Team Size:</strong> 4 students</p>
+            </div>
+
+            {/* Achievement description */}
+            <div>
+              <p>
+                Led a team of 4 students to develop a distributed task scheduling 
+                system that won the award for Best Senior Capstone Project in the 
+                Computer Science department.
+              </p>
+              
+              {/* Project highlights */}
+              <div>
+                <h5>Project Highlights:</h5>
+                <ul>
+                  <li>Implemented fault-tolerant distributed architecture</li>
+                  <li>Achieved 99.9% uptime in stress testing</li>
+                  <li>Handled 10,000+ concurrent tasks efficiently</li>
+                  <li>Created comprehensive documentation and user guides</li>
+                  <li>Presented findings at university research symposium</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Professional Memberships section */}
+        <section>
+          <h3>Professional Memberships</h3>
+
+          {/* IEEE membership */}
+          <div>
+            <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
+            
+            {/* Membership details */}
+            <div>
+              <p><strong>Membership Type:</strong> Professional Member</p>
+              <p><strong>Member Since:</strong> January 2020</p>
+              <p><strong>Member ID:</strong> IEEE-94567123</p>
+              <p><strong>Status:</strong> Active</p>
+            </div>
+
+            {/* Membership benefits and activities */}
+            <div>
+              <p>
+                Active member participating in professional development activities, 
+                technical conferences, and networking events in the software engineering field.
+              </p>
+            </div>
+          </div>
+
+          {/* ACM membership */}
+          <div>
+            <h4>Association for Computing Machinery (ACM)</h4>
+            
+            {/* Membership details */}
+            <div>
+              <p><strong>Membership Type:</strong> Professional Member</p>
+              <p><strong>Member Since:</strong> March 2020</p>
+              <p><strong>Member ID:</strong> ACM-8901234</p>
+              <p><strong>Status:</strong> Active</p>
+            </div>
+
+            {/* Membership benefits and activities */}
+            <div>
+              <p>
+                Engaged member accessing cutting-edge research, participating in 
+                special interest groups, and staying current with computing trends 
+                and best practices.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Continuing Education section */}
+        <section>
+          <h3>Continuing Education & Training</h3>
+
+          {/* Workshop attendance */}
+          <div>
+            <h4>Advanced JavaScript Performance Workshop</h4>
+            
+            {/* Training details */}
+            <div>
+              <p><strong>Provider:</strong> Google Developers</p>
+              <p><strong>Date:</strong> March 2024</p>
+              <p><strong>Duration:</strong> 2 days</p>
+              <p><strong>Location:</strong> San Francisco, CA</p>
+            </div>
+
+            {/* Training description */}
+            <div>
+              <p>
+                Intensive workshop focusing on JavaScript performance optimization, 
+                memory management, and advanced debugging techniques for web applications.
+              </p>
+            </div>
+          </div>
+
+          {/* Conference attendance */}
+          <div>
+            <h4>React Conf 2024</h4>
+            
+            {/* Conference details */}
+            <div>
+              <p><strong>Event:</strong> React Conference</p>
+              <p><strong>Date:</strong> May 2024</p>
+              <p><strong>Location:</strong> Las Vegas, NV</p>
+              <p><strong>Attendance Type:</strong> In-person</p>
+            </div>
+
+            {/* Conference description */}
+            <div>
+              <p>
+                Attended the premier React conference featuring the latest updates, 
+                best practices, and future roadmap presentations from the React core team.
+              </p>
+            </div>
+          </div>
+
+          {/* Security training */}
+          <div>
+            <h4>Web Application Security Training</h4>
+            
+            {/* Training details */}
+            <div>
+              <p><strong>Provider:</strong> OWASP Foundation</p>
+              <p><strong>Date:</strong> January 2024</p>
+              <p><strong>Duration:</strong> 16 hours</p>
+              <p><strong>Format:</strong> Online</p>
+            </div>
+
+            {/* Training description */}
+            <div>
+              <p>
+                Comprehensive security training covering OWASP Top 10 vulnerabilities, 
+                secure coding practices, and penetration testing fundamentals.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Verification and Validation section */}
+        <section>
+          <h3>Certificate Verification</h3>
+          <p>
+            All certificates and achievements listed on this page are verifiable 
+            through the respective issuing organizations. Verification links are 
+            provided where available, and additional documentation can be provided 
+            upon request.
+          </p>
+
+          {/* Verification process */}
+          <div>
+            <h4>How to Verify:</h4>
+            <ol>
+              <li>Click on the verification links provided with each certificate</li>
+              <li>Enter the credential ID on the issuing organization's website</li>
+              <li>Contact me directly for additional verification documentation</li>
+              <li>Request official transcripts or certificates from institutions</li>
+            </ol>
+          </div>
+
+          {/* Contact for verification */}
+          <div>
+            <p>
+              <strong>For verification inquiries:</strong> 
+              <a href="/contact">Contact me directly</a> or email john.doe@email.com
             </p>
-        </div>
+          </div>
+        </section>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
-                <div class="text-3xl font-bold text-blue-600 mb-2">8</div>
-                <div class="text-gray-600">Certifications</div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
-                <div class="text-3xl font-bold text-green-600 mb-2">6</div>
-                <div class="text-gray-600">Active</div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
-                <div class="text-3xl font-bold text-purple-600 mb-2">4</div>
-                <div class="text-gray-600">Awards</div>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm text-center stats-card">
-                <div class="text-3xl font-bold text-orange-600 mb-2">12</div>
-                <div class="text-gray-600">Skill Areas</div>
-            </div>
-        </div>
+        {/* Call to action section */}
+        <section>
+          <h3>Ready to Work Together?</h3>
+          <p>
+            These certifications and achievements demonstrate my commitment to 
+            professional excellence and continuous learning. I'm always eager to 
+            apply my skills to new challenges and projects.
+          </p>
+
+          {/* Call to action links */}
+          <div>
+            <a href="/projects">View My Projects</a>
+            <a href="/skills">See My Skills</a>
+            <a href="/contact">Start a Conversation</a>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
+  );
+}
 
-<!-- Certificates Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-12">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">
-                Professional Certifications
-            </h2>
-            
-            <div class="flex flex-wrap justify-center gap-4 mb-8" id="category-buttons">
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-blue-600 text-white category-btn active" data-category="all">
-                    All Certificates (8)
-                </button>
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="cloud">
-                    Cloud Computing (2)
-                </button>
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="development">
-                    Development (2)
-                </button>
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="devops">
-                    DevOps (2)
-                </button>
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="database">
-                    Database (1)
-                </button>
-                <button class="px-4 py-2 rounded-full text-sm font-medium transition-colors bg-gray-100 text-gray-700 hover:bg-gray-200 category-btn" data-category="design">
-                    Design (1)
-                </button>
-            </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="certificates-container">
-            <!-- Certificates will be dynamically inserted here -->
-        </div>
-    </div>
-</section>
-
-<!-- Awards Section -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Awards & Recognition
-            </h2>
-            <p class="text-lg text-gray-600">
-                Recognition for excellence in technology, innovation, and professional achievement
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
-                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Best Innovation Award</h3>
-                        <p class="text-blue-600 font-medium mb-1">TechCorp Inc.</p>
-                        <p class="text-gray-500 text-sm">2024</p>
-                    </div>
-                </div>
-                <p class="text-gray-600">Recognized for developing an AI-powered customer service solution that improved response time by 60%.</p>
-            </div>
-            
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
-                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Hackathon Winner - Best Mobile App</h3>
-                        <p class="text-blue-600 font-medium mb-1">Silicon Valley Tech Meetup</p>
-                        <p class="text-gray-500 text-sm">2023</p>
-                    </div>
-                </div>
-                <p class="text-gray-600">First place winner for developing a sustainable transportation app during 48-hour hackathon.</p>
-            </div>
-            
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
-                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Dean's List</h3>
-                        <p class="text-blue-600 font-medium mb-1">Stanford University</p>
-                        <p class="text-gray-500 text-sm">2019-2020</p>
-                    </div>
-                </div>
-                <p class="text-gray-600">Academic excellence recognition for maintaining GPA above 3.7 throughout graduate program.</p>
-            </div>
-            
-            <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="flex items-start mb-4">
-                    <div class="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center mr-4">
-                        <i class="fas fa-trophy text-yellow-600 text-xl"></i>
-                    </div>
-                    <div class="flex-1">
-                        <h3 class="text-xl font-bold text-gray-900 mb-1">Open Source Contributor of the Year</h3>
-                        <p class="text-blue-600 font-medium mb-1">GitHub</p>
-                        <p class="text-gray-500 text-sm">2023</p>
-                    </div>
-                </div>
-                <p class="text-gray-600">Recognition for significant contributions to open source projects with over 1000 stars combined.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Skills Section -->
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Skill Badges
-            </h2>
-            <p class="text-lg text-gray-600">
-                Key technologies and skills validated through certifications and practical experience
-            </p>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-aws text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">AWS</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-google text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Google Cloud</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-react text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">React</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-js text-yellow-500"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">JavaScript</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-database text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">MongoDB</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-docker text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Docker</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-kubernetes text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Kubernetes</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-paint-brush text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Figma</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-code text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">HTML/CSS</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fab fa-python text-blue-700"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Python</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-server text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">System Design</h3>
-            </div>
-            
-            <div class="bg-gray-50 p-4 rounded-lg text-center skill-badge">
-                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <i class="fas fa-shield-alt text-blue-600"></i>
-                </div>
-                <h3 class="text-sm font-medium text-gray-900">Security</h3>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            Continuous Learning Journey
-        </h2>
-        <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            I believe in lifelong learning and staying current with the latest technologies and industry best practices. These certifications represent my commitment to professional growth and excellence.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="{% url 'projects' %}" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-                View All Projects
-            </a>
-            <a href="{% url 'resume' %}" class="border-2 border-gray-300 text-gray-700 px-8 py-3 rounded-lg font-medium hover:border-gray-400 transition-colors">
-                Download Resume
-            </a>
-        </div>
-    </div>
-</section>
-{% endblock %}
-
-{% block extra_js %}
-<script>
-    // Certificate data
-    window.certificatesData = [
-        {
-            id: 1,
-            title: "AWS Certified Solutions Architect - Professional",
-            organization: "Amazon Web Services",
-            date: "2024",
-            category: "cloud",
-            type: "Professional Certification",
-            description: "Advanced certification demonstrating expertise in designing distributed applications and systems on AWS platform.",
-            skills: ["AWS", "Cloud Architecture", "System Design", "Security"],
-            verificationLink: "https://aws.amazon.com/verification",
-            credentialId: "AWS-PSA-2024-001",
-            status: "active",
-            expiryDate: "2027"
-        },
-        {
-            id: 2,
-            title: "Google Cloud Professional Developer",
-            organization: "Google Cloud",
-            date: "2023",
-            category: "cloud",
-            type: "Professional Certification",
-            description: "Certification validating skills in developing scalable applications using Google Cloud technologies.",
-            skills: ["Google Cloud", "Kubernetes", "App Engine", "Cloud Functions"],
-            verificationLink: "https://cloud.google.com/certification",
-            credentialId: "GCP-PD-2023-045",
-            status: "active",
-            expiryDate: "2026"
-        },
-        {
-            id: 3,
-            title: "Meta Front-End Developer Professional Certificate",
-            organization: "Meta (Facebook)",
-            date: "2023",
-            category: "development",
-            type: "Professional Certificate",
-            description: "Comprehensive program covering modern front-end development with React, JavaScript, and UI/UX principles.",
-            skills: ["React", "JavaScript", "HTML/CSS", "UI/UX Design"],
-            verificationLink: "https://coursera.org/verify",
-            credentialId: "META-FED-2023-789",
-            status: "completed",
-            expiryDate: null
-        },
-        {
-            id: 4,
-            title: "MongoDB Certified Developer Associate",
-            organization: "MongoDB University",
-            date: "2023",
-            category: "database",
-            type: "Professional Certification",
-            description: "Certification demonstrating proficiency in MongoDB database design, development, and administration.",
-            skills: ["MongoDB", "NoSQL", "Database Design", "Aggregation"],
-            verificationLink: "https://university.mongodb.com/verify",
-            credentialId: "MDB-DEV-2023-456",
-            status: "active",
-            expiryDate: "2026"
-        },
-        {
-            id: 5,
-            title: "Full Stack Web Development Bootcamp",
-            organization: "Le Wagon",
-            date: "2022",
-            category: "development",
-            type: "Bootcamp Certificate",
-            description: "Intensive 24-week program covering full-stack web development from front-end to back-end technologies.",
-            skills: ["Ruby on Rails", "JavaScript", "PostgreSQL", "Git"],
-            verificationLink: "https://lewagon.com/verify",
-            credentialId: "LW-FS-2022-123",
-            status: "completed",
-            expiryDate: null
-        },
-        {
-            id: 6,
-            title: "Certified Kubernetes Administrator (CKA)",
-            organization: "Cloud Native Computing Foundation",
-            date: "2024",
-            category: "devops",
-            type: "Professional Certification",
-            description: "Hands-on certification validating skills in Kubernetes cluster administration and troubleshooting.",
-            skills: ["Kubernetes", "Container Orchestration", "DevOps", "Linux"],
-            verificationLink: "https://cncf.io/verify",
-            credentialId: "CKA-2024-789",
-            status: "active",
-            expiryDate: "2027"
-        },
-        {
-            id: 7,
-            title: "Docker Certified Associate",
-            organization: "Docker Inc.",
-            date: "2023",
-            category: "devops",
-            type: "Professional Certification",
-            description: "Certification demonstrating expertise in containerization, Docker architecture, and container orchestration.",
-            skills: ["Docker", "Containerization", "DevOps", "Microservices"],
-            verificationLink: "https://docker.com/verify",
-            credentialId: "DCA-2023-567",
-            status: "active",
-            expiryDate: "2026"
-        },
-        {
-            id: 8,
-            title: "UX Design Professional Certificate",
-            organization: "Google",
-            date: "2022",
-            category: "design",
-            type: "Professional Certificate",
-            description: "Comprehensive UX design program covering user research, wireframing, prototyping, and usability testing.",
-            skills: ["UX Design", "User Research", "Prototyping", "Figma"],
-            verificationLink: "https://coursera.org/verify",
-            credentialId: "GOOGLE-UX-2022-890",
-            status: "completed",
-            expiryDate: null
-        }
-    ];
-</script>
-{% endblock %}

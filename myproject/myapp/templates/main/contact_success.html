@@ -1,19 +1,372 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Message Sent Successfully</h1>
 
-{% block content %}
-<section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="mb-8 text-green-500">
-            <i class="fas fa-check-circle text-6xl"></i>
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
         </div>
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Message Sent Successfully!</h1>
-        <p class="text-lg text-gray-600 mb-8">
-            Thank you for reaching out. I'll get back to you as soon as possible.
-        </p>
-        <a href="{% url 'home' %}" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
-            Return to Home
-        </a>
+      </header>
+
+      {/* Main content area */}
+      <main>
+        {/* Success confirmation section */}
+        <section>
+          {/* Success message heading */}
+          <h2>Thank You for Your Message!</h2>
+          
+          {/* Success icon or visual indicator */}
+          <div>
+            <p>✅</p>
+          </div>
+
+          {/* Primary confirmation message */}
+          <p>
+            Your message has been successfully sent and received. I appreciate you taking the time to reach out!
+          </p>
+
+          {/* Additional confirmation details */}
+          <p>
+            I've received your inquiry and will review it carefully. You can expect a personal response from me within 24 hours, often much sooner.
+          </p>
+        </section>
+
+        {/* What happens next section */}
+        <section>
+          <h3>What Happens Next?</h3>
+          
+          {/* Step-by-step process explanation */}
+          <div>
+            <h4>Here's what you can expect:</h4>
+            
+            {/* Step 1 */}
+            <div>
+              <h5>1. Message Review</h5>
+              <p>
+                I'll carefully read through your message and any project details you've provided to understand your needs and requirements.
+              </p>
+            </div>
+
+            {/* Step 2 */}
+            <div>
+              <h5>2. Personal Response</h5>
+              <p>
+                Within 24 hours, you'll receive a personalized response from me addressing your specific questions or project inquiry.
+              </p>
+            </div>
+
+            {/* Step 3 */}
+            <div>
+              <h5>3. Follow-up Discussion</h5>
+              <p>
+                If your project seems like a good fit, I'll suggest scheduling a brief call or video chat to discuss details and next steps.
+              </p>
+            </div>
+
+            {/* Step 4 */}
+            <div>
+              <h5>4. Project Proposal</h5>
+              <p>
+                For project inquiries, I'll provide a detailed proposal outlining scope, timeline, and investment within 2-3 business days.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Response time information section */}
+        <section>
+          <h3>Response Time Information</h3>
+          
+          {/* Response time details */}
+          <div>
+            <p>
+              <strong>Typical Response Time:</strong> Within 24 hours
+            </p>
+            <p>
+              <strong>Business Hours:</strong> Monday - Friday, 9 AM - 6 PM PST
+            </p>
+            <p>
+              <strong>Weekend Messages:</strong> Reviewed on Monday morning
+            </p>
+            <p>
+              <strong>Urgent Inquiries:</strong> Call (555) 123-4567 for immediate assistance
+            </p>
+          </div>
+
+          {/* Email confirmation note */}
+          <div>
+            <h4>Email Confirmation</h4>
+            <p>
+              You should receive an automatic email confirmation shortly. If you don't see it in your inbox within a few minutes, please check your spam folder.
+            </p>
+            <p>
+              The confirmation email will include a copy of your message for your records.
+            </p>
+          </div>
+        </section>
+
+        {/* While you wait section */}
+        <section>
+          <h3>While You Wait</h3>
+          <p>
+            Feel free to explore more of my work and learn about my experience:
+          </p>
+
+          {/* Suggested actions while waiting */}
+          <div>
+            <h4>Explore My Portfolio</h4>
+            
+            {/* Portfolio exploration options */}
+            <div>
+              <a href="/projects">View My Recent Projects</a>
+              <p>
+                Check out detailed case studies of my recent work, including the technologies used and challenges solved.
+              </p>
+            </div>
+
+            <div>
+              <a href="/skills">See My Technical Skills</a>
+              <p>
+                Learn about my expertise in various programming languages, frameworks, and development tools.
+              </p>
+            </div>
+
+            <div>
+              <a href="/certificates">View My Certifications</a>
+              <p>
+                Explore my professional certifications, completed courses, and ongoing education in web development.
+              </p>
+            </div>
+
+            <div>
+              <a href="/resume">Download My Resume</a>
+              <p>
+                Get a comprehensive overview of my professional experience, education, and achievements.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Social media and additional contact section */}
+        <section>
+          <h3>Stay Connected</h3>
+          <p>
+            While you wait for my response, feel free to connect with me on social media for updates and insights:
+          </p>
+
+          {/* Social media links */}
+          <div>
+            <h4>Follow Me Online</h4>
+            
+            {/* Professional social media */}
+            <div>
+              <h5>Professional Networks</h5>
+              <ul>
+                <li>
+                  <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
+                    LinkedIn - Professional updates and industry insights
+                  </a>
+                </li>
+                <li>
+                  <a href="https://github.com/johndoe" target="_blank" rel="noopener noreferrer">
+                    GitHub - Latest code projects and contributions
+                  </a>
+                </li>
+                <li>
+                  <a href="https://stackoverflow.com/users/johndoe" target="_blank" rel="noopener noreferrer">
+                    Stack Overflow - Technical discussions and solutions
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            {/* Social media platforms */}
+            <div>
+              <h5>Social Media</h5>
+              <ul>
+                <li>
+                  <a href="https://twitter.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    Twitter - Tech insights and project updates
+                  </a>
+                </li>
+                <li>
+                  <a href="https://instagram.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    Instagram - Behind-the-scenes content and workspace
+                  </a>
+                </li>
+                <li>
+                  <a href="https://youtube.com/johndoedev" target="_blank" rel="noopener noreferrer">
+                    YouTube - Coding tutorials and project walkthroughs
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Alternative contact methods section */}
+        <section>
+          <h3>Need to Reach Me Sooner?</h3>
+          <p>
+            If your inquiry is urgent or you prefer alternative contact methods:
+          </p>
+
+          {/* Alternative contact options */}
+          <div>
+            <h4>Direct Contact Options</h4>
+            
+            {/* Phone contact */}
+            <div>
+              <h5>Phone</h5>
+              <p>
+                <strong>Mobile:</strong> <a href="tel:+15551234567">(555) 123-4567</a>
+              </p>
+              <p>
+                Available for calls Monday through Friday, 9 AM to 6 PM PST. Leave a voicemail if I don't answer, and I'll call back the same day.
+              </p>
+            </div>
+
+            {/* Email contact */}
+            <div>
+              <h5>Direct Email</h5>
+              <p>
+                <strong>Primary:</strong> <a href="mailto:john.doe@email.com">john.doe@email.com</a>
+              </p>
+              <p>
+                <strong>Business:</strong> <a href="mailto:john@johndoedev.com">john@johndoedev.com</a>
+              </p>
+              <p>
+                For urgent matters, email directly with "URGENT" in the subject line.
+              </p>
+            </div>
+
+            {/* Scheduling option */}
+            <div>
+              <h5>Schedule a Call</h5>
+              <p>
+                <a href="https://calendly.com/johndoe" target="_blank" rel="noopener noreferrer">
+                  Book a Free 30-Minute Consultation
+                </a>
+              </p>
+              <p>
+                Skip the email back-and-forth and schedule a direct conversation about your project.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ section for common post-contact questions */}
+        <section>
+          <h3>Frequently Asked Questions</h3>
+          
+          {/* Common questions after contact form submission */}
+          <div>
+            <h4>Common Questions After Reaching Out</h4>
+            
+            {/* FAQ item 1 */}
+            <div>
+              <h5>What if I don't hear back within 24 hours?</h5>
+              <p>
+                If you haven't received a response within 24 hours, please check your spam folder first. If still nothing, feel free to call me directly or send a follow-up email.
+              </p>
+            </div>
+
+            {/* FAQ item 2 */}
+            <div>
+              <h5>Can I send additional information about my project?</h5>
+              <p>
+                Absolutely! Feel free to send any additional details, documents, or clarifications to john.doe@email.com. Reference your original message in the subject line.
+              </p>
+            </div>
+
+            {/* FAQ item 3 */}
+            <div>
+              <h5>Do you provide free consultations?</h5>
+              <p>
+                Yes! I offer free 30-minute consultation calls to discuss your project, understand your needs, and determine if we're a good fit for working together.
+              </p>
+            </div>
+
+            {/* FAQ item 4 */}
+            <div>
+              <h5>What information do you need for a project quote?</h5>
+              <p>
+                For accurate quotes, I need project scope, timeline, budget range, technical requirements, and any design preferences. The more details you provide, the better I can assist you.
+              </p>
+            </div>
+
+            {/* FAQ item 5 */}
+            <div>
+              <h5>Do you work with clients internationally?</h5>
+              <p>
+                Yes! I work with clients worldwide and am experienced in remote collaboration across different time zones. I'll accommodate your schedule for meetings and communication.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Thank you and closing section */}
+        <section>
+          <h3>Thank You Again!</h3>
+          <p>
+            I'm genuinely excited about the possibility of working together and helping bring your project to life. Your message is important to me, and I'll give it the attention it deserves.
+          </p>
+          
+          {/* Closing message */}
+          <p>
+            Whether you're looking to build a new website, improve an existing application, or discuss a complex development project, I'm here to help make your vision a reality.
+          </p>
+
+          {/* Final call to action */}
+          <div>
+            <h4>In the Meantime</h4>
+            <div>
+              <a href="/">Return to Homepage</a>
+              <a href="/projects">Explore My Work</a>
+              <a href="/contact">Send Another Message</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
-{% endblock %}
+  );
+}
+
+

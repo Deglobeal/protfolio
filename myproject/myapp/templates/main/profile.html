@@ -1,32 +1,326 @@
-{% extends 'main/base.html' %}
-{% load static %}
+function MainComponent() {
+  return (
+    <div>
+      {/* Header section with navigation */}
+      <header>
+        <div>
+          {/* Page title */}
+          <h1>John Doe - Profile</h1>
 
-{% block content %}
-<section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h1 class="text-4xl font-bold text-gray-900 mb-4">About Me</h1>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                Get to know me better
+          {/* Navigation menu */}
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/skills">Skills</a>
+              </li>
+              <li>
+                <a href="/projects">Projects</a>
+              </li>
+              <li>
+                <a href="/certificates">Certificates</a>
+              </li>
+              <li>
+                <a href="/resume">Resume</a>
+              </li>
+              <li>
+                <a href="/contact">Contact</a>
+              </li>
+              <li>
+                <a href="/social">Social</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main content area */}
+      <main>
+        {/* Personal information section */}
+        <section>
+          <h2>Personal Information</h2>
+          <div>
+            {/* Profile photo placeholder */}
+            <div>
+              <p>[Profile Photo]</p>
+            </div>
+
+            {/* Basic details */}
+            <div>
+              <h3>John Doe</h3>
+              <p>Senior Web Developer & UI/UX Designer</p>
+
+              {/* Contact details */}
+              <div>
+                <p>
+                  <strong>Location:</strong> San Francisco, CA
+                </p>
+                <p>
+                  <strong>Email:</strong> john.doe@email.com
+                </p>
+                <p>
+                  <strong>Phone:</strong> (555) 123-4567
+                </p>
+                <p>
+                  <strong>Years of Experience:</strong> 5+
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* About me section */}
+        <section>
+          <h3>About Me</h3>
+          <p>
+            I am a passionate and dedicated web developer with over 5 years of
+            experience in creating innovative digital solutions. My journey in
+            technology began during my college years when I discovered the power
+            of code to transform ideas into reality.
+          </p>
+
+          <p>
+            My expertise spans across front-end and back-end development, with a
+            particular focus on creating user-centered experiences that are both
+            functional and aesthetically pleasing. I believe in the importance
+            of clean, maintainable code and collaborative development practices.
+          </p>
+
+          <p>
+            When I'm not coding, I enjoy contributing to open-source projects,
+            mentoring junior developers, and exploring new technologies that can
+            enhance my skill set. I'm also passionate about accessibility and
+            ensuring that the web is inclusive for all users.
+          </p>
+        </section>
+
+        {/* Education section */}
+        <section>
+          <h3>Education</h3>
+
+          {/* First degree */}
+          <div>
+            <h4>Bachelor of Science in Computer Science</h4>
+            <p>
+              <strong>University:</strong> University of California, Berkeley
             </p>
-        </div>
+            <p>
+              <strong>Duration:</strong> 2015 - 2019
+            </p>
+            <p>
+              <strong>GPA:</strong> 3.8/4.0
+            </p>
+            <p>
+              Focused on software engineering, data structures, algorithms, and
+              web technologies. Completed senior capstone project developing a
+              full-stack e-commerce platform.
+            </p>
+            <p>
+              <strong>Relevant Coursework:</strong> Web Development, Database
+              Systems, Software Engineering, Human-Computer Interaction
+            </p>
+          </div>
 
-        <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-8">
-                <div class="w-48 h-48 mx-auto bg-gray-300 rounded-full mb-6 flex items-center justify-center">
-                    <i class="fas fa-user text-6xl text-gray-600"></i>
-                </div>
-                <h2 class="text-2xl font-bold text-gray-900">Ugwu Gerard Onyedikachi</h2>
-                <p class="text-lg text-gray-600">Full Stack Developer</p>
-            </div>
+          {/* Certificate */}
+          <div>
+            <h4>Certificate in UX/UI Design</h4>
+            <p>
+              <strong>Institution:</strong> Stanford Continuing Studies
+            </p>
+            <p>
+              <strong>Duration:</strong> 2020 (6-month intensive program)
+            </p>
+            <p>
+              Comprehensive program covering user research, wireframing,
+              prototyping, and design systems. Completed multiple real-world
+              projects with industry mentors.
+            </p>
+          </div>
+        </section>
 
-            <div class="prose max-w-none">
-                <p>Hello! I'm Ugwu Gerard Onyedikachi, a passionate Full Stack Developer with experience in creating beautiful, functional, and user-centered digital experiences.</p>
-                <p>My journey in web development started when I discovered my passion for coding and problem-solving. Since then, I've dedicated myself to mastering various technologies and frameworks.</p>
-                <p>I specialize in building responsive web applications with modern technologies like Django, React, and Node.js. I'm committed to creating intuitive user interfaces and robust backend systems.</p>
-                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or learning new skills to enhance my development capabilities.</p>
-            </div>
-        </div>
+        {/* Professional experience section */}
+        <section>
+          <h3>Professional Experience</h3>
+
+          {/* Current job */}
+          <div>
+            <h4>Senior Web Developer</h4>
+            <p>
+              <strong>Company:</strong> TechCorp Solutions, San Francisco, CA
+            </p>
+            <p>
+              <strong>Duration:</strong> 2022 - Present
+            </p>
+
+            {/* Job responsibilities */}
+            <ul>
+              <li>
+                Lead development of responsive web applications serving 100K+
+                daily active users
+              </li>
+              <li>
+                Mentor junior developers and conduct code reviews to maintain
+                high code quality standards
+              </li>
+              <li>
+                Collaborate with design and product teams to implement
+                user-centered features
+              </li>
+              <li>
+                Optimize application performance, reducing load times by 40%
+                through code splitting and caching strategies
+              </li>
+              <li>
+                Implement automated testing suites, increasing code coverage
+                from 60% to 95%
+              </li>
+            </ul>
+            <p>
+              <strong>Key Technologies:</strong> React, Node.js, TypeScript,
+              PostgreSQL, AWS, Docker
+            </p>
+          </div>
+
+          {/* Previous job */}
+          <div>
+            <h4>Full Stack Developer</h4>
+            <p>
+              <strong>Company:</strong> StartupXYZ, Palo Alto, CA
+            </p>
+            <p>
+              <strong>Duration:</strong> 2020 - 2022
+            </p>
+
+            {/* Job responsibilities */}
+            <ul>
+              <li>
+                Developed and maintained multiple client-facing web applications
+                from concept to deployment
+              </li>
+              <li>
+                Built RESTful APIs and integrated third-party services to
+                enhance application functionality
+              </li>
+              <li>
+                Worked in an agile environment, participating in sprint planning
+                and daily standups
+              </li>
+              <li>
+                Implemented responsive designs that improved mobile user
+                engagement by 35%
+              </li>
+              <li>
+                Collaborated with stakeholders to gather requirements and
+                translate them into technical solutions
+              </li>
+            </ul>
+            <p>
+              <strong>Key Technologies:</strong> Vue.js, Express.js, MongoDB,
+              Firebase, Stripe API
+            </p>
+          </div>
+
+          {/* First job */}
+          <div>
+            <h4>Junior Web Developer</h4>
+            <p>
+              <strong>Company:</strong> Digital Agency Pro, San Francisco, CA
+            </p>
+            <p>
+              <strong>Duration:</strong> 2019 - 2020
+            </p>
+
+            {/* Job responsibilities */}
+            <ul>
+              <li>
+                Developed custom WordPress themes and plugins for various client
+                projects
+              </li>
+              <li>
+                Converted PSD designs to pixel-perfect, responsive
+                HTML/CSS/JavaScript implementations
+              </li>
+              <li>
+                Performed website maintenance, updates, and troubleshooting for
+                existing client sites
+              </li>
+              <li>
+                Assisted in SEO optimization efforts, improving client site
+                rankings by an average of 25%
+              </li>
+              <li>
+                Participated in client meetings to discuss project requirements
+                and provide technical insights
+              </li>
+            </ul>
+            <p>
+              <strong>Key Technologies:</strong> WordPress, PHP, jQuery, SASS,
+              MySQL, Google Analytics
+            </p>
+          </div>
+        </section>
+
+        {/* Background and interests section */}
+        <section>
+          <h3>Background & Interests</h3>
+
+          {/* Professional background */}
+          <div>
+            <h4>Professional Background</h4>
+            <ul>
+              <li>5+ years in web development and design</li>
+              <li>Experience with both startup and enterprise environments</li>
+              <li>Strong background in agile development methodologies</li>
+              <li>
+                Proven track record of delivering projects on time and within
+                budget
+              </li>
+            </ul>
+          </div>
+
+          {/* Personal interests */}
+          <div>
+            <h4>Personal Interests</h4>
+            <ul>
+              <li>Open source contribution and community involvement</li>
+              <li>Photography and digital art creation</li>
+              <li>Hiking and outdoor activities</li>
+              <li>Continuous learning through online courses and workshops</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Professional philosophy section */}
+        <section>
+          <h3>Professional Philosophy</h3>
+          <blockquote>
+            <p>
+              "I believe that great web development is not just about writing
+              code, but about creating meaningful experiences that solve real
+              problems for real people. Every line of code should serve a
+              purpose, and every design decision should be made with the user in
+              mind."
+            </p>
+          </blockquote>
+
+          {/* Call to action links */}
+          <div>
+            <a href="/projects">View My Projects</a>
+            <a href="/contact">Get In Touch</a>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer section */}
+      <footer>
+        <p>© 2025 John Doe. All rights reserved.</p>
+        <p>Connect with me on social media or send me an email!</p>
+      </footer>
     </div>
-</section>
-{% endblock %}
+  );
+}
+
+
+
