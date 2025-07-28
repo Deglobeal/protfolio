@@ -57,8 +57,10 @@ def social_view(request):
 def home_view(request):
     return render(request, 'main/home.html')
 
-def contact_success_view(request): 
+
+def contact_success(request):
     return render(request, 'main/contact_success.html')
+
 
 def project_detail_view(request):
     return render(request, 'main/project_detail.html')
