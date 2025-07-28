@@ -1,368 +1,973 @@
+<!-- certificate.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe - Certificates & Achievements</title>
+    <title>Gerard Ugwu - Certificates & Achievements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --accent: #e11d48;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 10px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .certificates-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .certificates-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .certificates-hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        main.container {
+            margin-bottom: 60px;
+        }
+
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--light);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .certificate-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--primary);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .certificate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .certificate-badge {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 2.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .certificate-details {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .certificate-details p {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: var(--gray);
+        }
+
+        .certificate-details p strong {
+            min-width: 150px;
+            color: var(--dark);
+        }
+
+        .certificate-content {
+            padding: 15px 0;
+        }
+
+        .certificate-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .tech-item {
+            background: var(--light);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .verification-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--light);
+            border-radius: 30px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .verification-link:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: #f0fdf4;
+            color: #16a34a;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .achievement-badge i {
+            color: #22c55e;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .award-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .award-card::before {
+            content: "★";
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            color: rgba(251, 191, 36, 0.1);
+            transform: rotate(20deg);
+            z-index: 0;
+        }
+
+        .award-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .verification-steps {
+            list-style-type: none;
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+
+        .verification-steps li {
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+            counter-increment: step-counter;
+        }
+
+        .verification-steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: var(--border-radius);
+            margin: 60px 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--gray);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .certificates-hero h1 {
+                font-size: 2.8rem;
+            }
+            .certificates-hero p {
+                font-size: 1.2rem;
+            }
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .mobile-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .certificates-hero {
+                padding: 60px 0;
+            }
+            .certificates-hero h1 {
+                font-size: 2.2rem;
+            }
+            .section {
+                padding: 25px;
+            }
+            .certificate-header {
+                flex-direction: column;
+            }
+            .certificate-badge {
+                margin: 0 auto;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header section with navigation -->
+    <!-- Header -->
     <header>
-        <div>
-            <h1>John Doe - Certificates & Achievements</h1>
+        <div class="container header-container">
+            <div class="logo">John<span>Doe</span></div>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/profile">Profile</a></li>
                     <li><a href="/skills">Skills</a></li>
                     <li><a href="/projects">Projects</a></li>
+                    <li><a href="/certificates" class="active">Certificates</a></li>
                     <li><a href="/resume">Resume</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/social">Social</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <main>
-        <!-- Certificates overview section -->
-        <section>
-            <h2>Professional Certifications & Achievements</h2>
-            <p>
-                Here's a comprehensive collection of my professional certifications, 
-                online course completions, awards, and achievements that demonstrate 
-                my commitment to continuous learning and professional development.
-            </p>
+    <!-- Hero Section -->
+    <section class="certificates-hero">
+        <div class="container">
+            <h1>Certificates & Achievements</h1>
+            <p>Professional certifications, course completions, awards, and academic achievements</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Overview Section -->
+        <section class="section">
+            <h2 class="section-title">Professional Certifications & Achievements</h2>
+            <p>Here's a comprehensive collection of my professional certifications, online course completions, awards, and achievements that demonstrate my commitment to continuous learning and professional development.</p>
         </section>
 
         <!-- Professional Certifications section -->
-        <section>
-            <h3>Professional Certifications</h3>
+        <section class="section">
+            <h3 class="section-title">Professional Certifications</h3>
 
             <!-- AWS Certified Developer certification -->
-            <div>
-                <h4>AWS Certified Developer - Associate</h4>
-                <div>
-                    <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
-                    <p><strong>Issue Date:</strong> March 2024</p>
-                    <p><strong>Expiration Date:</strong> March 2027</p>
-                    <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
-                    <p><strong>Verification URL:</strong> 
-                        <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
-                        target="_blank" rel="noopener noreferrer">
-                            Verify Certificate
-                        </a>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        This certification validates my expertise in developing and maintaining 
-                        applications on the AWS platform.
-                    </p>
-                    <div>
-                        <h5>Skills Validated:</h5>
-                        <ul>
-                            <li>AWS Lambda and serverless architecture</li>
-                            <li>Amazon EC2 and container services</li>
-                            <li>AWS database services (RDS, DynamoDB)</li>
-                            <li>API Gateway and microservices</li>
-                            <li>AWS security and IAM best practices</li>
-                            <li>Monitoring and troubleshooting applications</li>
-                        </ul>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fab fa-aws"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>AWS Certified Developer - Associate</h4>
+                        <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
+                        <p><strong>Issue Date:</strong> March 2024</p>
+                        <p><strong>Expiration Date:</strong> March 2027</p>
+                        <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>This certification validates my expertise in developing and maintaining applications on the AWS platform.</p>
+                    
+                    <h5>Skills Validated:</h5>
+                    <ul>
+                        <li>AWS Lambda and serverless architecture</li>
+                        <li>Amazon EC2 and container services</li>
+                        <li>AWS database services (RDS, DynamoDB)</li>
+                        <li>API Gateway and microservices</li>
+                        <li>AWS security and IAM best practices</li>
+                        <li>Monitoring and troubleshooting applications</li>
+                    </ul>
+                    
+                    <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
+                    target="_blank" rel="noopener noreferrer" class="verification-link">
+                        <i class="fas fa-shield-alt"></i> Verify Certificate
+                    </a>
                 </div>
             </div>
 
             <!-- Google Cloud Professional certification -->
-            <div>
-                <h4>Google Cloud Professional Cloud Developer</h4>
-                <div>
-                    <p><strong>Issuing Organization:</strong> Google Cloud</p>
-                    <p><strong>Issue Date:</strong> January 2024</p>
-                    <p><strong>Expiration Date:</strong> January 2026</p>
-                    <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
-                    <p><strong>Verification URL:</strong> 
-                        <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
-                        target="_blank" rel="noopener noreferrer">
-                            Verify Certificate
-                        </a>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        This certification demonstrates my ability to design, build, and deploy 
-                        scalable applications using Google Cloud Platform.
-                    </p>
-                    <div>
-                        <h5>Skills Validated:</h5>
-                        <ul>
-                            <li>Google App Engine and Cloud Functions</li>
-                            <li>Kubernetes Engine and container orchestration</li>
-                            <li>Cloud Storage and database solutions</li>
-                            <li>CI/CD pipelines with Cloud Build</li>
-                            <li>Monitoring and logging with Stackdriver</li>
-                            <li>Security and identity management</li>
-                        </ul>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fab fa-google"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>Google Cloud Professional Cloud Developer</h4>
+                        <p><strong>Issuing Organization:</strong> Google Cloud</p>
+                        <p><strong>Issue Date:</strong> January 2024</p>
+                        <p><strong>Expiration Date:</strong> January 2026</p>
+                        <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>This certification demonstrates my ability to design, build, and deploy scalable applications using Google Cloud Platform.</p>
+                    
+                    <h5>Skills Validated:</h5>
+                    <ul>
+                        <li>Google App Engine and Cloud Functions</li>
+                        <li>Kubernetes Engine and container orchestration</li>
+                        <li>Cloud Storage and database solutions</li>
+                        <li>CI/CD pipelines with Cloud Build</li>
+                        <li>Monitoring and logging with Stackdriver</li>
+                        <li>Security and identity management</li>
+                    </ul>
+                    
+                    <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
+                    target="_blank" rel="noopener noreferrer" class="verification-link">
+                        <i class="fas fa-shield-alt"></i> Verify Certificate
+                    </a>
                 </div>
             </div>
 
             <!-- Microsoft Azure certification -->
-            <div>
-                <h4>Microsoft Certified: Azure Developer Associate</h4>
-                <div>
-                    <p><strong>Issuing Organization:</strong> Microsoft</p>
-                    <p><strong>Issue Date:</strong> November 2023</p>
-                    <p><strong>Expiration Date:</strong> November 2025</p>
-                    <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
-                    <p><strong>Verification URL:</strong> 
-                        <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
-                        target="_blank" rel="noopener noreferrer">
-                            Verify Certificate
-                        </a>
-                    </p>
-                </div>
-                <div>
-                    <p>
-                        This certification validates my skills in developing cloud solutions 
-                        that leverage Azure services.
-                    </p>
-                    <div>
-                        <h5>Skills Validated:</h5>
-                        <ul>
-                            <li>Azure App Service and Functions</li>
-                            <li>Azure Storage and Cosmos DB</li>
-                            <li>Azure Active Directory integration</li>
-                            <li>Container solutions with Azure Container Instances</li>
-                            <li>API Management and Service Bus</li>
-                            <li>Monitoring and optimization</li>
-                        </ul>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fab fa-microsoft"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>Microsoft Certified: Azure Developer Associate</h4>
+                        <p><strong>Issuing Organization:</strong> Microsoft</p>
+                        <p><strong>Issue Date:</strong> November 2023</p>
+                        <p><strong>Expiration Date:</strong> November 2025</p>
+                        <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>This certification validates my skills in developing cloud solutions that leverage Azure services.</p>
+                    
+                    <h5>Skills Validated:</h5>
+                    <ul>
+                        <li>Azure App Service and Functions</li>
+                        <li>Azure Storage and Cosmos DB</li>
+                        <li>Azure Active Directory integration</li>
+                        <li>Container solutions with Azure Container Instances</li>
+                        <li>API Management and Service Bus</li>
+                        <li>Monitoring and optimization</li>
+                    </ul>
+                    
+                    <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
+                    target="_blank" rel="noopener noreferrer" class="verification-link">
+                        <i class="fas fa-shield-alt"></i> Verify Certificate
+                    </a>
                 </div>
             </div>
         </section>
 
         <!-- Online Course Completions section -->
-        <section>
-            <h3>Online Course Completions</h3>
+        <section class="section">
+            <h3 class="section-title">Online Course Completions</h3>
 
             <!-- React Advanced Patterns course -->
-            <div>
-                <h4>Advanced React Patterns and Performance</h4>
-                <div>
-                    <p><strong>Platform:</strong> Frontend Masters</p>
-                    <p><strong>Instructor:</strong> Kent C. Dodds</p>
-                    <p><strong>Completion Date:</strong> February 2024</p>
-                    <p><strong>Duration:</strong> 8 hours</p>
-                    <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
-                </div>
-                <div>
-                    <p>
-                        Comprehensive course covering advanced React patterns, performance 
-                        optimization techniques.
-                    </p>
-                    <div>
-                        <h5>Topics Covered:</h5>
-                        <ul>
-                            <li>Advanced React Hooks patterns</li>
-                            <li>Render props and higher-order components</li>
-                            <li>Performance optimization with React.memo</li>
-                            <li>Code splitting and lazy loading</li>
-                            <li>Context API optimization</li>
-                            <li>Testing advanced React components</li>
-                        </ul>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fab fa-react"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>Advanced React Patterns and Performance</h4>
+                        <p><strong>Platform:</strong> Frontend Masters</p>
+                        <p><strong>Instructor:</strong> Kent C. Dodds</p>
+                        <p><strong>Completion Date:</strong> February 2024</p>
+                        <p><strong>Duration:</strong> 8 hours</p>
+                        <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>Comprehensive course covering advanced React patterns, performance optimization techniques.</p>
+                    
+                    <h5>Topics Covered:</h5>
+                    <ul>
+                        <li>Advanced React Hooks patterns</li>
+                        <li>Render props and higher-order components</li>
+                        <li>Performance optimization with React.memo</li>
+                        <li>Code splitting and lazy loading</li>
+                        <li>Context API optimization</li>
+                        <li>Testing advanced React components</li>
+                    </ul>
+                    
+                    <span class="achievement-badge">
+                        <i class="fas fa-certificate"></i> Course Completed
+                    </span>
                 </div>
             </div>
 
             <!-- Full Stack JavaScript course -->
-            <div>
-                <h4>Complete Node.js Developer Course</h4>
-                <div>
-                    <p><strong>Platform:</strong> Udemy</p>
-                    <p><strong>Instructor:</strong> Andrew Mead</p>
-                    <p><strong>Completion Date:</strong> December 2023</p>
-                    <p><strong>Duration:</strong> 35 hours</p>
-                    <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
-                </div>
-                <div>
-                    <p>
-                        Comprehensive Node.js course covering server-side JavaScript 
-                        development, API creation, database integration.
-                    </p>
-                    <div>
-                        <h5>Topics Covered:</h5>
-                        <ul>
-                            <li>Node.js fundamentals and modules</li>
-                            <li>Express.js framework and middleware</li>
-                            <li>MongoDB and Mongoose ODM</li>
-                            <li>Authentication and authorization</li>
-                            <li>File uploads and email sending</li>
-                            <li>Testing with Jest and Supertest</li>
-                            <li>Deployment to Heroku and AWS</li>
-                        </ul>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fab fa-node-js"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>Complete Node.js Developer Course</h4>
+                        <p><strong>Platform:</strong> Udemy</p>
+                        <p><strong>Instructor:</strong> Andrew Mead</p>
+                        <p><strong>Completion Date:</strong> December 2023</p>
+                        <p><strong>Duration:</strong> 35 hours</p>
+                        <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>Comprehensive Node.js course covering server-side JavaScript development, API creation, database integration.</p>
+                    
+                    <h5>Topics Covered:</h5>
+                    <ul>
+                        <li>Node.js fundamentals and modules</li>
+                        <li>Express.js framework and middleware</li>
+                        <li>MongoDB and Mongoose ODM</li>
+                        <li>Authentication and authorization</li>
+                        <li>File uploads and email sending</li>
+                        <li>Testing with Jest and Supertest</li>
+                        <li>Deployment to Heroku and AWS</li>
+                    </ul>
+                    
+                    <span class="achievement-badge">
+                        <i class="fas fa-certificate"></i> Course Completed
+                    </span>
                 </div>
             </div>
         </section>
 
         <!-- Awards and Recognition section -->
-        <section>
-            <h3>Awards & Recognition</h3>
+        <section class="section">
+            <h3 class="section-title">Awards & Recognition</h3>
 
             <!-- Employee of the Year award -->
-            <div>
-                <h4>Employee of the Year 2024</h4>
-                <div>
-                    <p><strong>Organization:</strong> TechCorp Solutions</p>
-                    <p><strong>Date Received:</strong> December 2024</p>
-                    <p><strong>Category:</strong> Technical Excellence</p>
-                </div>
-                <div>
-                    <p>
-                        Recognized for outstanding technical contributions, leadership in 
-                        complex projects, and mentoring junior developers.
-                    </p>
-                    <div>
-                        <h5>Key Achievements:</h5>
-                        <ul>
-                            <li>Led development of company's flagship e-commerce platform</li>
-                            <li>Improved application performance by 40%</li>
-                            <li>Mentored 5 junior developers</li>
-                            <li>Implemented automated testing</li>
-                            <li>Contributed to open-source projects</li>
-                        </ul>
+            <div class="award-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge" style="background: #fffbeb; color: #f59e0b;">
+                        <i class="fas fa-trophy"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>Employee of the Year 2024</h4>
+                        <p><strong>Organization:</strong> TechCorp Solutions</p>
+                        <p><strong>Date Received:</strong> December 2024</p>
+                        <p><strong>Category:</strong> Technical Excellence</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>Recognized for outstanding technical contributions, leadership in complex projects, and mentoring junior developers.</p>
+                    
+                    <h5>Key Achievements:</h5>
+                    <ul>
+                        <li>Led development of company's flagship e-commerce platform</li>
+                        <li>Improved application performance by 40%</li>
+                        <li>Mentored 5 junior developers</li>
+                        <li>Implemented automated testing</li>
+                        <li>Contributed to open-source projects</li>
+                    </ul>
                 </div>
             </div>
 
             <!-- Hackathon winner -->
-            <div>
-                <h4>First Place - Bay Area Tech Hackathon 2024</h4>
-                <div>
-                    <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
-                    <p><strong>Date:</strong> August 2024</p>
-                    <p><strong>Team Size:</strong> 4 developers</p>
-                    <p><strong>Prize:</strong> $10,000 and mentorship program</p>
-                </div>
-                <div>
-                    <p>
-                        Won first place in a 48-hour hackathon with over 200 participants.
-                    </p>
-                    <div>
-                        <h5>Winning Project - AccessibilityAI:</h5>
-                        <ul>
-                            <li>Real-time accessibility scanning and reporting</li>
-                            <li>AI-powered suggestions for WCAG compliance</li>
-                            <li>Browser extension with developer tools integration</li>
-                            <li>Machine learning model</li>
-                            <li>Automated testing integration</li>
-                        </ul>
+            <div class="award-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge" style="background: #f0f9ff; color: #0ea5e9;">
+                        <i class="fas fa-medal"></i>
                     </div>
+                    <div class="certificate-details">
+                        <h4>First Place - Bay Area Tech Hackathon 2024</h4>
+                        <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
+                        <p><strong>Date:</strong> August 2024</p>
+                        <p><strong>Team Size:</strong> 4 developers</p>
+                        <p><strong>Prize:</strong> $10,000 and mentorship program</p>
+                    </div>
+                </div>
+                <div class="certificate-content">
+                    <p>Won first place in a 48-hour hackathon with over 200 participants.</p>
+                    
+                    <h5>Winning Project - AccessibilityAI:</h5>
+                    <ul>
+                        <li>Real-time accessibility scanning and reporting</li>
+                        <li>AI-powered suggestions for WCAG compliance</li>
+                        <li>Browser extension with developer tools integration</li>
+                        <li>Machine learning model</li>
+                        <li>Automated testing integration</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <!-- Academic Achievements section -->
-        <section>
-            <h3>Academic Achievements</h3>
+        <section class="section">
+            <h3 class="section-title">Academic Achievements</h3>
 
             <!-- Dean's List achievement -->
-            <div>
-                <h4>Dean's List Recognition</h4>
-                <div>
-                    <p><strong>Institution:</strong> University of California, Berkeley</p>
-                    <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
-                    <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge" style="background: #f0fdf4; color: #16a34a;">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="certificate-details">
+                        <h4>Dean's List Recognition</h4>
+                        <p><strong>Institution:</strong> University of California, Berkeley</p>
+                        <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
+                        <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
+                    </div>
                 </div>
-                <div>
-                    <p>
-                        Achieved Dean's List recognition for three consecutive semesters.
-                    </p>
+                <div class="certificate-content">
+                    <p>Achieved Dean's List recognition for three consecutive semesters.</p>
                 </div>
             </div>
 
             <!-- Graduation honors -->
-            <div>
-                <h4>Magna Cum Laude Graduate</h4>
-                <div>
-                    <p><strong>Institution:</strong> University of California, Berkeley</p>
-                    <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
-                    <p><strong>Graduation Date:</strong> May 2019</p>
-                    <p><strong>Final GPA:</strong> 3.8/4.0</p>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge" style="background: #fdf2f8; color: #ec4899;">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="certificate-details">
+                        <h4>Magna Cum Laude Graduate</h4>
+                        <p><strong>Institution:</strong> University of California, Berkeley</p>
+                        <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
+                        <p><strong>Graduation Date:</strong> May 2019</p>
+                        <p><strong>Final GPA:</strong> 3.8/4.0</p>
+                    </div>
                 </div>
-                <div>
-                    <p>
-                        Graduated Magna Cum Laude with distinction in Computer Science.
-                    </p>
+                <div class="certificate-content">
+                    <p>Graduated Magna Cum Laude with distinction in Computer Science.</p>
                 </div>
             </div>
         </section>
 
         <!-- Professional Memberships section -->
-        <section>
-            <h3>Professional Memberships</h3>
+        <section class="section">
+            <h3 class="section-title">Professional Memberships</h3>
 
             <!-- IEEE membership -->
-            <div>
-                <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
-                <div>
-                    <p><strong>Membership Type:</strong> Professional Member</p>
-                    <p><strong>Member Since:</strong> January 2020</p>
-                    <p><strong>Member ID:</strong> IEEE-94567123</p>
-                    <p><strong>Status:</strong> Active</p>
+            <div class="certificate-card">
+                <div class="certificate-header">
+                    <div class="certificate-badge">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="certificate-details">
+                        <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
+                        <p><strong>Membership Type:</strong> Professional Member</p>
+                        <p><strong>Member Since:</strong> January 2020</p>
+                        <p><strong>Member ID:</strong> IEEE-94567123</p>
+                        <p><strong>Status:</strong> Active</p>
+                    </div>
                 </div>
-                <div>
-                    <p>
-                        Active member participating in professional development activities.
-                    </p>
+                <div class="certificate-content">
+                    <p>Active member participating in professional development activities.</p>
                 </div>
             </div>
         </section>
 
         <!-- Verification and Validation section -->
-        <section>
-            <h3>Certificate Verification</h3>
-            <p>
-                All certificates and achievements listed on this page are verifiable 
-                through the respective issuing organizations.
-            </p>
-            <div>
+        <section class="section">
+            <h3 class="section-title">Certificate Verification</h3>
+            <p>All certificates and achievements listed on this page are verifiable through the respective issuing organizations.</p>
+            
+            <div class="certificate-content">
                 <h4>How to Verify:</h4>
-                <ol>
+                <ol class="verification-steps">
                     <li>Click on the verification links provided with each certificate</li>
                     <li>Enter the credential ID on the issuing organization's website</li>
                     <li>Contact me directly for additional verification documentation</li>
                     <li>Request official transcripts or certificates from institutions</li>
                 </ol>
-            </div>
-            <div>
-                <p>
+                
+                <p style="margin-top: 20px;">
                     <strong>For verification inquiries:</strong> 
-                    <a href="/contact">Contact me directly</a> or email john.doe@email.com
+                    <a href="/contact" class="btn btn-outline" style="margin-left: 10px;">Contact me directly</a> 
                 </p>
             </div>
         </section>
 
         <!-- Call to action section -->
-        <section>
-            <h3>Ready to Work Together?</h3>
-            <p>
-                These certifications and achievements demonstrate my commitment to 
-                professional excellence and continuous learning.
-            </p>
-            <div>
-                <a href="/projects">View My Projects</a>
-                <a href="/skills">See My Skills</a>
-                <a href="/contact">Start a Conversation</a>
+        <section class="cta-section">
+            <h2 class="section-title">Ready to Work Together?</h2>
+            <p>These certifications and achievements demonstrate my commitment to professional excellence and continuous learning.</p>
+
+            <div class="cta-buttons">
+                <a href="/projects" class="btn btn-primary">View My Projects</a>
+                <a href="/skills" class="btn btn-outline">See My Skills</a>
+                <a href="/contact" class="btn btn-primary">Start a Conversation</a>
             </div>
         </section>
     </main>
 
-    <!-- Footer section -->
+    <!-- Footer -->
     <footer>
-        <p>© 2025 John Doe. All rights reserved.</p>
-        <p>Connect with me on social media or send me an email!</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gerard Ugwu</h3>
+                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/certificates">Certificates</a></li>
+                        <li><a href="/resume">Resume</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Me</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> john.doe@email.com</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+            </div>
+        </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

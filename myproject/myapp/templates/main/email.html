@@ -1,638 +1,1077 @@
-function MainComponent() {
-  return (
-    <div>
-      {/* Header section with navigation */}
-      <header>
-        <div>
-          {/* Page title */}
-          <h1>John Doe - Email Communication</h1>
-
-          {/* Navigation menu */}
-          <nav>
-            <ul>
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/profile">Profile</a>
-              </li>
-              <li>
-                <a href="/skills">Skills</a>
-              </li>
-              <li>
-                <a href="/projects">Projects</a>
-              </li>
-              <li>
-                <a href="/certificates">Certificates</a>
-              </li>
-              <li>
-                <a href="/resume">Resume</a>
-              </li>
-              <li>
-                <a href="/contact">Contact</a>
-              </li>
-              <li>
-                <a href="/social">Social</a>
-              </li>
-            </ul>
-          </nav>
+<!-- email.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerard Ugwu - Email Communication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --accent: #e11d48;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 10px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+        
+        /* Section Styles */
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+        
+        .section-title {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--light);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        /* Email Addresses */
+        .email-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .email-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
+        }
+        
+        .email-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .email-card h4 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .email-card p {
+            margin-bottom: 10px;
+        }
+        
+        .email-card .email-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .email-card .email-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Email Templates */
+        .template-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tab-btn {
+            padding: 12px 20px;
+            background: var(--light-gray);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .template-content {
+            background: var(--light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+        
+        .template-content h5 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .template-content blockquote {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 3px solid var(--primary);
+            margin: 20px 0;
+            font-style: italic;
+            white-space: pre-wrap;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .copy-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        /* Guidelines */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .guideline-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+        }
+        
+        .guideline-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .guideline-card h5 {
+            margin: 15px 0 10px;
+            color: var(--primary);
+        }
+        
+        ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+        
+        ul li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        ul li::before {
+            content: "•";
+            color: var(--primary);
+            position: absolute;
+            left: -20px;
+        }
+        
+        /* Security Section */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .security-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .security-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Alternative Methods */
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .method-card {
+            background: white;
+            border: 1px solid var(--light-gray);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+        
+        .method-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .method-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* FAQ Section */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .faq-item {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .faq-item h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: var(--border-radius);
+            margin-bottom: 60px;
+        }
+        
+        .cta-section h3 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn-light {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-light:hover {
+            background: var(--light);
+            transform: translateY(-3px);
+        }
+        
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">John<span>Doe</span></div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/profile">Profile</a></li>
+                    <li><a href="/skills">Skills</a></li>
+                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/certificates">Certificates</a></li>
+                    <li><a href="/resume">Resume</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/social">Social</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
-      </header>
+    </header>
 
-      {/* Main content area */}
-      <main>
-        {/* Email communication introduction section */}
-        <section>
-          <h2>Direct Email Communication</h2>
-          <p>
-            Email remains one of the most effective ways to communicate professionally. 
-            This page provides you with everything you need to reach out to me via email, 
-            including templates, guidelines, and best practices for effective communication.
-          </p>
-          <p>
-            Whether you're reaching out for business inquiries, collaboration opportunities, 
-            or general questions, following these guidelines will help ensure your message 
-            gets the attention it deserves.
-          </p>
-        </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Email Communication</h1>
+            <p>Professional guidelines and templates for effective email communication</p>
+        </div>
+    </section>
 
-        {/* Primary email contact information section */}
-        <section>
-          <h3>My Email Addresses</h3>
-          <p>
-            Here are my primary email addresses for different types of communication:
-          </p>
-
-          {/* Business email */}
-          <div>
-            <h4>Business Inquiries</h4>
-            <p>
-              <strong>Email:</strong> 
-              <a href="mailto:john@johndoedev.com">john@johndoedev.com</a>
-            </p>
-            <p>
-              <strong>Best for:</strong> Project inquiries, business proposals, 
-              collaboration requests, and professional opportunities.
-            </p>
-            <p>
-              <strong>Response time:</strong> Within 24 hours during business days
-            </p>
-          </div>
-
-          {/* Personal email */}
-          <div>
-            <h4>General Contact</h4>
-            <p>
-              <strong>Email:</strong> 
-              <a href="mailto:john.doe@email.com">john.doe@email.com</a>
-            </p>
-            <p>
-              <strong>Best for:</strong> General questions, networking, 
-              technical discussions, and casual inquiries.
-            </p>
-            <p>
-              <strong>Response time:</strong> Within 48 hours
-            </p>
-          </div>
-
-          {/* Support email */}
-          <div>
-            <h4>Technical Support</h4>
-            <p>
-              <strong>Email:</strong> 
-              <a href="mailto:support@johndoedev.com">support@johndoedev.com</a>
-            </p>
-            <p>
-              <strong>Best for:</strong> Technical issues with my projects, 
-              bug reports, and support requests.
-            </p>
-            <p>
-              <strong>Response time:</strong> Within 12 hours for urgent issues
-            </p>
-          </div>
-        </section>
-
-        {/* Email templates section */}
-        <section>
-          <h3>Email Templates</h3>
-          <p>
-            Use these templates as starting points for your emails. Feel free to 
-            customize them based on your specific needs and communication style.
-          </p>
-
-          {/* Project inquiry template */}
-          <div>
-            <h4>Project Inquiry Template</h4>
-            <p>
-              <strong>Subject:</strong> Project Inquiry - [Brief Project Description]
-            </p>
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Introduction -->
+        <div class="section">
+            <h3 class="section-title">Direct Email Communication</h3>
+            <p>Email remains one of the most effective ways to communicate professionally. This page provides you with everything you need to reach out to me via email, including templates, guidelines, and best practices for effective communication.</p>
+            <p>Whether you're reaching out for business inquiries, collaboration opportunities, or general questions, following these guidelines will help ensure your message gets the attention it deserves.</p>
+        </div>
+        
+        <!-- Email Addresses -->
+        <div class="section">
+            <h3 class="section-title">My Email Addresses</h3>
+            <p>Here are my primary email addresses for different types of communication:</p>
             
-            {/* Template content */}
-            <div>
-              <p><strong>Template:</strong></p>
-              <blockquote>
-                <p>Dear John,</p>
+            <div class="email-grid">
+                <div class="email-card">
+                    <h4>Business Inquiries</h4>
+                    <p><strong>Email:</strong></p>
+                    <a href="mailto:john@johndoedev.com" class="email-link">john@johndoedev.com</a>
+                    <p><strong>Best for:</strong> Project inquiries, business proposals, collaboration requests, and professional opportunities.</p>
+                    <p><strong>Response time:</strong> Within 24 hours during business days</p>
+                </div>
                 
-                <p>I hope this email finds you well. My name is [Your Name] and I am [Your Title/Role] at [Your Company/Organization].</p>
+                <div class="email-card">
+                    <h4>General Contact</h4>
+                    <p><strong>Email:</strong></p>
+                    <a href="mailto:john.doe@email.com" class="email-link">john.doe@email.com</a>
+                    <p><strong>Best for:</strong> General questions, networking, technical discussions, and casual inquiries.</p>
+                    <p><strong>Response time:</strong> Within 48 hours</p>
+                </div>
                 
-                <p>I am reaching out regarding a potential project opportunity that I believe would be a great fit for your expertise. Here are the key details:</p>
-                
-                <p><strong>Project Overview:</strong><br />
-                [Brief description of what you need built or accomplished]</p>
-                
-                <p><strong>Timeline:</strong><br />
-                [When you need the project completed]</p>
-                
-                <p><strong>Budget Range:</strong><br />
-                [Your budget expectations, if comfortable sharing]</p>
-                
-                <p><strong>Key Requirements:</strong><br />
-                - [Requirement 1]<br />
-                - [Requirement 2]<br />
-                - [Requirement 3]</p>
-                
-                <p>I would love to discuss this opportunity further and answer any questions you might have. Would you be available for a brief call or video meeting in the coming week?</p>
-                
-                <p>Thank you for your time and consideration. I look forward to hearing from you.</p>
-                
-                <p>Best regards,<br />
-                [Your Name]<br />
-                [Your Contact Information]</p>
-              </blockquote>
+                <div class="email-card">
+                    <h4>Technical Support</h4>
+                    <p><strong>Email:</strong></p>
+                    <a href="mailto:support@johndoedev.com" class="email-link">support@johndoedev.com</a>
+                    <p><strong>Best for:</strong> Technical issues with my projects, bug reports, and support requests.</p>
+                    <p><strong>Response time:</strong> Within 12 hours for urgent issues</p>
+                </div>
             </div>
-
-            {/* Quick copy button instruction */}
-            <p>
-              <strong>Tip:</strong> Copy this template and fill in the bracketed sections 
-              with your specific information.
-            </p>
-          </div>
-
-          {/* Collaboration template */}
-          <div>
-            <h4>Collaboration Request Template</h4>
-            <p>
-              <strong>Subject:</strong> Collaboration Opportunity - [Type of Collaboration]
-            </p>
+        </div>
+        
+        <!-- Email Templates -->
+        <div class="section">
+            <h3 class="section-title">Email Templates</h3>
+            <p>Use these templates as starting points for your emails. Feel free to customize them based on your specific needs and communication style.</p>
             
-            {/* Template content */}
-            <div>
-              <p><strong>Template:</strong></p>
-              <blockquote>
-                <p>Hi John,</p>
-                
-                <p>I've been following your work, particularly [specific project or skill you admire], and I'm impressed by your expertise in [relevant technology/field].</p>
-                
-                <p>I'm [Your Name], a [Your Role] with experience in [Your Expertise]. I'm reaching out because I believe we could create something amazing together.</p>
-                
-                <p><strong>Collaboration Idea:</strong><br />
-                [Describe your collaboration idea or project concept]</p>
-                
-                <p><strong>What I Bring:</strong><br />
-                - [Your skill/resource 1]<br />
-                - [Your skill/resource 2]<br />
-                - [Your skill/resource 3]</p>
-                
-                <p><strong>What I'm Looking For:</strong><br />
-                [What you need from John - skills, time, resources, etc.]</p>
-                
-                <p>I'd love to explore this further and see if it aligns with your interests and availability. Would you be open to a conversation about this?</p>
-                
-                <p>Thanks for considering this opportunity!</p>
-                
-                <p>Cheers,<br />
-                [Your Name]<br />
-                [Your Portfolio/LinkedIn]<br />
-                [Your Email]</p>
-              </blockquote>
+            <div class="template-tabs">
+                <button class="tab-btn active" data-tab="project">Project Inquiry</button>
+                <button class="tab-btn" data-tab="collab">Collaboration Request</button>
+                <button class="tab-btn" data-tab="tech">Technical Question</button>
+                <button class="tab-btn" data-tab="network">Professional Networking</button>
             </div>
-          </div>
-
-          {/* Technical question template */}
-          <div>
-            <h4>Technical Question Template</h4>
-            <p>
-              <strong>Subject:</strong> Technical Question - [Brief Topic Description]
-            </p>
             
-            {/* Template content */}
-            <div>
-              <p><strong>Template:</strong></p>
-              <blockquote>
-                <p>Hello John,</p>
-                
-                <p>I hope you're doing well. I'm [Your Name], a [Your Role/Level] developer working with [Technologies you're using].</p>
-                
-                <p>I came across your work on [specific project or article] and was hoping you might be able to provide some guidance on a technical challenge I'm facing.</p>
-                
-                <p><strong>The Challenge:</strong><br />
-                [Describe your specific technical problem or question]</p>
-                
-                <p><strong>What I've Tried:</strong><br />
-                - [Approach 1]<br />
-                - [Approach 2]<br />
-                - [Resources consulted]</p>
-                
-                <p><strong>Current Environment:</strong><br />
-                - [Technology stack]<br />
-                - [Relevant versions]<br />
-                - [Any constraints]</p>
-                
-                <p>I understand you're busy, so even a brief pointer in the right direction would be incredibly helpful. If you have any resources or suggestions, I'd be very grateful.</p>
-                
-                <p>Thank you for your time and for sharing your knowledge with the community.</p>
-                
-                <p>Best,<br />
-                [Your Name]<br />
-                [Your GitHub/Portfolio if relevant]</p>
-              </blockquote>
-            </div>
-          </div>
+            <div class="template-content">
+                <h5>Subject: Project Inquiry - [Brief Project Description]</h5>
+                <button class="copy-btn">Copy Template</button>
+                <blockquote>
+Dear John,
 
-          {/* Networking template */}
-          <div>
-            <h4>Professional Networking Template</h4>
-            <p>
-              <strong>Subject:</strong> Introduction - [Your Name] from [Context/Connection]
-            </p>
+I hope this email finds you well. My name is [Your Name] and I am [Your Title/Role] at [Your Company/Organization].
+
+I am reaching out regarding a potential project opportunity that I believe would be a great fit for your expertise. Here are the key details:
+
+Project Overview:
+[Brief description of what you need built or accomplished]
+
+Timeline:
+[When you need the project completed]
+
+Budget Range:
+[Your budget expectations, if comfortable sharing]
+
+Key Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
+
+I would love to discuss this opportunity further and answer any questions you might have. Would you be available for a brief call or video meeting in the coming week?
+
+Thank you for your time and consideration. I look forward to hearing from you.
+
+Best regards,
+[Your Name]
+[Your Contact Information]
+                </blockquote>
+                <p><strong>Tip:</strong> Copy this template and fill in the bracketed sections with your specific information.</p>
+            </div>
+        </div>
+        
+        <!-- Email Etiquette -->
+        <div class="section">
+            <h3 class="section-title">Email Etiquette Guidelines</h3>
+            <p>Following proper email etiquette helps ensure your message is well-received and increases the likelihood of a prompt, helpful response.</p>
             
-            {/* Template content */}
-            <div>
-              <p><strong>Template:</strong></p>
-              <blockquote>
-                <p>Hi John,</p>
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <h4>Subject Line Best Practices</h4>
+                    <ul>
+                        <li><strong>Be specific and descriptive:</strong> Instead of "Question" use "React Performance Question - Large Component Re-renders"</li>
+                        <li><strong>Include the type of inquiry:</strong> "Project Inquiry", "Collaboration Request", "Technical Question", etc.</li>
+                        <li><strong>Keep it concise:</strong> Aim for 50 characters or less to ensure it displays fully on mobile devices</li>
+                        <li><strong>Avoid spam triggers:</strong> Don't use all caps, excessive punctuation, or words like "URGENT" unless truly necessary</li>
+                        <li><strong>Make it actionable:</strong> If you need a response by a certain date, include it: "Project Proposal - Response Needed by March 15"</li>
+                    </ul>
+                </div>
                 
-                <p>I hope this message finds you well. My name is [Your Name] and I'm a [Your Role] based in [Your Location].</p>
-                
-                <p>I discovered your work through [how you found them - LinkedIn, GitHub, conference, mutual connection, etc.] and was particularly impressed by [specific work or achievement].</p>
-                
-                <p>I'm currently [brief description of what you're working on or your career stage], and I'd love to connect with fellow professionals in the [relevant field/technology] space.</p>
-                
-                <p><strong>A bit about me:</strong><br />
-                - [Key professional highlight 1]<br />
-                - [Key professional highlight 2]<br />
-                - [Current focus or interest]</p>
-                
-                <p>I'd be honored to connect and perhaps exchange insights about [relevant topic]. If you're ever interested in grabbing coffee (virtual or in-person if we're in the same area) or just connecting on LinkedIn, I'd really appreciate it.</p>
-                
-                <p>No pressure at all - I know how busy things can get. Either way, keep up the excellent work!</p>
-                
-                <p>Best regards,<br />
-                [Your Name]<br />
-                [Your LinkedIn Profile]<br />
-                [Your Email]</p>
-              </blockquote>
+                <div class="guideline-card">
+                    <h4>Email Structure Guidelines</h4>
+                    <h5>Opening</h5>
+                    <ul>
+                        <li>Use a professional greeting: "Dear John", "Hi John", or "Hello John"</li>
+                        <li>Introduce yourself briefly if we haven't communicated before</li>
+                        <li>Mention how you found my contact information or work</li>
+                    </ul>
+                    
+                    <h5>Body</h5>
+                    <ul>
+                        <li>Get to the point quickly - state your purpose in the first paragraph</li>
+                        <li>Use bullet points or numbered lists for multiple questions or requirements</li>
+                        <li>Provide context and relevant details, but keep it concise</li>
+                        <li>Include specific information like timelines, budgets, or technical requirements</li>
+                        <li>Break up long paragraphs for better readability</li>
+                    </ul>
+                    
+                    <h5>Closing</h5>
+                    <ul>
+                        <li>Clearly state what you're looking for: a response, meeting, quote, etc.</li>
+                        <li>Provide your availability for calls or meetings</li>
+                        <li>Thank me for my time and consideration</li>
+                        <li>Use a professional sign-off: "Best regards", "Sincerely", "Thank you"</li>
+                        <li>Include your full contact information in your signature</li>
+                    </ul>
+                </div>
             </div>
-          </div>
-        </section>
-
-        {/* Email etiquette guidelines section */}
-        <section>
-          <h3>Email Etiquette Guidelines</h3>
-          <p>
-            Following proper email etiquette helps ensure your message is well-received 
-            and increases the likelihood of a prompt, helpful response.
-          </p>
-
-          {/* Subject line guidelines */}
-          <div>
-            <h4>Subject Line Best Practices</h4>
-            <ul>
-              <li>
-                <strong>Be specific and descriptive:</strong> Instead of "Question" 
-                use "React Performance Question - Large Component Re-renders"
-              </li>
-              <li>
-                <strong>Include the type of inquiry:</strong> "Project Inquiry", 
-                "Collaboration Request", "Technical Question", etc.
-              </li>
-              <li>
-                <strong>Keep it concise:</strong> Aim for 50 characters or less 
-                to ensure it displays fully on mobile devices
-              </li>
-              <li>
-                <strong>Avoid spam triggers:</strong> Don't use all caps, excessive 
-                punctuation, or words like "URGENT" unless truly necessary
-              </li>
-              <li>
-                <strong>Make it actionable:</strong> If you need a response by a 
-                certain date, include it: "Project Proposal - Response Needed by March 15"
-              </li>
-            </ul>
-          </div>
-
-          {/* Email structure guidelines */}
-          <div>
-            <h4>Email Structure Guidelines</h4>
             
-            {/* Opening */}
-            <div>
-              <h5>Opening</h5>
-              <ul>
-                <li>Use a professional greeting: "Dear John", "Hi John", or "Hello John"</li>
-                <li>Introduce yourself briefly if we haven't communicated before</li>
-                <li>Mention how you found my contact information or work</li>
-              </ul>
+            <div class="guidelines-grid" style="margin-top: 30px;">
+                <div class="guideline-card">
+                    <h4>My Communication Preferences</h4>
+                    <ul>
+                        <li><strong>Response time:</strong> I typically respond within 24-48 hours. If your matter is urgent, please mention it in the subject line.</li>
+                        <li><strong>Detail level:</strong> I appreciate detailed emails that provide context, but please be concise and organized.</li>
+                        <li><strong>Attachments:</strong> Feel free to include relevant documents, but please mention them in your email body.</li>
+                        <li><strong>Follow-ups:</strong> If you don't hear back within 48 hours, a polite follow-up is perfectly acceptable.</li>
+                        <li><strong>Meeting requests:</strong> I prefer to have some context via email before scheduling calls or meetings.</li>
+                    </ul>
+                </div>
+                
+                <div class="guideline-card">
+                    <h4>What to Avoid</h4>
+                    <ul>
+                        <li><strong>Vague requests:</strong> "I need a website" without any details about requirements, timeline, or budget</li>
+                        <li><strong>Immediate response expectations:</strong> Demanding responses within hours unless it's a genuine emergency</li>
+                        <li><strong>Overly casual tone:</strong> While I'm friendly, maintain professionalism in initial communications</li>
+                        <li><strong>Mass emails:</strong> Generic emails clearly sent to multiple people without personalization</li>
+                        <li><strong>Excessive follow-ups:</strong> Multiple emails within 24 hours unless there's a critical update</li>
+                    </ul>
+                </div>
             </div>
-
-            {/* Body */}
-            <div>
-              <h5>Body</h5>
-              <ul>
-                <li>Get to the point quickly - state your purpose in the first paragraph</li>
-                <li>Use bullet points or numbered lists for multiple questions or requirements</li>
-                <li>Provide context and relevant details, but keep it concise</li>
-                <li>Include specific information like timelines, budgets, or technical requirements</li>
-                <li>Break up long paragraphs for better readability</li>
-              </ul>
+        </div>
+        
+        <!-- Security Section -->
+        <div class="section">
+            <h3 class="section-title">Email Security & Privacy</h3>
+            <p>I take email security and privacy seriously. Here's what you should know:</p>
+            
+            <div class="security-grid">
+                <div class="security-card">
+                    <h4>Security Practices</h4>
+                    <ul>
+                        <li><strong>Encryption:</strong> My email accounts use TLS encryption for secure transmission</li>
+                        <li><strong>Spam filtering:</strong> Emails may be filtered automatically. If your email is legitimate but gets filtered, try the contact form on my website</li>
+                        <li><strong>Attachments:</strong> I scan all attachments for security. Large files should be shared via secure cloud links</li>
+                        <li><strong>Suspicious emails:</strong> I don't open suspicious attachments or click unknown links for security reasons</li>
+                    </ul>
+                </div>
+                
+                <div class="security-card">
+                    <h4>Privacy Policy</h4>
+                    <ul>
+                        <li><strong>Information use:</strong> I only use your email and information to respond to your inquiry</li>
+                        <li><strong>No sharing:</strong> I don't share your contact information with third parties without explicit permission</li>
+                        <li><strong>Storage:</strong> Emails are stored securely and deleted after reasonable time periods unless ongoing communication is needed</li>
+                        <li><strong>Unsubscribe:</strong> If you're added to any mailing lists, you can always unsubscribe or request removal</li>
+                    </ul>
+                </div>
             </div>
-
-            {/* Closing */}
-            <div>
-              <h5>Closing</h5>
-              <ul>
-                <li>Clearly state what you're looking for: a response, meeting, quote, etc.</li>
-                <li>Provide your availability for calls or meetings</li>
-                <li>Thank me for my time and consideration</li>
-                <li>Use a professional sign-off: "Best regards", "Sincerely", "Thank you"</li>
-                <li>Include your full contact information in your signature</li>
-              </ul>
+        </div>
+        
+        <!-- Alternative Methods -->
+        <div class="section">
+            <h3 class="section-title">Alternative Communication Methods</h3>
+            <p>While email is my preferred method of initial contact, here are other ways to reach me depending on your needs:</p>
+            
+            <div class="methods-grid">
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <h4>Phone Communication</h4>
+                    <p><strong>Phone:</strong> <a href="tel:+15551234567">(555) 123-4567</a></p>
+                    <p><strong>Best for:</strong> Urgent matters, complex discussions that benefit from real-time conversation</p>
+                    <p><strong>Availability:</strong> Monday-Friday, 9 AM - 6 PM PST</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h4>Social Media</h4>
+                    <p><strong>LinkedIn:</strong> <a href="#">linkedin.com/in/johndoe</a></p>
+                    <p><strong>Twitter:</strong> <a href="#">@johndoedev</a></p>
+                    <p><strong>Best for:</strong> Quick questions, networking, sharing interesting articles or projects</p>
+                </div>
+                
+                <div class="method-card">
+                    <div class="method-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h4>Website Contact Form</h4>
+                    <p><a href="#">Use the contact form</a> on my website if you prefer a structured approach or if email delivery issues occur.</p>
+                    <p><strong>Best for:</strong> Formal inquiries, when you want to ensure your message is received and tracked</p>
+                </div>
             </div>
-          </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="section">
+            <h3 class="section-title">Email FAQ</h3>
+            <p>Here are answers to common questions about emailing me:</p>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>How quickly do you respond to emails?</h4>
+                    <p>I typically respond within 24 hours for business inquiries and within 48 hours for general questions. During weekends or holidays, responses may take longer.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>What if my email ends up in spam?</h4>
+                    <p>If you don't receive a response within 48 hours, your email might have been filtered. Try using the contact form on my website or calling directly for urgent matters.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Can I send large files via email?</h4>
+                    <p>Email attachments should be under 10MB. For larger files, please use cloud storage services like Google Drive, Dropbox, or WeTransfer and share the link in your email.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Do you accept cold emails?</h4>
+                    <p>Yes, I welcome professional cold emails, especially for interesting projects or collaboration opportunities. Just make sure to follow the guidelines above for the best response.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>What information should I include for project inquiries?</h4>
+                    <p>Include project scope, timeline, budget range, technical requirements, and any specific preferences. The more details you provide, the better I can assess if we're a good fit.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h4>Do you offer free consultations via email?</h4>
+                    <p>I'm happy to answer brief questions and provide general guidance via email. For detailed consultations, I prefer to schedule a call or video meeting.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h3>Ready to Get in Touch?</h3>
+            <p>I'm looking forward to hearing from you! Whether you have a project in mind, want to collaborate, or just want to connect, don't hesitate to reach out.</p>
+            <div class="cta-buttons">
+                <a href="mailto:john@johndoedev.com?subject=Project Inquiry" class="btn btn-light">Send Business Email</a>
+                <a href="mailto:john.doe@email.com?subject=General Inquiry" class="btn btn-outline">Send General Email</a>
+                <a href="#" class="btn btn-light">Use Contact Form</a>
+            </div>
+        </div>
+    </main>
 
-          {/* Communication preferences */}
-          <div>
-            <h4>My Communication Preferences</h4>
-            <ul>
-              <li>
-                <strong>Response time:</strong> I typically respond within 24-48 hours. 
-                If your matter is urgent, please mention it in the subject line.
-              </li>
-              <li>
-                <strong>Detail level:</strong> I appreciate detailed emails that provide 
-                context, but please be concise and organized.
-              </li>
-              <li>
-                <strong>Attachments:</strong> Feel free to include relevant documents, 
-                but please mention them in your email body.
-              </li>
-              <li>
-                <strong>Follow-ups:</strong> If you don't hear back within 48 hours, 
-                a polite follow-up is perfectly acceptable.
-              </li>
-              <li>
-                <strong>Meeting requests:</strong> I prefer to have some context via 
-                email before scheduling calls or meetings.
-              </li>
-            </ul>
-          </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gerard Ugwu</h3>
+                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/resume">Resume</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact Me</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> john.doe@email.com</li>
+                        <li><i class="fas fa-phone"></i> (555) 123-4567</li>
+                        <li><i class="fas fa-map-marker-alt"></i> San Francisco, CA</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+            </div>
+        </div>
+    </footer>
 
-          {/* What to avoid */}
-          <div>
-            <h4>What to Avoid</h4>
-            <ul>
-              <li>
-                <strong>Vague requests:</strong> "I need a website" without any details 
-                about requirements, timeline, or budget
-              </li>
-              <li>
-                <strong>Immediate response expectations:</strong> Demanding responses 
-                within hours unless it's a genuine emergency
-              </li>
-              <li>
-                <strong>Overly casual tone:</strong> While I'm friendly, maintain 
-                professionalism in initial communications
-              </li>
-              <li>
-                <strong>Mass emails:</strong> Generic emails clearly sent to multiple 
-                people without personalization
-              </li>
-              <li>
-                <strong>Excessive follow-ups:</strong> Multiple emails within 24 hours 
-                unless there's a critical update
-              </li>
-            </ul>
-          </div>
-        </section>
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const nav = document.querySelector('nav ul');
+            nav.classList.toggle('active');
+        });
+        
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabBtns.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                // Update template content based on tab
+                const tabType = btn.dataset.tab;
+                let template = '';
+                
+                switch(tabType) {
+                    case 'project':
+                        template = `Subject: Project Inquiry - [Brief Project Description]
 
-        {/* Email security and privacy section */}
-        <section>
-          <h3>Email Security & Privacy</h3>
-          <p>
-            I take email security and privacy seriously. Here's what you should know:
-          </p>
+Dear John,
 
-          {/* Security practices */}
-          <div>
-            <h4>Security Practices</h4>
-            <ul>
-              <li>
-                <strong>Encryption:</strong> My email accounts use TLS encryption 
-                for secure transmission
-              </li>
-              <li>
-                <strong>Spam filtering:</strong> Emails may be filtered automatically. 
-                If your email is legitimate but gets filtered, try the contact form on my website
-              </li>
-              <li>
-                <strong>Attachments:</strong> I scan all attachments for security. 
-                Large files should be shared via secure cloud links
-              </li>
-              <li>
-                <strong>Suspicious emails:</strong> I don't open suspicious attachments 
-                or click unknown links for security reasons
-              </li>
-            </ul>
-          </div>
+I hope this email finds you well. My name is [Your Name] and I am [Your Title/Role] at [Your Company/Organization].
 
-          {/* Privacy policy */}
-          <div>
-            <h4>Privacy Policy</h4>
-            <ul>
-              <li>
-                <strong>Information use:</strong> I only use your email and information 
-                to respond to your inquiry
-              </li>
-              <li>
-                <strong>No sharing:</strong> I don't share your contact information 
-                with third parties without explicit permission
-              </li>
-              <li>
-                <strong>Storage:</strong> Emails are stored securely and deleted 
-                after reasonable time periods unless ongoing communication is needed
-              </li>
-              <li>
-                <strong>Unsubscribe:</strong> If you're added to any mailing lists, 
-                you can always unsubscribe or request removal
-              </li>
-            </ul>
-          </div>
-        </section>
+I am reaching out regarding a potential project opportunity that I believe would be a great fit for your expertise. Here are the key details:
 
-        {/* Alternative communication methods section */}
-        <section>
-          <h3>Alternative Communication Methods</h3>
-          <p>
-            While email is my preferred method of initial contact, here are other 
-            ways to reach me depending on your needs:
-          </p>
+Project Overview:
+[Brief description of what you need built or accomplished]
 
-          {/* Phone contact */}
-          <div>
-            <h4>Phone Communication</h4>
-            <p>
-              <strong>Phone:</strong> <a href="tel:+15551234567">(555) 123-4567</a>
-            </p>
-            <p>
-              <strong>Best for:</strong> Urgent matters, complex discussions that 
-              benefit from real-time conversation
-            </p>
-            <p>
-              <strong>Availability:</strong> Monday-Friday, 9 AM - 6 PM PST
-            </p>
-            <p>
-              <strong>Note:</strong> Please send an email first to provide context 
-              before calling, unless it's truly urgent
-            </p>
-          </div>
+Timeline:
+[When you need the project completed]
 
-          {/* Social media */}
-          <div>
-            <h4>Social Media</h4>
-            <p>
-              <strong>LinkedIn:</strong> 
-              <a href="https://linkedin.com/in/johndoe" target="_blank" rel="noopener noreferrer">
-                linkedin.com/in/johndoe
-              </a>
-            </p>
-            <p>
-              <strong>Twitter:</strong> 
-              <a href="https://twitter.com/johndoedev" target="_blank" rel="noopener noreferrer">
-                @johndoedev
-              </a>
-            </p>
-            <p>
-              <strong>Best for:</strong> Quick questions, networking, sharing interesting 
-              articles or projects
-            </p>
-          </div>
+Budget Range:
+[Your budget expectations, if comfortable sharing]
 
-          {/* Contact form */}
-          <div>
-            <h4>Website Contact Form</h4>
-            <p>
-              <a href="/contact">Use the contact form</a> on my website if you prefer 
-              a structured approach or if email delivery issues occur.
-            </p>
-            <p>
-              <strong>Best for:</strong> Formal inquiries, when you want to ensure 
-              your message is received and tracked
-            </p>
-          </div>
-        </section>
+Key Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Requirement 3]
 
-        {/* Frequently asked questions section */}
-        <section>
-          <h3>Email FAQ</h3>
-          <p>
-            Here are answers to common questions about emailing me:
-          </p>
+I would love to discuss this opportunity further and answer any questions you might have. Would you be available for a brief call or video meeting in the coming week?
 
-          {/* FAQ items */}
-          <div>
-            <h4>How quickly do you respond to emails?</h4>
-            <p>
-              I typically respond within 24 hours for business inquiries and within 
-              48 hours for general questions. During weekends or holidays, responses 
-              may take longer.
-            </p>
-          </div>
+Thank you for your time and consideration. I look forward to hearing from you.
 
-          <div>
-            <h4>What if my email ends up in spam?</h4>
-            <p>
-              If you don't receive a response within 48 hours, your email might have 
-              been filtered. Try using the contact form on my website or calling directly 
-              for urgent matters.
-            </p>
-          </div>
+Best regards,
+[Your Name]
+[Your Contact Information]`;
+                        break;
+                    
+                    case 'collab':
+                        template = `Subject: Collaboration Opportunity - [Type of Collaboration]
 
-          <div>
-            <h4>Can I send large files via email?</h4>
-            <p>
-              Email attachments should be under 10MB. For larger files, please use 
-              cloud storage services like Google Drive, Dropbox, or WeTransfer and 
-              share the link in your email.
-            </p>
-          </div>
+Hi John,
 
-          <div>
-            <h4>Do you accept cold emails?</h4>
-            <p>
-              Yes, I welcome professional cold emails, especially for interesting 
-              projects or collaboration opportunities. Just make sure to follow the 
-              guidelines above for the best response.
-            </p>
-          </div>
+I've been following your work, particularly [specific project or skill you admire], and I'm impressed by your expertise in [relevant technology/field].
 
-          <div>
-            <h4>What information should I include for project inquiries?</h4>
-            <p>
-              Include project scope, timeline, budget range, technical requirements, 
-              and any specific preferences. The more details you provide, the better 
-              I can assess if we're a good fit.
-            </p>
-          </div>
+I'm [Your Name], a [Your Role] with experience in [Your Expertise]. I'm reaching out because I believe we could create something amazing together.
 
-          <div>
-            <h4>Do you offer free consultations via email?</h4>
-            <p>
-              I'm happy to answer brief questions and provide general guidance via email. 
-              For detailed consultations, I prefer to schedule a call or video meeting.
-            </p>
-          </div>
-        </section>
+Collaboration Idea:
+[Describe your collaboration idea or project concept]
 
-        {/* Call to action section */}
-        <section>
-          <h3>Ready to Get in Touch?</h3>
-          <p>
-            I'm looking forward to hearing from you! Whether you have a project in mind, 
-            want to collaborate, or just want to connect, don't hesitate to reach out.
-          </p>
+What I Bring:
+- [Your skill/resource 1]
+- [Your skill/resource 2]
+- [Your skill/resource 3]
 
-          {/* Email action buttons */}
-          <div>
-            <a href="mailto:john@johndoedev.com?subject=Project Inquiry">
-              Send Business Email
-            </a>
-            <a href="mailto:john.doe@email.com?subject=General Inquiry">
-              Send General Email
-            </a>
-            <a href="/contact">Use Contact Form</a>
-          </div>
+What I'm Looking For:
+[What you need from John - skills, time, resources, etc.]
 
-          {/* Additional resources */}
-          <div>
-            <h4>Before You Email</h4>
-            <p>You might also want to check out:</p>
-            <ul>
-              <li><a href="/projects">My recent projects</a> to see examples of my work</li>
-              <li><a href="/skills">My technical skills</a> to understand my expertise</li>
-              <li><a href="/resume">My resume</a> for detailed professional background</li>
-              <li><a href="/certificates">My certifications</a> to verify my qualifications</li>
-            </ul>
-          </div>
-        </section>
-      </main>
+I'd love to explore this further and see if it aligns with your interests and availability. Would you be open to a conversation about this?
 
-      {/* Footer section */}
-      <footer>
-        <p>© 2025 John Doe. All rights reserved.</p>
-        <p>Connect with me on social media or send me an email!</p>
-      </footer>
-    </div>
-  );
-}
+Thanks for considering this opportunity!
 
+Cheers,
+[Your Name]
+[Your Portfolio/LinkedIn]
+[Your Email]`;
+                        break;
+                        
+                    case 'tech':
+                        template = `Subject: Technical Question - [Brief Topic Description]
 
+Hello John,
+
+I hope you're doing well. I'm [Your Name], a [Your Role/Level] developer working with [Technologies you're using].
+
+I came across your work on [specific project or article] and was hoping you might be able to provide some guidance on a technical challenge I'm facing.
+
+The Challenge:
+[Describe your specific technical problem or question]
+
+What I've Tried:
+- [Approach 1]
+- [Approach 2]
+- [Resources consulted]
+
+Current Environment:
+- [Technology stack]
+- [Relevant versions]
+- [Any constraints]
+
+I understand you're busy, so even a brief pointer in the right direction would be incredibly helpful. If you have any resources or suggestions, I'd be very grateful.
+
+Thank you for your time and for sharing your knowledge with the community.
+
+Best,
+[Your Name]
+[Your GitHub/Portfolio if relevant]`;
+                        break;
+                        
+                    case 'network':
+                        template = `Subject: Introduction - [Your Name] from [Context/Connection]
+
+Hi John,
+
+I hope this message finds you well. My name is [Your Name] and I'm a [Your Role] based in [Your Location].
+
+I discovered your work through [how you found them - LinkedIn, GitHub, conference, mutual connection, etc.] and was particularly impressed by [specific work or achievement].
+
+I'm currently [brief description of what you're working on or your career stage], and I'd love to connect with fellow professionals in the [relevant field/technology] space.
+
+A bit about me:
+- [Key professional highlight 1]
+- [Key professional highlight 2]
+- [Current focus or interest]
+
+I'd be honored to connect and perhaps exchange insights about [relevant topic]. If you're ever interested in grabbing coffee (virtual or in-person if we're in the same area) or just connecting on LinkedIn, I'd really appreciate it.
+
+No pressure at all - I know how busy things can get. Either way, keep up the excellent work!
+
+Best regards,
+[Your Name]
+[Your LinkedIn Profile]
+[Your Email]`;
+                        break;
+                }
+                
+                document.querySelector('.template-content blockquote').textContent = template;
+            });
+        });
+        
+        // Copy template functionality
+        const copyBtn = document.querySelector('.copy-btn');
+        copyBtn.addEventListener('click', () => {
+            const templateText = document.querySelector('.template-content blockquote').textContent;
+            navigator.clipboard.writeText(templateText)
+                .then(() => {
+                    const originalText = copyBtn.textContent;
+                    copyBtn.textContent = 'Copied!';
+                    setTimeout(() => {
+                        copyBtn.textContent = originalText;
+                    }, 2000);
+                });
+        });
+    </script>
+</body>
+</html>
