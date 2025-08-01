@@ -1,6 +1,5 @@
-<!-- certificate.html -->
 <!-- ========================= -->
-<!-- Certificate Page Template -->
+<!-- Skills Page Template    -->
 <!-- ========================= -->
 <!DOCTYPE html>
 <html lang="en">
@@ -11,536 +10,363 @@
     <!-- Head Section -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerard Ugwu - Certificates & Achievements</title>
+    <title>Gerard Ugwu - Skills Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Base styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --accent: #e11d48;
-            --light: #f8fafc;
-            --dark: #0f172a;
-            --gray: #64748b;
-            --light-gray: #e2e8f0;
-            --border-radius: 10px;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --transition: all 0.3s ease;
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #9b59b6;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
         }
-
+        
         body {
-            background-color: #f1f5f9;
-            color: #334155;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: var(--dark);
             line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
         }
-
+        
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Header */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a.active {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        nav a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Hero Section */
-        .certificates-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .certificates-hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            font-weight: 800;
-        }
-
-        .certificates-hero p {
-            font-size: 1.4rem;
-            max-width: 800px;
-            margin: 0 auto 40px;
-            opacity: 0.9;
-        }
-
-        /* Main Content */
-        main.container {
-            margin-bottom: 60px;
-        }
-
-        .section {
             background: white;
-            border-radius: var(--border-radius);
-            padding: 40px;
-            margin-bottom: 50px;
-            box-shadow: var(--shadow);
-        }
-
-        .section-title {
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--light);
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -3px;
-            left: 0;
-            width: 80px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .certificate-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-left: 4px solid var(--primary);
-        }
-
-        .certificate-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .certificate-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .certificate-badge {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: var(--light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 2.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .certificate-details {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .certificate-details p {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-            color: var(--gray);
-        }
-
-        .certificate-details p strong {
-            min-width: 150px;
-            color: var(--dark);
-        }
-
-        .certificate-content {
-            padding: 15px 0;
-        }
-
-        .certificate-content p {
-            margin-bottom: 20px;
-            color: var(--gray);
-        }
-
-        .tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .tech-item {
-            background: var(--light);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: var(--dark);
-        }
-
-        .verification-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: var(--light);
-            border-radius: 30px;
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 600;
-            transition: var(--transition);
-        }
-
-        .verification-link:hover {
-            background: var(--primary);
-            color: white;
-        }
-
-        .achievement-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 15px;
-            border-radius: 20px;
-            background: #f0fdf4;
-            color: #16a34a;
-            font-size: 0.9rem;
-            font-weight: 600;
-        }
-
-        .achievement-badge i {
-            color: #22c55e;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
-        .award-card {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            border-left: 4px solid var(--accent);
-            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
-
-        .award-card::before {
-            content: "★";
-            position: absolute;
-            top: -20px;
-            right: -20px;
-            font-size: 8rem;
-            color: rgba(251, 191, 36, 0.1);
-            transform: rotate(20deg);
-            z-index: 0;
-        }
-
-        .award-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .verification-steps {
-            list-style-type: none;
-            counter-reset: step-counter;
-            padding-left: 0;
-        }
-
-        .verification-steps li {
-            margin-bottom: 15px;
-            padding-left: 40px;
-            position: relative;
-            counter-increment: step-counter;
-        }
-
-        .verification-steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 30px;
-            height: 30px;
-            background: var(--primary);
+        
+        header {
+            background: linear-gradient(120deg, var(--primary), #4a6491);
             color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .cta-section {
+            padding: 30px 0;
             text-align: center;
-            padding: 60px 40px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-radius: var(--border-radius);
-            margin: 60px 0;
-        }
-
-        .cta-section h2 {
-            margin-bottom: 20px;
-        }
-
-        .cta-section p {
-            max-width: 700px;
-            margin: 0 auto 30px;
-            color: var(--gray);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 50px 0 20px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .footer-section h3 {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
             position: relative;
-            padding-bottom: 10px;
         }
-
-        .footer-section h3::after {
-            content: '';
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--danger), var(--warning));
+        }
+        
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            gap: 15px;
+        }
+        
+        nav a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 40px 30px;
+        }
+        
+        section {
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eef2f7;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2, h3, h4, h5 {
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        h2::after {
+            content: "";
             position: absolute;
             bottom: 0;
             left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 2px;
         }
-
-        .social-links {
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-top: 30px;
+            color: var(--secondary);
+        }
+        
+        h4 {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .skill-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid var(--secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .skill-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .skill-header {
             display: flex;
-            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .skill-level {
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .skill-description {
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+        
+        .skill-rating {
+            display: flex;
+            margin-top: 15px;
+        }
+        
+        .star {
+            color: #ddd;
+            font-size: 1.2rem;
+            margin-right: 3px;
+        }
+        
+        .star.filled {
+            color: var(--warning);
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
             margin-top: 20px;
         }
-
-        .social-links a {
+        
+        .skill-tag {
+            background: var(--light);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+        
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .soft-skill-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            border-top: 3px solid var(--success);
+            transition: all 0.3s ease;
+        }
+        
+        .soft-skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .soft-skill-icon {
+            font-size: 2.5rem;
+            color: var(--success);
+            margin-bottom: 15px;
+        }
+        
+        .cta-container {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .cta-buttons a {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-buttons a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        footer {
+            background: var(--primary);
+            color: var(--light);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+        }
+        
+        footer p {
+            color: var(--light);
+            margin-bottom: 10px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
             color: white;
-            transition: var(--transition);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
         }
-
-        .social-links a:hover {
-            background: var(--primary);
+        
+        .social-icons a:hover {
+            background: var(--secondary);
             transform: translateY(-5px);
         }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            padding-left: 5px;
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .certificates-hero h1 {
-                font-size: 2.8rem;
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
             }
-            .certificates-hero p {
-                font-size: 1.2rem;
-            }
+            
             nav ul {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: white;
-                padding: 20px;
                 flex-direction: column;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-                z-index: 99;
+                align-items: center;
+                gap: 10px;
             }
-            nav ul.active {
-                display: flex;
+            
+            section {
+                padding: 20px 15px;
             }
-            .mobile-menu {
-                display: block;
+            
+            h2 {
+                font-size: 1.8rem;
             }
-        }
-
-        @media (max-width: 600px) {
-            .certificates-hero {
-                padding: 60px 0;
+            
+            h3 {
+                font-size: 1.5rem;
             }
-            .certificates-hero h1 {
-                font-size: 2.2rem;
-            }
-            .section {
-                padding: 25px;
-            }
-            .certificate-header {
-                flex-direction: column;
-            }
-            .certificate-badge {
-                margin: 0 auto;
-            }
+            
             .cta-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .cta-buttons a {
+                width: 80%;
+                text-align: center;
             }
         }
     </style>
@@ -550,447 +376,715 @@
     <!-- Main Container           -->
     <!-- ========================= -->
     <!-- Main Container -->
-    <!-- Header -->
-    <header>
+    <div class="container">
+        <header>
         <!-- ========================= -->
         <!-- Header Section           -->
         <!-- ========================= -->
-        <!-- ========================= -->
-        <!-- Main Content Section     -->
-        <!-- ========================= -->
         <!-- Header Section -->
-        <!-- Main Content Section -->
-        <div class="container header-container">
-            <div class="logo">Gerard<span>Ugwu</span></div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/skills">Skills</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/certificates" class="active">Certificates</a></li>
-                    <li><a href="/resume">Resume</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/social">Social</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="certificates-hero">
-        <div class="container">
-            <h1>Certificates & Achievements</h1>
-            <p>Professional certifications, course completions, awards, and academic achievements</p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Overview Section -->
-        <section class="section">
-            <h2 class="section-title">Professional Certifications & Achievements</h2>
-            <p>Here's a comprehensive collection of my professional certifications, online course completions, awards, and achievements that demonstrate my commitment to continuous learning and professional development.</p>
-        </section>
-
-        <!-- Professional Certifications section -->
-        <section class="section">
-            <h3 class="section-title">Professional Certifications</h3>
-
-            <!-- AWS Certified Developer certification -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fab fa-aws"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>AWS Certified Developer - Associate</h4>
-                        <p><strong>Issuing Organization:</strong> Amazon Web Services (AWS)</p>
-                        <p><strong>Issue Date:</strong> March 2024</p>
-                        <p><strong>Expiration Date:</strong> March 2027</p>
-                        <p><strong>Credential ID:</strong> AWS-CDA-2024-JD-789456</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>This certification validates my expertise in developing and maintaining applications on the AWS platform.</p>
-                    
-                    <h5>Skills Validated:</h5>
+            <div>
+                <h1>Gerard Ugwu - Skills Portfolio</h1>
+                <nav>
                     <ul>
-                        <li>AWS Lambda and serverless architecture</li>
-                        <li>Amazon EC2 and container services</li>
-                        <li>AWS database services (RDS, DynamoDB)</li>
-                        <li>API Gateway and microservices</li>
-                        <li>AWS security and IAM best practices</li>
-                        <li>Monitoring and troubleshooting applications</li>
-                    </ul>
-                    
-                    <a href="https://aws.amazon.com/verification/AWS-CDA-2024-JD-789456" 
-                    target="_blank" rel="noopener noreferrer" class="verification-link">
-                        <i class="fas fa-shield-alt"></i> Verify Certificate
-                    </a>
-                </div>
-            </div>
-
-            <!-- Google Cloud Professional certification -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fab fa-google"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Google Cloud Professional Cloud Developer</h4>
-                        <p><strong>Issuing Organization:</strong> Google Cloud</p>
-                        <p><strong>Issue Date:</strong> January 2024</p>
-                        <p><strong>Expiration Date:</strong> January 2026</p>
-                        <p><strong>Credential ID:</strong> GCP-PCD-2024-JD-123789</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>This certification demonstrates my ability to design, build, and deploy scalable applications using Google Cloud Platform.</p>
-                    
-                    <h5>Skills Validated:</h5>
-                    <ul>
-                        <li>Google App Engine and Cloud Functions</li>
-                        <li>Kubernetes Engine and container orchestration</li>
-                        <li>Cloud Storage and database solutions</li>
-                        <li>CI/CD pipelines with Cloud Build</li>
-                        <li>Monitoring and logging with Stackdriver</li>
-                        <li>Security and identity management</li>
-                    </ul>
-                    
-                    <a href="https://cloud.google.com/certification/verify/GCP-PCD-2024-JD-123789" 
-                    target="_blank" rel="noopener noreferrer" class="verification-link">
-                        <i class="fas fa-shield-alt"></i> Verify Certificate
-                    </a>
-                </div>
-            </div>
-
-            <!-- Microsoft Azure certification -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fab fa-microsoft"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Microsoft Certified: Azure Developer Associate</h4>
-                        <p><strong>Issuing Organization:</strong> Microsoft</p>
-                        <p><strong>Issue Date:</strong> November 2023</p>
-                        <p><strong>Expiration Date:</strong> November 2025</p>
-                        <p><strong>Credential ID:</strong> MS-AZ-204-2023-JD-456123</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>This certification validates my skills in developing cloud solutions that leverage Azure services.</p>
-                    
-                    <h5>Skills Validated:</h5>
-                    <ul>
-                        <li>Azure App Service and Functions</li>
-                        <li>Azure Storage and Cosmos DB</li>
-                        <li>Azure Active Directory integration</li>
-                        <li>Container solutions with Azure Container Instances</li>
-                        <li>API Management and Service Bus</li>
-                        <li>Monitoring and optimization</li>
-                    </ul>
-                    
-                    <a href="https://learn.microsoft.com/api/credentials/share/en-us/JohnDoe/MS-AZ-204-2023-JD-456123" 
-                    target="_blank" rel="noopener noreferrer" class="verification-link">
-                        <i class="fas fa-shield-alt"></i> Verify Certificate
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Online Course Completions section -->
-        <section class="section">
-            <h3 class="section-title">Online Course Completions</h3>
-
-            <!-- React Advanced Patterns course -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fab fa-react"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Advanced React Patterns and Performance</h4>
-                        <p><strong>Platform:</strong> Frontend Masters</p>
-                        <p><strong>Instructor:</strong> Kent C. Dodds</p>
-                        <p><strong>Completion Date:</strong> February 2024</p>
-                        <p><strong>Duration:</strong> 8 hours</p>
-                        <p><strong>Certificate ID:</strong> FM-ARP-2024-JD-789</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Comprehensive course covering advanced React patterns, performance optimization techniques.</p>
-                    
-                    <h5>Topics Covered:</h5>
-                    <ul>
-                        <li>Advanced React Hooks patterns</li>
-                        <li>Render props and higher-order components</li>
-                        <li>Performance optimization with React.memo</li>
-                        <li>Code splitting and lazy loading</li>
-                        <li>Context API optimization</li>
-                        <li>Testing advanced React components</li>
-                    </ul>
-                    
-                    <span class="achievement-badge">
-                        <i class="fas fa-certificate"></i> Course Completed
-                    </span>
-                </div>
-            </div>
-
-            <!-- Full Stack JavaScript course -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fab fa-node-js"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Complete Node.js Developer Course</h4>
-                        <p><strong>Platform:</strong> Udemy</p>
-                        <p><strong>Instructor:</strong> Andrew Mead</p>
-                        <p><strong>Completion Date:</strong> December 2023</p>
-                        <p><strong>Duration:</strong> 35 hours</p>
-                        <p><strong>Certificate ID:</strong> UC-NODE-2023-JD-456</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Comprehensive Node.js course covering server-side JavaScript development, API creation, database integration.</p>
-                    
-                    <h5>Topics Covered:</h5>
-                    <ul>
-                        <li>Node.js fundamentals and modules</li>
-                        <li>Express.js framework and middleware</li>
-                        <li>MongoDB and Mongoose ODM</li>
-                        <li>Authentication and authorization</li>
-                        <li>File uploads and email sending</li>
-                        <li>Testing with Jest and Supertest</li>
-                        <li>Deployment to Heroku and AWS</li>
-                    </ul>
-                    
-                    <span class="achievement-badge">
-                        <i class="fas fa-certificate"></i> Course Completed
-                    </span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Awards and Recognition section -->
-        <section class="section">
-            <h3 class="section-title">Awards & Recognition</h3>
-
-            <!-- Employee of the Year award -->
-            <div class="award-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge" style="background: #fffbeb; color: #f59e0b;">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Employee of the Year 2024</h4>
-                        <p><strong>Organization:</strong> TechCorp Solutions</p>
-                        <p><strong>Date Received:</strong> December 2024</p>
-                        <p><strong>Category:</strong> Technical Excellence</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Recognized for outstanding technical contributions, leadership in complex projects, and mentoring junior developers.</p>
-                    
-                    <h5>Key Achievements:</h5>
-                    <ul>
-                        <li>Led development of company's flagship e-commerce platform</li>
-                        <li>Improved application performance by 40%</li>
-                        <li>Mentored 5 junior developers</li>
-                        <li>Implemented automated testing</li>
-                        <li>Contributed to open-source projects</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Hackathon winner -->
-            <div class="award-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge" style="background: #f0f9ff; color: #0ea5e9;">
-                        <i class="fas fa-medal"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>First Place - Bay Area Tech Hackathon 2024</h4>
-                        <p><strong>Event:</strong> Bay Area Tech Hackathon</p>
-                        <p><strong>Date:</strong> August 2024</p>
-                        <p><strong>Team Size:</strong> 4 developers</p>
-                        <p><strong>Prize:</strong> $10,000 and mentorship program</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Won first place in a 48-hour hackathon with over 200 participants.</p>
-                    
-                    <h5>Winning Project - AccessibilityAI:</h5>
-                    <ul>
-                        <li>Real-time accessibility scanning and reporting</li>
-                        <li>AI-powered suggestions for WCAG compliance</li>
-                        <li>Browser extension with developer tools integration</li>
-                        <li>Machine learning model</li>
-                        <li>Automated testing integration</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Academic Achievements section -->
-        <section class="section">
-            <h3 class="section-title">Academic Achievements</h3>
-
-            <!-- Dean's List achievement -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge" style="background: #f0fdf4; color: #16a34a;">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Dean's List Recognition</h4>
-                        <p><strong>Institution:</strong> University of California, Berkeley</p>
-                        <p><strong>Semesters:</strong> Fall 2017, Spring 2018, Fall 2018</p>
-                        <p><strong>Requirement:</strong> GPA of 3.75 or higher</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Achieved Dean's List recognition for three consecutive semesters.</p>
-                </div>
-            </div>
-
-            <!-- Graduation honors -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge" style="background: #fdf2f8; color: #ec4899;">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Magna Cum Laude Graduate</h4>
-                        <p><strong>Institution:</strong> University of California, Berkeley</p>
-                        <p><strong>Degree:</strong> Bachelor of Science in Computer Science</p>
-                        <p><strong>Graduation Date:</strong> May 2019</p>
-                        <p><strong>Final GPA:</strong> 3.8/4.0</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Graduated Magna Cum Laude with distinction in Computer Science.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Professional Memberships section -->
-        <section class="section">
-            <h3 class="section-title">Professional Memberships</h3>
-
-            <!-- IEEE membership -->
-            <div class="certificate-card">
-                <div class="certificate-header">
-                    <div class="certificate-badge">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="certificate-details">
-                        <h4>Institute of Electrical and Electronics Engineers (IEEE)</h4>
-                        <p><strong>Membership Type:</strong> Professional Member</p>
-                        <p><strong>Member Since:</strong> January 2020</p>
-                        <p><strong>Member ID:</strong> IEEE-94567123</p>
-                        <p><strong>Status:</strong> Active</p>
-                    </div>
-                </div>
-                <div class="certificate-content">
-                    <p>Active member participating in professional development activities.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Verification and Validation section -->
-        <section class="section">
-            <h3 class="section-title">Certificate Verification</h3>
-            <p>All certificates and achievements listed on this page are verifiable through the respective issuing organizations.</p>
-            
-            <div class="certificate-content">
-                <h4>How to Verify:</h4>
-                <ol class="verification-steps">
-                    <li>Click on the verification links provided with each certificate</li>
-                    <li>Enter the credential ID on the issuing organization's website</li>
-                    <li>Contact me directly for additional verification documentation</li>
-                    <li>Request official transcripts or certificates from institutions</li>
-                </ol>
-                
-                <p style="margin-top: 20px;">
-                    <strong>For verification inquiries:</strong> 
-                    <a href="/contact" class="btn btn-outline" style="margin-left: 10px;">Contact me directly</a> 
-                </p>
-            </div>
-        </section>
-
-        <!-- Call to action section -->
-        <section class="cta-section">
-            <h2 class="section-title">Ready to Work Together?</h2>
-            <p>These certifications and achievements demonstrate my commitment to professional excellence and continuous learning.</p>
-
-            <div class="cta-buttons">
-                <a href="/projects" class="btn btn-primary">View My Projects</a>
-                <a href="/skills" class="btn btn-outline">See My Skills</a>
-                <a href="/contact" class="btn btn-primary">Start a Conversation</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <!-- ========================= -->
-        <!-- Footer Section           -->
-        <!-- ========================= -->
-        <!-- Footer Section -->
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Gerard Ugwu</h3>
-                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
                         <li><a href="/">Home</a></li>
                         <li><a href="/profile">Profile</a></li>
-                        <li><a href="/skills">Skills</a></li>
                         <li><a href="/projects">Projects</a></li>
                         <li><a href="/certificates">Certificates</a></li>
                         <li><a href="/resume">Resume</a></li>
                         <li><a href="/contact">Contact</a></li>
+                        <li><a href="/social">Social</a></li>
                     </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Contact Me</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +2347032388531</li>
-                        <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
-                    </ul>
-                </div>
+                </nav>
             </div>
-            
-            <div class="copyright">
-                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
-            </div>
-        </div>
-    </footer>
+        </header>
 
-    <script>
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const nav = document.querySelector('nav ul');
-            nav.classList.toggle('active');
-        });
-    </script>
+        <main>
+        <!-- ========================= -->
+        <!-- Main Content Section     -->
+        <!-- ========================= -->
+        <!-- Main Content Section -->
+            <section>
+                <h2>Technical Skills Overview</h2>
+                <p>Here's a comprehensive overview of my technical skills and expertise levels. I continuously update and expand my skill set to stay current with industry trends.</p>
+            </section>
+
+            <section>
+                <h3>Programming Languages</h3>
+                <div class="skills-grid">
+                    <!-- JavaScript -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-js skill-icon"></i>
+                            <span class="skill-level">Expert (5+ years)</span>
+                        </div>
+                        <h4>JavaScript</h4>
+                        <div class="skill-description">
+                            <p>Advanced knowledge of ES6+, async/await, closures, prototypes, and modern JavaScript patterns. Experience with both client-side and server-side development.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ES6+</span>
+                            <span class="skill-tag">Async/Await</span>
+                            <span class="skill-tag">Prototypes</span>
+                        </div>
+                    </div>
+                    
+                    <!-- TypeScript -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-code skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>TypeScript</h4>
+                        <div class="skill-description">
+                            <p>Strong understanding of type systems, interfaces, generics, and advanced TypeScript features. Used extensively in large-scale applications.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Type Systems</span>
+                            <span class="skill-tag">Interfaces</span>
+                            <span class="skill-tag">Generics</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Python -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-python skill-icon"></i>
+                            <span class="skill-level">Intermediate (2+ years)</span>
+                        </div>
+                        <h4>Python</h4>
+                        <div class="skill-description">
+                            <p>Proficient in Python for web development, automation, and data processing. Experience with Django, Flask, and various Python libraries.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Automation</span>
+                        </div>
+                    </div>
+                    
+                    <!-- HTML5 -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-html5 skill-icon"></i>
+                            <span class="skill-level">Expert (5+ years)</span>
+                        </div>
+                        <h4>HTML5</h4>
+                        <div class="skill-description">
+                            <p>Comprehensive knowledge of semantic HTML, accessibility best practices, and modern HTML5 features including APIs and form validation.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Semantic HTML</span>
+                            <span class="skill-tag">Accessibility</span>
+                            <span class="skill-tag">HTML5 APIs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CSS3 -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-css3-alt skill-icon"></i>
+                            <span class="skill-level">Expert (5+ years)</span>
+                        </div>
+                        <h4>CSS3</h4>
+                        <div class="skill-description">
+                            <p>Advanced CSS including Flexbox, Grid, animations, responsive design, and CSS preprocessors. Strong understanding of CSS architecture.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Flexbox</span>
+                            <span class="skill-tag">Grid</span>
+                            <span class="skill-tag">Animations</span>
+                            <span class="skill-tag">Responsive Design</span>
+                        </div>
+                    </div>
+                    
+                    <!-- PHP -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-php skill-icon"></i>
+                            <span class="skill-level">Intermediate (3+ years)</span>
+                        </div>
+                        <h4>PHP</h4>
+                        <div class="skill-description">
+                            <p>Solid experience with PHP for web development, including object-oriented programming and working with various PHP frameworks.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">OOP</span>
+                            <span class="skill-tag">Frameworks</span>
+                            <span class="skill-tag">Web Development</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Frontend Frameworks & Libraries</h3>
+                <div class="skills-grid">
+                    <!-- React -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-react skill-icon"></i>
+                            <span class="skill-level">Expert (4+ years)</span>
+                        </div>
+                        <h4>React</h4>
+                        <div class="skill-description">
+                            <p>Deep expertise in React ecosystem including hooks, context, state management, performance optimization, and testing. Experience with React 18 features.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Hooks</span>
+                            <span class="skill-tag">Context API</span>
+                            <span class="skill-tag">Redux</span>
+                            <span class="skill-tag">Performance</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Vue.js -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-vuejs skill-icon"></i>
+                            <span class="skill-level">Advanced (2+ years)</span>
+                        </div>
+                        <h4>Vue.js</h4>
+                        <div class="skill-description">
+                            <p>Strong knowledge of Vue 3, Composition API, Vuex for state management, and Vue ecosystem tools. Built several production applications.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Vue 3</span>
+                            <span class="skill-tag">Composition API</span>
+                            <span class="skill-tag">Vuex</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Angular -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-angular skill-icon"></i>
+                            <span class="skill-level">Intermediate (1+ years)</span>
+                        </div>
+                        <h4>Angular</h4>
+                        <div class="skill-description">
+                            <p>Working knowledge of Angular framework, TypeScript integration, services, dependency injection, and Angular CLI.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Services</span>
+                            <span class="skill-tag">Dependency Injection</span>
+                        </div>
+                    </div>
+                    
+                    <!-- jQuery -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-code skill-icon"></i>
+                            <span class="skill-level">Advanced (4+ years)</span>
+                        </div>
+                        <h4>jQuery</h4>
+                        <div class="skill-description">
+                            <p>Extensive experience with jQuery for DOM manipulation, AJAX requests, animations, and plugin development. Legacy project maintenance.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">DOM Manipulation</span>
+                            <span class="skill-tag">AJAX</span>
+                            <span class="skill-tag">Animations</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Backend Technologies</h3>
+                <div class="skills-grid">
+                    <!-- Node.js -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-node-js skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>Node.js</h4>
+                        <div class="skill-description">
+                            <p>Proficient in building scalable server-side applications, RESTful APIs, and microservices using Node.js and Express.js.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">RESTful APIs</span>
+                            <span class="skill-tag">Microservices</span>
+                            <span class="skill-tag">Express.js</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Express.js -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-server skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>Express.js</h4>
+                        <div class="skill-description">
+                            <p>Expert in building web applications and APIs with Express.js, middleware implementation, and security best practices.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Middleware</span>
+                            <span class="skill-tag">Security</span>
+                            <span class="skill-tag">REST APIs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Django -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-python skill-icon"></i>
+                            <span class="skill-level">Intermediate (1+ years)</span>
+                        </div>
+                        <h4>Django</h4>
+                        <div class="skill-description">
+                            <p>Working knowledge of Django framework, ORM, admin interface, and building web applications with Python.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">ORM</span>
+                            <span class="skill-tag">Web Applications</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Database Technologies</h3>
+                <div class="skills-grid">
+                    <!-- PostgreSQL -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-database skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>PostgreSQL</h4>
+                        <div class="skill-description">
+                            <p>Strong experience with PostgreSQL, complex queries, indexing, performance optimization, and database design.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Indexing</span>
+                            <span class="skill-tag">Optimization</span>
+                        </div>
+                    </div>
+                    
+                    <!-- MongoDB -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-database skill-icon"></i>
+                            <span class="skill-level">Intermediate (2+ years)</span>
+                        </div>
+                        <h4>MongoDB</h4>
+                        <div class="skill-description">
+                            <p>Proficient in NoSQL database design, aggregation pipelines, indexing strategies, and MongoDB Atlas cloud services.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">NoSQL</span>
+                            <span class="skill-tag">Aggregation</span>
+                            <span class="skill-tag">MongoDB Atlas</span>
+                        </div>
+                    </div>
+                    
+                    <!-- MySQL -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-database skill-icon"></i>
+                            <span class="skill-level">Intermediate (3+ years)</span>
+                        </div>
+                        <h4>MySQL</h4>
+                        <div class="skill-description">
+                            <p>Solid experience with MySQL database administration, query optimization, stored procedures, and integration with web applications.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Database Admin</span>
+                            <span class="skill-tag">Query Optimization</span>
+                            <span class="skill-tag">Stored Procedures</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Development Tools & Technologies</h3>
+                <div class="skills-grid">
+                    <!-- Git -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-git-alt skill-icon"></i>
+                            <span class="skill-level">Expert (5+ years)</span>
+                        </div>
+                        <h4>Git & Version Control</h4>
+                        <div class="skill-description">
+                            <p>Advanced Git workflows, branching strategies, merge conflict resolution, and collaboration using GitHub, GitLab, and Bitbucket.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">GitLab</span>
+                            <span class="skill-tag">Workflows</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Docker -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-docker skill-icon"></i>
+                            <span class="skill-level">Intermediate (2+ years)</span>
+                        </div>
+                        <h4>Docker</h4>
+                        <div class="skill-description">
+                            <p>Experience with containerization, Docker Compose, multi-stage builds, and deploying applications in containerized environments.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Containerization</span>
+                            <span class="skill-tag">Docker Compose</span>
+                            <span class="skill-tag">Deployment</span>
+                        </div>
+                    </div>
+                    
+                    <!-- AWS -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-aws skill-icon"></i>
+                            <span class="skill-level">Intermediate (2+ years)</span>
+                        </div>
+                        <h4>AWS (Amazon Web Services)</h4>
+                        <div class="skill-description">
+                            <p>Working knowledge of EC2, S3, Lambda, RDS, CloudFront, and other AWS services for web application deployment.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">EC2</span>
+                            <span class="skill-tag">S3</span>
+                            <span class="skill-tag">Lambda</span>
+                            <span class="skill-tag">RDS</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Webpack -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-cogs skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>Webpack & Build Tools</h4>
+                        <div class="skill-description">
+                            <p>Proficient in configuring Webpack, Vite, Parcel, and other build tools for optimizing and bundling web applications.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Webpack</span>
+                            <span class="skill-tag">Vite</span>
+                            <span class="skill-tag">Optimization</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Testing & Quality Assurance</h3>
+                <div class="skills-grid">
+                    <!-- Jest -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-vial skill-icon"></i>
+                            <span class="skill-level">Advanced (3+ years)</span>
+                        </div>
+                        <h4>Jest & Unit Testing</h4>
+                        <div class="skill-description">
+                            <p>Extensive experience writing unit tests, integration tests, and test-driven development using Jest and related testing libraries.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Unit Testing</span>
+                            <span class="skill-tag">Integration Testing</span>
+                            <span class="skill-tag">TDD</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Cypress -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-check-circle skill-icon"></i>
+                            <span class="skill-level">Intermediate (1+ years)</span>
+                        </div>
+                        <h4>Cypress & E2E Testing</h4>
+                        <div class="skill-description">
+                            <p>Experience with end-to-end testing using Cypress, automated testing workflows, and continuous integration.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">E2E Testing</span>
+                            <span class="skill-tag">Automation</span>
+                            <span class="skill-tag">CI/CD</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Design & UI Tools</h3>
+                <div class="skills-grid">
+                    <!-- Figma -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fab fa-figma skill-icon"></i>
+                            <span class="skill-level">Advanced (2+ years)</span>
+                        </div>
+                        <h4>Figma</h4>
+                        <div class="skill-description">
+                            <p>Proficient in creating wireframes, prototypes, design systems, and collaborating with design teams using Figma.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Wireframes</span>
+                            <span class="skill-tag">Prototypes</span>
+                            <span class="skill-tag">Design Systems</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Adobe Creative Suite -->
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <i class="fas fa-paint-brush skill-icon"></i>
+                            <span class="skill-level">Intermediate (3+ years)</span>
+                        </div>
+                        <h4>Adobe Creative Suite</h4>
+                        <div class="skill-description">
+                            <p>Working knowledge of Photoshop, Illustrator, and XD for web design, image editing, and UI/UX design tasks.</p>
+                        </div>
+                        <div class="skill-rating">
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star filled"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                            <span class="star"><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Photoshop</span>
+                            <span class="skill-tag">Illustrator</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Professional Skills</h3>
+                <div class="soft-skills-grid">
+                    <!-- Problem Solving -->
+                    <div class="soft-skill-card">
+                        <i class="fas fa-lightbulb soft-skill-icon"></i>
+                        <h4>Problem Solving</h4>
+                        <p>Strong analytical thinking and debugging skills. Ability to break down complex problems into manageable solutions.</p>
+                    </div>
+                    
+                    <!-- Team Collaboration -->
+                    <div class="soft-skill-card">
+                        <i class="fas fa-users soft-skill-icon"></i>
+                        <h4>Team Collaboration</h4>
+                        <p>Excellent communication skills and experience working in agile teams. Comfortable with code reviews and pair programming.</p>
+                    </div>
+                    
+                    <!-- Project Management -->
+                    <div class="soft-skill-card">
+                        <i class="fas fa-tasks soft-skill-icon"></i>
+                        <h4>Project Management</h4>
+                        <p>Experience with Agile/Scrum methodologies, sprint planning, and delivering projects on time and within scope.</p>
+                    </div>
+                    
+                    <!-- Continuous Learning -->
+                    <div class="soft-skill-card">
+                        <i class="fas fa-graduation-cap soft-skill-icon"></i>
+                        <h4>Continuous Learning</h4>
+                        <p>Committed to staying updated with latest technologies and best practices. Regular participation in workshops and courses.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h3>Skills Summary</h3>
+                <p>My technical expertise spans the full web development stack, from frontend user interfaces to backend server architecture. I'm passionate about writing clean, maintainable code and creating exceptional user experiences.</p>
+                
+                <div class="cta-container">
+                    <div class="cta-buttons">
+                        <a href="/projects">See My Projects</a>
+                        <a href="/certificates">View Certificates</a>
+                        <a href="/contact">Discuss a Project</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+        <!-- ========================= -->
+        <!-- Footer Section           -->
+        <!-- ========================= -->
+        <!-- Footer Section -->
+            <p>© 2025 Gerard Ugwu. All rights reserved.</p>
+            <p>Connect with me on social media or send me an email!</p>
+            
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/johndoe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/johndoe" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://twitter.com/johndoedev" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com/johndoedev" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://youtube.com/johndoedev" target="_blank"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
 </body>
 </html>
