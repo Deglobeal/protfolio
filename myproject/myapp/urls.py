@@ -14,4 +14,5 @@ urlpatterns = [
     path('social/', views.social_view, name='social'),
     path('contact_success/', views.contact_success, name='contact_success'),
     path('project_details/', views.project_detail_view, name='project_details'),
+    path('base/', views.base_view, name='base'),
 ]

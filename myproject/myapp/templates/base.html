@@ -1,9 +1,10 @@
+<!-- base.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gerard Ugwu - Portfolio</title>
+  <title>{% block title %}Gerard Ugwu - Portfolio{% endblock %}</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
     html {
@@ -34,7 +35,8 @@
       background-color: #f1f5f9;
       color: #334155;
       line-height: 1.6;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      overflow-x: hidden;
     }
 
     /* Enhanced Sidebar */
@@ -48,6 +50,7 @@
       z-index: 1000;
       transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       overflow-x: hidden;
+      overflow-y: auto;
       box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
       display: flex;
       flex-direction: column;
@@ -237,6 +240,9 @@
     .main-wrapper {
       margin-right: 70px;
       transition: margin 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     
     .sidebar:hover ~ .main-wrapper {
@@ -247,18 +253,21 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 20px;
+      width: 100%;
     }
 
     header {
       background-color: white;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       padding: 20px 0;
+      width: 100%;
     }
 
     .header-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .header-logo {
@@ -289,9 +298,13 @@
       color: var(--primary);
     }
 
+    main {
+      flex: 1;
+    }
+
     .hero {
       text-align: center;
-      padding: 100px 0;
+      padding: 80px 0;
       margin-bottom: 60px;
       background: linear-gradient(to bottom right, #f0f9ff, #e0f2fe);
       border-radius: 20px;
@@ -325,6 +338,8 @@
       text-decoration: none;
       font-weight: 600;
       transition: var(--transition);
+      cursor: pointer;
+      border: none;
     }
 
     .btn-primary {
@@ -341,6 +356,7 @@
     .btn-outline {
       border: 2px solid var(--primary);
       color: var(--primary);
+      background: transparent;
     }
 
     .btn-outline:hover {
@@ -516,6 +532,7 @@
       
       .main-wrapper {
         margin-right: 0;
+        padding-right: 0;
       }
       
       .sidebar:hover ~ .main-wrapper {
@@ -533,6 +550,11 @@
       nav ul {
         display: none;
       }
+      
+      /* Prevent body scrolling when sidebar is open */
+      body.sidebar-open {
+        overflow: hidden;
+      }
     }
     
     @media (min-width: 901px) {
@@ -543,23 +565,42 @@
     
     @media (max-width: 768px) {
       .hero {
-        padding: 60px 0;
+        padding: 60px 20px;
       }
       
       .hero h1 {
         font-size: 2.5rem;
       }
       
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
       .cta-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
       }
       
       .footer-content {
         flex-direction: column;
+        gap: 30px;
+      }
+      
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      #sidebar-toggle {
+        top: 15px;
+        right: 15px;
+        padding: 10px 14px;
       }
     }
   </style>
+  {% block extra_head %}{% endblock %}
 </head>
 <body>
 
@@ -568,7 +609,7 @@
     <i class="fas fa-bars"></i>
   </button>
   
-  <!-- Professional Side Menu -->
+  <!-- Sidebar -->
   <div class="sidebar">
     <div class="logo-container">
       <div class="logo">Gerard<span>Ugwu</span></div>
@@ -576,7 +617,6 @@
         <i class="fas fa-chevron-left"></i>
       </div>
     </div>
-    
     <ul>
       <li><a href="/" class="active"><i class="fas fa-home"></i> <span class="link-text">Home</span></a></li>
       <li><a href="/profile"><i class="fas fa-user"></i> <span class="link-text">Profile</span></a></li>
@@ -584,17 +624,14 @@
       <li><a href="/projects"><i class="fas fa-project-diagram"></i> <span class="link-text">Projects</span></a></li>
       <li><a href="/certificates"><i class="fas fa-certificate"></i> <span class="link-text">Certificates</span></a></li>
       <li><a href="/resume"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
-      <li><a href="/email"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
+      <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
       <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
     </ul>
-    
     <div class="social-links">
-    <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-    <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
-    <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-    <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-    <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
       <a href="#"><i class="fab fa-dribbble"></i></a>
     </div>
   </div>
@@ -612,79 +649,12 @@
             <li><a href="/contact">Contact</a></li>
           </ul>
         </nav>
-        <!-- Sidebar toggle script -->
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const toggleBtn = document.querySelector('#sidebar-toggle');
-            
-            if (toggleBtn && sidebar) {
-              toggleBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                sidebar.classList.toggle('sidebar-open');
-              });
-            }
-            
-            document.addEventListener('click', function(e) {
-              if (sidebar && sidebar.classList.contains('sidebar-open')) {
-                if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
-                  sidebar.classList.remove('sidebar-open');
-                }
-              }
-            });
-          });
-        </script>
       </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>Gerard Ugwu</h1>
-        <p>Backend Developer | Python Enthusiast | ALX ProDev Learner | Web Developer</p>
-        <p>Crafting modern, scalable, and responsive <em>web applications using cutting-edge technologies</em> and best development practices.</p>
-        <div class="cta-buttons">
-          <a href="/projects" class="btn btn-primary">View My Work</a>
-          <a href="/contact" class="btn btn-outline">Get In Touch</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main -->
+    <!-- Page Content -->
     <main class="container">
-      <section>
-        <h2 class="section-title">About Me</h2>
-        <p>💡 I’m currently a learner at ALX ProDev Backend, building strong foundations in backend software engineering.</p>
-        <p></p>
-        <p>🐍 I'm passionate about Python and love solving real-world problems through code.</p>
-        <p>🛠️ My current focus: Django, DRF, FastAPI, PostgreSQL, and system architecture.</p>
-        <p>💼 I’m actively seeking internship or junior backend roles to apply and grow my skills.</p>
-        <p>🤝 I’m open to collaborating on meaningful backend and full-stack projects.</p>
-        <a href="/profile" class="btn btn-outline" style="margin-top: 20px;">Learn more about me</a>
-      </section>
-
-      <section>
-        <h2 class="section-title">What I Do</h2>
-        <div class="services-grid">
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-code"></i></div>
-            <h3>Web Development</h3>
-            <p>Building responsive websites using modern technologies and best practices for performance and accessibility.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon"><i class="fas fa-mobile-alt"></i></div>
-            <h3>Mobile First Design</h3>
-            <p>Creating seamless experiences for mobile and desktop with progressive enhancement techniques.</p>
-          </div>
-      </section>
-      
-      <section>
-        <h2 class="section-title">Featured Projects</h2>
-        <div style="background: white; padding: 30px; border-radius: var(--border-radius); box-shadow: var(--shadow);">
-          <p>My portfolio showcases a variety of projects, including e-commerce platforms, SaaS applications, and interactive dashboards. Each project demonstrates my expertise in creating efficient, scalable solutions.</p>
-          <a href="/projects" class="btn btn-primary" style="margin-top: 20px;">View All Projects</a>
-        </div>
-      </section>
+      {% block content %}{% endblock %}
     </main>
 
     <!-- Footer -->
@@ -697,11 +667,11 @@
             <div class="social-links">
               <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
               <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+              <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               <a href="#"><i class="fab fa-twitter"></i></a>
               <a href="#"><i class="fab fa-dribbble"></i></a>
             </div>
           </div>
-
           <div class="footer-section">
             <h3>Quick Links</h3>
             <ul class="footer-links">
@@ -712,7 +682,6 @@
               <li><a href="/contact">Contact</a></li>
             </ul>
           </div>
-
           <div class="footer-section">
             <h3>Contact Me</h3>
             <ul class="footer-links">
@@ -728,5 +697,42 @@
       </div>
     </footer>
   </div>
+
+  <!-- Toggle Sidebar Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const toggleBtn = document.querySelector('#sidebar-toggle');
+      const body = document.body;
+      
+      if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          sidebar.classList.toggle('sidebar-open');
+          body.classList.toggle('sidebar-open');
+        });
+      }
+      
+      document.addEventListener('click', function(e) {
+        if (sidebar && sidebar.classList.contains('sidebar-open')) {
+          if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+            sidebar.classList.remove('sidebar-open');
+            body.classList.remove('sidebar-open');
+          }
+        }
+      });
+      
+      // Close sidebar when a link is clicked (on mobile)
+      const sidebarLinks = document.querySelectorAll('.sidebar a');
+      sidebarLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          if (window.innerWidth <= 900) {
+            sidebar.classList.remove('sidebar-open');
+            body.classList.remove('sidebar-open');
+          }
+        });
+      });
+    });
+  </script>
 </body>
 </html>

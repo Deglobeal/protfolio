@@ -64,3 +64,7 @@ def contact_success(request):
 
 def project_detail_view(request):
     return render(request, 'main/project_detail.html')
+
+
+def base_view(request):
+    return render(request, 'base.html')

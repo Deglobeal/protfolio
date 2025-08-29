@@ -1,623 +1,97 @@
-<!-- ========================= -->
-<!-- Contact Page Template    -->
-<!-- ========================= -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- ========================= -->
-    <!-- Head Section             -->
-    <!-- ========================= -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerard Ugwu - Contact</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(120deg, #2c3e50, #4a6491);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #3498db, #9b59b6, #e74c3c, #f39c12);
-        }
-        
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-            padding: 0 20px;
-            gap: 15px;
-        }
-        
-        nav a {
-            color: #ecf0f1;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        main {
-            padding: 40px 30px;
-        }
-        
-        section {
-            margin-bottom: 50px;
-            padding: 30px;
-            border-radius: 12px;
-            background: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eef2f7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2, h3, h4, h5 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
-            border-radius: 2px;
-        }
-        
-        h3 {
-            font-size: 1.8rem;
-            margin-top: 30px;
-            color: #3498db;
-        }
-        
-        h4 {
-            font-size: 1.5rem;
-            color: #2c3e50;
-        }
-        
-        h5 {
-            font-size: 1.2rem;
-            color: #3498db;
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: #34495e;
-        }
-        
-        /* Contact Form Styles */
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group.full-width {
-            grid-column: span 2;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: #f8f9fa;
-        }
-        
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #3498db;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-        }
-        
-        textarea {
-            min-height: 180px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .contact-info {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-        }
-        
-        .contact-info p {
-            margin-bottom: 10px;
-        }
-        
-        .contact-info a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-info a:hover {
-            color: #e74c3c;
-            text-decoration: underline;
-        }
-        
-        .social-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .social-category {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-        }
-        
-        .social-category h5 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        
-        .social-category ul {
-            list-style: none;
-        }
-        
-        .social-category li {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px dashed #e0e0e0;
-        }
-        
-        .social-category a {
-            color: #3498db;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-        }
-        
-        .social-category a:hover {
-            color: #e74c3c;
-            transform: translateX(5px);
-        }
-        
-        .social-category a::before {
-            content: "→";
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        
-        .contact-options {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .contact-method {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-top: 3px solid #9b59b6;
-        }
-        
-        .contact-method a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-method a:hover {
-            color: #e74c3c;
-            text-decoration: underline;
-        }
-        
-        .faq-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .faq-item {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .cta-container {
-            text-align: center;
-            padding: 40px 0;
-        }
-        
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .cta-buttons a {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(90deg, #3498db, #9b59b6);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-buttons a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        footer {
-            background: #2c3e50;
-            color: #ecf0f1;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-        }
-        
-        footer p {
-            color: #ecf0f1;
-            margin-bottom: 10px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            section {
-                padding: 20px 15px;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group.full-width {
-                grid-column: span 1;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-buttons a {
-                width: 80%;
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- ========================= -->
-    <!-- Main Container           -->
-    <!-- ========================= -->
-    <div class="container">
-        <header>
-            <!-- ========================= -->
-            <!-- Header Section           -->
-            <!-- ========================= -->
-            <div>
-                <h1>Gerard Ugwu - Contact</h1>
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><a href="/skills">Skills</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/certificates">Certificates</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                        <li><a href="/contact" class="active">Contact</a></li>
-                        <li><a href="/social">Social</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+<!-- contact.html -->
+{% extends "base.html" %}
 
-        <main>
-            <!-- ========================= -->
-            <!-- Contact Form Section      -->
-            <!-- ========================= -->
-            <section>
-                <h2>Get In Touch</h2>
-                <p>Have a question or want to work together? Fill out the form below and I'll get back to you as soon as possible.</p>
-                
-                <div class="contact-form">
-                    <form action="/contact_success/" method="POST">
-                        {% csrf_token %} <!-- Django CSRF token for security -->
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <!-- User Name Input -->
-                                <label for="name">Your Name</label>
-                                <input type="text" id="name" name="name" required placeholder="John Doe">
-                            </div>
-                            
-                            <div class="form-group">
-                                <!-- User Email Input -->
-                                <label for="email">Email Address</label>
-                                <input type="email" id="email" name="email" required placeholder="john@example.com">
-                            </div>
-                            
-                            <div class="form-group">
-                                <!-- Subject Dropdown -->
-                                <label for="subject">Subject</label>
-                                <select id="subject" name="subject" required>
-                                    <option value="" disabled selected>Select a subject</option>
-                                    <option value="project">Project Inquiry</option>
-                                    <option value="collaboration">Collaboration</option>
-                                    <option value="job">Job Opportunity</option>
-                                    <option value="question">General Question</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <!-- Priority Dropdown -->
-                                <label for="priority">Priority</label>
-                                <select id="priority" name="priority">
-                                    <option value="normal" selected>Normal</option>
-                                    <option value="urgent">Urgent</option>
-                                    <option value="low">Low Priority</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group full-width">
-                                <!-- Message Textarea -->
-                                <label for="message">Your Message</label>
-                                <textarea id="message" name="message" required placeholder="Type your message here..."></textarea>
-                            </div>
-                            
-                            <div class="form-group full-width">
-                                <!-- Submit Button -->
-                                <button type="submit" class="submit-btn">
-                                    <i class="fas fa-paper-plane"></i> Send Message
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                    <!-- Contact Info (Response Time, Direct Contact) -->
-                    <div class="contact-info">
-                        <p><strong>Typical Response Time:</strong> Within 24 hours during business days</p>
-                        <p>Prefer direct contact? <a href="mailto:kachimaxy1@gmail.com">kachimaxy1@gmail.com</a> or <a href="tel:+2347032388531">+2347032388531</a></p>
-                    </div>
-                </div>
-            </section>
+{% block title %}Contact - Gerard Ugwu{% endblock %}
 
-            <!-- ========================= -->
-            <!-- Alternative Contact Methods Section -->
-            <!-- ========================= -->
-            <section>
-                <h3>Need to Reach Me Sooner?</h3>
-                <p>If your inquiry is urgent or you prefer alternative contact methods:</p>
-                
-                <!-- Contact Options Grid -->
-                <div class="contact-options">
-                    <div class="contact-method">
-                        <!-- Phone Contact Method -->
-                        <h5>Phone</h5>
-                        <p><strong>Mobile:</strong> <a href="tel:+2347032388531">+2347032388531</a></p>
-                        <p>Available for calls Monday through Friday, 9 AM to 6 PM PST. Leave a voicemail if I don't answer, and I'll call back the same day.</p>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <!-- Direct Email Contact Method -->
-                        <h5>Direct Email</h5>
-                        <p><strong>Primary:</strong> <a href="mailto:kachimaxy1@gmail.com">kachimaxy1@gmail.com</a></p>
-                        <p><strong>Business:</strong> <a href="mailto:john@johndoedev.com">john@johndoedev.com</a></p>
-                        <p>For urgent matters, email directly with "URGENT" in the subject line.</p>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <!-- Schedule a Call Contact Method -->
-                        <h5>Schedule a Call</h5>
-                        <p><a href="https://calendly.com/johndoe" target="_blank">Book a Free 30-Minute Consultation</a></p>
-                        <p>Skip the email back-and-forth and schedule a direct conversation about your project.</p>
-                    </div>
-                </div>
-            </section>
+{% block extra_head %}
+<style>
+  /* Contact Page Specific Styles */
+  .contact-container {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin: 60px 0;
+  }
+  
+  .contact-form .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+  }
+  
+  .contact-form textarea {
+    min-height: 150px;
+  }
+  
+  .submit-btn {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #1e40af;
+    transform: translateY(-3px);
+  }
+</style>
+{% endblock %}
 
-            <!-- ========================= -->
-            <!-- Social Media Section         -->
-            <!-- ========================= -->
-            <section>
-                <h3>Stay Connected</h3>
-                <p>Connect with me on social media for updates and insights:</p>
-                
-                <!-- Social Links Grid -->
-                <div class="social-grid">
-                    <div class="social-category">
-                        <!-- Professional Networks Links -->
-                        <h5>Professional Networks</h5>
-                        <ul>
-                            <li><a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn - Professional updates and industry insights</a></li>
-                            <li><a href="https://github.com/johndoe" target="_blank">GitHub - Latest code projects and contributions</a></li>
-                            <li><a href="https://stackoverflow.com/users/johndoe" target="_blank">Stack Overflow - Technical discussions and solutions</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="social-category">
-                        <!-- Social Media Links -->
-                        <h5>Social Media</h5>
-                        <ul>
-                            <li><a href="https://twitter.com/johndoedev" target="_blank">Twitter - Tech insights and project updates</a></li>
-                            <li><a href="https://instagram.com/johndoedev" target="_blank">Instagram - Behind-the-scenes content and workspace</a></li>
-                            <li><a href="https://youtube.com/johndoedev" target="_blank">YouTube - Coding tutorials and project walkthroughs</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ========================= -->
-            <!-- FAQ Section                  -->
-            <!-- ========================= -->
-            <section>
-                <h3>Frequently Asked Questions</h3>
-                
-                <!-- FAQ Grid -->
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <!-- FAQ Item: Response Time -->
-                        <h5>What if I don't hear back within 24 hours?</h5>
-                        <p>If you haven't received a response within 24 hours, please check your spam folder first. If still nothing, feel free to call me directly or send a follow-up email.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <!-- FAQ Item: Additional Info -->
-                        <h5>Can I send additional information about my project?</h5>
-                        <p>Absolutely! Feel free to send any additional details, documents, or clarifications to kachimaxy1@gmail.com. Reference your original message in the subject line.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <!-- FAQ Item: Free Consultations -->
-                        <h5>Do you provide free consultations?</h5>
-                        <p>Yes! I offer free 30-minute consultation calls to discuss your project, understand your needs, and determine if we're a good fit for working together.</p>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <!-- FAQ Item: Project Quote Info -->
-                        <h5>What information do you need for a project quote?</h5>
-                        <p>For accurate quotes, I need project scope, timeline, budget range, technical requirements, and any design preferences. The more details you provide, the better I can assist you.</p>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <!-- ========================= -->
-            <!-- Footer Section              -->
-            <!-- ========================= -->
-            <p>© 2025 Gerard Ugwu. All rights reserved.</p>
-            <p>Connect with me on social media or send me an email!</p>
-        </footer>
+{% block content %}
+<div class="container">
+  <div class="contact-container">
+    <h1 class="section-title">Get In Touch</h1>
+    <p>Have a project in mind or want to discuss opportunities? Feel free to reach out!</p>
+    
+    <form class="contact-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" required></textarea>
+      </div>
+      
+      <button type="submit" class="submit-btn">Send Message</button>
+    </form>
+  </div>
+</div>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+        <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
+        <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+        <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
     </div>
-</body>
-</html>
+{% endblock %}

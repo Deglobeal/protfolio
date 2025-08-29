@@ -406,6 +406,78 @@
             background: var(--secondary);
             transform: translateY(-5px);
         }
+
+        /* Footer styles */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p {
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+        
+        .footer-links i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
         
         @media (max-width: 768px) {
             header h1 {
@@ -438,6 +510,10 @@
             .cta-buttons a {
                 width: 80%;
                 text-align: center;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -489,7 +565,7 @@
                                 <div class="stat-label">Connections</div>
                             </div>
                         </div>
-                        <p><strong>Profile:</strong> <a href="https://linkedin.com/in/johndoe" target="_blank">linkedin.com/in/johndoe</a></p>
+                        <p><strong>Profile:</strong> <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank">linkedin.com/in/gerard-ugwu</a></p>
                         
                         <h5>What I Share:</h5>
                         <ul class="content-list">
@@ -506,7 +582,7 @@
                             <div class="popular-item">Product launch</div>
                         </div>
                         
-                        <a href="https://linkedin.com/in/johndoe" target="_blank" class="platform-cta">Connect on LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" class="platform-cta">Connect on LinkedIn</a>
                     </div>
 
                     <!-- GitHub Card -->
@@ -525,7 +601,7 @@
                                 <div class="stat-label">Repositories</div>
                             </div>
                         </div>
-                        <p><strong>Profile:</strong> <a href="https://github.com/johndoe" target="_blank">github.com/johndoe</a></p>
+                        <p><strong>Profile:</strong> <a href="https://github.com/Deglobeal" target="_blank">github.com/Deglobeal</a></p>
                         
                         <h5>What You'll Find:</h5>
                         <ul class="content-list">
@@ -542,7 +618,7 @@
                             <div class="popular-item">javascript-algorithms</div>
                         </div>
                         
-                        <a href="https://github.com/johndoe" target="_blank" class="platform-cta">Follow on GitHub</a>
+                        <a href="https://github.com/Deglobeal" target="_blank" class="platform-cta">Follow on GitHub</a>
                     </div>
 
                     <!-- Stack Overflow Card -->
@@ -561,7 +637,7 @@
                                 <div class="stat-label">Answers</div>
                             </div>
                         </div>
-                        <p><strong>Profile:</strong> <a href="https://stackoverflow.com/users/johndoe" target="_blank">stackoverflow.com/users/johndoe</a></p>
+                        <p><strong>Profile:</strong> <a href="https://stackoverflow.com/users/gerard-ugwu" target="_blank">stackoverflow.com/users/gerard-ugwu</a></p>
                         
                         <h5>My Contributions:</h5>
                         <ul class="content-list">
@@ -578,7 +654,7 @@
                             <div class="popular-item">Node.js</div>
                         </div>
                         
-                        <a href="https://stackoverflow.com/users/johndoe" target="_blank" class="platform-cta">View Profile</a>
+                        <a href="https://stackoverflow.com/users/gerard-ugwu" target="_blank" class="platform-cta">View Profile</a>
                     </div>
                 </div>
             </section>
@@ -604,7 +680,7 @@
                                 <div class="stat-label">Tweets</div>
                             </div>
                         </div>
-                        <p><strong>Handle:</strong> <a href="https://twitter.com/johndoedev" target="_blank">@johndoedev</a></p>
+                        <p><strong>Handle:</strong> <a href="https://x.com/GerardOnye16230" target="_blank">@GerardOnye16230</a></p>
                         
                         <h5>What I Tweet About:</h5>
                         <ul class="content-list">
@@ -621,7 +697,7 @@
                             <div class="popular-item">ReactConf 2024</div>
                         </div>
                         
-                        <a href="https://twitter.com/johndoedev" target="_blank" class="platform-cta">Follow on Twitter</a>
+                        <a href="https://x.com/GerardOnye16230" target="_blank" class="platform-cta">Follow on Twitter</a>
                     </div>
 
                     <!-- Instagram Card -->
@@ -640,7 +716,7 @@
                                 <div class="stat-label">Posts</div>
                             </div>
                         </div>
-                        <p><strong>Handle:</strong> <a href="https://instagram.com/johndoedev" target="_blank">@johndoedev</a></p>
+                        <p><strong>Handle:</strong> <a href="https://instagram.com/gerard_ugwu" target="_blank">@gerard_ugwu</a></p>
                         
                         <h5>Visual Content:</h5>
                         <ul class="content-list">
@@ -657,7 +733,7 @@
                             <div class="popular-item">Tech stack spotlight</div>
                         </div>
                         
-                        <a href="https://instagram.com/johndoedev" target="_blank" class="platform-cta">Follow on Instagram</a>
+                        <a href="https://instagram.com/gerard_ugwu" target="_blank" class="platform-cta">Follow on Instagram</a>
                     </div>
 
                     <!-- YouTube Card -->
@@ -676,7 +752,7 @@
                                 <div class="stat-label">Videos</div>
                             </div>
                         </div>
-                        <p><strong>Channel:</strong> <a href="https://youtube.com/johndoedev" target="_blank">Gerard Ugwu Dev</a></p>
+                        <p><strong>Channel:</strong> <a href="https://youtube.com/@deglobeal" target="_blank">Gerard Ugwu Dev</a></p>
                         
                         <h5>Video Content:</h5>
                         <ul class="content-list">
@@ -693,115 +769,36 @@
                             <div class="popular-item">Tools Deep Dive</div>
                         </div>
                         
-                        <a href="https://youtube.com/johndoedev" target="_blank" class="platform-cta">Subscribe on YouTube</a>
+                        <a href="https://youtube.com/@deglobeal" target="_blank" class="platform-cta">Subscribe on YouTube</a>
                     </div>
                 </div>
             </section>
 
             <section>
-                <h3>Developer Community Platforms</h3>
-                <p>Engage with me on specialized developer platforms where I share knowledge, participate in discussions, and contribute to the tech community.</p>
+                <h3>Additional Platforms</h3>
+                <p>Connect with me on these other platforms for learning, direct communication, and more specialized content.</p>
 
                 <div class="platform-grid">
-                    <!-- Dev.to Card -->
+                    <!-- Sololearn Card -->
                     <div class="platform-card">
                         <div class="platform-header">
-                            <i class="fab fa-dev platform-icon"></i>
-                            <h4>Dev.to</h4>
+                            <i class="fas fa-graduation-cap platform-icon"></i>
+                            <h4>Sololearn</h4>
                         </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">1.2k+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">35+</div>
-                                <div class="stat-label">Articles</div>
-                            </div>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://dev.to/johndoe" target="_blank">dev.to/johndoe</a></p>
-                        
-                        <h5>Article Topics:</h5>
-                        <ul class="content-list">
-                            <li>Technical tutorials</li>
-                            <li>Best practices</li>
-                            <li>Framework comparisons</li>
-                            <li>Career development</li>
-                        </ul>
-                        
-                        <h5>Popular Articles:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">10 React Hooks</div>
-                            <div class="popular-item">Scalable Node.js</div>
-                            <div class="popular-item">CSS Grid vs Flexbox</div>
-                        </div>
-                        
-                        <a href="https://dev.to/johndoe" target="_blank" class="platform-cta">Follow on Dev.to</a>
+                        <p><strong>Profile:</strong> <a href="https://www.sololearn.com/en/profile/2262487" target="_blank">sololearn.com/en/profile/2262487</a></p>
+                        <p>Follow me on Sololearn to see my coding progress, completed courses, and coding achievements.</p>
+                        <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" class="platform-cta">View on Sololearn</a>
                     </div>
 
-                    <!-- Hashnode Card -->
+                    <!-- WhatsApp Card -->
                     <div class="platform-card">
                         <div class="platform-header">
-                            <i class="fas fa-blog platform-icon"></i>
-                            <h4>Hashnode</h4>
+                            <i class="fab fa-whatsapp platform-icon"></i>
+                            <h4>WhatsApp</h4>
                         </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">800+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">25+</div>
-                                <div class="stat-label">Articles</div>
-                            </div>
-                        </div>
-                        <p><strong>Blog:</strong> <a href="https://johndoe.hashnode.dev" target="_blank">johndoe.hashnode.dev</a></p>
-                        
-                        <h5>Blog Content:</h5>
-                        <ul class="content-list">
-                            <li>Project case studies</li>
-                            <li>Technical deep-dives</li>
-                            <li>Learning journey</li>
-                            <li>Industry trends</li>
-                        </ul>
-                        
-                        <a href="https://johndoe.hashnode.dev" target="_blank" class="platform-cta">Subscribe to Blog</a>
-                    </div>
-
-                    <!-- CodePen Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-codepen platform-icon"></i>
-                            <h4>CodePen</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">600+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">120+</div>
-                                <div class="stat-label">Pens</div>
-                            </div>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://codepen.io/johndoe" target="_blank">codepen.io/johndoe</a></p>
-                        
-                        <h5>Creative Projects:</h5>
-                        <ul class="content-list">
-                            <li>CSS animations</li>
-                            <li>JavaScript games</li>
-                            <li>UI prototypes</li>
-                            <li>Data visualizations</li>
-                        </ul>
-                        
-                        <h5>Popular Pens:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">CSS Spinners</div>
-                            <div class="popular-item">JS Calculator</div>
-                            <div class="popular-item">Card Layouts</div>
-                        </div>
-                        
-                        <a href="https://codepen.io/johndoe" target="_blank" class="platform-cta">Follow on CodePen</a>
+                        <p><strong>Chat:</strong> <a href="https://wa.me/2347032388531" target="_blank">+234 703 238 8531</a></p>
+                        <p>Reach out directly for quick conversations, project discussions, or collaboration opportunities.</p>
+                        <a href="https://wa.me/2347032388531" target="_blank" class="platform-cta">Chat on WhatsApp</a>
                     </div>
                 </div>
             </section>
@@ -890,11 +887,11 @@
                     </div>
                     
                     <div class="collaboration-type">
-                        <h5>Creative Collaboration</h5>
+                        <h5>Direct Communication</h5>
                         <ul class="content-list">
-                            <li><strong>Dribbble:</strong> Design feedback and creative projects</li>
-                            <li><strong>CodePen:</strong> Code experiments and creative coding</li>
-                            <li><strong>Behance:</strong> Portfolio reviews and design discussions</li>
+                            <li><strong>WhatsApp:</strong> Direct messaging for quick conversations</li>
+                            <li><strong>Email:</strong> Formal inquiries and detailed discussions</li>
+                            <li><strong>Sololearn:</strong> Learning path discussions and coding challenges</li>
                         </ul>
                     </div>
                 </div>
@@ -904,9 +901,9 @@
                     <p>Choose your preferred platform and let's start a conversation! I'm always happy to discuss technology, share knowledge, or explore potential collaborations.</p>
                     
                     <div class="cta-buttons">
-                        <a href="https://linkedin.com/in/johndoe" target="_blank">Connect on LinkedIn</a>
-                        <a href="https://twitter.com/johndoedev" target="_blank">Follow on Twitter</a>
-                        <a href="https://github.com/johndoe" target="_blank">Collaborate on GitHub</a>
+                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank">Connect on LinkedIn</a>
+                        <a href="https://x.com/GerardOnye16230" target="_blank">Follow on Twitter</a>
+                        <a href="https://github.com/Deglobeal" target="_blank">Collaborate on GitHub</a>
                         <a href="/contact">Send Direct Message</a>
                     </div>
                 </div>
@@ -914,43 +911,38 @@
         </main>
 
         <footer>
-            <p>© 2025 Gerard Ugwu. All rights reserved.</p>
-            <p>Connect with me on social media or send me an email!</p>
-            
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3>Gerard Ugwu</h3>
-                        <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
-                        <div class="social-links">
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#"><i class="fab fa-github"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-dribbble"></i></a>
-                        </div>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Quick Links</h3>
-                        <ul class="footer-links">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a href="/skills">Skills</a></li>
-                            <li><a href="/projects">Projects</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h3>Contact Me</h3>
-                        <ul class="footer-links">
-                            <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
-                            <li><i class="fas fa-phone"></i> +2347032388531</li>
-                            <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
-                        </ul>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Gerard Ugwu</h3>
+                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                        <a href="https://x.com/GerardOnye16230" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                        <a href="https://youtube.com/@deglobeal" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="copyright">
-                    <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/skills">Skills</a></li>
+                        <li><a href="/projects">Projects</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
                 </div>
+                <div class="footer-section">
+                    <h3>Contact Me</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +2347032388531</li>
+                        <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
             </div>
         </footer>
     </div>

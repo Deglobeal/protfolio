@@ -720,57 +720,75 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar Toggle Button -->
-    <button id="sidebar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <!-- Overlay for mobile sidebar -->
-    <div id="overlay"></div>
-    
-    <!-- Professional Side Menu -->
-    <div class="sidebar">
-        <div class="logo-container">
-            <div class="logo">Gerard<span>Ugwu</span></div>
-            <div class="menu-icon">
-                <i class="fas fa-chevron-left"></i>
-            </div>
-        </div>
-        
-        <ul>
-            <li><a href="/"><i class="fas fa-home"></i> <span class="link-text">Home</span></a></li>
-            <li><a href="/profile"><i class="fas fa-user"></i> <span class="link-text">Profile</span></a></li>
-            <li><a href="/skills"><i class="fas fa-code"></i> <span class="link-text">Skills</span></a></li>
-            <li><a href="/projects"><i class="fas fa-project-diagram"></i> <span class="link-text">Projects</span></a></li>
-            <li><a href="/certificates"><i class="fas fa-certificate"></i> <span class="link-text">Certificates</span></a></li>
-            <li><a href="/resume" class="active"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
-            <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
-            <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
-        </ul>
-        
-        <div class="social-links">
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-dribbble"></i></a>
-        </div>
-    </div>
 
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
-        <!-- Header -->
-        <header>
-            <div class="container header-container">
-                <div class="header-logo">Gerard<span>Ugwu</span></div>
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+  <!-- Sidebar Toggle Button -->
+  <button id="sidebar-toggle">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Professional Side Menu -->
+  <div class="sidebar">
+    <div class="logo-container">
+      <div class="logo">Gerard<span>Ugwu</span></div>
+      <div class="menu-icon">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+    </div>
+    <ul>
+      <li><a href="/" ><i class="fas fa-home"></i> <span class="link-text">Home</span></a></li>
+      <li><a href="/profile"><i class="fas fa-user"></i> <span class="link-text">Profile</span></a></li>
+      <li><a href="/skills"><i class="fas fa-code"></i> <span class="link-text">Skills</span></a></li>
+      <li><a href="/projects"><i class="fas fa-project-diagram"></i> <span class="link-text">Projects</span></a></li>
+      <li><a href="/certificates"><i class="fas fa-certificate"></i> <span class="link-text">Certificates</span></a></li>
+      <li><a href="/resume" class="active"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
+      <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
+      <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
+    </ul>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
+      <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+      <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-dribbble"></i></a>
+    </div>
+  </div>
+
+  <!-- Main Wrapper -->
+  <div class="main-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="container header-container">
+        <div class="header-logo">Gerard<span>Ugwu</span></div>
+        <nav>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: 25px;">
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.querySelector('#sidebar-toggle');
+            if (toggleBtn && sidebar) {
+              toggleBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                sidebar.classList.toggle('sidebar-open');
+              });
+            }
+            document.addEventListener('click', function(e) {
+              if (sidebar && sidebar.classList.contains('sidebar-open')) {
+                if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+                  sidebar.classList.remove('sidebar-open');
+                }
+              }
+            });
+          });
+        </script>
+      </div>
+    </header>
 
         <!-- Main content area -->
         <main class="container">
@@ -806,12 +824,12 @@
                             <p><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</p>
                             <p><i class="fas fa-phone"></i> +2347032388531</p>
                             <p>
-                                <a href="https://linkedin.com/in/gerardugwu" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin"></i> LinkedIn
                                 </a>
                             </p>
                             <p>
-                                <a href="https://github.com/gerardugwu" target="_blank" rel="noopener noreferrer">
+                                <a href="https://github.com/Deglobeal" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-github"></i> GitHub
                                 </a>
                             </p>
@@ -1155,7 +1173,7 @@
                 <div class="contact-links">
                     <a href="/contact" class="btn"><i class="fas fa-envelope"></i> Contact Me</a>
                     <a href="/projects" class="btn"><i class="fas fa-project-diagram"></i> View My Projects</a>
-                    <a href="https://linkedin.com/in/gerardugwu" target="_blank" rel="noopener noreferrer" class="btn">
+                    <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener noreferrer" class="btn">
                         <i class="fab fa-linkedin"></i> LinkedIn Profile
                     </a>
                 </div>
@@ -1170,8 +1188,8 @@
                 <h3>Gerard Ugwu</h3>
                 <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
                 <div class="social-links">
-                  <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="#"><i class="fab fa-github"></i></a>
+                  <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                  <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
                   <a href="#"><i class="fab fa-twitter"></i></a>
                   <a href="#"><i class="fab fa-dribbble"></i></a>
                 </div>

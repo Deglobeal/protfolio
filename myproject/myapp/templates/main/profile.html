@@ -8,843 +8,1112 @@
     <!-- ========================= -->
     <!-- Head Section             -->
     <!-- ========================= -->
-    <!-- Head Section -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerard Ugwu - Professional Profile</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-/* styles.css */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-:root {
-    --primary: #2563eb;
-    --primary-dark: #1e40af;
-    --accent: #e11d48;
-    --light: #f8fafc;
-    --dark: #0f172a;
-    --gray: #64748b;
-    --light-gray: #e2e8f0;
-    --border-radius: 10px;
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --transition: all 0.3s ease;
-}
-
-body {
-    background-color: #f1f5f9;
-    color: #334155;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-header {
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 0;
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-
-.logo span {
-    color: var(--accent);
-}
-
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 25px;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--dark);
-    font-weight: 500;
-    font-size: 1.1rem;
-    transition: var(--transition);
-    position: relative;
-}
-
-nav a:hover {
-    color: var(--primary);
-}
-
-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary);
-    transition: var(--transition);
-}
-
-nav a:hover::after {
-    width: 100%;
-}
-
-.mobile-menu {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-}
-
-.hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: white;
-    padding: 80px 0;
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 20px;
-    font-weight: 800;
-}
-
-.hero p {
-    font-size: 1.4rem;
-    max-width: 800px;
-    margin: 0 auto 40px;
-    opacity: 0.9;
-}
-
-.profile-section {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 60px;
-    flex-wrap: wrap;
-}
-
-.profile-card {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.profile-header {
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    margin-bottom: 30px;
-    flex-wrap: wrap;
-}
-
-.profile-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid var(--light);
-    box-shadow: var(--shadow);
-}
-
-.profile-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.profile-info h2 {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
-
-.profile-info p {
-    font-size: 1.2rem;
-    color: var(--gray);
-    margin-bottom: 20px;
-}
-
-.contact-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contact-icon {
-    width: 40px;
-    height: 40px;
-    background: var(--light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-}
-
-.section {
-    background: white;
-    border-radius: var(--border-radius);
-    padding: 40px;
-    margin-bottom: 50px;
-    box-shadow: var(--shadow);
-}
-
-.section-title {
-    margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid var(--light);
-    position: relative;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 80px;
-    height: 3px;
-    background: var(--primary);
-}
-
-.education-item,
-.experience-item {
-    margin-bottom: 35px;
-    padding-bottom: 25px;
-    border-bottom: 1px solid var(--light-gray);
-}
-
-.education-item:last-child,
-.experience-item:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.education-item h4,
-.experience-item h4 {
-    font-size: 1.4rem;
-    color: var(--dark);
-    margin-bottom: 10px;
-}
-
-.experience-details {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 15px;
-    flex-wrap: wrap;
-}
-
-.experience-detail {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--gray);
-}
-
-ul {
-    padding-left: 25px;
-    margin-bottom: 20px;
-}
-
-ul li {
-    margin-bottom: 12px;
-    position: relative;
-}
-
-ul li::before {
-    content: "\2022";
-    color: var(--primary);
-    position: absolute;
-    left: -20px;
-}
-
-.tech-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-.tech-item {
-    background: var(--light);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    color: var(--dark);
-}
-
-.background-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.background-card {
-    background: var(--light);
-    padding: 25px;
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--primary);
-}
-
-.background-card h4 {
-    margin-bottom: 15px;
-    color: var(--dark);
-}
-
-blockquote {
-    font-style: italic;
-    padding: 25px;
-    border-left: 4px solid var(--primary);
-    background: var(--light);
-    border-radius: var(--border-radius);
-    margin: 30px 0;
-    position: relative;
-}
-
-blockquote::before {
-    content: "\201C";
-    font-size: 4rem;
-    position: absolute;
-    top: -20px;
-    left: 10px;
-    color: var(--light-gray);
-    font-family: Georgia, serif;
-}
-
-.cta-buttons {
-    display: flex;
-    gap: 20px;
-    margin-top: 30px;
-    flex-wrap: wrap;
-}
-
-.btn {
-    display: inline-block;
-    padding: 12px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    text-align: center;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--primary-dark);
-    transform: translateY(-3px);
-}
-
-.btn-outline {
-    border: 2px solid var(--primary);
-    color: var(--primary);
-}
-
-.btn-outline:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-3px);
-}
-
-footer {
-    background: var(--dark);
-    color: white;
-    padding: 50px 0 20px;
-    margin-top: 60px;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-section {
-    flex: 1;
-    min-width: 250px;
-}
-
-.footer-section h3 {
-    font-size: 1.4rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.footer-section h3::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    background: var(--primary);
-}
-
-.social-links {
-    display: flex;
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    background: var(--primary);
-    transform: translateY(-5px);
-}
-
-.footer-links {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: #cbd5e1;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer-links a:hover {
-    color: var(--primary);
-    padding-left: 5px;
-}
-
-.copyright {
-    text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: #94a3b8;
-    font-size: 0.9rem;
-}
-
-@media (max-width: 900px) {
-    .hero h1 {
-        font-size: 2.8rem;
-    }
-    .hero p {
-        font-size: 1.2rem;
-    }
-    nav ul {
-        display: none;
-    }
-    .mobile-menu {
-        display: block;
-    }
-    .mobile-nav {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        width: 100%;
-        background: white;
-        padding: 20px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        z-index: 99;
-    }
-    .mobile-nav ul {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-
-@media (max-width: 600px) {
-    .hero {
-        padding: 60px 0;
-    }
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    .profile-header {
-        justify-content: center;
-        text-align: center;
-    }
-    .contact-details {
-        justify-content: center;
-    }
-    .cta-buttons {
-        justify-content: center;
-    }
-}
+        /* styles.css */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --accent: #e11d48;
+            --light: #f8fafc;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #e2e8f0;
+            --border-radius: 10px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 70px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--dark), #1e293b);
+            z-index: 1000;
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            overflow-x: hidden;
+            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar:hover {
+            width: 250px;
+        }
+        
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+        
+        .sidebar .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 25px 20px;
+            height: 90px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .sidebar .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar:hover .logo {
+            opacity: 1;
+        }
+        
+        .sidebar .logo span {
+            color: var(--accent);
+        }
+        
+        .sidebar .menu-icon {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar:hover .menu-icon {
+            transform: rotate(90deg);
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+        
+        .sidebar li {
+            margin: 12px 0;
+            position: relative;
+            overflow: hidden;
+            list-style-type: none; /* Remove bullet points */
+        }
+        
+        .sidebar a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            transition: var(--transition);
+            border-radius: 6px;
+            margin: 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .sidebar a i {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .sidebar a .link-text {
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .sidebar:hover a .link-text {
+            opacity: 1;
+        }
+        
+        .sidebar a:hover {
+            background: rgba(37, 99, 235, 0.15);
+            color: white;
+            transform: translateX(0);
+        }
+        
+        .sidebar a:hover i {
+            transform: scale(1.15);
+            color: var(--primary);
+        }
+        
+        .sidebar a.active {
+            background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), transparent);
+            color: white;
+        }
+        
+        .sidebar a.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--primary);
+        }
+        
+        .sidebar .social-links {
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 10px;
+        }
+        
+        .sidebar .social-links a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+            margin: 0 5px;
+            padding: 0;
+            transition: var(--transition);
+        }
+        
+        .sidebar .social-links a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Toggle button styling */
+        #sidebar-toggle {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 1100;
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            padding: 12px 16px;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #sidebar-toggle:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(37,99,235,0.3);
+        }
+        
+        #sidebar-toggle i {
+            font-size: 1.2rem;
+        }
+        
+        .main-wrapper {
+            margin-right: 70px;
+            transition: margin 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .sidebar:hover ~ .main-wrapper {
+            margin-right: 250px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .header-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .header-logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .profile-section {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .profile-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-header {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--light);
+            box-shadow: var(--shadow);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .profile-info p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .contact-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+
+        .section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--light);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .education-item,
+        .experience-item {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .education-item:last-child,
+        .experience-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .education-item h4,
+        .experience-item h4 {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .experience-details {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .experience-detail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+        }
+
+        ul {
+            padding-left: 25px;
+            margin-bottom: 20px;
+        }
+
+        ul li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        ul li::before {
+            content: "\2022";
+            color: var(--primary);
+            position: absolute;
+            left: -20px;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .tech-item {
+            background: var(--light);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .background-card {
+            background: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .background-card h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        blockquote {
+            font-style: italic;
+            padding: 25px;
+            border-left: 4px solid var(--primary);
+            background: var(--light);
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            position: relative;
+        }
+
+        blockquote::before {
+            content: "\201C";
+            font-size: 4rem;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+            color: var(--light-gray);
+            font-family: Georgia, serif;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            nav ul {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .mobile-nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+            }
+            .mobile-nav ul {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            /* Responsive sidebar */
+            .sidebar {
+                width: 250px;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+            
+            .sidebar.sidebar-open {
+                transform: translateX(0);
+            }
+            
+            .sidebar .logo,
+            .sidebar .link-text {
+                opacity: 1;
+            }
+            
+            .sidebar .menu-icon {
+                display: none;
+            }
+            
+            .main-wrapper {
+                margin-right: 0;
+            }
+            
+            .sidebar:hover ~ .main-wrapper {
+                margin-right: 0;
+            }
+            
+            #sidebar-toggle {
+                display: block;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 60px 0;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .profile-header {
+                justify-content: center;
+                text-align: center;
+            }
+            .contact-details {
+                justify-content: center;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- ========================= -->
-    <!-- Main Container           -->
-    <!-- ========================= -->
-    <!-- Main Container -->
-    <!-- Header -->
-    <header>
-        <!-- ========================= -->
-        <!-- Header Section           -->
-        <!-- ========================= -->
-        <!-- ========================= -->
-        <!-- Main Content Section     -->
-        <!-- ========================= -->
-        <!-- Header Section -->
-        <!-- Main Content Section -->
-        <div class="container header-container">
+    <!-- Sidebar Toggle Button -->
+    <button id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <!-- Professional Side Menu -->
+    <div class="sidebar">
+        <div class="logo-container">
             <div class="logo">Gerard<span>Ugwu</span></div>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/skills">Skills</a></li>
-                    <li><a href="/projects">Projects</a></li>
-                    <li><a href="/certificates">Certificates</a></li>
-                    <li><a href="/resume">Resume</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/social">Social</a></li>
-                </ul>
-            </nav>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
+            <div class="menu-icon">
+                <i class="fas fa-chevron-left"></i>
             </div>
         </div>
-    </header>
+        
+        <ul>
+            <li><a href="/"><i class="fas fa-home"></i> <span class="link-text">Home</span></a></li>
+            <li><a href="/profile" class="active"><i class="fas fa-user"></i> <span class="link-text">Profile</span></a></li>
+            <li><a href="/skills"><i class="fas fa-code"></i> <span class="link-text">Skills</span></a></li>
+            <li><a href="/projects"><i class="fas fa-project-diagram"></i> <span class="link-text">Projects</span></a></li>
+            <li><a href="/certificates"><i class="fas fa-certificate"></i> <span class="link-text">Certificates</span></a></li>
+            <li><a href="/resume"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
+            <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
+            <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
+        </ul>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+            <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
+            <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+            <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Professional Profile</h1>
-            <p>Senior Web Developer & UI/UX Designer with 5+ years of experience</p>
-        </div>
-    </section>
-
-    <!-- Main Content -->
-    <main class="container">
-        <!-- Personal Information -->
-        <div class="profile-section">
-            <div class="profile-card">
-                <div class="profile-header">
-                    <div class="profile-photo">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Gerard Ugwu">
-                    </div>
-                    <div class="profile-info">
-                        <h2>Gerard Ugwu</h2>
-                        <p>Senior Web Developer & UI/UX Designer</p>
-                    </div>
-                </div>
-                
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>YABA LAGOS, NIGERIA</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4>Email</h4>
-                            <p>kachimaxy1@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>+2347032388531</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-briefcase"></i>
-                        </div>
-                        <div>
-                            <h4>Experience</h4>
-                            <p>5+ Years</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="profile-card">
-                <h3 class="section-title">About Me</h3>
-                <p>I am a passionate and dedicated web developer with over 5 years of experience in creating innovative digital solutions. My journey in technology began during my college years when I discovered the power of code to transform ideas into reality.</p>
-                
-                <p>My expertise spans across front-end and back-end development, with a particular focus on creating user-centered experiences that are both functional and aesthetically pleasing. I believe in the importance of clean, maintainable code and collaborative development practices.</p>
-                
-                <p>When I'm not coding, I enjoy contributing to open-source projects, mentoring junior developers, and exploring new technologies that can enhance my skill set. I'm also passionate about accessibility and ensuring that the web is inclusive for all users.</p>
-            </div>
-        </div>
-        
-        <!-- Education Section -->
-        <div class="section">
-            <h3 class="section-title">Education</h3>
-            
-            <div class="education-item">
-                <h4>Bachelor of Science in Computer Science</h4>
-                <div class="experience-details">
-                    <div class="experience-detail">
-                        <i class="fas fa-university"></i>
-                        <span>University of California, Berkeley</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="far fa-calendar"></i>
-                        <span>2015 - 2019</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span>GPA: 3.8/4.0</span>
-                    </div>
-                </div>
-                <p>Focused on software engineering, data structures, algorithms, and web technologies. Completed senior capstone project developing a full-stack e-commerce platform.</p>
-                <p><strong>Relevant Coursework:</strong> Web Development, Database Systems, Software Engineering, Human-Computer Interaction</p>
-            </div>
-            
-            <div class="education-item">
-                <h4>Certificate in UX/UI Design</h4>
-                <div class="experience-details">
-                    <div class="experience-detail">
-                        <i class="fas fa-university"></i>
-                        <span>Stanford Continuing Studies</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="far fa-calendar"></i>
-                        <span>2020 (6-month intensive program)</span>
-                    </div>
-                </div>
-                <p>Comprehensive program covering user research, wireframing, prototyping, and design systems. Completed multiple real-world projects with industry mentors.</p>
-            </div>
-        </div>
-        
-        <!-- Professional Experience -->
-        <div class="section">
-            <h3 class="section-title">Professional Experience</h3>
-            
-            <div class="experience-item">
-                <h4>Senior Web Developer</h4>
-                <div class="experience-details">
-                    <div class="experience-detail">
-                        <i class="fas fa-building"></i>
-                        <span>TechCorp Solutions, YABA LAGOS, NIGERIA</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="far fa-calendar"></i>
-                        <span>2022 - Present</span>
-                    </div>
-                </div>
-                
-                <ul>
-                    <li>Lead development of responsive web applications serving 100K+ daily active users</li>
-                    <li>Mentor junior developers and conduct code reviews to maintain high code quality standards</li>
-                    <li>Collaborate with design and product teams to implement user-centered features</li>
-                    <li>Optimize application performance, reducing load times by 40% through code splitting and caching strategies</li>
-                    <li>Implement automated testing suites, increasing code coverage from 60% to 95%</li>
-                </ul>
-                
-                <div class="tech-list">
-                    <span class="tech-item">React</span>
-                    <span class="tech-item">Node.js</span>
-                    <span class="tech-item">TypeScript</span>
-                    <span class="tech-item">PostgreSQL</span>
-                    <span class="tech-item">AWS</span>
-                    <span class="tech-item">Docker</span>
-                </div>
-            </div>
-            
-            <div class="experience-item">
-                <h4>Full Stack Developer</h4>
-                <div class="experience-details">
-                    <div class="experience-detail">
-                        <i class="fas fa-building"></i>
-                        <span>StartupXYZ, Palo Alto, CA</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="far fa-calendar"></i>
-                        <span>2020 - 2022</span>
-                    </div>
-                </div>
-                
-                <ul>
-                    <li>Developed and maintained multiple client-facing web applications from concept to deployment</li>
-                    <li>Built RESTful APIs and integrated third-party services to enhance application functionality</li>
-                    <li>Worked in an agile environment, participating in sprint planning and daily standups</li>
-                    <li>Implemented responsive designs that improved mobile user engagement by 35%</li>
-                    <li>Collaborated with stakeholders to gather requirements and translate them into technical solutions</li>
-                </ul>
-                
-                <div class="tech-list">
-                    <span class="tech-item">Vue.js</span>
-                    <span class="tech-item">Express.js</span>
-                    <span class="tech-item">MongoDB</span>
-                    <span class="tech-item">Firebase</span>
-                    <span class="tech-item">Stripe API</span>
-                </div>
-            </div>
-            
-            <div class="experience-item">
-                <h4>Junior Web Developer</h4>
-                <div class="experience-details">
-                    <div class="experience-detail">
-                        <i class="fas fa-building"></i>
-                        <span>Digital Agency Pro, YABA LAGOS, NIGERIA</span>
-                    </div>
-                    <div class="experience-detail">
-                        <i class="far fa-calendar"></i>
-                        <span>2019 - 2020</span>
-                    </div>
-                </div>
-                
-                <ul>
-                    <li>Developed custom WordPress themes and plugins for various client projects</li>
-                    <li>Converted PSD designs to pixel-perfect, responsive HTML/CSS/JavaScript implementations</li>
-                    <li>Performed website maintenance, updates, and troubleshooting for existing client sites</li>
-                    <li>Assisted in SEO optimization efforts, improving client site rankings by an average of 25%</li>
-                    <li>Participated in client meetings to discuss project requirements and provide technical insights</li>
-                </ul>
-                
-                <div class="tech-list">
-                    <span class="tech-item">WordPress</span>
-                    <span class="tech-item">PHP</span>
-                    <span class="tech-item">jQuery</span>
-                    <span class="tech-item">SASS</span>
-                    <span class="tech-item">MySQL</span>
-                    <span class="tech-item">Google Analytics</span>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Background & Interests -->
-        <div class="section">
-            <h3 class="section-title">Background & Interests</h3>
-            
-            <div class="background-grid">
-                <div class="background-card">
-                    <h4>Professional Background</h4>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header -->
+        <header>
+            <div class="container header-container">
+                <div class="header-logo">Gerard<span>Ugwu</span></div>
+                <nav>
                     <ul>
-                        <li>5+ years in web development and design</li>
-                        <li>Experience with both startup and enterprise environments</li>
-                        <li>Strong background in agile development methodologies</li>
-                        <li>Proven track record of delivering projects on time and within budget</li>
-                    </ul>
-                </div>
-                
-                <div class="background-card">
-                    <h4>Personal Interests</h4>
-                    <ul>
-                        <li>Open source contribution and community involvement</li>
-                        <li>Photography and digital art creation</li>
-                        <li>Hiking and outdoor activities</li>
-                        <li>Continuous learning through online courses and workshops</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Professional Philosophy -->
-        <div class="section">
-            <h3 class="section-title">Professional Philosophy</h3>
-            
-            <blockquote>
-                <p>"I believe that great web development is not just about writing code, but about creating meaningful experiences that solve real problems for real people. Every line of code should serve a purpose, and every design decision should be made with the user in mind."</p>
-            </blockquote>
-            
-            <div class="cta-buttons">
-                <a href="/projects" class="btn btn-primary">View My Projects</a>
-                <a href="/contact" class="btn btn-outline">Get In Touch</a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <!-- ========================= -->
-        <!-- Footer Section           -->
-        <!-- ========================= -->
-        <!-- Footer Section -->
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Gerard Ugwu</h3>
-                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/skills">Skills</a></li>
                         <li><a href="/projects">Projects</a></li>
-                        <li><a href="/resume">Resume</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Professional Profile</h1>
+                <p>Senior Web Developer & UI/UX Designer with 5+ years of experience</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Personal Information -->
+            <div class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-photo">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" alt="Gerard Ugwu">
+                        </div>
+                        <div class="profile-info">
+                            <h2>Gerard Ugwu</h2>
+                            <p>Senior Web Developer & UI/UX Designer</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>YABA LAGOS, NIGERIA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>kachimaxy1@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+2347032388531</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div>
+                                <h4>Experience</h4>
+                                <p>5+ Years</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>Contact Me</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +2347032388531</li>
-                        <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
-                    </ul>
+                <div class="profile-card">
+                    <h3 class="section-title">About Me</h3>
+                    <p>I am a passionate and dedicated web developer with over 5 years of experience in creating innovative digital solutions. My journey in technology began during my college years when I discovered the power of code to transform ideas into reality.</p>
+                    
+                    <p>My expertise spans across front-end and back-end development, with a particular focus on creating user-centered experiences that are both functional and aesthetically pleasing. I believe in the importance of clean, maintainable code and collaborative development practices.</p>
+                    
+                    <p>When I'm not coding, I enjoy contributing to open-source projects, mentoring junior developers, and exploring new technologies that can enhance my skill set. I'm also passionate about accessibility and ensuring that the web is inclusive for all users.</p>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+            <!-- Education Section -->
+            <div class="section">
+                <h3 class="section-title">Education</h3>
+                
+                <div class="education-item">
+                    <h4>Bachelor of Science in Computer Science</h4>
+                    <div class="experience-details">
+                        <div class="experience-detail">
+                            <i class="fas fa-university"></i>
+                            <span>University of California, Berkeley</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="far fa-calendar"></i>
+                            <span>2015 - 2019</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>GPA: 3.8/4.0</span>
+                        </div>
+                    </div>
+                    <p>Focused on software engineering, data structures, algorithms, and web technologies. Completed senior capstone project developing a full-stack e-commerce platform.</p>
+                    <p><strong>Relevant Coursework:</strong> Web Development, Database Systems, Software Engineering, Human-Computer Interaction</p>
+                </div>
+                
+                <div class="education-item">
+                    <h4>Certificate in UX/UI Design</h4>
+                    <div class="experience-details">
+                        <div class="experience-detail">
+                            <i class="fas fa-university"></i>
+                            <span>Stanford Continuing Studies</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="far fa-calendar"></i>
+                            <span>2020 (6-month intensive program)</span>
+                        </div>
+                    </div>
+                    <p>Comprehensive program covering user research, wireframing, prototyping, and design systems. Completed multiple real-world projects with industry mentors.</p>
+                </div>
             </div>
-        </div>
-    </footer>
+            
+            <!-- Professional Experience -->
+            <div class="section">
+                <h3 class="section-title">Professional Experience</h3>
+                
+                <div class="experience-item">
+                    <h4>Senior Web Developer</h4>
+                    <div class="experience-details">
+                        <div class="experience-detail">
+                            <i class="fas fa-building"></i>
+                            <span>TechCorp Solutions, YABA LAGOS, NIGERIA</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="far fa-calendar"></i>
+                            <span>2022 - Present</span>
+                        </div>
+                    </div>
+                    
+                    <ul>
+                        <li>Lead development of responsive web applications serving 100K+ daily active users</li>
+                        <li>Mentor junior developers and conduct code reviews to maintain high code quality standards</li>
+                        <li>Collaborate with design and product teams to implement user-centered features</li>
+                        <li>Optimize application performance, reducing load times by 40% through code splitting and caching strategies</li>
+                        <li>Implement automated testing suites, increasing code coverage from 60% to 95%</li>
+                    </ul>
+                    
+                    <div class="tech-list">
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">TypeScript</span>
+                        <span class="tech-item">PostgreSQL</span>
+                        <span class="tech-item">AWS</span>
+                        <span class="tech-item">Docker</span>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Full Stack Developer</h4>
+                    <div class="experience-details">
+                        <div class="experience-detail">
+                            <i class="fas fa-building"></i>
+                            <span>StartupXYZ, Palo Alto, CA</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="far fa-calendar"></i>
+                            <span>2020 - 2022</span>
+                        </div>
+                    </div>
+                    
+                    <ul>
+                        <li>Developed and maintained multiple client-facing web applications from concept to deployment</li>
+                        <li>Built RESTful APIs and integrated third-party services to enhance application functionality</li>
+                        <li>Worked in an agile environment, participating in sprint planning and daily standups</li>
+                        <li>Implemented responsive designs that improved mobile user engagement by 35%</li>
+                        <li>Collaborated with stakeholders to gather requirements and translate them into technical solutions</li>
+                    </ul>
+                    
+                    <div class="tech-list">
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">Express.js</span>
+                        <span class="tech-item">MongoDB</span>
+                        <span class="tech-item">Firebase</span>
+                        <span class="tech-item">Stripe API</span>
+                    </div>
+                </div>
+                
+                <div class="experience-item">
+                    <h4>Junior Web Developer</h4>
+                    <div class="experience-details">
+                        <div class="experience-detail">
+                            <i class="fas fa-building"></i>
+                            <span>Digital Agency Pro, YABA LAGOS, NIGERIA</span>
+                        </div>
+                        <div class="experience-detail">
+                            <i class="far fa-calendar"></i>
+                            <span>2019 - 2020</span>
+                        </div>
+                    </div>
+                    
+                    <ul>
+                        <li>Developed custom WordPress themes and plugins for various client projects</li>
+                        <li>Converted PSD designs to pixel-perfect, responsive HTML/CSS/JavaScript implementations</li>
+                        <li>Performed website maintenance, updates, and troubleshooting for existing client sites</li>
+                        <li>Assisted in SEO optimization efforts, improving client site rankings by an average of 25%</li>
+                        <li>Participated in client meetings to discuss project requirements and provide technical insights</li>
+                    </ul>
+                    
+                    <div class="tech-list">
+                        <span class="tech-item">WordPress</span>
+                        <span class="tech-item">django</span>
+                        <span class="tech-item">jQuery</span>
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">MySQL</span>
+                        <span class="tech-item">Google Analytics</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Background & Interests -->
+            <div class="section">
+                <h3 class="section-title">Background & Interests</h3>
+                
+                <div class="background-grid">
+                    <div class="background-card">
+                        <h4>Professional Background</h4>
+                        <ul>
+                            <li>5+ years in web development and design</li>
+                            <li>Experience with both startup and enterprise environments</li>
+                            <li>Strong background in agile development methodologies</li>
+                            <li>Proven track record of delivering projects on time and within budget</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="background-card">
+                        <h4>Personal Interests</h4>
+                        <ul>
+                            <li>Open source contribution and community involvement</li>
+                            <li>Photography and digital art creation</li>
+                            <li>Hiking and outdoor activities</li>
+                            <li>Continuous learning through online courses and workshops</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Professional Philosophy -->
+            <div class="section">
+                <h3 class="section-title">Professional Philosophy</h3>
+                
+                <blockquote>
+                    <p>"I believe that great web development is not just about writing code, but about creating meaningful experiences that solve real problems for real people. Every line of code should serve a purpose, and every design decision should be made with the user in mind."</p>
+                </blockquote>
+                
+                <div class="cta-buttons">
+                    <a href="/projects" class="btn btn-primary">View My Projects</a>
+                    <a href="/contact" class="btn btn-outline">Get In Touch</a>
+                </div>
+            </div>
+        </main>
 
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Gerard Ugwu</h3>
+                        <p>Backend Developer | Python Enthusiast | ALX ProDev Learner | Web Developer</p>
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+                            <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
+                            <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
+                            <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/skills">Skills</a></li>
+                            <li><a href="/projects">Projects</a></li>
+                            <li><a href="/resume">Resume</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Contact Me</h3>
+                        <ul class="footer-links">
+                            <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
+                            <li><i class="fas fa-phone"></i> +2347032388531</li>
+                            <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Sidebar toggle script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleBtn = document.querySelector('#sidebar-toggle');
+            
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    sidebar.classList.toggle('sidebar-open');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
