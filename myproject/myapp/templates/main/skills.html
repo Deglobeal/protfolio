@@ -1,668 +1,248 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Skills - Gerard Ugwu{% endblock %}
 
-{% block content %}
-<section>
-  <h2 class="section-title">Technical Skills Overview</h2>
-  <p>Here's a comprehensive overview of my technical skills and expertise levels. I continuously update and expand my skill set to stay current with industry trends.</p>
-</section>
+{% block main %}
+<style>
+  /* ==========  SKILL PAGE STYLES  ========== */
+  :root{
+    --skill-primary:#2563eb;
+    --skill-accent:#e11d48;
+    --skill-dark:#0f172a;
+    --skill-light:#f8fafc;
+    --skill-gray:#64748b;
+    --skill-light-gray:#e2e8f0;
+    --skill-radius:12px;
+    --skill-shadow:0 4px 20px rgba(0,0,0,.08);
+    --skill-transition:all .3s ease;
+  }
 
-<section>
-  <h3 class="section-title">Programming Languages</h3>
-  <div class="services-grid">
-    <!-- JavaScript -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-js service-icon"></i>
-        <span class="skill-level">Expert (5+ years)</span>
-      </div>
-      <h4>JavaScript</h4>
-      <div class="skill-description">
-        <p>Advanced knowledge of ES6+, async/await, closures, prototypes, and modern JavaScript patterns. Experience with both client-side and server-side development.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">ES6+</span>
-        <span class="skill-tag">Async/Await</span>
-        <span class="skill-tag">Prototypes</span>
-      </div>
-    </div>
-    
-    <!-- TypeScript -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-code service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>TypeScript</h4>
-      <div class="skill-description">
-        <p>Strong understanding of type systems, interfaces, generics, and advanced TypeScript features. Used extensively in large-scale applications.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Type Systems</span>
-        <span class="skill-tag">Interfaces</span>
-        <span class="skill-tag">Generics</span>
-      </div>
-    </div>
-    
-    <!-- Python -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-python service-icon"></i>
-        <span class="skill-level">Intermediate (2+ years)</span>
-      </div>
-      <h4>Python</h4>
-      <div class="skill-description">
-        <p>Proficient in Python for web development, automation, and data processing. Experience with Django, Flask, and various Python libraries.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Django</span>
-        <span class="skill-tag">Flask</span>
-        <span class="skill-tag">Automation</span>
-      </div>
-    </div>
-    
-    <!-- HTML5 -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-html5 service-icon"></i>
-        <span class="skill-level">Expert (5+ years)</span>
-      </div>
-      <h4>HTML5</h4>
-      <div class="skill-description">
-        <p>Comprehensive knowledge of semantic HTML, accessibility best practices, and modern HTML5 features including APIs and form validation.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Semantic HTML</span>
-        <span class="skill-tag">Accessibility</span>
-        <span class="skill-tag">HTML5 APIs</span>
-      </div>
-    </div>
-    
-    <!-- CSS3 -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-css3-alt service-icon"></i>
-        <span class="skill-level">Expert (5+ years)</span>
-      </div>
-      <h4>CSS3</h4>
-      <div class="skill-description">
-        <p>Advanced CSS including Flexbox, Grid, animations, responsive design, and CSS preprocessors. Strong understanding of CSS architecture.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Flexbox</span>
-        <span class="skill-tag">Grid</span>
-        <span class="skill-tag">Animations</span>
-        <span class="skill-tag">Responsive Design</span>
-      </div>
-    </div>
-    
-    <!-- PHP -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-php service-icon"></i>
-        <span class="skill-level">Intermediate (3+ years)</span>
-      </div>
-      <h4>PHP</h4>
-      <div class="skill-description">
-        <p>Solid experience with PHP for web development, including object-oriented programming and working with various PHP frameworks.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">OOP</span>
-        <span class="skill-tag">Frameworks</span>
-        <span class="skill-tag">Web Development</span>
-      </div>
-    </div>
-  </div>
-</section>
+  /* reset inside this block only */
+  .skills-wrapper *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  .skills-wrapper{
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px;
+    font-family:'Inter',Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--skill-dark);
+    line-height:1.65;
+  }
 
-<section>
-  <h3 class="section-title">Frontend Frameworks & Libraries</h3>
-  <div class="services-grid">
-    <!-- React -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-react service-icon"></i>
-        <span class="skill-level">Expert (4+ years)</span>
-      </div>
-      <h4>React</h4>
-      <div class="skill-description">
-        <p>Deep expertise in React ecosystem including hooks, context, state management, performance optimization, and testing. Experience with React 18 features.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Hooks</span>
-        <span class="skill-tag">Context API</span>
-        <span class="skill-tag">Redux</span>
-        <span class="skill-tag">Performance</span>
-      </div>
-    </div>
-    
-    <!-- Vue.js -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-vuejs service-icon"></i>
-        <span class="skill-level">Advanced (2+ years)</span>
-      </div>
-      <h4>Vue.js</h4>
-      <div class="skill-description">
-        <p>Strong knowledge of Vue 3, Composition API, Vuex for state management, and Vue ecosystem tools. Built several production applications.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Vue 3</span>
-        <span class="skill-tag">Composition API</span>
-        <span class="skill-tag">Vuex</span>
-      </div>
-    </div>
-    
-    <!-- Angular -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-angular service-icon"></i>
-        <span class="skill-level">Intermediate (1+ years)</span>
-      </div>
-      <h4>Angular</h4>
-      <div class="skill-description">
-        <p>Working knowledge of Angular framework, TypeScript integration, services, dependency injection, and Angular CLI.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">TypeScript</span>
-        <span class="skill-tag">Services</span>
-        <span class="skill-tag">Dependency Injection</span>
-      </div>
-    </div>
-    
-    <!-- jQuery -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-code service-icon"></i>
-        <span class="skill-level">Advanced (4+ years)</span>
-      </div>
-      <h4>jQuery</h4>
-      <div class="skill-description">
-        <p>Extensive experience with jQuery for DOM manipulation, AJAX requests, animations, and plugin development. Legacy project maintenance.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">DOM Manipulation</span>
-        <span class="skill-tag">AJAX</span>
-        <span class="skill-tag">Animations</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .skills-wrapper section{
+    margin-bottom:60px;
+  }
 
-<section>
-  <h3 class="section-title">Backend Technologies</h3>
-  <div class="services-grid">
-    <!-- Node.js -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-node-js service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>Node.js</h4>
-      <div class="skill-description">
-        <p>Proficient in building scalable server-side applications, RESTful APIs, and microservices using Node.js and Express.js.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">RESTful APIs</span>
-        <span class="skill-tag">Microservices</span>
-        <span class="skill-tag">Express.js</span>
-      </div>
-    </div>
-    
-    <!-- Express.js -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-server service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>Express.js</h4>
-      <div class="skill-description">
-        <p>Expert in building web applications and APIs with Express.js, middleware implementation, and security best practices.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Middleware</span>
-        <span class="skill-tag">Security</span>
-        <span class="skill-tag">REST APIs</span>
-      </div>
-    </div>
-    
-    <!-- Django -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-python service-icon"></i>
-        <span class="skill-level">Intermediate (1+ years)</span>
-      </div>
-      <h4>Django</h4>
-      <div class="skill-description">
-        <p>Working knowledge of Django framework, ORM, admin interface, and building web applications with Python.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python</span>
-        <span class="skill-tag">ORM</span>
-        <span class="skill-tag">Web Applications</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .skills-wrapper .section-title{
+    font-size:2rem;
+    font-weight:600;
+    margin-bottom:25px;
+    position:relative;
+    display:inline-block;
+  }
 
-<section>
-  <h3 class="section-title">Database Technologies</h3>
-  <div class="services-grid">
-    <!-- PostgreSQL -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-database service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>PostgreSQL</h4>
-      <div class="skill-description">
-        <p>Strong experience with PostgreSQL, complex queries, indexing, performance optimization, and database design.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">Indexing</span>
-        <span class="skill-tag">Optimization</span>
-      </div>
-    </div>
-    
-    <!-- MongoDB -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-database service-icon"></i>
-        <span class="skill-level">Intermediate (2+ years)</span>
-      </div>
-      <h4>MongoDB</h4>
-      <div class="skill-description">
-        <p>Proficient in NoSQL database design, aggregation pipelines, indexing strategies, and MongoDB Atlas cloud services.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">NoSQL</span>
-        <span class="skill-tag">Aggregation</span>
-        <span class="skill-tag">MongoDB Atlas</span>
-      </div>
-    </div>
-    
-    <!-- MySQL -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-database service-icon"></i>
-        <span class="skill-level">Intermediate (3+ years)</span>
-      </div>
-      <h4>MySQL</h4>
-      <div class="skill-description">
-        <p>Solid experience with MySQL database administration, query optimization, stored procedures, and integration with web applications.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Database Admin</span>
-        <span class="skill-tag">Query Optimization</span>
-        <span class="skill-tag">Stored Procedures</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .skills-wrapper .section-title::after{
+    content:'';
+    position:absolute;
+    bottom:-6px;
+    left:0;
+    width:70px;
+    height:4px;
+    background:linear-gradient(90deg,var(--skill-primary),var(--skill-accent));
+    border-radius:2px;
+  }
 
-<section>
-  <h3 class="section-title">Development Tools & Technologies</h3>
-  <div class="services-grid">
-    <!-- Git -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-git-alt service-icon"></i>
-        <span class="skill-level">Expert (5+ years)</span>
-      </div>
-      <h4>Git & Version Control</h4>
-      <div class="skill-description">
-        <p>Advanced Git workflows, branching strategies, merge conflict resolution, and collaboration using GitHub, GitLab, and Bitbucket.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">GitHub</span>
-        <span class="skill-tag">GitLab</span>
-        <span class="skill-tag">Workflows</span>
-      </div>
-    </div>
-    
-    <!-- Docker -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-docker service-icon"></i>
-        <span class="skill-level">Intermediate (2+ years)</span>
-      </div>
-      <h4>Docker</h4>
-      <div class="skill-description">
-        <p>Experience with containerization, Docker Compose, multi-stage builds, and deploying applications in containerized environments.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Containerization</span>
-        <span class="skill-tag">Docker Compose</span>
-        <span class="skill-tag">Deployment</span>
-      </div>
-    </div>
-    
-    <!-- AWS -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-aws service-icon"></i>
-        <span class="skill-level">Intermediate (2+ years)</span>
-      </div>
-      <h4>AWS (Amazon Web Services)</h4>
-      <div class="skill-description">
-        <p>Working knowledge of EC2, S3, Lambda, RDS, CloudFront, and other AWS services for web application deployment.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">EC2</span>
-        <span class="skill-tag">S3</span>
-        <span class="skill-tag">Lambda</span>
-        <span class="skill-tag">RDS</span>
-      </div>
-    </div>
-    
-    <!-- Webpack -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-cogs service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>Webpack & Build Tools</h4>
-      <div class="skill-description">
-        <p>Proficient in configuring Webpack, Vite, Parcel, and other build tools for optimizing and bundling web applications.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Webpack</span>
-        <span class="skill-tag">Vite</span>
-        <span class="skill-tag">Optimization</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .skills-wrapper .services-grid{
+    display:grid;
+    gap:30px;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  }
 
-<section>
-  <h3 class="section-title">Testing & Quality Assurance</h3>
-  <div class="services-grid">
-    <!-- Jest -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-vial service-icon"></i>
-        <span class="skill-level">Advanced (3+ years)</span>
-      </div>
-      <h4>Jest & Unit Testing</h4>
-      <div class="skill-description">
-        <p>Extensive experience writing unit tests, integration tests, and test-driven development using Jest and related testing libraries.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Unit Testing</span>
-        <span class="skill-tag">Integration Testing</span>
-        <span class="skill-tag">TDD</span>
-      </div>
-    </div>
-    
-    <!-- Cypress -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-check-circle service-icon"></i>
-        <span class="skill-level">Intermediate (1+ years)</span>
-      </div>
-      <h4>Cypress & E2E Testing</h4>
-      <div class="skill-description">
-        <p>Experience with end-to-end testing using Cypress, automated testing workflows, and continuous integration.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">E2E Testing</span>
-        <span class="skill-tag">Automation</span>
-        <span class="skill-tag">CI/CD</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .service-card{
+    background:#fff;
+    border-radius:var(--skill-radius);
+    padding:30px;
+    box-shadow:var(--skill-shadow);
+    transition:var(--skill-transition);
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+  }
 
-<section>
-  <h3 class="section-title">Design & UI Tools</h3>
-  <div class="services-grid">
-    <!-- Figma -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fab fa-figma service-icon"></i>
-        <span class="skill-level">Advanced (2+ years)</span>
-      </div>
-      <h4>Figma</h4>
-      <div class="skill-description">
-        <p>Proficient in creating wireframes, prototypes, design systems, and collaborating with design teams using Figma.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Wireframes</span>
-        <span class="skill-tag">Prototypes</span>
-        <span class="skill-tag">Design Systems</span>
-      </div>
-    </div>
-    
-    <!-- Adobe Creative Suite -->
-    <div class="service-card">
-      <div class="skill-header">
-        <i class="fas fa-paint-brush service-icon"></i>
-        <span class="skill-level">Intermediate (3+ years)</span>
-      </div>
-      <h4>Adobe Creative Suite</h4>
-      <div class="skill-description">
-        <p>Working knowledge of Photoshop, Illustrator, and XD for web design, image editing, and UI/UX design tasks.</p>
-      </div>
-      <div class="skill-rating">
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star filled"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-        <span class="star"><i class="fas fa-star"></i></span>
-      </div>
-      <div class="skill-tags">
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Illustrator</span>
-        <span class="skill-tag">UI/UX Design</span>
-      </div>
-    </div>
-  </div>
-</section>
+  .service-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+  }
 
-<section>
-  <h3 class="section-title">Professional Skills</h3>
-  <div class="services-grid">
-    <!-- Problem Solving -->
-    <div class="service-card">
-      <i class="fas fa-lightbulb service-icon"></i>
-      <h4>Problem Solving</h4>
-      <p>Strong analytical thinking and debugging skills. Ability to break down complex problems into manageable solutions.</p>
-    </div>
-    
-    <!-- Team Collaboration -->
-    <div class="service-card">
-      <i class="fas fa-users service-icon"></i>
-      <h4>Team Collaboration</h4>
-      <p>Excellent communication skills and experience working in agile teams. Comfortable with code reviews and pair programming.</p>
-    </div>
-    
-    <!-- Project Management -->
-    <div class="service-card">
-      <i class="fas fa-tasks service-icon"></i>
-      <h4>Project Management</h4>
-      <p>Experience with Agile/Scrum methodologies, sprint planning, and delivering projects on time and within scope.</p>
-    </div>
-    
-    <!-- Continuous Learning -->
-    <div class="service-card">
-      <i class="fas fa-graduation-cap service-icon"></i>
-      <h4>Continuous Learning</h4>
-      <p>Committed to staying updated with latest technologies and best practices. Regular participation in workshops and courses.</p>
-    </div>
-  </div>
-</section>
+  .skill-header{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
 
-<section>
-  <h3 class="section-title">Skills Summary</h3>
-  <p>My technical expertise spans the full web development stack, from frontend user interfaces to backend server architecture. I'm passionate about writing clean, maintainable code and creating exceptional user experiences.</p>
-  
-  <div class="cta-buttons" style="margin-top: 30px;">
-    <a href="/projects" class="btn btn-primary">See My Projects</a>
-    <a href="/certificates" class="btn btn-outline">View Certificates</a>
-    <a href="/contact" class="btn btn-primary">Discuss a Project</a>
-  </div>
-</section>
+  .service-icon{
+    width:50px;
+    height:50px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,var(--skill-primary),var(--skill-accent));
+    color:#fff;
+    font-size:1.5rem;
+    border-radius:50%;
+  }
+
+  .skill-level{
+    font-size:.9rem;
+    font-weight:500;
+    background:var(--skill-light-gray);
+    color:var(--skill-dark);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+
+  .service-card h4{
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--skill-primary);
+  }
+
+  .skill-description p{
+    font-size:.95rem;
+    color:var(--skill-gray);
+  }
+
+  .skill-rating{
+    margin-top:auto;
+    display:flex;
+    gap:3px;
+  }
+
+  .skill-rating .star{
+    color:var(--skill-light-gray);
+    font-size:1rem;
+  }
+  .skill-rating .star.filled{
+    color:#fbbf24;
+  }
+
+  .skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
+  .skill-tag{
+    font-size:.75rem;
+    background:var(--skill-light-gray);
+    color:var(--skill-dark);
+    padding:4px 10px;
+    border-radius:20px;
+  }
+
+  .cta-buttons{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+  }
+
+  .cta-buttons .btn{
+    padding:12px 28px;
+    border-radius:30px;
+    font-weight:600;
+    text-decoration:none;
+    transition:var(--skill-transition);
+  }
+
+  .btn-primary{
+    background:var(--skill-primary);
+    color:#fff;
+  }
+  .btn-primary:hover{
+    background:var(--skill-accent);
+  }
+
+  .btn-outline{
+    border:2px solid var(--skill-primary);
+    color:var(--skill-primary);
+  }
+  .btn-outline:hover{
+    background:var(--skill-primary);
+    color:#fff;
+  }
+
+  /* Responsive tweaks */
+  @media (max-width:600px){
+    .skills-wrapper .section-title{font-size:1.6rem;}
+    .cta-buttons{justify-content:center;}
+  }
+</style>
+
+<div class="skills-wrapper">
+  <section>
+    <h2 class="section-title">Technical Skills Overview</h2>
+    <p>
+      Here's a comprehensive overview of my technical skills and expertise levels. I continuously update and expand my skill set to stay current with industry trends.
+    </p>
+  </section>
+
+  <!-- Dynamically generate skill sections based on categories -->
+  {% for category in categories %}
+    {% if category.code != 'SUMMARY' %}
+      <section>
+        <h3 class="section-title">{{ category.label }}</h3>
+        <div class="services-grid">
+          {% for skill in skills %}
+            {% if skill.category == category.code %}
+              <div class="service-card">
+                <div class="skill-header">
+                  <i class="{{ skill.icon_class }} service-icon"></i>
+                  <span class="skill-level">{{ skill.level }} ({{ skill.get_experience_years }})</span>
+                </div>
+                <h4>{{ skill.title }}</h4>
+                <div class="skill-description">
+                  <p>{{ skill.description }}</p>
+                </div>
+                <div class="skill-rating">
+                  {% for i in "12345" %}
+                    {% if forloop.counter <= skill.rating %}
+                      <span class="star filled"><i class="fas fa-star"></i></span>
+                    {% else %}
+                      <span class="star"><i class="fas fa-star"></i></span>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                {% if skill.tag_list %}
+                <div class="skill-tags">
+                  {% for tag in skill.tag_list %}
+                    <span class="skill-tag">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+
+  <!-- ===== Summary & CTA ===== -->
+  <section>
+    <h3 class="section-title">Skills Summary</h3>
+    <p>
+      {{ summary.summary }}
+    </p>
+
+    <div class="cta-buttons">
+      <a href="/projects" class="btn btn-primary">See My Projects</a>
+      <a href="/certificates" class="btn btn-outline">View Certificates</a>
+      <a href="/contact" class="btn btn-primary">Discuss a Project</a>
+    </div>
+  </section>
+</div>
 {% endblock %}

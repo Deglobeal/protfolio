@@ -1,18 +1,25 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from myapp import views
 
 urlpatterns = [
-    path('', views.home_view, name='home'),
-    path('certificates/', views.certificate_view, name='certificates'),
+    path('', views.home, name='home'),
+    path('certificates/', views.certificate_list, name='certificate_list'),
     path('projects/', views.project_view, name='projects'),
-    path('skills/', views.skill_view, name='skills'),
+    path('skills/', views.skills, name='skills'),
     path('contact/', views.contact_view, name='contact'),
     path('email/', views.email_view, name='email'),
     path('profile/', views.profile_view, name='profile'),
     path('resume/', views.resume_view, name='resume'),
-    path('social/', views.social_view, name='social'),
+    path('social/', views.social_page, name='page'),
     path('contact_success/', views.contact_success, name='contact_success'),
     path('project_details/', views.project_detail_view, name='project_details'),
     path('base/', views.base_view, name='base'),
+    
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

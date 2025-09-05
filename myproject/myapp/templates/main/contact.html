@@ -1,97 +1,187 @@
-<!-- contact.html -->
 {% extends "base.html" %}
 
-{% block title %}Contact - Gerard Ugwu{% endblock %}
+{% block title %}Contact – Gerard Ugwu{% endblock %}
 
-{% block extra_head %}
+{% block main %}
 <style>
-  /* Contact Page Specific Styles */
-  .contact-container {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin: 60px 0;
+  /* ----------  DESIGN TOKENS  ---------- */
+  :root{
+    --primary:#2563eb;
+    --accent:#e11d48;
+    --dark:#0f172a;
+    --light:#f8fafc;
+    --gray:#64748b;
+    --radius:12px;
+    --shadow:0 4px 20px rgba(0,0,0,.08);
+    --transition:all .3s ease;
+    --font:'Inter',Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
   }
-  
-  .contact-form .form-group {
-    margin-bottom: 20px;
+
+  /* ----------  PAGE WRAPPER  ---------- */
+  .contact-wrapper{
+    max-width:800px;
+    margin:60px auto;
+    padding:0 20px;
+    font-family:var(--font);
+    color:var(--dark);
   }
-  
-  .contact-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+
+  .contact-card{
+    background:#fff;
+    border-radius:var(--radius);
+    padding:40px 50px;
+    box-shadow:var(--shadow);
+    transition:var(--transition);
   }
-  
+  .contact-card:hover{
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+  }
+
+  .section-title{
+    font-size:2.2rem;
+    font-weight:700;
+    margin-bottom:.5em;
+    color:var(--dark);
+    position:relative;
+  }
+  .section-title::after{
+    content:'';
+    position:absolute;
+    bottom:-6px;
+    left:0;
+    width:70px;
+    height:4px;
+    background:linear-gradient(90deg,var(--primary),var(--accent));
+    border-radius:2px;
+  }
+
+  .contact-lead{
+    font-size:1.1rem;
+    color:var(--gray);
+    margin-bottom:30px;
+  }
+
+  /* ----------  FORM  ---------- */
+  .contact-form .form-group{
+    margin-bottom:25px;
+  }
+  .contact-form label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:600;
+    color:var(--dark);
+  }
   .contact-form input,
-  .contact-form textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    font-size: 1rem;
+  .contact-form textarea{
+    width:100%;
+    padding:14px 18px;
+    border:1px solid var(--light);
+    border-radius:var(--radius);
+    font-size:1rem;
+    transition:var(--transition);
+    background:var(--light);
   }
-  
-  .contact-form textarea {
-    min-height: 150px;
+  .contact-form input:focus,
+  .contact-form textarea:focus{
+    outline:none;
+    border-color:var(--primary);
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
   }
-  
-  .submit-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  .contact-form textarea{
+    min-height:160px;
+    resize:vertical;
   }
-  
-  .submit-btn:hover {
-    background: #1e40af;
-    transform: translateY(-3px);
+
+  .submit-btn{
+    width:100%;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    color:#fff;
+    border:none;
+    padding:14px 0;
+    border-radius:var(--radius);
+    font-weight:600;
+    font-size:1.1rem;
+    cursor:pointer;
+    transition:var(--transition);
+  }
+  .submit-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(37,99,235,.3);
+  }
+
+  /* ----------  SOCIAL LINKS  ---------- */
+  .social-strip{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:50px;
+  }
+  .social-strip a{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:#fff;
+    color:var(--primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.2rem;
+    box-shadow:var(--shadow);
+    transition:var(--transition);
+  }
+  .social-strip a:hover{
+    background:var(--primary);
+    color:#fff;
+    transform:translateY(-3px);
+  }
+
+  /* ----------  RESPONSIVE  ---------- */
+  @media(max-width:600px){
+    .contact-card{padding:30px 25px;}
+    .section-title{font-size:1.8rem;}
   }
 </style>
-{% endblock %}
 
-{% block content %}
-<div class="container">
-  <div class="contact-container">
+<div class="contact-wrapper">
+  <div class="contact-card">
     <h1 class="section-title">Get In Touch</h1>
-    <p>Have a project in mind or want to discuss opportunities? Feel free to reach out!</p>
-    
-    <form class="contact-form">
+    <p class="contact-lead">
+      Have a project in mind or want to discuss opportunities? Drop a message and I’ll get back to you ASAP.
+    </p>
+
+    <form class="contact-form" method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label for="name">Full Name</label>
-        <input type="text" id="name" required>
+        <input type="text" id="name" name="name" required placeholder="John Doe">
       </div>
-      
+
       <div class="form-group">
         <label for="email">Email Address</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" name="email" required placeholder="john@example.com">
       </div>
-      
+
       <div class="form-group">
         <label for="subject">Subject</label>
-        <input type="text" id="subject" required>
+        <input type="text" id="subject" name="subject" required placeholder="Project Inquiry">
       </div>
-      
+
       <div class="form-group">
         <label for="message">Message</label>
-        <textarea id="message" required></textarea>
+        <textarea id="message" name="message" required placeholder="Tell me about your idea…"></textarea>
       </div>
-      
+
       <button type="submit" class="submit-btn">Send Message</button>
     </form>
   </div>
+
+  <!-- Social strip -->
+  <div class="social-strip">
+    <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://github.com/Deglobeal" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://wa.me/2347032388531" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://x.com/GerardOnye16230" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="https://youtube.com/@deglobeal" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+  </div>
 </div>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-        <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
-        <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-        <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-    </div>
 {% endblock %}

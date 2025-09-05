@@ -1,950 +1,565 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerard Ugwu - Social Media & Professional Networks</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #9b59b6;
-            --light: #ecf0f1;
-            --dark: #34495e;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #e74c3c;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-        
-        header {
-            background: linear-gradient(120deg, var(--primary), #4a6491);
-            color: white;
-            padding: 30px 0;
-            text-align: center;
-            position: relative;
-        }
-        
-        header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent), var(--danger), var(--warning));
-        }
-        
-        header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
-            padding: 0 20px;
-            gap: 15px;
-        }
-        
-        nav a {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-        
-        main {
-            padding: 40px 30px;
-        }
-        
-        section {
-            margin-bottom: 50px;
-            padding: 30px;
-            border-radius: 12px;
-            background: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border: 1px solid #eef2f7;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        h2, h3, h4, h5, h6 {
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            font-size: 2.2rem;
-            position: relative;
-            padding-bottom: 15px;
-        }
-        
-        h2::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 70px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            border-radius: 2px;
-        }
-        
-        h3 {
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+    :root {
+        --primary: #2563eb;
+        --secondary: #e11d48;
+        --accent: #9b59b6;
+        --light: #f8fafc;
+        --dark: #0f172a;
+        --success: #27ae60;
+        --warning: #f39c12;
+        --danger: #e74c3c;
+        --gray: #64748b;
+        --light-gray: #e2e8f0;
+    }
+
+    .social-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .social-main {
+        padding: 40px 30px;
+    }
+
+    .social-section {
+        margin-bottom: 50px;
+        padding: 30px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: 1px solid #eef2f7;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-section h2,
+    .social-section h3,
+    .social-section h4,
+    .social-section h5,
+    .social-section h6 {
+        color: var(--primary);
+        margin-bottom: 20px;
+    }
+
+    .social-section h2 {
+        font-size: 2.2rem;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .social-section h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 70px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary), var(--accent));
+        border-radius: 2px;
+    }
+
+    .social-section h3 {
+        font-size: 1.8rem;
+        margin-top: 30px;
+        color: var(--secondary);
+    }
+
+    .social-section h4 {
+        font-size: 1.5rem;
+        color: var(--primary);
+    }
+
+    .social-section h5 {
+        font-size: 1.2rem;
+        color: var(--secondary);
+    }
+
+    .social-section p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        color: var(--dark);
+    }
+
+    .intro {
+        text-align: center;
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        padding: 40px 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+    }
+
+    .platform-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 30px;
+    }
+
+    .platform-card {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid var(--secondary);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .platform-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .platform-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, var(--secondary), var(--accent));
+    }
+
+    .platform-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .platform-icon {
+        font-size: 2.5rem;
+        margin-right: 15px;
+        color: var(--secondary);
+    }
+
+    .platform-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stat-item {
+        background: white;
+        padding: 10px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--secondary);
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+        color: var(--dark);
+    }
+
+    .content-list {
+        list-style: none;
+        margin-bottom: 20px;
+    }
+
+    .content-list li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #e0e0e0;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .content-list li::before {
+        content: "•";
+        color: var(--secondary);
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        margin-right: 10px;
+    }
+
+    .popular-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .popular-item {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .popular-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .platform-cta {
+        display: inline-block;
+        background: var(--secondary);
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        margin-top: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .platform-cta:hover {
+        background: var(--primary);
+        transform: scale(1.05);
+    }
+
+    .strategy-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .strategy-card {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        border-top: 3px solid var(--accent);
+    }
+
+    .strategy-card h6 {
+        font-size: 1.1rem;
+        color: var(--accent);
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .strategy-card h6 i {
+        margin-right: 10px;
+    }
+
+    .philosophy-box {
+        background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+        padding: 25px;
+        border-radius: 10px;
+        margin: 25px 0;
+    }
+
+    .collaboration-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .collaboration-type {
+        background: #f8f9fa;
+        padding: 25px;
+        border-radius: 10px;
+        border-left: 4px solid var(--success);
+    }
+
+    .cta-container {
+        text-align: center;
+        padding: 40px 0 20px;
+    }
+
+    .cta-buttons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .cta-buttons a {
+        display: inline-block;
+        padding: 15px 35px;
+        background: linear-gradient(90deg, var(--secondary), var(--accent));
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-buttons a:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    @media (max-width: 768px) {
+        .social-section h2 {
             font-size: 1.8rem;
-            margin-top: 30px;
-            color: var(--secondary);
         }
-        
-        h4 {
+
+        .social-section h3 {
             font-size: 1.5rem;
-            color: var(--primary);
         }
-        
-        h5 {
-            font-size: 1.2rem;
-            color: var(--secondary);
-        }
-        
-        p {
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            color: var(--dark);
-        }
-        
-        .intro {
-            text-align: center;
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            padding: 40px 20px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-        
-        .platform-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-        
-        .platform-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--secondary);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .platform-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .platform-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-        }
-        
-        .platform-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .platform-icon {
-            font-size: 2.5rem;
-            margin-right: 15px;
-            color: var(--secondary);
-        }
-        
-        .platform-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .stat-item {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-        }
-        
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--secondary);
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--dark);
-        }
-        
-        .content-list {
-            list-style: none;
-            margin-bottom: 20px;
-        }
-        
-        .content-list li {
-            padding: 8px 0;
-            border-bottom: 1px dashed #e0e0e0;
-            display: flex;
-            align-items: flex-start;
-        }
-        
-        .content-list li::before {
-            content: "•";
-            color: var(--secondary);
-            font-weight: bold;
-            display: inline-block;
-            width: 1em;
-            margin-right: 10px;
-        }
-        
-        .popular-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .popular-item {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-        }
-        
-        .popular-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .platform-cta {
-            display: inline-block;
-            background: var(--secondary);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 30px;
-            margin-top: 15px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .platform-cta:hover {
-            background: var(--primary);
-            transform: scale(1.05);
-        }
-        
-        .strategy-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .strategy-card {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-top: 3px solid var(--accent);
-        }
-        
-        .strategy-card h6 {
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .strategy-card h6 i {
-            margin-right: 10px;
-        }
-        
-        .philosophy-box {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            padding: 25px;
-            border-radius: 10px;
-            margin: 25px 0;
-        }
-        
-        .collaboration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .collaboration-type {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 10px;
-            border-left: 4px solid var(--success);
-        }
-        
-        .cta-container {
-            text-align: center;
-            padding: 40px 0 20px;
-        }
-        
+
         .cta-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
+            flex-direction: column;
+            align-items: center;
         }
-        
+
         .cta-buttons a {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .cta-buttons a:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        footer {
-            background: var(--primary);
-            color: var(--light);
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 50px;
-        }
-        
-        footer p {
-            color: var(--light);
-            margin-bottom: 10px;
-        }
-        
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .social-icons a {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-icons a:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
-        }
-
-        /* Footer styles */
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section h3 {
-            color: white;
-            margin-bottom: 15px;
-            font-size: 1.3rem;
-        }
-        
-        .footer-section p {
-            line-height: 1.6;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-        
-        .footer-links i {
-            margin-right: 10px;
-            width: 20px;
+            width: 80%;
             text-align: center;
         }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            section {
-                padding: 20px 15px;
-            }
-            
-            h2 {
-                font-size: 1.8rem;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .cta-buttons a {
-                width: 80%;
-                text-align: center;
-            }
+    }
+</style>
+{% endblock %}
 
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div>
-                <h1>Gerard Ugwu - Social Media & Professional Networks</h1>
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><a href="/skills">Skills</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/certificates">Certificates</a></li>
-                        <li><a href="/resume">Resume</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+{% block main %}
+<div class="social-container">
+    <div class="social-main">
+        <section class="intro">
+            <h2>Connect With Me Online</h2>
+            <p>Stay connected and follow my journey across various social media platforms and professional networks. Each platform offers unique content and insights into my work, interests, and professional development.</p>
+            <p>From technical discussions and code snippets to behind-the-scenes content and industry insights, you'll find different aspects of my professional and personal interests across these platforms.</p>
+        </section>
 
-        <main>
-            <section class="intro">
-                <h2>Connect With Me Online</h2>
-                <p>Stay connected and follow my journey across various social media platforms and professional networks. Each platform offers unique content and insights into my work, interests, and professional development.</p>
-                <p>From technical discussions and code snippets to behind-the-scenes content and industry insights, you'll find different aspects of my professional and personal interests across these platforms.</p>
-            </section>
+        <section class="social-section">
+            <h3>Professional Networks</h3>
+            <p>Connect with me on professional platforms where I share career updates, industry insights, and engage with the developer community.</p>
 
-            <section>
-                <h3>Professional Networks</h3>
-                <p>Connect with me on professional platforms where I share career updates, industry insights, and engage with the developer community.</p>
-
-                <div class="platform-grid">
-                    <!-- LinkedIn Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-linkedin platform-icon"></i>
-                            <h4>LinkedIn</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">2,500+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">1,200+</div>
-                                <div class="stat-label">Connections</div>
-                            </div>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank">linkedin.com/in/gerard-ugwu</a></p>
-                        
-                        <h5>What I Share:</h5>
-                        <ul class="content-list">
-                            <li>Professional achievements and career milestones</li>
-                            <li>Industry insights and technology trends</li>
-                            <li>Project updates and case studies</li>
-                            <li>Thought leadership articles</li>
-                        </ul>
-                        
-                        <h5>Recent Activity:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">React 18 insights</div>
-                            <div class="popular-item">AWS certification</div>
-                            <div class="popular-item">Product launch</div>
-                        </div>
-                        
-                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" class="platform-cta">Connect on LinkedIn</a>
+            <div class="platform-grid">
+                {% for platform in professional %}
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <i class="{{ platform.icon_class }} platform-icon"></i>
+                        <h4>{{ platform.name }}</h4>
                     </div>
-
-                    <!-- GitHub Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-github platform-icon"></i>
-                            <h4>GitHub</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">800+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">45+</div>
-                                <div class="stat-label">Repositories</div>
-                            </div>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://github.com/Deglobeal" target="_blank">github.com/Deglobeal</a></p>
-                        
-                        <h5>What You'll Find:</h5>
-                        <ul class="content-list">
-                            <li>Open source projects</li>
-                            <li>Personal coding experiments</li>
-                            <li>Code samples and demos</li>
-                            <li>Collaborative projects</li>
-                        </ul>
-                        
-                        <h5>Popular Repositories:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">react-component-library</div>
-                            <div class="popular-item">web-performance-toolkit</div>
-                            <div class="popular-item">javascript-algorithms</div>
-                        </div>
-                        
-                        <a href="https://github.com/Deglobeal" target="_blank" class="platform-cta">Follow on GitHub</a>
+                    {% if platform.followers or platform.posts %}
+                    <div class="platform-stats">
+                        {% if platform.followers %}
+                        <div class="stat-item"><div class="stat-value">{{ platform.followers }}</div><div class="stat-label">Followers</div></div>
+                        {% endif %}
+                        {% if platform.posts %}
+                        <div class="stat-item"><div class="stat-value">{{ platform.posts }}</div><div class="stat-label">Posts</div></div>
+                        {% endif %}
                     </div>
-
-                    <!-- Stack Overflow Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-stack-overflow platform-icon"></i>
-                            <h4>Stack Overflow</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">15k+</div>
-                                <div class="stat-label">Reputation</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">200+</div>
-                                <div class="stat-label">Answers</div>
-                            </div>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://stackoverflow.com/users/gerard-ugwu" target="_blank">stackoverflow.com/users/gerard-ugwu</a></p>
-                        
-                        <h5>My Contributions:</h5>
-                        <ul class="content-list">
-                            <li>JavaScript and React answers</li>
-                            <li>Web development solutions</li>
-                            <li>Code examples</li>
-                            <li>Debugging help</li>
-                        </ul>
-                        
-                        <h5>Top Tags:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">JavaScript</div>
-                            <div class="popular-item">React</div>
-                            <div class="popular-item">Node.js</div>
-                        </div>
-                        
-                        <a href="https://stackoverflow.com/users/gerard-ugwu" target="_blank" class="platform-cta">View Profile</a>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h3>Social Media Platforms</h3>
-                <p>Follow me on social media for a more personal look at my work, interests, and daily experiences in the tech world.</p>
-
-                <div class="platform-grid">
-                    <!-- Twitter Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-twitter platform-icon"></i>
-                            <h4>Twitter</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">3.2k+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">1.5k+</div>
-                                <div class="stat-label">Tweets</div>
-                            </div>
-                        </div>
-                        <p><strong>Handle:</strong> <a href="https://x.com/GerardOnye16230" target="_blank">@GerardOnye16230</a></p>
-                        
-                        <h5>What I Tweet About:</h5>
-                        <ul class="content-list">
-                            <li>Tech tips and coding tricks</li>
-                            <li>Industry news and trends</li>
-                            <li>Conference live-tweeting</li>
-                            <li>Developer community engagement</li>
-                        </ul>
-                        
-                        <h5>Recent Tweets:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">CSS Grid trick</div>
-                            <div class="popular-item">React 18 features</div>
-                            <div class="popular-item">ReactConf 2024</div>
-                        </div>
-                        
-                        <a href="https://x.com/GerardOnye16230" target="_blank" class="platform-cta">Follow on Twitter</a>
-                    </div>
-
-                    <!-- Instagram Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-instagram platform-icon"></i>
-                            <h4>Instagram</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">1.8k+</div>
-                                <div class="stat-label">Followers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">250+</div>
-                                <div class="stat-label">Posts</div>
-                            </div>
-                        </div>
-                        <p><strong>Handle:</strong> <a href="https://instagram.com/gerard_ugwu" target="_blank">@gerard_ugwu</a></p>
-                        
-                        <h5>Visual Content:</h5>
-                        <ul class="content-list">
-                            <li>Workspace setup photos</li>
-                            <li>Beautiful code snippets</li>
-                            <li>Development process videos</li>
-                            <li>Tech event moments</li>
-                        </ul>
-                        
-                        <h5>Popular Series:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">Workspace Wednesday</div>
-                            <div class="popular-item">Code Challenge Friday</div>
-                            <div class="popular-item">Tech stack spotlight</div>
-                        </div>
-                        
-                        <a href="https://instagram.com/gerard_ugwu" target="_blank" class="platform-cta">Follow on Instagram</a>
-                    </div>
-
-                    <!-- YouTube Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-youtube platform-icon"></i>
-                            <h4>YouTube</h4>
-                        </div>
-                        <div class="platform-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">5.5k+</div>
-                                <div class="stat-label">Subscribers</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">75+</div>
-                                <div class="stat-label">Videos</div>
-                            </div>
-                        </div>
-                        <p><strong>Channel:</strong> <a href="https://youtube.com/@deglobeal" target="_blank">Gerard Ugwu Dev</a></p>
-                        
-                        <h5>Video Content:</h5>
-                        <ul class="content-list">
-                            <li>Coding tutorials</li>
-                            <li>Project build series</li>
-                            <li>Technology reviews</li>
-                            <li>Live coding sessions</li>
-                        </ul>
-                        
-                        <h5>Popular Series:</h5>
-                        <div class="popular-items">
-                            <div class="popular-item">React from Scratch</div>
-                            <div class="popular-item">Full-Stack App</div>
-                            <div class="popular-item">Tools Deep Dive</div>
-                        </div>
-                        
-                        <a href="https://youtube.com/@deglobeal" target="_blank" class="platform-cta">Subscribe on YouTube</a>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h3>Additional Platforms</h3>
-                <p>Connect with me on these other platforms for learning, direct communication, and more specialized content.</p>
-
-                <div class="platform-grid">
-                    <!-- Sololearn Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fas fa-graduation-cap platform-icon"></i>
-                            <h4>Sololearn</h4>
-                        </div>
-                        <p><strong>Profile:</strong> <a href="https://www.sololearn.com/en/profile/2262487" target="_blank">sololearn.com/en/profile/2262487</a></p>
-                        <p>Follow me on Sololearn to see my coding progress, completed courses, and coding achievements.</p>
-                        <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" class="platform-cta">View on Sololearn</a>
-                    </div>
-
-                    <!-- WhatsApp Card -->
-                    <div class="platform-card">
-                        <div class="platform-header">
-                            <i class="fab fa-whatsapp platform-icon"></i>
-                            <h4>WhatsApp</h4>
-                        </div>
-                        <p><strong>Chat:</strong> <a href="https://wa.me/2347032388531" target="_blank">+234 703 238 8531</a></p>
-                        <p>Reach out directly for quick conversations, project discussions, or collaboration opportunities.</p>
-                        <a href="https://wa.me/2347032388531" target="_blank" class="platform-cta">Chat on WhatsApp</a>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <h3>My Social Media Strategy</h3>
-                <p>Each platform serves a unique purpose in my professional and personal brand. Here's how I approach content creation and community engagement across different channels.</p>
-
-                <div class="strategy-grid">
-                    <div class="strategy-card">
-                        <h6><i class="fab fa-linkedin"></i> LinkedIn - Professional Growth</h6>
-                        <ul class="content-list">
-                            <li>Share industry insights and thought leadership</li>
-                            <li>Engage with professional network</li>
-                            <li>Post about career milestones</li>
-                            <li>Participate in group discussions</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="strategy-card">
-                        <h6><i class="fab fa-twitter"></i> Twitter - Real-Time Engagement</h6>
-                        <ul class="content-list">
-                            <li>Share quick tips and coding tricks</li>
-                            <li>Engage in tech community conversations</li>
-                            <li>Live-tweet from conferences</li>
-                            <li>Retweet developer content</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="strategy-card">
-                        <h6><i class="fab fa-instagram"></i> Instagram - Visual Storytelling</h6>
-                        <ul class="content-list">
-                            <li>Showcase workspace and environment</li>
-                            <li>Create appealing code snippets</li>
-                            <li>Share behind-the-scenes</li>
-                            <li>Post inspirational content</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="strategy-card">
-                        <h6><i class="fab fa-youtube"></i> YouTube - Educational Content</h6>
-                        <ul class="content-list">
-                            <li>Create comprehensive tutorials</li>
-                            <li>Build project series</li>
-                            <li>Review tools and technologies</li>
-                            <li>Host live coding sessions</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="philosophy-box">
-                    <h4>Community Engagement Philosophy</h4>
-                    <p>I believe in authentic engagement and providing value to the developer community. My approach focuses on:</p>
+                    {% endif %}
+                    <p><strong>Profile:</strong> <a href="{{ platform.url }}" target="_blank">{{ platform.url }}</a></p>
+                    {% if platform.highlights %}
+                    <h5>What I Share:</h5>
                     <ul class="content-list">
-                        <li>Sharing knowledge and helping others learn</li>
-                        <li>Being genuine and transparent in interactions</li>
-                        <li>Responding thoughtfully to comments and questions</li>
-                        <li>Supporting fellow developers and projects</li>
-                        <li>Contributing to meaningful discussions</li>
-                        <li>Maintaining professionalism while showing personality</li>
+                        {% for highlight in platform.highlights.splitlines %}
+                        <li>{{ highlight }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if platform.popular %}
+                    <h5>Recent Activity:</h5>
+                    <div class="popular-items">
+                        {% for item in platform.popular.splitlines %}
+                        <div class="popular-item">{{ item }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ platform.url }}" target="_blank" class="platform-cta">Connect on {{ platform.name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h3>Social Media Platforms</h3>
+            <p>Follow me on social media for a more personal look at my work, interests, and daily experiences in the tech world.</p>
+
+            <div class="platform-grid">
+                {% for platform in social %}
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <i class="{{ platform.icon_class }} platform-icon"></i>
+                        <h4>{{ platform.name }}</h4>
+                    </div>
+                    {% if platform.followers or platform.posts %}
+                    <div class="platform-stats">
+                        {% if platform.followers %}
+                        <div class="stat-item"><div class="stat-value">{{ platform.followers }}</div><div class="stat-label">Followers</div></div>
+                        {% endif %}
+                        {% if platform.posts %}
+                        <div class="stat-item"><div class="stat-value">{{ platform.posts }}</div><div class="stat-label">Posts</div></div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    <p><strong>Profile:</strong> <a href="{{ platform.url }}" target="_blank">{{ platform.url }}</a></p>
+                    {% if platform.highlights %}
+                    <h5>What I Share:</h5>
+                    <ul class="content-list">
+                        {% for highlight in platform.highlights.splitlines %}
+                        <li>{{ highlight }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if platform.popular %}
+                    <h5>Recent Activity:</h5>
+                    <div class="popular-items">
+                        {% for item in platform.popular.splitlines %}
+                        <div class="popular-item">{{ item }}</div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    <a href="{{ platform.url }}" target="_blank" class="platform-cta">Follow on {{ platform.name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h3>Additional Platforms</h3>
+            <p>Connect with me on these other platforms for learning, direct communication, and more specialized content.</p>
+
+            <div class="platform-grid">
+                {% for platform in additional %}
+                <div class="platform-card">
+                    <div class="platform-header">
+                        <i class="{{ platform.icon_class }} platform-icon"></i>
+                        <h4>{{ platform.name }}</h4>
+                    </div>
+                    <p><strong>Profile:</strong> <a href="{{ platform.url }}" target="_blank">{{ platform.url }}</a></p>
+                    <p>{{ platform.description }}</p>
+                    <a href="{{ platform.url }}" target="_blank" class="platform-cta">View on {{ platform.name }}</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="social-section">
+            <h3>My Social Media Strategy</h3>
+            <p>Each platform serves a unique purpose in my professional and personal brand. Here's how I approach content creation and community engagement across different channels.</p>
+
+            <div class="strategy-grid">
+                <div class="strategy-card">
+                    <h6><i class="fab fa-linkedin"></i> LinkedIn – Professional Growth</h6>
+                    <ul class="content-list">
+                        <li>Share industry insights and thought leadership</li>
+                        <li>Engage with professional network</li>
+                        <li>Post about career milestones</li>
+                        <li>Participate in group discussions</li>
                     </ul>
                 </div>
-            </section>
 
-            <section>
-                <h3>Let's Connect and Collaborate</h3>
-                <p>I'm always excited to connect with fellow developers, designers, and tech enthusiasts. Whether you want to collaborate on a project, discuss technology, or just say hello, I'd love to hear from you!</p>
-
-                <div class="collaboration-grid">
-                    <div class="collaboration-type">
-                        <h5>Professional Networking</h5>
-                        <ul class="content-list">
-                            <li><strong>LinkedIn:</strong> Career opportunities and professional discussions</li>
-                            <li><strong>GitHub:</strong> Code collaboration and open source contributions</li>
-                            <li><strong>Stack Overflow:</strong> Technical questions and problem-solving</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="collaboration-type">
-                        <h5>Casual Interaction</h5>
-                        <ul class="content-list">
-                            <li><strong>Twitter:</strong> Quick questions and tech discussions</li>
-                            <li><strong>Instagram:</strong> Behind-the-scenes and personal interests</li>
-                            <li><strong>YouTube:</strong> Learning requests and tutorial suggestions</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="collaboration-type">
-                        <h5>Direct Communication</h5>
-                        <ul class="content-list">
-                            <li><strong>WhatsApp:</strong> Direct messaging for quick conversations</li>
-                            <li><strong>Email:</strong> Formal inquiries and detailed discussions</li>
-                            <li><strong>Sololearn:</strong> Learning path discussions and coding challenges</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="cta-container">
-                    <h4>Ready to Connect?</h4>
-                    <p>Choose your preferred platform and let's start a conversation! I'm always happy to discuss technology, share knowledge, or explore potential collaborations.</p>
-                    
-                    <div class="cta-buttons">
-                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank">Connect on LinkedIn</a>
-                        <a href="https://x.com/GerardOnye16230" target="_blank">Follow on Twitter</a>
-                        <a href="https://github.com/Deglobeal" target="_blank">Collaborate on GitHub</a>
-                        <a href="/contact">Send Direct Message</a>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Gerard Ugwu</h3>
-                    <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                        <a href="https://x.com/GerardOnye16230" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-                        <a href="https://youtube.com/@deglobeal" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><a href="/skills">Skills</a></li>
-                        <li><a href="/projects">Projects</a></li>
-                        <li><a href="/contact">Contact</a></li>
+                <div class="strategy-card">
+                    <h6><i class="fab fa-twitter"></i> Twitter – Real-Time Engagement</h6>
+                    <ul class="content-list">
+                        <li>Share quick tips and coding tricks</li>
+                        <li>Engage in tech community conversations</li>
+                        <li>Live-tweet from conferences</li>
+                        <li>Retweet developer content</li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h3>Contact Me</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
-                        <li><i class="fas fa-phone"></i> +2347032388531</li>
-                        <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
+
+                <div class="strategy-card">
+                    <h6><i class="fab fa-instagram"></i> Instagram – Visual Storytelling</h6>
+                    <ul class="content-list">
+                        <li>Showcase workspace and environment</li>
+                        <li>Create appealing code snippets</li>
+                        <li>Share behind-the-scenes</li>
+                        <li>Post inspirational content</li>
+                    </ul>
+                </div>
+
+                <div class="strategy-card">
+                    <h6><i class="fab fa-youtube"></i> YouTube – Educational Content</h6>
+                    <ul class="content-list">
+                        <li>Create comprehensive tutorials</li>
+                        <li>Build project series</li>
+                        <li>Review tools and technologies</li>
+                        <li>Host live coding sessions</li>
                     </ul>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
+
+            <div class="philosophy-box">
+                <h4>Community Engagement Philosophy</h4>
+                <p>I believe in authentic engagement and providing value to the developer community. My approach focuses on:</p>
+                <ul class="content-list">
+                    <li>Sharing knowledge and helping others learn</li>
+                    <li>Being genuine and transparent in interactions</li>
+                    <li>Responding thoughtfully to comments and questions</li>
+                    <li>Supporting fellow developers and projects</li>
+                    <li>Contributing to meaningful discussions</li>
+                    <li>Maintaining professionalism while showing personality</li>
+                </ul>
             </div>
-        </footer>
+        </section>
+
+        <section class="social-section">
+            <h3>Let's Connect and Collaborate</h3>
+            <p>I'm always excited to connect with fellow developers, designers, and tech enthusiasts. Whether you want to collaborate on a project, discuss technology, or just say hello, I'd love to hear from you!</p>
+
+            <div class="collaboration-grid">
+                <div class="collaboration-type">
+                    <h5>Professional Networking</h5>
+                    <ul class="content-list">
+                        <li><strong>LinkedIn:</strong> Career opportunities and professional discussions</li>
+                        <li><strong>GitHub:</strong> Code collaboration and open-source contributions</li>
+                        <li><strong>Stack Overflow:</strong> Technical questions and problem-solving</li>
+                    </ul>
+                </div>
+
+                <div class="collaboration-type">
+                    <h5>Casual Interaction</h5>
+                    <ul class="content-list">
+                        <li><strong>Twitter:</strong> Quick questions and tech discussions</li>
+                        <li><strong>Instagram:</strong> Behind-the-scenes and personal interests</li>
+                        <li><strong>YouTube:</strong> Learning requests and tutorial suggestions</li>
+                    </ul>
+                </div>
+
+                <div class="collaboration-type">
+                    <h5>Direct Communication</h5>
+                    <ul class="content-list">
+                        <li><strong>WhatsApp:</strong> Direct messaging for quick conversations</li>
+                        <li><strong>Email:</strong> Formal inquiries and detailed discussions</li>
+                        <li><strong>Sololearn:</strong> Learning-path discussions and coding challenges</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="cta-container">
+                <h4>Ready to Connect?</h4>
+                <p>Choose your preferred platform and let's start a conversation! I'm always happy to discuss technology, share knowledge, or explore potential collaborations.</p>
+
+                <div class="cta-buttons">
+                    {% for platform in professional|slice:":1" %}
+                    <a href="{{ platform.url }}" target="_blank">Connect on {{ platform.name }}</a>
+                    {% endfor %}
+                    
+                    {% for platform in social|slice:":1" %}
+                    <a href="{{ platform.url }}" target="_blank">Follow on {{ platform.name }}</a>
+                    {% endfor %}
+                    
+                    {% for platform in professional %}
+                    {% if platform.name == "GitHub" %}
+                    <a href="{{ platform.url }}" target="_blank">Collaborate on {{ platform.name }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    
+                    <a href="/contact">Send Direct Message</a>
+                </div>
+            </div>
+        </section>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}

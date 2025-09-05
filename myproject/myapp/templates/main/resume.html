@@ -1,1256 +1,383 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerard Ugwu - Resume</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --border-radius: 4px;
-            --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --sidebar-width: 250px;
-            --sidebar-collapsed: 70px;
-            --sidebar-bg: linear-gradient(to bottom, #0f172a, #1e293b);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f8f9fa;
-            padding: 0;
-            margin: 0;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            min-height: 100vh;
-        }
-        
-        a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            transition: color 0.3s ease;
-        }
-        
-        a:hover {
-            color: var(--accent-color);
-        }
-        
-        ul {
-            list-style-type: none;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Sidebar Styles - Fixed Icon Positioning */
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: var(--sidebar-collapsed);
-            height: 100%;
-            background: var(--sidebar-bg);
-            z-index: 1000;
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            overflow-x: hidden;
-            box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .sidebar:hover {
-            width: var(--sidebar-width);
-        }
-        
-        .sidebar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #2563eb, #e11d48);
-        }
-        
-        .sidebar .logo-container {
-            display: flex;
-            align-items: center;
-            padding: 25px 0;
-            height: 90px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            justify-content: center;
-        }
-        
-        .sidebar .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .sidebar:hover .logo {
-            opacity: 1;
-        }
-        
-        .sidebar .logo span {
-            color: #e11d48;
-        }
-        
-        .sidebar .menu-icon {
-            position: absolute;
-            top: 30px;
-            right: 20px;
-            color: white;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .sidebar:hover .menu-icon {
-            transform: rotate(90deg);
-        }
-        
-        .sidebar ul {
-            list-style: none;
-            padding: 20px 0;
-            flex-grow: 1;
-        }
-        
-        .sidebar li {
-            margin: 12px 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* FIXED: Remove bullet points from sidebar */
-        .sidebar li::before {
-            content: none !important;
-        }
-        
-        .sidebar a {
-            color: #cbd5e1;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            transition: all 0.3s ease;
-            border-radius: 0;
-            margin: 0;
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            justify-content: center;
-        }
-        
-        .sidebar:hover a {
-            padding: 12px 15px;
-            justify-content: flex-start;
-            border-radius: 6px;
-            margin: 0 10px;
-        }
-        
-        .sidebar a i {
-            width: 35px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        /* Fix for collapsed state - center icons */
-        .sidebar a i {
-            margin-right: 0;
-            margin-left: -30px;
-            
-        }
-        
-        .sidebar:hover a i {
-            margin-right: 0;
-        }
-        
-        .sidebar a .link-text {
-            white-space: nowrap;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-            width: 0;
-            overflow: hidden;
-        }
-        
-        .sidebar:hover a .link-text {
-            opacity: 1;
-            width: auto;
-        }
-        
-        .sidebar a:hover {
-            background: rgba(37, 99, 235, 0.15);
-            color: white;
-            transform: translateX(0);
-        }
-        
-        .sidebar a:hover i {
-            transform: scale(1.15);
-            color: #2563eb;
-        }
-        
-        .sidebar a.active {
-            background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), transparent);
-            color: white;
-        }
-        
-        .sidebar a.active::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 4px;
-            background: #2563eb;
-        }
-        
-        .sidebar .social-links {
-            display: flex;
-            justify-content: center;
-            padding: 30px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 0;
-        }
-        
-        .sidebar:hover .social-links {
-            margin: 0 10px;
-        }
-        
-        .sidebar .social-links a {
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
-            color: #cbd5e1;
-            margin: 0 5px;
-            padding: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .sidebar .social-links a:hover {
-            background: #2563eb;
-            color: white;
-            transform: translateY(-3px);
-        }
+{% extends "base.html" %}
+{% load static %}
+{% load custom_filters %}
 
-        /* Toggle button styling */
-        #sidebar-toggle {
-            position: fixed;
-            top: 25px;
-            right: 25px;
-            z-index: 1100;
-            background: #2563eb;
-            color: #fff;
-            border: none;
-            padding: 12px 16px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(37,99,235,0.25);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        #sidebar-toggle:hover {
-            background: #1e40af;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(37,99,235,0.3);
-        }
-        
-        #sidebar-toggle i {
-            font-size: 1.2rem;
-        }
-        
-        .main-wrapper {
-            margin-right: var(--sidebar-collapsed);
-            transition: margin 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-        
-        .sidebar:hover ~ .main-wrapper {
-            margin-right: var(--sidebar-width);
-        }
-        
-        /* Overlay for mobile */
-        #overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            display: none;
-        }
-        
-        /* Header styling */
-        header {
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px 0;
-        }
+{% block title %}Resume - Gerard Ugwu{% endblock %}
 
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+{% block main %}
+<style>
+  /* ==========  RESUME PAGE STYLES  ========== */
+  :root {
+    --resume-primary: #2563eb;
+    --resume-accent: #e11d48;
+    --resume-dark: #0f172a;
+    --resume-light: #f8fafc;
+    --resume-gray: #64748b;
+    --resume-light-gray: #e2e8f0;
+    --resume-radius: 12px;
+    --resume-shadow: 0 4px 20px rgba(0,0,0,.08);
+    --resume-transition: all .3s ease;
+  }
 
-        .header-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #2563eb;
-        }
+  /* reset inside this block only */
+  .resume-wrapper * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .resume-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Inter', Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--resume-dark);
+    line-height: 1.65;
+  }
 
-        .header-logo span {
-            color: #e11d48;
-        }
+  .resume-wrapper section {
+    margin-bottom: 60px;
+  }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-        }
+  .resume-wrapper .section-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+  }
 
-        nav a {
-            text-decoration: none;
-            color: #0f172a;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-        }
+  .resume-wrapper .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--resume-primary), var(--resume-accent));
+    border-radius: 2px;
+  }
 
-        nav a:hover {
-            color: #2563eb;
-        }
+  /* Timeline styles */
+  .timeline {
+    position: relative;
+    padding-left: 30px;
+  }
 
-        /* Responsive adjustments for sidebar */
-        @media (max-width: 900px) {
-            .sidebar {
-                width: var(--sidebar-width);
-                transform: translateX(100%);
-                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            }
-            
-            .sidebar.sidebar-open {
-                transform: translateX(0);
-            }
-            
-            .sidebar .logo,
-            .sidebar .link-text {
-                opacity: 1;
-            }
-            
-            .sidebar .menu-icon {
-                display: none;
-            }
-            
-            .main-wrapper {
-                margin-right: 0;
-            }
-            
-            .sidebar:hover ~ .main-wrapper {
-                margin-right: 0;
-            }
-            
-            .sidebar:hover {
-                width: var(--sidebar-width);
-            }
-            
-            #sidebar-toggle {
-                display: block;
-            }
-            
-            nav ul {
-                display: none;
-            }
-            
-            .sidebar.sidebar-open ~ #overlay {
-                display: block;
-            }
-            
-            .sidebar a {
-                justify-content: flex-start;
-                padding: 10px 20px;
-                margin: 0 10px;
-                border-radius: 6px;
-            }
-            
-            .sidebar a i {
-                margin-right: 10px;
-            }
-            
-            .sidebar a .link-text {
-                opacity: 1;
-                width: auto;
-            }
-        }
-        
-        @media (min-width: 901px) {
-            #sidebar-toggle {
-                display: none;
-            }
-            #overlay {
-                display: none !important;
-            }
-        }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--resume-primary);
+    border-radius: 3px;
+  }
 
-        /* Main Content Styles */
-        main {
-            padding: 40px 0;
-        }
-        
-        section {
-            background: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            padding: 30px;
-            margin-bottom: 30px;
-        }
-        
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--secondary-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-        
-        h3 {
-            color: var(--primary-color);
-            margin: 20px 0 15px;
-            font-size: 1.5rem;
-        }
-        
-        h4 {
-            color: var(--secondary-color);
-            margin: 15px 0 10px;
-            font-size: 1.2rem;
-        }
-        
-        h5 {
-            color: var(--dark-color);
-            margin: 10px 0;
-            font-size: 1.1rem;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        ul li {
-            margin-bottom: 8px;
-            position: relative;
-            padding-left: 15px;
-        }
-        
-        ul li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-        }
-        
-        /* Download Buttons */
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 12px 24px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        
-        .btn-alt {
-            background-color: var(--accent-color);
-        }
-        
-        .btn-alt:hover {
-            background-color: #c0392b;
-        }
-        
-        .contact-links {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        
-        /* Resume Header */
-        .resume-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-        
-        .resume-header h2 {
-            font-size: 2.5rem;
-            border: none;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-        
-        .resume-header h3 {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            margin-bottom: 20px;
-        }
-        
-        .contact-info {
-            margin: 15px 0;
-            line-height: 1.8;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        
-        .contact-info p {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 5px 0;
-        }
-        
-        /* Sections */
-        .skills-container {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .skills-container > div {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .experience-item, .education-item, .project-item, .volunteer-item {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .experience-item:last-child, 
-        .education-item:last-child, 
-        .project-item:last-child,
-        .volunteer-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .key-achievements {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-left: 3px solid var(--secondary-color);
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-        
-        /* Footer */
-        footer {
-            background: #0f172a;
-            color: white;
-            padding: 50px 0 20px;
-            margin-top: 60px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
-        }
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-        }
-        .footer-section h3 {
-            font-size: 1.25rem;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #2563eb;
-        }
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .social-links a:hover {
-            background: #2563eb;
-            transform: translateY(-5px);
-        }
-        .footer-links {
-            list-style: none;
-        }
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-        .footer-links a {
-            color: #cbd5e1;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        .footer-links a:hover {
-            color: #2563eb;
-            padding-left: 5px;
-        }
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #94a3b8;
-            font-size: 0.8rem;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            header .container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-            
-            .btn-container, .contact-links {
-                flex-direction: column;
-            }
-            
-            .resume-header h2 {
-                font-size: 2rem;
-            }
-            
-            .contact-info {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-        }
-        
-        /* Animation Enhancements */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        section {
-            animation: fadeIn 0.6s ease-out;
-        }
-        
-        .resume-header {
-            animation: fadeIn 0.4s ease-out;
-        }
-    </style>
-</head>
-<body>
+  .timeline-item {
+    position: relative;
+    margin-bottom: 30px;
+  }
 
-  <!-- Sidebar Toggle Button -->
-  <button id="sidebar-toggle">
-    <i class="fas fa-bars"></i>
-  </button>
+  .timeline-item:last-child {
+    margin-bottom: 0;
+  }
 
-  <!-- Professional Side Menu -->
-  <div class="sidebar">
-    <div class="logo-container">
-      <div class="logo">Gerard<span>Ugwu</span></div>
-      <div class="menu-icon">
-        <i class="fas fa-chevron-left"></i>
+  .timeline-dot {
+    position: absolute;
+    left: -36px;
+    top: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--resume-primary);
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px var(--resume-primary);
+  }
+
+  .timeline-date {
+    font-size: 0.9rem;
+    color: var(--resume-gray);
+    margin-bottom: 5px;
+  }
+
+  .timeline-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--resume-primary);
+    margin-bottom: 8px;
+  }
+
+  .timeline-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--resume-dark);
+    margin-bottom: 10px;
+  }
+
+  .timeline-description {
+    font-size: 0.95rem;
+    color: var(--resume-gray);
+  }
+
+  /* Grid layouts */
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .three-column-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  /* Card styles */
+  .info-card {
+    background: #fff;
+    border-radius: var(--resume-radius);
+    padding: 25px;
+    box-shadow: var(--resume-shadow);
+    transition: var(--resume-transition);
+  }
+
+  .info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  }
+
+  .info-card h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--resume-primary);
+    margin-bottom: 15px;
+  }
+
+  .info-list {
+    list-style: none;
+  }
+
+  .info-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .info-list li i {
+    color: var(--resume-primary);
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+
+  /* Progress bars */
+  .skill-item {
+    margin-bottom: 20px;
+  }
+
+  .skill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .skill-name {
+    font-weight: 500;
+  }
+
+  .skill-percentage {
+    color: var(--resume-gray);
+    font-size: 0.9rem;
+  }
+
+  .progress-bar {
+    height: 8px;
+    background: var(--resume-light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--resume-primary), var(--resume-accent));
+    border-radius: 4px;
+  }
+
+  /* Download button */
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: var(--resume-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--resume-transition);
+    margin-bottom: 40px;
+  }
+
+  .download-btn:hover {
+    background: var(--resume-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(225, 29, 72, 0.3);
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .resume-wrapper .section-title {
+      font-size: 1.6rem;
+    }
+    
+    .timeline {
+      padding-left: 20px;
+    }
+    
+    .timeline-dot {
+      left: -26px;
+    }
+  }
+</style>
+
+<div class="resume-wrapper">
+  <section>
+    <h2 class="section-title">Professional Resume</h2>
+    <p>
+      {{ resume.summary }}
+    </p>
+    <a href="#" class="download-btn">
+      <i class="fas fa-download"></i> Download PDF Resume
+    </a>
+  </section>
+
+  <section>
+    <h3 class="section-title">Work Experience</h3>
+    <div class="timeline">
+      {% for experience in experiences %}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">
+          {{ experience.start_date|date:"Y" }} - 
+          {% if experience.end_date %}{{ experience.end_date|date:"Y" }}{% else %}Present{% endif %}
+        </div>
+        <h4 class="timeline-title">{{ experience.position }}</h4>
+        <div class="timeline-subtitle">{{ experience.company }}</div>
+        <div class="timeline-description">
+          <p>{{ experience.description }}</p>
+          {% if experience.technologies %}
+          <p><strong>Technologies:</strong> {{ experience.technologies }}</p>
+          {% endif %}
+        </div>
       </div>
+      {% endfor %}
     </div>
-    <ul>
-      <li><a href="/" ><i class="fas fa-home"></i> <span class="link-text">Home</span></a></li>
-      <li><a href="/profile"><i class="fas fa-user"></i> <span class="link-text">Profile</span></a></li>
-      <li><a href="/skills"><i class="fas fa-code"></i> <span class="link-text">Skills</span></a></li>
-      <li><a href="/projects"><i class="fas fa-project-diagram"></i> <span class="link-text">Projects</span></a></li>
-      <li><a href="/certificates"><i class="fas fa-certificate"></i> <span class="link-text">Certificates</span></a></li>
-      <li><a href="/resume" class="active"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
-      <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
-      <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
-    </ul>
-    <div class="social-links">
-      <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-      <a href="https://www.sololearn.com/en/profile/2262487" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i></a>
-      <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://x.com/GerardOnye16230?t=G0Yjvog-5sHgIlUrJcPjog&s=09" target="_blank" rel="noopener"><i class="fab fa-twitter"></i></a>
-      <a href="https://youtube.com/@deglobeal?si=FbjXwibthYdZyZO1" target="_blank" rel="noopener"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-dribbble"></i></a>
-    </div>
-  </div>
+  </section>
 
-  <!-- Main Wrapper -->
-  <div class="main-wrapper">
-    <!-- Header -->
-    <header>
-      <div class="container header-container">
-        <div class="header-logo">Gerard<span>Ugwu</span></div>
-        <nav>
-          <ul style="list-style: none; margin: 0; padding: 0; display: flex; gap: 25px;">
-            <li><a href="/">Home</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
-          </ul>
-        </nav>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const toggleBtn = document.querySelector('#sidebar-toggle');
-            if (toggleBtn && sidebar) {
-              toggleBtn.addEventListener('click', function(e) {
-                e.stopPropagation();
-                sidebar.classList.toggle('sidebar-open');
-              });
-            }
-            document.addEventListener('click', function(e) {
-              if (sidebar && sidebar.classList.contains('sidebar-open')) {
-                if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
-                  sidebar.classList.remove('sidebar-open');
-                }
-              }
-            });
-          });
-        </script>
+  <section>
+    <h3 class="section-title">Education</h3>
+    <div class="timeline">
+      {% for education in educations %}
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">
+          {{ education.start_date|date:"Y" }} - 
+          {% if education.end_date %}{{ education.end_date|date:"Y" }}{% else %}Present{% endif %}
+        </div>
+        <h4 class="timeline-title">{{ education.degree }}</h4>
+        <div class="timeline-subtitle">{{ education.institution }}</div>
+        <div class="timeline-description">
+          <p>{{ education.description }}</p>
+          {% if education.field_of_study %}
+          <p><strong>Field of Study:</strong> {{ education.field_of_study }}</p>
+          {% endif %}
+        </div>
       </div>
-    </header>
+      {% endfor %}
+    </div>
+  </section>
 
-        <!-- Main content area -->
-        <main class="container">
-            <!-- Resume download section -->
-            <section>
-                <h2>Professional Resume</h2>
-                <p>
-                    Download my complete resume or view the detailed version below.
-                </p>
-                
-                <!-- Download buttons -->
-                <div class="btn-container">
-                    <a href="/resume.pdf" download="Gerard_Resume.pdf" class="btn">
-                        <i class="fas fa-download"></i> Download PDF Resume
-                    </a>
-                    <a href="/resume.docx" download="Gerard_Resume.docx" class="btn">
-                        <i class="fas fa-download"></i> Download Word Resume
-                    </a>
-                </div>
-            </section>
-
-            <!-- Resume content container -->
-            <div>
-                <!-- Personal information header -->
-                <section>
-                    <div class="resume-header">
-                        <h2>Gerard Ugwu</h2>
-                        <h3>Senior Web Developer & UI/UX Designer</h3>
-                        
-                        <!-- Contact information -->
-                        <div class="contact-info">
-                            <p><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</p>
-                            <p><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</p>
-                            <p><i class="fas fa-phone"></i> +2347032388531</p>
-                            <p>
-                                <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin"></i> LinkedIn
-                                </a>
-                            </p>
-                            <p>
-                                <a href="https://github.com/Deglobeal" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i> GitHub
-                                </a>
-                            </p>
-                            <p>
-                                <a href="https://gerardugwu.dev" target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-globe"></i> Portfolio
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Professional summary section -->
-                <section>
-                    <h3>Professional Summary</h3>
-                    <p>
-                        Experienced Senior Web Developer with 5+ years of expertise in full-stack development, 
-                        specializing in React, Node.js, and modern web technologies. Proven track record of 
-                        delivering high-quality, scalable applications that serve 100K+ daily active users. 
-                        Strong background in UI/UX design with a passion for creating intuitive, accessible 
-                        user experiences. Demonstrated leadership in mentoring junior developers and driving 
-                        technical excellence across development teams.
-                    </p>
-                </section>
-
-                <!-- Core competencies section -->
-                <section>
-                    <h3>Core Competencies</h3>
-                    
-                    <div class="skills-container">
-                        <!-- Technical skills subsection -->
-                        <div>
-                            <h4>Technical Skills</h4>
-                            <ul>
-                                <li><strong>Frontend:</strong> React, Vue.js, TypeScript, JavaScript (ES6+), HTML5, CSS3, Tailwind CSS, SASS</li>
-                                <li><strong>Backend:</strong> Node.js, Express.js, Python, PHP, RESTful APIs, GraphQL</li>
-                                <li><strong>Databases:</strong> PostgreSQL, MongoDB, MySQL, Redis</li>
-                                <li><strong>Cloud & DevOps:</strong> AWS (EC2, S3, Lambda), Docker, CI/CD, Git, GitHub Actions</li>
-                                <li><strong>Tools & Frameworks:</strong> Next.js, Webpack, Jest, Cypress, Figma, Adobe Creative Suite</li>
-                            </ul>
-                        </div>
-
-                        <!-- Soft skills subsection -->
-                        <div>
-                            <h4>Professional Skills</h4>
-                            <ul>
-                                <li>Team Leadership & Mentoring</li>
-                                <li>Agile/Scrum Methodologies</li>
-                                <li>Project Management</li>
-                                <li>Client Communication</li>
-                                <li>Problem Solving & Debugging</li>
-                                <li>Code Review & Quality Assurance</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Professional experience section -->
-                <section>
-                    <h3>Professional Experience</h3>
-
-                    <!-- Current position -->
-                    <div class="experience-item">
-                        <h4>Senior Web Developer</h4>
-                        <p><strong>TechCorp Solutions</strong> | YABA LAGOS, NIGERIA | <em>March 2022 - Present</em></p>
-                        
-                        <!-- Job responsibilities and achievements -->
-                        <ul>
-                            <li>Lead development of responsive web applications serving 100K+ daily active users, resulting in 40% increase in user engagement</li>
-                            <li>Mentor team of 5 junior developers, conducting code reviews and technical training sessions, achieving 100% team retention rate</li>
-                            <li>Architect and implement scalable frontend solutions using React, TypeScript, and modern development practices</li>
-                            <li>Optimize application performance through code splitting, lazy loading, and caching strategies, reducing load times by 45%</li>
-                            <li>Collaborate with cross-functional teams including designers, product managers, and backend developers to deliver high-quality features</li>
-                            <li>Implement automated testing suites using Jest and Cypress, increasing code coverage from 60% to 95%</li>
-                            <li>Drive adoption of best practices including TypeScript migration, component library development, and documentation standards</li>
-                        </ul>
-
-                        <!-- Key achievements -->
-                        <div class="key-achievements">
-                            <h5>Key Achievements:</h5>
-                            <ul>
-                                <li>Awarded "Employee of the Year 2024" for technical excellence and leadership</li>
-                                <li>Led successful migration of legacy codebase to modern React architecture</li>
-                                <li>Reduced customer support tickets by 30% through improved UI/UX design</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Previous position -->
-                    <div class="experience-item">
-                        <h4>Full Stack Developer</h4>
-                        <p><strong>StartupXYZ</strong> | Palo Alto, CA | <em>June 2020 - February 2022</em></p>
-                        
-                        <!-- Job responsibilities and achievements -->
-                        <ul>
-                            <li>Developed and maintained multiple client-facing web applications from concept to deployment using Vue.js and Node.js</li>
-                            <li>Built RESTful APIs and integrated third-party services including Stripe, SendGrid, and AWS services</li>
-                            <li>Implemented responsive designs that improved mobile user engagement by 35% and reduced bounce rate by 25%</li>
-                            <li>Worked in agile environment, participating in sprint planning, daily standups, and retrospectives</li>
-                            <li>Collaborated directly with stakeholders to gather requirements and translate business needs into technical solutions</li>
-                            <li>Maintained and optimized database performance, reducing query response times by 50%</li>
-                            <li>Implemented comprehensive error handling and logging systems for improved debugging and monitoring</li>
-                        </ul>
-
-                        <!-- Key achievements -->
-                        <div class="key-achievements">
-                            <h5>Key Achievements:</h5>
-                            <ul>
-                                <li>Successfully launched 3 major product features ahead of schedule</li>
-                                <li>Improved application security by implementing JWT authentication and input validation</li>
-                                <li>Contributed to 200% increase in monthly active users through feature development</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- First position -->
-                    <div class="experience-item">
-                        <h4>Junior Web Developer</h4>
-                        <p><strong>Digital Agency Pro</strong> | YABA LAGOS, NIGERIA | <em>August 2019 - May 2020</em></p>
-                        
-                        <!-- Job responsibilities and achievements -->
-                        <ul>
-                            <li>Developed custom WordPress themes and plugins for diverse client projects across various industries</li>
-                            <li>Converted PSD and Figma designs to pixel-perfect, responsive HTML/CSS/JavaScript implementations</li>
-                            <li>Performed website maintenance, updates, and troubleshooting for 20+ existing client websites</li>
-                            <li>Assisted in SEO optimization efforts, improving average client site rankings by 25% in search results</li>
-                            <li>Participated in client meetings to discuss project requirements and provide technical recommendations</li>
-                            <li>Collaborated with design team to ensure technical feasibility of proposed designs</li>
-                            <li>Implemented Google Analytics and tracking solutions for client websites</li>
-                        </ul>
-
-                        <!-- Key achievements -->
-                        <div class="key-achievements">
-                            <h5>Key Achievements:</h5>
-                            <ul>
-                                <li>Delivered 15+ client projects on time and within budget</li>
-                                <li>Received "Rising Star" award for exceptional performance in first year</li>
-                                <li>Improved team workflow by introducing version control best practices</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Education section -->
-                <section>
-                    <h3>Education</h3>
-
-                    <!-- Primary degree -->
-                    <div class="education-item">
-                        <h4>Bachelor of Science in Computer Science</h4>
-                        <p><strong>University of California, Berkeley</strong> | Berkeley, CA | <em>2015 - 2019</em></p>
-                        <p><strong>GPA:</strong> 3.8/4.0 | <strong>Magna Cum Laude</strong></p>
-                        
-                        <!-- Relevant coursework -->
-                        <div>
-                            <h5>Relevant Coursework:</h5>
-                            <ul>
-                                <li>Data Structures and Algorithms</li>
-                                <li>Software Engineering</li>
-                                <li>Database Systems</li>
-                                <li>Web Development</li>
-                                <li>Human-Computer Interaction</li>
-                                <li>Computer Networks</li>
-                                <li>Operating Systems</li>
-                            </ul>
-                        </div>
-
-                        <!-- Academic achievements -->
-                        <div class="key-achievements">
-                            <h5>Academic Achievements:</h5>
-                            <ul>
-                                <li>Dean's List: Fall 2017, Spring 2018, Fall 2018</li>
-                                <li>Best Senior Capstone Project Award for "Distributed Task Scheduling System"</li>
-                                <li>Computer Science Department Scholarship Recipient</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Additional certification -->
-                    <div class="education-item">
-                        <h4>Certificate in UX/UI Design</h4>
-                        <p><strong>Stanford Continuing Studies</strong> | Stanford, CA | <em>2020</em></p>
-                        <p>6-month intensive program covering user research, wireframing, prototyping, and design systems</p>
-                    </div>
-                </section>
-
-                <!-- Certifications section -->
-                <section>
-                    <h3>Professional Certifications</h3>
-                    
-                    <!-- List of certifications -->
-                    <ul>
-                        <li><strong>AWS Certified Developer - Associate</strong> | Amazon Web Services | March 2024 - March 2027</li>
-                        <li><strong>Google Cloud Professional Cloud Developer</strong> | Google Cloud | January 2024 - January 2026</li>
-                        <li><strong>Microsoft Certified: Azure Developer Associate</strong> | Microsoft | November 2023 - November 2025</li>
-                    </ul>
-                </section>
-
-                <!-- Projects section -->
-                <section>
-                    <h3>Notable Projects</h3>
-
-                    <!-- Project 1 -->
-                    <div class="project-item">
-                        <h4>E-commerce Platform</h4>
-                        <p><em>Full-Stack Web Application | 2024</em></p>
-                        <ul>
-                            <li>Developed comprehensive e-commerce solution with React, Node.js, and PostgreSQL</li>
-                            <li>Implemented secure payment processing with Stripe integration</li>
-                            <li>Built admin dashboard for inventory and order management</li>
-                            <li>Achieved 99.9% uptime and 2.3-second average page load time</li>
-                        </ul>
-                        <p><strong>Technologies:</strong> React, TypeScript, Node.js, PostgreSQL, AWS, Docker</p>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="project-item">
-                        <h4>Task Management Application</h4>
-                        <p><em>Collaborative Web Application | 2024</em></p>
-                        <ul>
-                            <li>Built real-time collaborative task management system with WebSocket integration</li>
-                            <li>Implemented drag-and-drop functionality and team collaboration features</li>
-                            <li>Designed mobile-responsive interface with progressive web app capabilities</li>
-                        </ul>
-                        <p><strong>Technologies:</strong> Vue.js, Socket.io, MongoDB, Node.js</p>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="project-item">
-                        <h4>Weather Dashboard</h4>
-                        <p><em>Data Visualization Application | 2023</em></p>
-                        <ul>
-                            <li>Created interactive weather dashboard with real-time data and forecasting</li>
-                            <li>Integrated multiple weather APIs and implemented data caching strategies</li>
-                            <li>Built responsive charts and maps using Chart.js and Leaflet</li>
-                        </ul>
-                        <p><strong>Technologies:</strong> React, Chart.js, OpenWeatherMap API, Leaflet Maps</p>
-                    </div>
-                </section>
-
-                <!-- Awards and recognition section -->
-                <section>
-                    <h3>Awards & Recognition</h3>
-                    
-                    <!-- List of awards -->
-                    <ul>
-                        <li><strong>Employee of the Year 2024</strong> | TechCorp Solutions | Technical Excellence Category</li>
-                        <li><strong>First Place - Bay Area Tech Hackathon 2024</strong> | AI-Powered Accessibility Tool | $10,000 Prize</li>
-                        <li><strong>Outstanding Open Source Contributor</strong> | React Community | June 2024</li>
-                        <li><strong>Rising Star Award</strong> | Digital Agency Pro | 2020</li>
-                    </ul>
-                </section>
-
-                <!-- Professional memberships section -->
-                <section>
-                    <h3>Professional Memberships</h3>
-                    
-                    <!-- List of memberships -->
-                    <ul>
-                        <li><strong>Institute of Electrical and Electronics Engineers (IEEE)</strong> | Professional Member | 2020 - Present</li>
-                        <li><strong>Association for Computing Machinery (ACM)</strong> | Professional Member | 2020 - Present</li>
-                    </ul>
-                </section>
-
-                <!-- Languages section -->
-                <section>
-                    <h3>Languages</h3>
-                    
-                    <!-- List of languages -->
-                    <ul>
-                        <li><strong>English:</strong> Native</li>
-                        <li><strong>Spanish:</strong> Conversational</li>
-                        <li><strong>Mandarin:</strong> Basic</li>
-                    </ul>
-                </section>
-
-                <!-- Volunteer experience section -->
-                <section>
-                    <h3>Volunteer Experience</h3>
-
-                    <!-- Volunteer position 1 -->
-                    <div class="volunteer-item">
-                        <h4>Technical Mentor</h4>
-                        <p><strong>Code for America</strong> | <em>2022 - Present</em></p>
-                        <ul>
-                            <li>Mentor aspiring developers in web development fundamentals and best practices</li>
-                            <li>Conduct weekly coding workshops for underrepresented communities</li>
-                            <li>Contribute to open-source civic technology projects</li>
-                        </ul>
-                    </div>
-
-                    <!-- Volunteer position 2 -->
-                    <div class="volunteer-item">
-                        <h4>Web Development Instructor</h4>
-                        <p><strong>Local Community College</strong> | <em>2021 - 2022</em></p>
-                        <ul>
-                            <li>Taught evening web development courses for adult learners</li>
-                            <li>Developed curriculum covering HTML, CSS, JavaScript, and React fundamentals</li>
-                            <li>Helped 50+ students transition into technology careers</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <!-- References section -->
-                <section>
-                    <h3>References</h3>
-                    <p>Professional references available upon request.</p>
-                </section>
-            </div>
-
-            <!-- Additional download section -->
-            <section>
-                <h3>Download Resume</h3>
-                <p>
-                    For your convenience, you can download my resume in multiple formats:
-                </p>
-                
-                <!-- Download options -->
-                <div class="btn-container">
-                    <a href="/resume.pdf" download="Gerard_Resume.pdf" class="btn">
-                        <i class="fas fa-file-pdf"></i> Download PDF Version
-                    </a>
-                    <a href="/resume.docx" download="Gerard_Resume.docx" class="btn">
-                        <i class="fas fa-file-word"></i> Download Word Version
-                    </a>
-                    <a href="/resume.txt" download="Gerard_Resume.txt" class="btn">
-                        <i class="fas fa-file-alt"></i> Download Text Version
-                    </a>
-                </div>
-            </section>
-
-            <!-- Contact call to action -->
-            <section>
-                <h3>Let's Connect</h3>
-                <p>
-                    Interested in discussing opportunities or learning more about my experience? 
-                    I'd love to hear from you.
-                </p>
-                
-                <!-- Contact links -->
-                <div class="contact-links">
-                    <a href="/contact" class="btn"><i class="fas fa-envelope"></i> Contact Me</a>
-                    <a href="/projects" class="btn"><i class="fas fa-project-diagram"></i> View My Projects</a>
-                    <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-linkedin"></i> LinkedIn Profile
-                    </a>
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer section -->
-        <footer>
-          <div class="container">
-            <div class="footer-content">
-              <div class="footer-section">
-                <h3>Gerard Ugwu</h3>
-                <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
-                <div class="social-links">
-                  <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-                  <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-                  <a href="#"><i class="fab fa-twitter"></i></a>
-                  <a href="#"><i class="fab fa-dribbble"></i></a>
-                </div>
-              </div>
-              <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                  <li><a href="/">Home</a></li>
-                  <li><a href="/profile">Profile</a></li>
-                  <li><a href="/skills">Skills</a></li>
-                  <li><a href="/projects">Projects</a></li>
-                  <li><a href="/contact">Contact</a></li>
-                </ul>
-              </div>
-              <div class="footer-section">
-                <h3>Contact Me</h3>
-                <ul class="footer-links">
-                  <li><i class="fas fa-envelope"></i> kachimaxy1@gmail.com</li>
-                  <li><i class="fas fa-phone"></i> +2347032388531</li>
-                  <li><i class="fas fa-map-marker-alt"></i> YABA LAGOS, NIGERIA</li>
-                </ul>
-              </div>
-            </div>
-            <div class="copyright">
-              <p>© 2025 Gerard Ugwu. All rights reserved. Designed with ❤️ and ☕</p>
-            </div>
+  <section>
+    <h3 class="section-title">Technical Skills</h3>
+    <div class="two-column-grid">
+      <div class="info-card">
+        <h4>Frontend Development</h4>
+        {% for skill in frontend_skills %}
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.title }}</span>
+            <span class="skill-percentage">{{ skill.rating|multiply:20 }}%</span>
           </div>
-        </footer>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ skill.rating|multiply:20 }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      
+      <div class="info-card">
+        <h4>Backend Development</h4>
+        {% for skill in backend_skills %}
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">{{ skill.title }}</span>
+            <span class="skill-percentage">{{ skill.rating|multiply:20 }}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ skill.rating|multiply:20 }}%"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
+  </section>
 
-    <!-- Sidebar toggle script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.sidebar');
-            const toggleBtn = document.querySelector('#sidebar-toggle');
-            const overlay = document.querySelector('#overlay');
-            const sidebarLinks = document.querySelectorAll('.sidebar a');
-            
-            if (toggleBtn && sidebar && overlay) {
-                toggleBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    sidebar.classList.toggle('sidebar-open');
-                    overlay.style.display = sidebar.classList.contains('sidebar-open') ? 'block' : 'none';
-                });
-                
-                overlay.addEventListener('click', function() {
-                    sidebar.classList.remove('sidebar-open');
-                    overlay.style.display = 'none';
-                });
-                
-                // Close sidebar when clicking links on mobile
-                sidebarLinks.forEach(link => {
-                    link.addEventListener('click', function() {
-                        if (window.innerWidth <= 900) {
-                            sidebar.classList.remove('sidebar-open');
-                            overlay.style.display = 'none';
-                        }
-                    });
-                });
-            }
-        });
-    </script>
-</body>
-</html>
+  <section>
+    <h3 class="section-title">Certifications</h3>
+    <div class="three-column-grid">
+      {% for certificate in certificates %}
+      <div class="info-card">
+        <h4>{{ certificate.title }}</h4>
+        <ul class="info-list">
+          <li><i class="fas fa-calendar-alt"></i> Issued: {{ certificate.issue_date|date:"Y" }}</li>
+          <li><i class="fas fa-building"></i> {{ certificate.issuer }}</li>
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">Languages</h3>
+    <div class="two-column-grid">
+      {% for language in languages %}
+      <div class="info-card">
+        <h4>{{ language.name }}</h4>
+        <div class="skill-item">
+          <div class="skill-header">
+            <span class="skill-name">{{ language.proficiency }}</span>
+            <span class="skill-percentage">{{ language.percentage }}%</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: {{ language.percentage }}%"></div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3 class="section-title">Interests</h3>
+    <div class="three-column-grid">
+      {% for interest in interests %}
+      <div class="info-card">
+        <h4><i class="{{ interest.icon_class }}"></i> {{ interest.title }}</h4>
+        <p>{{ interest.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}
