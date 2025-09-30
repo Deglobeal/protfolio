@@ -1,9 +1,18 @@
+# myproject/myapp/urls.py
+# Import necessary modules and views
+# links URL patterns to corresponding view functions
+# helps to organize URL routing for the app
+
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from myapp import views
 
+# Define URL patterns
+# Each path maps a URL to a view function
+# Updated to include new views and remove deprecated ones
+# Updated names for better clarity and consistency
 urlpatterns = [
     path('', views.home, name='home'),
     path('certificates/', views.certificate_list, name='certificate_list'),

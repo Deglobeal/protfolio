@@ -734,6 +734,9 @@
       <li><a href="/resume"><i class="fas fa-file-alt"></i> <span class="link-text">Resume</span></a></li>
       <li><a href="/contact"><i class="fas fa-envelope"></i> <span class="link-text">Contact</span></a></li>
       <li><a href="/social"><i class="fas fa-share-alt"></i> <span class="link-text">Social</span></a></li>
+      {% if user.is_authenticated %}
+        <li><a href="/admin/"><i class="fas fa-cog"></i> <span class="link-text">Admin</span></a></li>
+      {% endif %}
     </ul>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
@@ -753,7 +756,20 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/projects">Projects</a></li>
-            <li><a href="/contact">Contact</a></li>
+            <li class="admin-status">
+              {% if user.is_authenticated %}
+                <div class="admin-links">
+                  <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="admin-link admin-logout" style="background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 20px; cursor: pointer; font-size: 0.85rem;">
+                  Logout
+                </button>
+              </form>
+                </div>
+              {% else %}
+                <a href="{% url 'login' %}" class="admin-link admin-login">Login</a>
+              {% endif %}
+            </li>
           </ul>
         </nav>
       </div>

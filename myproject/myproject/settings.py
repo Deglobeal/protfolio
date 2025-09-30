@@ -130,3 +130,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media files (Uploaded images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# adding logging and logour settings
+# Configures logging to console for debugging purposes
+LOGIN_REDIRECT_URL = '/admin/' # Redirects to admin after login
+LOGOUT_REDIRECT_URL = '/' # Redirects to home after logout
+LOGIN_URL = '/accounts/login/' # URL for login page

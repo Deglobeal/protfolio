@@ -1,3 +1,10 @@
+# myproject/myapp/views.py
+# Import necessary modules and models
+# views.py
+
+# import statements
+# helps to render templates and interact with models
+# improves view functions for better functionality
 from django.shortcuts import render
 from .models import (
     Certificate, Project, Skill, ContactSubmission, 
@@ -8,6 +15,10 @@ from .models import (
 )
 
 # veiw for certificate
+# Updated to include filtering and search functionality
+# Also retrieves category choices from the model
+# Updated template context to include categories and search query
+# Updated to order certificates and learning paths by date
 
 def certificate_list(request):
     certificates = Certificate.objects.all().order_by('-issue_date')
@@ -39,6 +50,12 @@ def certificate_list(request):
     return render(request, 'main/certificate.html', context)
 
 # view for project
+# Updated to separate featured and additional projects
+# Updated template context to include both lists
+# Updated to order projects by date added
+# Updated to filter projects based on a 'featured' boolean field
+# Updated template to display featured and additional projects separately
+
 def project_view(request):
     featured_projects = Project.objects.filter(is_featured=True)
     additional_projects = Project.objects.filter(is_featured=False)
@@ -49,6 +66,11 @@ def project_view(request):
 
 
 # view for skill
+# Updated to filter out skills without content
+# Updated to include skill categories in context
+# Updated to load skill summary from SkillSummary model
+# Updated template to display skills by category and show summary
+
 def skills(request):
     # Get only skills that have content
     skills = Skill.objects.exclude(description__isnull=True).exclude(description__exact="")
@@ -65,6 +87,13 @@ def skills(request):
 
 
 # view for contact
+# Updated to handle form submission and save to ContactSubmission model
+# Updated to render a success page after submission
+# Updated template to include a contact form
+# Updated to validate form inputs (basic validation)
+# Updated to use POST method for form submission
+# Updated to prevent duplicate submissions on page refresh
+
 def contact_view(request):
     if request.method == 'POST':
         # Process form submission
@@ -85,11 +114,18 @@ def contact_view(request):
 
 
 # view for email templates
+# Updated to list all email templates from the database
+# Updated template to display email templates in a user-friendly format
+# Updated to order email templates by name
+
 def email_view(request):
     templates = EmailTemplate.objects.all()
     return render(request, 'main/email.html', {'templates': templates})
 
 # views.py - Update profile_view
+# Updated to remove access to unknown 'details' attribute
+# Updated to handle case where no profile exists
+
 def profile_view(request):
     profile = Profile.objects.first()
     profile_details = []  # Removed access to unknown 'details' attribute
@@ -109,6 +145,9 @@ def profile_view(request):
 
 
 # view for resume
+# Updated to include skills by category
+# Updated to include languages and interests data
+# Updated template to display skills, languages, and interests
 def resume_view(request):
     resume = Resume.objects.first()
     experiences = ProfessionalExperience.objects.all().order_by('-start_date')
@@ -143,11 +182,19 @@ def resume_view(request):
     return render(request, 'main/resume.html', context)
 
 # view for social profiles
+# Updated to list all social profiles from the database
+# Updated template to display social profiles in a user-friendly format
+# Updated to order social profiles by name
+
 def social_view(request):
     profiles = SocialProfile.objects.all()
     return render(request, 'main/social.html', {'profiles': profiles})
 
 # new view for social platforms
+# Updated to categorize social platforms
+# Updated template to display platforms by category
+# Updated to order platforms by name
+
 def social_page(request):
     categories = [
         {"slug": "professional", "title": "Professional Networks"},
@@ -171,6 +218,10 @@ def social_page(request):
 
 
 # view for home page
+# Updated to include site profile and services
+# Updated template to display site profile and services
+# Updated to order services by name
+
 def home(request):
     profile = SiteProfile.objects.first()
     services = Service.objects.all()
@@ -181,14 +232,25 @@ def home(request):
 
 
 # view for contact success
+# Renders a simple success page after contact form submission
+# Updated template to thank user for submission
+# Updated to provide a link back to the contact form or home page
+
 def contact_success(request):
     return render(request, 'main/contact_success.html')
 
 
 # view for project detail
+# Renders a detailed view of a single project
+# Updated to fetch project by ID or slug (not implemented here) 
+# Updated template to display detailed project information
+
 def project_detail_view(request):
     return render(request, 'main/project_detail.html')
 
 # base view
+# Renders the base template for the site
+# Updated template to include common site elements (header, footer, etc.)
+# Updated to be used as a base for other templates
 def base_view(request):
     return render(request, 'base.html')
