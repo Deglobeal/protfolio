@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -461,6 +462,33 @@
       font-size: 0.9rem;
     }
 
+    /* Add to your existing CSS in base.html */
+.protected-content {
+    /* Additional protection styles */
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
+    -webkit-touch-callout: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Allow selection in forms */
+input, textarea, [contenteditable="true"] {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+/* Blur effect for when tab is not focused */
+.body-blurred {
+    filter: blur(5px);
+    transition: filter 0.3s ease;
+}
+
+
+
     /* ---------- RESPONSIVE DESIGN IMPROVEMENTS ---------- */
     
     /* 320px and below - Extra small devices */
@@ -816,6 +844,433 @@
       </div>
     </footer>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const sidebar = document.querySelector('.sidebar');
+      const toggleBtn = document.querySelector('#sidebar-toggle');
+      const body = document.body;
+
+      if (toggleBtn && sidebar) {
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          sidebar.classList.toggle('sidebar-open');
+          body.classList.toggle('sidebar-open');
+        });
+      }
+
+      document.addEventListener('click', function(e) {
+        if (sidebar && sidebar.classList.contains('sidebar-open')) {
+          if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+            sidebar.classList.remove('sidebar-open');
+            body.classList.remove('sidebar-open');
+          }
+        }
+      });
+
+      sidebar.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 900) {
+            sidebar.classList.remove('sidebar-open');
+            body.classList.remove('sidebar-open');
+          }
+        });
+      });
+    });
+  </script>
+  <!-- Enhanced Content Protection Script -->
+<script>
+    // Only enable protection for non-admin users
+    {% if not user.is_authenticated %}
+    (function() {
+        'use strict';
+        
+        console.log('🔒 Enhanced content protection activated');
+        
+        // ========== ENHANCED PROTECTION FEATURES ==========
+        
+        // 1. Disable Right Click & Context Menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            showWarning('🚫 Right-click is disabled on this site');
+            return false;
+        });
+        
+        // 2. Disable Text Selection & Copy
+        document.addEventListener('copy', function(e) {
+            e.preventDefault();
+            showWarning('🚫 Content copying is protected');
+            return false;
+        });
+        
+        document.addEventListener('cut', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        // 3. Enhanced CSS Protection
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Disable text selection */
+            * {
+                -webkit-user-select: none !important;
+                -moz-user-select: none !important;
+                -ms-user-select: none !important;
+                user-select: none !important;
+                -webkit-touch-callout: none !important;
+                -webkit-tap-highlight-color: transparent !important;
+                cursor: default !important;
+            }
+            
+            /* Allow selection in forms only */
+            input, textarea, [contenteditable="true"] {
+                -webkit-user-select: text !important;
+                -moz-user-select: text !important;
+                -ms-user-select: text !important;
+                user-select: text !important;
+            }
+            
+            /* Anti-screenshot measures */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, 
+                    rgba(255,255,255,0.02) 25%, 
+                    transparent 25%, 
+                    transparent 50%, 
+                    rgba(255,255,255,0.02) 50%, 
+                    rgba(255,255,255,0.02) 75%, 
+                    transparent 75%, 
+                    transparent);
+                background-size: 10px 10px;
+                pointer-events: none;
+                z-index: 9998;
+                opacity: 0.1;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // 4. Enhanced Screenshot Deterrence
+        let screenshotAttempts = 0;
+        
+        // Detect Print Screen key
+        document.addEventListener('keydown', function(e) {
+            // Print Screen key
+            if (e.key === 'PrintScreen' || e.keyCode === 44 || e.code === 'PrintScreen') {
+                e.preventDefault();
+                screenshotAttempts++;
+                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
+                flashWarning();
+                distortContent();
+                return false;
+            }
+            
+            // Alt + Print Screen
+            if (e.altKey && (e.key === 'PrintScreen' || e.keyCode === 44)) {
+                e.preventDefault();
+                screenshotAttempts++;
+                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
+                flashWarning();
+                distortContent();
+                return false;
+            }
+            
+            // Windows + Print Screen
+            if (e.metaKey && (e.key === 'PrintScreen' || e.keyCode === 44)) {
+                e.preventDefault();
+                screenshotAttempts++;
+                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
+                flashWarning();
+                distortContent();
+                return false;
+            }
+            
+            // Ctrl + P (Print)
+            if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                e.preventDefault();
+                showWarning('🚫 Printing is disabled on this site');
+                return false;
+            }
+            
+            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C, Ctrl+U
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+                showWarning('🚫 Developer tools are restricted');
+                return false;
+            }
+        });
+        
+        // 5. Detect Window Focus Changes (for snipping tools)
+        let isBlurred = false;
+        
+        window.addEventListener('blur', function() {
+            if (!isBlurred) {
+                document.body.style.filter = 'blur(8px) grayscale(50%)';
+                document.body.style.transition = 'filter 0.3s ease';
+                isBlurred = true;
+            }
+        });
+        
+        window.addEventListener('focus', function() {
+            if (isBlurred) {
+                document.body.style.filter = 'none';
+                isBlurred = false;
+            }
+        });
+        
+        // 6. Detect Mouse Leaving Window (for screenshot tools)
+        document.addEventListener('mouseleave', function(e) {
+            if (e.clientY <= 0 || e.clientX <= 0 || 
+                e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+                document.body.style.opacity = '0.7';
+                setTimeout(() => {
+                    document.body.style.opacity = '1';
+                }, 1000);
+            }
+        });
+        
+        // 7. Canvas Fingerprinting Protection
+        function protectCanvasFingerprinting() {
+            const originalToDataURL = HTMLCanvasElement.prototype.toDataURL;
+            HTMLCanvasElement.prototype.toDataURL = function() {
+                console.warn('Canvas data extraction blocked');
+                showWarning('🚫 Screenshot protection active');
+                return '';
+            };
+        }
+        
+        // 8. Periodic Protection Checks
+        setInterval(function() {
+            // Check if dev tools are open
+            const devToolsOpened = window.outerWidth - window.innerWidth > 100 || 
+                                  window.outerHeight - window.innerHeight > 100;
+            
+            if (devToolsOpened) {
+                showWarning('🚫 Developer tools detected - Please close to continue');
+                distortContent();
+            }
+        }, 1000);
+        
+        // 9. Advanced Warning System
+        function showWarning(message) {
+            // Remove existing warnings
+            const existingWarnings = document.querySelectorAll('.protection-warning');
+            existingWarnings.forEach(warning => warning.remove());
+            
+            const warning = document.createElement('div');
+            warning.className = 'protection-warning';
+            warning.innerHTML = `
+                <div style="
+                    position: fixed;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: linear-gradient(135deg, #dc2626, #b91c1c);
+                    color: white;
+                    padding: 25px 35px;
+                    border-radius: 16px;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                    z-index: 10000;
+                    font-family: 'Inter', sans-serif;
+                    text-align: center;
+                    max-width: 350px;
+                    animation: warningPulse 0.6s ease-in-out;
+                    border: 2px solid #fecaca;
+                ">
+                    <div style="font-size: 2.5rem; margin-bottom: 15px;">🛡️</div>
+                    <div style="font-weight: 700; margin-bottom: 12px; font-size: 1.2rem;">Protected Content</div>
+                    <div style="font-size: 0.95rem; opacity: 0.9; line-height: 1.5;">${message}</div>
+                    <div style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">
+                        This content is copyright protected
+                    </div>
+                </div>
+            `;
+            
+            const warningStyle = document.createElement('style');
+            if (!document.querySelector('#warning-styles')) {
+                warningStyle.id = 'warning-styles';
+                warningStyle.textContent = `
+                    @keyframes warningPulse {
+                        0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+                        70% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+                        100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                    }
+                    .protection-warning {
+                        animation: warningPulse 0.6s ease-in-out;
+                    }
+                `;
+                document.head.appendChild(warningStyle);
+            }
+            
+            document.body.appendChild(warning);
+            
+            setTimeout(() => {
+                if (warning.parentNode) {
+                    warning.parentNode.removeChild(warning);
+                }
+            }, 4000);
+        }
+        
+        function flashWarning() {
+            const flash = document.createElement('div');
+            flash.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, rgba(220, 38, 38, 0.4), rgba(185, 28, 28, 0.6));
+                z-index: 9998;
+                pointer-events: none;
+                animation: flashFade 1.5s ease-in-out;
+            `;
+            
+            const flashStyle = document.createElement('style');
+            if (!document.querySelector('#flash-styles')) {
+                flashStyle.id = 'flash-styles';
+                flashStyle.textContent = `
+                    @keyframes flashFade {
+                        0% { opacity: 1; }
+                        70% { opacity: 0.8; }
+                        100% { opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(flashStyle);
+            }
+            
+            document.body.appendChild(flash);
+            
+            setTimeout(() => {
+                if (flash.parentNode) {
+                    flash.parentNode.removeChild(flash);
+                }
+            }, 1500);
+        }
+        
+        function distortContent() {
+            const distortion = document.createElement('div');
+            distortion.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: 
+                    radial-gradient(circle at 20% 50%, rgba(255,0,0,0.1) 25%, transparent 25%),
+                    radial-gradient(circle at 80% 20%, rgba(0,255,0,0.1) 25%, transparent 25%),
+                    radial-gradient(circle at 40% 80%, rgba(0,0,255,0.1) 25%, transparent 25%);
+                background-size: 200px 200px;
+                z-index: 9997;
+                pointer-events: none;
+                animation: distort 0.5s ease-in-out;
+                mix-blend-mode: overlay;
+            `;
+            
+            const distortStyle = document.createElement('style');
+            if (!document.querySelector('#distort-styles')) {
+                distortStyle.id = 'distort-styles';
+                distortStyle.textContent = `
+                    @keyframes distort {
+                        0% { opacity: 0; transform: scale(1); }
+                        50% { opacity: 1; transform: scale(1.02); }
+                        100% { opacity: 0; transform: scale(1); }
+                    }
+                `;
+                document.head.appendChild(distortStyle);
+            }
+            
+            document.body.appendChild(distortion);
+            
+            setTimeout(() => {
+                if (distortion.parentNode) {
+                    distortion.parentNode.removeChild(distortion);
+                }
+            }, 500);
+        }
+        
+        // 10. Add Protection Badge
+        function addProtectionBadge() {
+            const badge = document.createElement('div');
+            badge.innerHTML = `
+                <div style="
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #dc2626, #b91c1c);
+                    color: white;
+                    padding: 10px 16px;
+                    border-radius: 25px;
+                    font-size: 0.75rem;
+                    font-family: 'Inter', sans-serif;
+                    font-weight: 700;
+                    z-index: 1000;
+                    box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    border: 1px solid #fecaca;
+                    animation: badgePulse 4s infinite;
+                ">
+                    <span style="font-size: 1rem;">🛡️</span>
+                    <span>Content Protected</span>
+                </div>
+            `;
+            
+            const badgeStyle = document.createElement('style');
+            if (!document.querySelector('#badge-styles')) {
+                badgeStyle.id = 'badge-styles';
+                badgeStyle.textContent = `
+                    @keyframes badgePulse {
+                        0% { transform: translateY(0px); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3); }
+                        50% { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(220, 38, 38, 0.4); }
+                        100% { transform: translateY(0px); box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3); }
+                    }
+                `;
+                document.head.appendChild(badgeStyle);
+            }
+            
+            document.body.appendChild(badge);
+        }
+        
+        // 11. Initialize Advanced Protection
+        function initAdvancedProtection() {
+            protectCanvasFingerprinting();
+            addProtectionBadge();
+            
+            // Add subtle background pattern that makes screenshots less useful
+            const pattern = document.createElement('div');
+            pattern.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: 
+                    radial-gradient(circle at 25% 25%, rgba(37, 99, 235, 0.03) 5%, transparent 10%),
+                    radial-gradient(circle at 75% 75%, rgba(225, 29, 72, 0.03) 5%, transparent 10%);
+                background-size: 100px 100px;
+                pointer-events: none;
+                z-index: -1;
+            `;
+            document.body.appendChild(pattern);
+        }
+        
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initAdvancedProtection);
+        } else {
+            initAdvancedProtection();
+        }
+        
+    })();
+    {% endif %}
+</script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
