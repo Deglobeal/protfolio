@@ -428,3 +428,84 @@ class SocialPlatform(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+
+# model for email.html template
+# models.py - Email model
+# model for email-related sections
+
+# Email addresses
+class EmailAddress(models.Model):
+    title = models.CharField(max_length=100)  # e.g. Business Inquiries
+    address = models.EmailField(default="kachimaxy1@gmail.com")
+    best_for = models.TextField()
+    response_time = models.CharField(max_length=100, default="Within 48 hours")
+
+    def __str__(self):
+        return f"{self.title} ({self.address})"
+
+
+# Email templates
+class EmailTemplates(models.Model):
+    key = models.SlugField(unique=True)  # e.g. project, collab, tech
+    title = models.CharField(max_length=100)
+    subject = models.CharField(max_length=200)
+    body = models.TextField()
+
+    def __str__(self):
+        return self.title
+
+
+# Email guidelines
+class GuidelineSection(models.Model):
+    title = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.title
+
+
+class GuidelineItem(models.Model):
+    section = models.ForeignKey(GuidelineSection, related_name="items", on_delete=models.CASCADE)
+    text = models.TextField()
+
+    def __str__(self):
+        return f"{self.section.title}: {self.text[:30]}..."
+
+
+# Security & Privacy
+class SecurityItem(models.Model):
+    title = models.CharField(max_length=200)
+    points = models.TextField(help_text="Use line breaks for multiple points")
+
+    def get_points_list(self):
+        return [p.strip() for p in self.points.splitlines() if p.strip()]
+
+    def __str__(self):
+        return self.title
+
+
+# Alternative communication methods
+class Method(models.Model):
+    title = models.CharField(max_length=100)
+    icon_html = models.TextField(help_text="FontAwesome/SVG HTML for icon")
+    label = models.CharField(max_length=100, default="Contact")
+    link = models.URLField(blank=True, null=True)
+    display = models.CharField(max_length=200, blank=True, null=True)
+    best_for = models.TextField()
+    availability = models.CharField(max_length=200, blank=True, null=True)
+    target_blank = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title
+
+
+# FAQ
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+
+    def __str__(self):
+        return self.question

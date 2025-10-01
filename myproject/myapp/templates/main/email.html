@@ -341,16 +341,27 @@
     <p>Whether you're reaching out for business inquiries, collaboration opportunities, or general questions, following these guidelines will help ensure your message gets the attention it deserves.</p>
   </div>
   
-  <!-- Email Addresses -->
+  <!-- Email Addresses (model-driven) -->
   <div class="section">
     <h3 class="section-title">My Email Addresses</h3>
-    <p>Here are my primary email addresses for different types of communication:</p>
+    <p>Here are the preferred email addresses and what they're best for.</p>
     
     <div class="email-grid">
+      {# Expect a context variable 'emails' - a list of dicts with keys: title, address, best_for, response_time #}
+      {% for e in emails %}
+      <div class="email-card">
+        <h4>{{ e.title|default:"General Contact" }}</h4>
+        <p><strong>Email:</strong></p>
+        <a href="mailto:{{ e.address|default:"kachimaxy1@gmail.com" }}" class="email-link">{{ e.address|default:"kachimaxy1@gmail.com" }}</a>
+        <p><strong>Best for:</strong> {{ e.best_for|default:"General questions, networking, technical discussions" }}</p>
+        <p><strong>Response time:</strong> {{ e.response_time|default:"Within 48 hours" }}</p>
+      </div>
+      {% empty %}
+      {# Fallback cards if no emails passed from view #}
       <div class="email-card">
         <h4>Business Inquiries</h4>
         <p><strong>Email:</strong></p>
-        <a href="mailto:john@johndoedev.com" class="email-link">john@johndoedev.com</a>
+        <a href="mailto:kachimaxy1@gmail.com" class="email-link">kachimaxy1@gmail.com</a>
         <p><strong>Best for:</strong> Project inquiries, business proposals, collaboration requests, and professional opportunities.</p>
         <p><strong>Response time:</strong> Within 24 hours during business days</p>
       </div>
@@ -366,30 +377,52 @@
       <div class="email-card">
         <h4>Technical Support</h4>
         <p><strong>Email:</strong></p>
-        <a href="mailto:support@johndoedev.com" class="email-link">support@johndoedev.com</a>
-        <p><strong>Best for:</strong> Technical issues with my projects, bug reports, and support requests.</p>
+        <a href="mailto:kachimaxy1@gmail.com" class="email-link">kachimaxy1@gmail.com</a>
+        <p><strong>Best for:</strong> Technical issues with projects, bug reports, and support requests.</p>
         <p><strong>Response time:</strong> Within 12 hours for urgent issues</p>
       </div>
+      {% endfor %}
     </div>
   </div>
   
-  <!-- Email Templates -->
+  <!-- Email Templates (model-driven) -->
   <div class="section">
     <h3 class="section-title">Email Templates</h3>
-    <p>Use these templates as starting points for your emails. Feel free to customize them based on your specific needs and communication style.</p>
+    <p>Use these templates as starting points for your emails. Fill the bracketed sections as needed.</p>
     
-    <div class="template-tabs">
-      <button class="tab-btn active" data-tab="project">Project Inquiry</button>
-      <button class="tab-btn" data-tab="collab">Collaboration Request</button>
-      <button class="tab-btn" data-tab="tech">Technical Question</button>
-      <button class="tab-btn" data-tab="network">Professional Networking</button>
+    <div class="template-tabs" id="templateTabs">
+      {# Expect 'templates' context: list of dicts with keys: key (slug), title, subject, body #}
+      {% for t in templates %}
+        <button class="tab-btn {% if forloop.first %}active{% endif %}" data-tab="{{ t.key|default:"template_"|add:forloop.counter }}">{{ t.title|default:"Template " }}</button>
+      {% endfor %}
+      {% if not templates %}
+        {# default buttons if none provided #}
+        <button class="tab-btn active" data-tab="project">Project Inquiry</button>
+        <button class="tab-btn" data-tab="collab">Collaboration Request</button>
+        <button class="tab-btn" data-tab="tech">Technical Question</button>
+        <button class="tab-btn" data-tab="professional">Professional Request</button>
+        <button class="tab-btn" data-tab="network">Professional Networking</button>
+      {% endif %}
     </div>
     
-    <div class="template-content">
-      <h5>Subject: Project Inquiry - [Brief Project Description]</h5>
-      <button class="copy-btn">Copy Template</button>
-      <blockquote>
-Dear John,
+    <div class="template-content" id="templateContentArea">
+      {# Render template blocks - hidden except active #}
+      {% if templates %}
+        {% for t in templates %}
+          <div class="template-block" data-tab="{{ t.key|default:"template_"|add:forloop.counter }}" style="{% if not forloop.first %}display:none;{% endif %}">
+            <h5>Subject: {{ t.subject|default:"[Subject here]" }}</h5>
+            <button class="copy-btn">Copy Template</button>
+            <blockquote class="template-body">{{ t.body|default:"[Template body]" }}</blockquote>
+            <p style="margin-top:16px;"><strong>Tip:</strong> Customize bracketed sections with your specific information.</p>
+          </div>
+        {% endfor %}
+      {% else %}
+        {# Default template content (keeps original paragraphs but includes Professional Request) #}
+        <div class="template-block" data-tab="project">
+          <h5>Subject: Project Inquiry - [Brief Project Description]</h5>
+          <button class="copy-btn">Copy Template</button>
+          <blockquote class="template-body">
+Dear [Recipient Name],
 
 I hope this email finds you well. My name is [Your Name] and I am [Your Title/Role] at [Your Company/Organization].
 
@@ -416,17 +449,157 @@ Thank you for your time and consideration. I look forward to hearing from you.
 Best regards,
 [Your Name]
 [Your Contact Information]
-      </blockquote>
-      <p><strong>Tip:</strong> Copy this template and fill in the bracketed sections with your specific information.</p>
+          </blockquote>
+          <p><strong>Tip:</strong> Copy this template and fill in the bracketed sections with your specific information.</p>
+        </div>
+
+        <div class="template-block" data-tab="collab" style="display:none;">
+          <h5>Subject: Collaboration Opportunity - [Type of Collaboration]</h5>
+          <button class="copy-btn">Copy Template</button>
+          <blockquote class="template-body">
+Hi [Recipient Name],
+
+I've been following your work, particularly [specific project or skill you admire], and I'm impressed by your expertise in [relevant technology/field].
+
+I'm [Your Name], a [Your Role] with experience in [Your Expertise]. I'm reaching out because I believe we could create something meaningful together.
+
+Collaboration Idea:
+[Describe your collaboration idea or project concept]
+
+What I Bring:
+- [Your skill/resource 1]
+- [Your skill/resource 2]
+- [Your skill/resource 3]
+
+What I'm Looking For:
+[What you need from them - skills, time, resources, etc.]
+
+I'd love to explore this further and see if it aligns with your interests and availability. Would you be open to a conversation about this?
+
+Thanks for considering this opportunity!
+
+Cheers,
+[Your Name]
+[Your Portfolio/LinkedIn]
+[Your Email]
+          </blockquote>
+        </div>
+
+        <div class="template-block" data-tab="tech" style="display:none;">
+          <h5>Subject: Technical Question - [Brief Topic Description]</h5>
+          <button class="copy-btn">Copy Template</button>
+          <blockquote class="template-body">
+Hello [Recipient Name],
+
+I hope you're doing well. I'm [Your Name], a [Your Role/Level] developer working with [Technologies you're using].
+
+I came across your work on [specific project or article] and was hoping you might be able to provide some guidance on a technical challenge I'm facing.
+
+The Challenge:
+[Describe your specific technical problem or question]
+
+What I've Tried:
+- [Approach 1]
+- [Approach 2]
+- [Resources consulted]
+
+Current Environment:
+- [Technology stack]
+- [Relevant versions]
+- [Any constraints]
+
+I understand you're busy, so even a brief pointer in the right direction would be incredibly helpful. If you have any resources or suggestions, I'd be very grateful.
+
+Thank you for your time and for sharing your knowledge with the community.
+
+Best,
+[Your Name]
+[Your GitHub/Portfolio if relevant]
+          </blockquote>
+        </div>
+
+        <div class="template-block" data-tab="professional" style="display:none;">
+          <h5>Subject: Professional Request - [Consultation / Opportunity]</h5>
+          <button class="copy-btn">Copy Template</button>
+          <blockquote class="template-body">
+Dear [Recipient Name],
+
+I hope you're well. My name is [Your Name]. I'm reaching out to request a professional consultation regarding [topic or service]. I value your expertise and would appreciate your time to discuss:
+
+- Purpose of consultation: [short description]
+- Specific questions or outcomes I hope to achieve: [points]
+- Preferred meeting format: [call/video/email]
+- Availability: [dates/times]
+
+If you're open to this, please let me know your availability and hourly/consultation rates (if applicable). I'm flexible and can adjust to a time that suits you.
+
+Thank you for considering my request.
+
+Kind regards,
+[Your Name]
+[Role / Organization]
+[Your Contact Information]
+          </blockquote>
+        </div>
+
+        <div class="template-block" data-tab="network" style="display:none;">
+          <h5>Subject: Introduction - [Your Name] from [Context/Connection]</h5>
+          <button class="copy-btn">Copy Template</button>
+          <blockquote class="template-body">
+Hi [Recipient Name],
+
+I hope this message finds you well. My name is [Your Name] and I'm a [Your Role] based in [Your Location].
+
+I discovered your work through [how you found them - LinkedIn, GitHub, conference, mutual connection, etc.] and was particularly impressed by [specific work or achievement].
+
+I'm currently [brief description of what you're working on or your career stage], and I'd love to connect with fellow professionals in the [relevant field/technology] space.
+
+A bit about me:
+- [Key professional highlight 1]
+- [Key professional highlight 2]
+- [Current focus or interest]
+
+I'd be honored to connect and perhaps exchange insights about [relevant topic]. If you're ever interested in grabbing coffee (virtual or in-person if we're in the same area) or just connecting on LinkedIn, I'd really appreciate it.
+
+Best regards,
+[Your Name]
+[Your LinkedIn Profile]
+[Your Email]
+          </blockquote>
+        </div>
+      {% endif %}
     </div>
   </div>
   
-  <!-- Email Etiquette -->
+  <!-- Email Etiquette (model-driven) -->
   <div class="section">
     <h3 class="section-title">Email Etiquette Guidelines</h3>
     <p>Following proper email etiquette helps ensure your message is well-received and increases the likelihood of a prompt, helpful response.</p>
     
     <div class="guidelines-grid">
+      {# Expect 'guideline_sections': list of dicts {title, items (list)} #}
+      {% for g in guideline_sections %}
+      <div class="guideline-card">
+        <h4>{{ g.title|default:"Guideline" }}</h4>
+        {% if g.subsections %}
+          {% for ss in g.subsections %}
+            <h5>{{ ss.title }}</h5>
+            <ul>
+              {% for it in ss.items %}
+                <li>{{ it }}</li>
+              {% endfor %}
+            </ul>
+          {% endfor %}
+        {% else %}
+          <ul>
+            {% for it in g.items %}
+              <li>{{ it }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+      {% empty %}
+      {# Fallback (keeps original structure) #}
       <div class="guideline-card">
         <h4>Subject Line Best Practices</h4>
         <ul>
@@ -437,67 +610,41 @@ Best regards,
           <li><strong>Make it actionable:</strong> If you need a response by a certain date, include it: "Project Proposal - Response Needed by March 15"</li>
         </ul>
       </div>
-      
       <div class="guideline-card">
         <h4>Email Structure Guidelines</h4>
         <h5>Opening</h5>
         <ul>
-          <li>Use a professional greeting: "Dear John", "Hi John", or "Hello John"</li>
-          <li>Introduce yourself briefly if we haven't communicated before</li>
-          <li>Mention how you found my contact information or work</li>
+          <li>Use a professional greeting: "Dear [Name]", "Hi [Name]"</li>
+          <li>Introduce yourself briefly if you haven't communicated before</li>
+          <li>Mention how you found their work or contact</li>
         </ul>
-        
         <h5>Body</h5>
         <ul>
           <li>Get to the point quickly - state your purpose in the first paragraph</li>
           <li>Use bullet points or numbered lists for multiple questions or requirements</li>
           <li>Provide context and relevant details, but keep it concise</li>
-          <li>Include specific information like timelines, budgets, or technical requirements</li>
-          <li>Break up long paragraphs for better readability</li>
-        </ul>
-        
-        <h5>Closing</h5>
-        <ul>
-          <li>Clearly state what you're looking for: a response, meeting, quote, etc.</li>
-          <li>Provide your availability for calls or meetings</li>
-          <li>Thank me for my time and consideration</li>
-          <li>Use a professional sign-off: "Best regards", "Sincerely", "Thank you"</li>
-          <li>Include your full contact information in your signature</li>
         </ul>
       </div>
-    </div>
-    
-    <div class="guidelines-grid" style="margin-top: 30px;">
-      <div class="guideline-card">
-        <h4>My Communication Preferences</h4>
-        <ul>
-          <li><strong>Response time:</strong> I typically respond within 24-48 hours. If your matter is urgent, please mention it in the subject line.</li>
-          <li><strong>Detail level:</strong> I appreciate detailed emails that provide context, but please be concise and organized.</li>
-          <li><strong>Attachments:</strong> Feel free to include relevant documents, but please mention them in your email body.</li>
-          <li><strong>Follow-ups:</strong> If you don't hear back within 48 hours, a polite follow-up is perfectly acceptable.</li>
-          <li><strong>Meeting requests:</strong> I prefer to have some context via email before scheduling calls or meetings.</li>
-        </ul>
-      </div>
-      
-      <div class="guideline-card">
-        <h4>What to Avoid</h4>
-        <ul>
-          <li><strong>Vague requests:</strong> "I need a website" without any details about requirements, timeline, or budget</li>
-          <li><strong>Immediate response expectations:</strong> Demanding responses within hours unless it's a genuine emergency</li>
-          <li><strong>Overly casual tone:</strong> While I'm friendly, maintain professionalism in initial communications</li>
-          <li><strong>Mass emails:</strong> Generic emails clearly sent to multiple people without personalization</li>
-          <li><strong>Excessive follow-ups:</strong> Multiple emails within 24 hours unless there's a critical update</li>
-        </ul>
-      </div>
+      {% endfor %}
     </div>
   </div>
   
-  <!-- Security Section -->
+  <!-- Security Section (model-driven) -->
   <div class="section">
     <h3 class="section-title">Email Security & Privacy</h3>
     <p>I take email security and privacy seriously. Here's what you should know:</p>
     
     <div class="security-grid">
+      {% for s in security_items %}
+      <div class="security-card">
+        <h4>{{ s.title|default:"Security Practice" }}</h4>
+        <ul>
+          {% for it in s.points %}
+            <li>{{ it }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% empty %}
       <div class="security-card">
         <h4>Security Practices</h4>
         <ul>
@@ -507,7 +654,6 @@ Best regards,
           <li><strong>Suspicious emails:</strong> I don't open suspicious attachments or click unknown links for security reasons</li>
         </ul>
       </div>
-      
       <div class="security-card">
         <h4>Privacy Policy</h4>
         <ul>
@@ -517,15 +663,33 @@ Best regards,
           <li><strong>Unsubscribe:</strong> If you're added to any mailing lists, you can always unsubscribe or request removal</li>
         </ul>
       </div>
+      {% endfor %}
     </div>
   </div>
   
-  <!-- Alternative Methods -->
+  <!-- Alternative Methods (model-driven) -->
   <div class="section">
     <h3 class="section-title">Alternative Communication Methods</h3>
     <p>While email is my preferred method of initial contact, here are other ways to reach me depending on your needs:</p>
     
     <div class="methods-grid">
+      {% for m in methods %}
+      <div class="method-card">
+        <div class="method-icon">
+          {{ m.icon_html|safe }}
+        </div>
+        <h4>{{ m.title|default:"Method" }}</h4>
+        <p><strong>{{ m.label|default:"Contact" }}:</strong>
+          {% if m.link %}
+            <a href="{{ m.link }}" {% if m.target_blank %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ m.display|default:m.link }}</a>
+          {% else %}
+            {{ m.display|default:"N/A" }}
+          {% endif %}
+        </p>
+        <p><strong>Best for:</strong> {{ m.best_for|default:"See description" }}</p>
+        <p><strong>Availability:</strong> {{ m.availability|default:"See description" }}</p>
+      </div>
+      {% empty %}
       <div class="method-card">
         <div class="method-icon">
           <i class="fas fa-phone"></i>
@@ -555,15 +719,22 @@ Best regards,
         <p><strong>Best for:</strong> Formal inquiries, when you want to ensure your message is received and tracked</p>
         <p><strong>Response time:</strong> Within 24 hours</p>
       </div>
+      {% endfor %}
     </div>
   </div>
   
-  <!-- FAQ Section -->
+  <!-- FAQ Section (model-driven) -->
   <div class="section">
     <h3 class="section-title">Email FAQ</h3>
     <p>Here are answers to common questions about emailing me:</p>
     
     <div class="faq-grid">
+      {% for f in faqs %}
+      <div class="faq-item">
+        <h4>{{ f.question }}</h4>
+        <p>{{ f.answer }}</p>
+      </div>
+      {% empty %}
       <div class="faq-item">
         <h4>How quickly do you respond to emails?</h4>
         <p>I typically respond within 24 hours for business inquiries and within 48 hours for general questions. During weekends or holidays, responses may take longer.</p>
@@ -593,17 +764,23 @@ Best regards,
         <h4>Do you offer free consultations via email?</h4>
         <p>I'm happy to answer brief questions and provide general guidance via email. For detailed consultations, I prefer to schedule a call or video meeting.</p>
       </div>
+      {% endfor %}
     </div>
   </div>
   
-  <!-- CTA Section -->
+  <!-- CTA Section (Gmail compose link) -->
   <div class="cta-section">
     <h3>Ready to Get in Touch?</h3>
     <p>I'm looking forward to hearing from you! Whether you have a project in mind, want to collaborate, or just want to connect, don't hesitate to reach out.</p>
     <div class="cta-buttons">
-      <a href="mailto:john@johndoedev.com?subject=Project Inquiry" class="btn btn-light">Send Business Email</a>
-      <a href="mailto:kachimaxy1@gmail.com?subject=General Inquiry" class="btn btn-outline">Send General Email</a>
-      <a href="/contact" class="btn btn-light">Use Contact Form</a>
+      {# Use Gmail compose link to "redirect properly to Gmail" #}
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ default_contact_email|urlencode|default:'kachimaxy1@gmail.com' }}&su={{ 'General Inquiry' | urlencode }}" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Send an Email</a>
+      {# If you still want 'contact form' to open Gmail, make it configurable via 'contact_form_redirect_to_gmail' #}
+      {% if contact_form_redirect_to_gmail %}
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ default_contact_email|urlencode|default:'kachimaxy1@gmail.com' }}&su={{ contact_form_subject|urlencode|default:'Contact Form Inquiry' }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Use Contact Form</a>
+      {% else %}
+        <a href="{{ contact_form_url|default:'/contact' }}" class="btn btn-light">Use Contact Form</a>
+      {% endif %}
     </div>
   </div>
 </main>
@@ -611,163 +788,82 @@ Best regards,
 
 {% block scripts %}
 <script>
-  // Mobile menu toggle
-  document.querySelector('.mobile-menu').addEventListener('click', function() {
-    const nav = document.querySelector('nav ul');
-    nav.classList.toggle('active');
-  });
-  
-  // Tab functionality
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      // Remove active class from all buttons
-      tabBtns.forEach(b => b.classList.remove('active'));
-      
-      // Add active class to clicked button
-      btn.classList.add('active');
-      
-      // Update template content based on tab
-      const tabType = btn.dataset.tab;
-      let template = '';
-      
-      switch(tabType) {
-        case 'project':
-          template = `Subject: Project Inquiry - [Brief Project Description]
-
-Dear John,
-
-I hope this email finds you well. My name is [Your Name] and I am [Your Title/Role] at [Your Company/Organization].
-
-I am reaching out regarding a potential project opportunity that I believe would be a great fit for your expertise. Here are the key details:
-
-Project Overview:
-[Brief description of what you need built or accomplished]
-
-Timeline:
-[When you need the project completed]
-
-Budget Range:
-[Your budget expectations, if comfortable sharing]
-
-Key Requirements:
-- [Requirement 1]
-- [Requirement 2]
-- [Requirement 3]
-
-I would love to discuss this opportunity further and answer any questions you might have. Would you be available for a brief call or video meeting in the coming week?
-
-Thank you for your time and consideration. I look forward to hearing from you.
-
-Best regards,
-[Your Name]
-[Your Contact Information]`;
-          break;
-        
-        case 'collab':
-          template = `Subject: Collaboration Opportunity - [Type of Collaboration]
-
-Hi John,
-
-I've been following your work, particularly [specific project or skill you admire], and I'm impressed by your expertise in [relevant technology/field].
-
-I'm [Your Name], a [Your Role] with experience in [Your Expertise]. I'm reaching out because I believe we could create something amazing together.
-
-Collaboration Idea:
-[Describe your collaboration idea or project concept]
-
-What I Bring:
-- [Your skill/resource 1]
-- [Your skill/resource 2]
-- [Your skill/resource 3]
-
-What I'm Looking For:
-[What you need from John - skills, time, resources, etc.]
-
-I'd love to explore this further and see if it aligns with your interests and availability. Would you be open to a conversation about this?
-
-Thanks for considering this opportunity!
-
-Cheers,
-[Your Name]
-[Your Portfolio/LinkedIn]
-[Your Email]`;
-          break;
-          
-        case 'tech':
-          template = `Subject: Technical Question - [Brief Topic Description]
-
-Hello John,
-
-I hope you're doing well. I'm [Your Name], a [Your Role/Level] developer working with [Technologies you're using].
-
-I came across your work on [specific project or article] and was hoping you might be able to provide some guidance on a technical challenge I'm facing.
-
-The Challenge:
-[Describe your specific technical problem or question]
-
-What I've Tried:
-- [Approach 1]
-- [Approach 2]
-- [Resources consulted]
-
-Current Environment:
-- [Technology stack]
-- [Relevant versions]
-- [Any constraints]
-
-I understand you're busy, so even a brief pointer in the right direction would be incredibly helpful. If you have any resources or suggestions, I'd be very grateful.
-
-Thank you for your time and for sharing your knowledge with the community.
-
-Best,
-[Your Name]
-[Your GitHub/Portfolio if relevant]`;
-          break;
-          
-        case 'network':
-          template = `Subject: Introduction - [Your Name] from [Context/Connection]
-
-Hi John,
-
-I hope this message finds you well. My name is [Your Name] and I'm a [Your Role] based in [Your Location].
-
-I discovered your work through [how you found them - LinkedIn, GitHub, conference, mutual connection, etc.] and was particularly impressed by [specific work or achievement].
-
-I'm currently [brief description of what you're working on or your career stage], and I'd love to connect with fellow professionals in the [relevant field/technology] space.
-
-A bit about me:
-- [Key professional highlight 1]
-- [Key professional highlight 2]
-- [Current focus or interest]
-
-I'd be honored to connect and perhaps exchange insights about [relevant topic]. If you're ever interested in grabbing coffee (virtual or in-person if we're in the same area) or just connecting on LinkedIn, I'd really appreciate it.
-
-No pressure at all - I know how busy things can get. Either way, keep up the excellent work!
-
-Best regards,
-[Your Name]
-[Your LinkedIn Profile]
-[Your Email]`;
-          break;
-      }
-      
-      document.querySelector('.template-content blockquote').textContent = template;
+  // Mobile menu toggle - safe guard in case mobile-menu doesn't exist
+  const mobileBtn = document.querySelector('.mobile-menu');
+  if (mobileBtn) {
+    mobileBtn.addEventListener('click', function() {
+      const nav = document.querySelector('nav ul');
+      if (nav) nav.classList.toggle('active');
     });
-  });
-  
-  // Copy template functionality
-  const copyBtn = document.querySelector('.copy-btn');
-  copyBtn.addEventListener('click', () => {
-    const templateText = document.querySelector('.template-content blockquote').textContent;
-    navigator.clipboard.writeText(templateText)
-      .then(() => {
-        const originalText = copyBtn.textContent;
-        copyBtn.textContent = 'Copied!';
-        setTimeout(() => {
-          copyBtn.textContent = originalText;
-        }, 2000);
+  }
+
+  // Tab functionality (works with model-driven template blocks)
+  (function() {
+    const tabContainer = document.getElementById('templateTabs');
+    const contentArea = document.getElementById('templateContentArea');
+    if (!tabContainer || !contentArea) return;
+
+    const tabBtns = tabContainer.querySelectorAll('.tab-btn');
+    const templateBlocks = contentArea.querySelectorAll('.template-block');
+
+    function showTab(tabKey) {
+      // update buttons
+      tabBtns.forEach(b => {
+        if (b.dataset.tab === tabKey) b.classList.add('active');
+        else b.classList.remove('active');
       });
-  });
+      // update blocks
+      templateBlocks.forEach(block => {
+        if (block.dataset.tab === tabKey) block.style.display = '';
+        else block.style.display = 'none';
+      });
+    }
+
+    // click handlers
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabType = btn.dataset.tab;
+        if (!tabType) return;
+        showTab(tabType);
+      });
+    });
+
+    // set initial active (first button)
+    const firstTab = tabContainer.querySelector('.tab-btn');
+    if (firstTab) {
+      showTab(firstTab.dataset.tab);
+    }
+
+    // Copy button functionality (delegated to handle multiple copy buttons)
+    contentArea.addEventListener('click', function(e) {
+      if (e.target && e.target.classList.contains('copy-btn')) {
+        const currentBlock = e.target.closest('.template-block');
+        if (!currentBlock) return;
+        const templateTextEl = currentBlock.querySelector('.template-body');
+        if (!templateTextEl) return;
+        const templateText = templateTextEl.textContent.trim();
+        if (!navigator.clipboard) {
+          // Fallback
+          const ta = document.createElement('textarea');
+          ta.value = templateText;
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(ta);
+          e.target.textContent = 'Copied!';
+          setTimeout(() => e.target.textContent = 'Copy Template', 2000);
+          return;
+        }
+        navigator.clipboard.writeText(templateText).then(() => {
+          const original = e.target.textContent;
+          e.target.textContent = 'Copied!';
+          setTimeout(() => e.target.textContent = original, 2000);
+        }).catch(() => {
+          e.target.textContent = 'Copy Failed';
+          setTimeout(() => e.target.textContent = 'Copy Template', 2000);
+        });
+      }
+    });
+  })();
 </script>
 {% endblock %}

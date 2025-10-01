@@ -3,7 +3,9 @@ from .models import (
     SiteProfile, Service, Certificate, Project, Skill, 
     ContactSubmission, EmailTemplate, Profile, Resume, SocialProfile,
     ContactDetail, Education, ProfessionalExperience, BackgroundInterest, ProfessionalPhilosophy,
-    ProfileDetail, SkillSummary, LearningPath, SocialPlatform
+    ProfileDetail, SkillSummary, LearningPath, SocialPlatform, EmailAddress, EmailTemplates,
+    GuidelineSection, GuidelineItem,
+    SecurityItem, Method, FAQ
 )
 # MODEL ADMINISTRATIONS FOR THE ADMIN INTERFACE
 # Register models FOR PROFILE MANAGEMENT here.
@@ -162,3 +164,26 @@ class SocialPlatformAdmin(admin.ModelAdmin):
     list_display = ("name", "category", "followers")
     list_filter  = ("category",)
     search_fields= ("name",)
+
+
+
+# Register models FOR EMAIL TEMPLATE MANAGEMENT here.
+# @admin.register(EmailTemplate)
+# class EmailTemplateAdmin(admin.ModelAdmin):
+#     list_display = ("template_type", "subject")
+#     list_filter = ("template_type",)
+
+
+class GuidelineItemInline(admin.TabularInline):
+    model = GuidelineItem
+    extra = 1
+
+@admin.register(GuidelineSection)
+class GuidelineSectionAdmin(admin.ModelAdmin):
+    inlines = [GuidelineItemInline]
+
+admin.site.register(EmailAddress)
+admin.site.register(EmailTemplates)
+admin.site.register(SecurityItem)
+admin.site.register(Method)
+admin.site.register(FAQ)

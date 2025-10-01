@@ -11,7 +11,9 @@ from .models import (
     EmailTemplate, Profile, Resume, SocialProfile, SiteProfile, Service,
     Education, BackgroundInterest, 
     ProfessionalPhilosophy, ProfessionalExperience,
-    SkillSummary, SkillCategory, LearningPath, SocialPlatform
+    SkillSummary, SkillCategory, LearningPath, SocialPlatform, EmailAddress, EmailTemplates,
+    GuidelineSection, SecurityItem,
+    Method, FAQ
 )
 
 # veiw for certificate
@@ -254,3 +256,23 @@ def project_detail_view(request):
 # Updated to be used as a base for other templates
 def base_view(request):
     return render(request, 'base.html')
+
+
+# veiw for email_page
+# Renders a page for email-related content
+# Updated template to display email-related information
+
+
+
+def email(request):
+    context = {
+        "emails": EmailAddress.objects.all(),
+        "templates": EmailTemplates.objects.all(),
+        "guideline_sections": GuidelineSection.objects.prefetch_related("items"),
+        "security_items": SecurityItem.objects.all(),
+        "methods": Method.objects.all(),
+        "faqs": FAQ.objects.all(),
+        "default_contact_email": "kachimaxy1@gmail.com",
+        "contact_form_redirect_to_gmail": True,
+    }
+    return render(request, "email.html", context)

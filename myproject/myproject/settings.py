@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-un9fn8(j9%q3=7x=z#l5avlpkp+!1_(sicv&!x$ppw2v1^#ian
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # Custom middleware - ADD THESE
+    # Custom middleware 
     'myapp.middleware.SecurityHeadersMiddleware',
     'myapp.middleware.ContentProtectionMiddleware',
     'myapp.middleware.AntiScrapingMiddleware',
@@ -144,3 +144,27 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/admin/' # Redirects to admin after login
 LOGOUT_REDIRECT_URL = '/' # Redirects to home after logout
 LOGIN_URL = '/accounts/login/' # URL for login page
+
+
+# Custom settings
+# Critical settings for security
+
+SECURE_SSL_REDIRECT = False  # Redirect HTTP to HTTPS
+SESSION_COOKIE_SECURE = False  # Only send session cookie over HTTPS
+CSRF_COOKIE_SECURE = False  # Only send CSRF cookie over HTTPS
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+
+# HSTS settings
+# HSTS MEANS HTTP Strict Transport Security
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+
+# settings.py - Add these to be extra safe
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://localhost:8000',
+]
