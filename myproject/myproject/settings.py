@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import os
+import os, certifi, ssl
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'myapp.middleware.AdminProtectionMiddleware',
     'myapp.middleware.RequestLoggingMiddleware',
     'myapp.middleware.MaintenanceModeMiddleware',
+    "myapp.middleware.WatermarkMiddleware",
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -168,3 +170,12 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]
+
+APPEND_SLASH = False  # Disable automatic slash appending
+
+
+
+WATERMARK_ADDRESS = "Lagos, Nigeria"
+WATERMARK_WARNING = "⚠ Unauthorized use or distribution is prohibited!"
+
+

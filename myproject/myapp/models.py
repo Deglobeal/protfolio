@@ -1,5 +1,9 @@
 from django.db import models
 from django.core.validators import URLValidator
+from django.utils.text import slugify
+from django.conf import settings
+from django.utils import timezone
+from django.contrib.auth.models import User
 
 # model.py certification model
 # model for storing certification details
@@ -53,6 +57,8 @@ class LearningPath(models.Model):
 # model for detailing projects in portfolio
 
 class Project(models.Model):
+    id = models.AutoField(primary_key=True)  # Explicitly define id as AutoField
+    
     title = models.CharField(max_length=255)
     description = models.TextField()
     key_features = models.TextField()
@@ -437,75 +443,202 @@ class SocialPlatform(models.Model):
 # models.py - Email model
 # model for email-related sections
 
-# Email addresses
+
+
 class EmailAddress(models.Model):
-    title = models.CharField(max_length=100)  # e.g. Business Inquiries
-    address = models.EmailField(default="kachimaxy1@gmail.com")
-    best_for = models.TextField()
-    response_time = models.CharField(max_length=100, default="Within 48 hours")
-
-    def __str__(self):
-        return f"{self.title} ({self.address})"
-
-
-# Email templates
-class EmailTemplates(models.Model):
-    key = models.SlugField(unique=True)  # e.g. project, collab, tech
-    title = models.CharField(max_length=100)
-    subject = models.CharField(max_length=200)
-    body = models.TextField()
-
-    def __str__(self):
-        return self.title
-
-
-# Email guidelines
-class GuidelineSection(models.Model):
     title = models.CharField(max_length=200)
+    address = models.EmailField(default="kachimaxy1@gmail.com")
+    best_for = models.TextField(help_text="What this email is best suited for")
+    response_time = models.CharField(max_length=100, default="Within 48 hours")
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'title']
+        verbose_name_plural = "Email addresses"
+    
+    def __str__(self):
+        return f"{self.title} - {self.address}"
 
+class EmailTemplates(models.Model):  # Changed from EmailTemplates to EmailTemplate
+    key = models.SlugField(max_length=100, unique=True)
+    title = models.CharField(max_length=200)
+    subject = models.CharField(max_length=255)
+    body = models.TextField()
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'title']
+    
     def __str__(self):
         return self.title
+    
+    def save(self, *args, **kwargs):
+        if not self.key:
+            self.key = slugify(self.title)
+        super().save(*args, **kwargs)
 
+class EmailGuidelineSection(models.Model):
+    title = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'title']
+    
+    def __str__(self):
+        return self.title
 
 class GuidelineItem(models.Model):
-    section = models.ForeignKey(GuidelineSection, related_name="items", on_delete=models.CASCADE)
-    text = models.TextField()
-
+    section = models.ForeignKey(EmailGuidelineSection, on_delete=models.CASCADE, related_name='items')
+    content = models.TextField()
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
     def __str__(self):
-        return f"{self.section.title}: {self.text[:30]}..."
+        return f"{self.section.title} - Item {self.order}"
 
+class GuidelineSubsection(models.Model):
+    section = models.ForeignKey(EmailGuidelineSection, on_delete=models.CASCADE, related_name='subsections')
+    title = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.section.title} - {self.title}"
 
-# Security & Privacy
+class SubsectionItem(models.Model):
+    subsection = models.ForeignKey(GuidelineSubsection, on_delete=models.CASCADE, related_name='items')
+    content = models.TextField(null=True, blank=True)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.subsection.title} - Item {self.order}"
+
 class SecurityItem(models.Model):
     title = models.CharField(max_length=200)
-    points = models.TextField(help_text="Use line breaks for multiple points")
-
-    def get_points_list(self):
-        return [p.strip() for p in self.points.splitlines() if p.strip()]
-
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'title']
+    
     def __str__(self):
         return self.title
 
+class SecurityPoint(models.Model):
+    security_item = models.ForeignKey(SecurityItem, on_delete=models.CASCADE, related_name='points')
+    content = models.TextField()
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.security_item.title} - Point {self.order}"
 
-# Alternative communication methods
-class Method(models.Model):
-    title = models.CharField(max_length=100)
-    icon_html = models.TextField(help_text="FontAwesome/SVG HTML for icon")
+class AlternativeMethod(models.Model):
+    title = models.CharField(max_length=200)
+    icon_html = models.TextField(help_text="HTML for the icon (Font Awesome, SVG, etc.)", 
+                                default='<i class="fas fa-envelope"></i>')
     label = models.CharField(max_length=100, default="Contact")
-    link = models.URLField(blank=True, null=True)
-    display = models.CharField(max_length=200, blank=True, null=True)
+    display = models.CharField(max_length=200, blank=True, help_text="Display text for the contact method")
+    link = models.URLField(blank=True, help_text="URL for the contact method")
+    target_blank = models.BooleanField(default=True, help_text="Open in new tab")
     best_for = models.TextField()
-    availability = models.CharField(max_length=200, blank=True, null=True)
-    target_blank = models.BooleanField(default=True)
-
+    availability = models.CharField(max_length=200, default="Monday-Friday, 9 AM - 6 PM")
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'title']
+    
     def __str__(self):
         return self.title
 
-
-# FAQ
 class FAQ(models.Model):
     question = models.CharField(max_length=255)
     answer = models.TextField()
-
+    order = models.PositiveIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+    
+    class Meta:
+        ordering = ['order', 'question']
+        verbose_name = "FAQ"
+        verbose_name_plural = "FAQs"
+    
     def __str__(self):
         return self.question
+
+
+# watermark models.py - 
+
+class WatermarkRecord(models.Model):
+    timestamp = models.DateTimeField(auto_now_add=True)
+    path = models.CharField(max_length=512)
+    ip_address = models.CharField(max_length=64)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
+    user_email = models.CharField(max_length=254, blank=True, null=True)
+    user_agent = models.TextField(blank=True, null=True)
+    
+    # Add event_type to distinguish between different types of events
+    event_type = models.CharField(
+        max_length=20, 
+        default="screenshot",
+        choices=[
+            ('screenshot', 'Screenshot'),
+            ('print', 'Print'),
+            ('copy', 'Copy Attempt'),
+        ]
+    )
+
+    class Meta:
+        ordering = ["-timestamp"]
+        verbose_name = "Watermark Record"
+        verbose_name_plural = "Watermark Records"
+
+    def __str__(self):
+        if self.user:
+            return f"{self.timestamp} — {self.user} — {self.ip_address} — {self.path}"
+        return f"{self.timestamp} — {self.ip_address} — {self.path}"
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    sent_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
+    is_read = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Message from {self.name} <{self.email}> - {self.subject}"
+    
+
+
+
+class ScreenshotEvent(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
+    ip_address = models.CharField(max_length=64)
+    path = models.CharField(max_length=512)
+    event_time = models.DateTimeField(default=timezone.now)
+    user_agent = models.TextField(blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-event_time"]
+        verbose_name = "Screenshot Event"
+        verbose_name_plural = "Screenshot Events"
+
+    def __str__(self):
+        if self.user:
+            return f"Screenshot by {self.user} on {self.path} at {self.event_time}"
+        return f"Screenshot from {self.ip_address} on {self.path} at {self.event_time}"

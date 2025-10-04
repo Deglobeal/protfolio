@@ -4,10 +4,217 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gerard Ugwu - Portfolio</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css " />
-  <link rel="preconnect" href="https://fonts.googleapis.com ">
-  <link rel="preconnect" href="https://fonts.gstatic.com " crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300 ;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+<style>
+  /* Fix for theme variable conflicts */
+:root {
+  --font: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Ensure consistent button styling across all pages */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: var(--transition);
+  z-index: -1;
+}
+
+.btn:hover::before {
+  width: 100%;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid var(--primary);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-outline {
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  background: transparent;
+}
+
+.btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Fix header and sidebar consistency */
+.header-logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+.header-logo span { 
+  color: var(--accent); 
+}
+
+/* Active state consistency */
+.sidebar a.active {
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.25), transparent);
+  color: white;
+}
+
+.sidebar a.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 4px;
+  background: var(--primary);
+  border-radius: 0 4px 4px 0;
+}
+</style>
+
+
+  <!-- ==========  THEME VARIABLES  ========== -->
+<style id="themeVars">
+  :root {
+    /* default = dark theme */
+    --bg: #8e98adff;        
+    --bg-card: #a5aebbff;   
+    --text: #4f6275ff;
+    --text-muted: #94a3b8;
+    --border: #334155;
+    --primary: #b1c6f1ff;   
+    --accent: #f5c3cdff;    
+    --hero-gradient: linear-gradient(135deg, #2563eb, #e11d48);
+    --shadow: 0 4px 20px rgba(0,0,0,.35);
+  }
+
+  /* ----  WHITE (Light Mode) ---- */
+  [data-theme="white"] {
+    --bg: #f8fafc;
+    --bg-card: #ffffff;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --primary: #2563eb;
+    --accent: #e11d48;
+    --hero-gradient: linear-gradient(135deg, #2563eb, #e11d48);
+    --shadow: 0 4px 20px rgba(0,0,0,.08);
+  }
+
+  /* ----  GREEN ---- */
+  [data-theme="green"] {
+    --bg: #ecfdf5;        
+    --bg-card: #d1fae5;   
+    --text: #064e3b;
+    --text-muted: #047857;
+    --border: #bbf7d0;
+    --primary: #10b981;   
+    --accent: #f59e0b;    
+    --hero-gradient: linear-gradient(135deg, #10b981, #f59e0b);
+    --shadow: 0 4px 20px rgba(16,185,129,.15);
+  }
+
+  /* ----  ORANGE ---- */
+  [data-theme="orange"] {
+    --bg: #fff7ed;        
+    --bg-card: #ffedd5;   
+    --text: #7c2d12;
+    --text-muted: #ea580c;
+    --border: #fed7aa;
+    --primary: #f97316;   
+    --accent: #0ea5e9;    
+    --hero-gradient: linear-gradient(135deg, #f97316, #0ea5e9);
+    --shadow: 0 4px 20px rgba(249,115,22,.15);
+  }
+
+  /* ----  YELLOW ---- */
+  [data-theme="yellow"] {
+    --bg: #fefce8;        
+    --bg-card: #fef9c3;   
+    --text: #713f12;
+    --text-muted: #ca8a04;
+    --border: #fef08a;
+    --primary: #eab308;   
+    --accent: #8b5cf6;    
+    --hero-gradient: linear-gradient(135deg, #eab308, #8b5cf6);
+    --shadow: 0 4px 20px rgba(234,179,8,.15);
+  }
+</style>
+
+<!-- ==========  APPLY VARIABLES  ========== -->
+<style>
+  body {
+    background: var(--bg);
+    color: var(--text);
+    transition: background .3s, color .3s;
+  }
+  .sidebar {
+    background: var(--bg-card);
+    border-color: var(--border);
+  }
+  .main-wrapper {
+    background: var(--bg);
+  }
+  header {
+    background: var(--bg-card);
+    border-color: var(--border);
+  }
+  .btn-primary {
+    background: var(--primary);
+    border-color: var(--primary);
+  }
+  .btn-outline {
+    border-color: var(--primary);
+    color: var(--primary);
+  }
+  .btn-outline:hover {
+    background: var(--primary);
+    color: var(--bg-card);
+  }
+  footer {
+    background: var(--bg-card);
+    border-color: var(--border);
+  }
+  .hero {
+    background: var(--hero-gradient) !important;
+  }
+</style>
+
+  
   <style>
     html { 
       font-size: 90%; 
@@ -461,24 +668,76 @@
       font-size: 0.9rem;
     }
 
-    /* Add to your existing CSS in base.html */
-.protected-content {
-    /* Additional protection styles */
-    -webkit-user-select: none !important;
-    -moz-user-select: none !important;
-    -ms-user-select: none !important;
-    user-select: none !important;
-    -webkit-touch-callout: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
+    /* Theme Switcher Styles - Moved here to avoid conflicts */
+    .theme-switcher {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 9999;
+    }
+    .theme-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: .3s;
+    }
+    .theme-btn:hover {
+      transform: scale(1.1);
+    }
+    .theme-menu {
+      position: absolute;
+      bottom: 55px;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      padding: 8px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      box-shadow: var(--shadow);
+    }
+    .theme-menu.show {
+      display: flex;
+    }
+    .theme-menu button {
+      background: transparent;
+      border: none;
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: .95rem;
+      width: 140px;
+    }
+    .theme-menu button:hover {
+      background: var(--primary);
+      color: #fff;
+    }
 
-/* Allow selection in forms */
-input, textarea, [contenteditable="true"] {
-    -webkit-user-select: text !important;
-    -moz-user-select: text !important;
-    -ms-user-select: text !important;
-    user-select: text !important;
-}
+    /* Content protection exceptions for theme switcher */
+    .theme-switcher * {
+      -webkit-user-select: auto !important;
+      -moz-user-select: auto !important;
+      -ms-user-select: auto !important;
+      user-select: auto !important;
+      cursor: pointer !important;
+    }
+
+    /* Allow selection in forms */
+    input, textarea, [contenteditable="true"] {
+      -webkit-user-select: text !important;
+      -moz-user-select: text !important;
+      -ms-user-select: text !important;
+      user-select: text !important;
+    }
 
     /* ---------- RESPONSIVE DESIGN IMPROVEMENTS ---------- */
     
@@ -534,6 +793,16 @@ input, textarea, [contenteditable="true"] {
         top: 15px;
         right: 15px;
       }
+
+      .theme-switcher {
+        bottom: 15px;
+        right: 15px;
+      }
+      .theme-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+      }
     }
     
     /* 600px and below - Small devices */
@@ -575,60 +844,59 @@ input, textarea, [contenteditable="true"] {
     
     /* 800px specific fixes - Header and toggle button */
     @media (max-width: 800px) and (min-width: 601px) {
-  .header-container {
-    flex-direction: row;       /* Keep in a single line */
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 70px;       /* Reserve space for toggle button */
-  }
+      .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 70px;
+      }
 
-  .header-logo {
-    font-size: 1.5rem;         /* Slightly reduced */
-  }
+      .header-logo {
+        font-size: 1.5rem;
+      }
 
-  nav ul {
-    gap: 12px;                 /* Smaller spacing */
-  }
+      nav ul {
+        gap: 12px;
+      }
 
-  nav a {
-    font-size: 0.85rem;        /* Reduced text size */
-  }
+      nav a {
+        font-size: 0.85rem;
+      }
 
-  #sidebar-toggle {
-    display: flex;
-    top: 18px;                 /* Better alignment with header */
-    right: 15px;
-  }
-}
+      #sidebar-toggle {
+        display: flex;
+        top: 18px;
+        right: 15px;
+      }
+    }
 
-/* 801px - 960px fixes */
-@media (min-width: 801px) and (max-width: 960px) {
-  .header-container {
-    flex-direction: row;       /* Keep header in a single line */
-    justify-content: space-between;
-    align-items: center;
-    padding-right: 75px;       /* Extra room for toggle button */
-  }
+    /* 801px - 960px fixes */
+    @media (min-width: 801px) and (max-width: 960px) {
+      .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 75px;
+      }
 
-  .header-logo {
-    font-size: 1.6rem;         /* Slightly bigger than 800px case */
-  }
+      .header-logo {
+        font-size: 1.6rem;
+      }
 
-  nav ul {
-    gap: 18px;                 /* Moderate spacing */
-  }
+      nav ul {
+        gap: 18px;
+      }
 
-  nav a {
-    font-size: 0.95rem;        /* Comfortable text size */
-  }
+      nav a {
+        font-size: 0.95rem;
+      }
 
-  #sidebar-toggle {
-    display: flex;
-    top: 20px;
-    right: 18px;
-  }
-}
-
+      #sidebar-toggle {
+        display: flex;
+        top: 20px;
+        right: 18px;
+      }
+    }
     
     /* 900px and below - Medium devices */
     @media (max-width: 900px) {
@@ -732,7 +1000,7 @@ input, textarea, [contenteditable="true"] {
   {% block extra_head %}{% endblock %}
 </head>
 <body>
-
+  
   <!-- Sidebar Toggle -->
   <button id="sidebar-toggle" aria-label="Toggle navigation">
     <i class="fas fa-bars"></i>
@@ -759,9 +1027,9 @@ input, textarea, [contenteditable="true"] {
       {% endif %}
     </ul>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/gerard-ugwu/ " target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-      <a href="https://github.com/Deglobeal " target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-      <a href="https://wa.me/2347032388531 " target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+      <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
       <a href="#!"><i class="fab fa-twitter"></i></a>
       <a href="#!"><i class="fab fa-dribbble"></i></a>
     </div>
@@ -804,9 +1072,9 @@ input, textarea, [contenteditable="true"] {
             <h3>Gerard Ugwu</h3>
             <p>Senior Web Developer & UI/UX Designer creating modern, responsive web applications with cutting-edge technologies.</p>
             <div class="social-links">
-              <a href="https://www.linkedin.com/in/gerard-ugwu/ " target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
-              <a href="https://github.com/Deglobeal " target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
-              <a href="https://wa.me/2347032388531 " target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+              <a href="https://www.linkedin.com/in/gerard-ugwu/" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+              <a href="https://github.com/Deglobeal" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+              <a href="https://wa.me/2347032388531" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
               <a href="#!"><i class="fab fa-twitter"></i></a>
               <a href="#!"><i class="fab fa-dribbble"></i></a>
             </div>
@@ -837,7 +1105,22 @@ input, textarea, [contenteditable="true"] {
     </footer>
   </div>
 
+  <!-- Theme Switcher -->
+  <div class="theme-switcher" aria-label="Change colour theme">
+    <button class="theme-btn" onclick="cycleTheme()" title="Cycle themes">
+      <i class="fas fa-palette"></i>
+    </button>
+    <div class="theme-menu" id="themeMenu">
+      <button onclick="setTheme('dark')">🌙 Dark</button>
+      <button onclick="setTheme('white')">☀️ Light</button>
+      <button onclick="setTheme('green')">💚 Green</button>
+      <button onclick="setTheme('orange')">🧡 Orange</button>
+      <button onclick="setTheme('yellow')">💛 Yellow</button>
+    </div>
+  </div>
+
   <script>
+    // Sidebar functionality
     document.addEventListener('DOMContentLoaded', function() {
       const sidebar = document.querySelector('.sidebar');
       const toggleBtn = document.querySelector('#sidebar-toggle');
@@ -869,9 +1152,52 @@ input, textarea, [contenteditable="true"] {
         });
       });
     });
+
+    /* ----------  THEME SWITCHER  ---------- */
+    (() => {
+      const themes = ['dark','white','green','orange','yellow'];
+      const stored = localStorage.getItem('theme');
+      const initial = stored || 'dark';
+      document.documentElement.setAttribute('data-theme', initial);
+
+      window.setTheme = t => {
+        if(!themes.includes(t)) return;
+        document.documentElement.setAttribute('data-theme', t);
+        localStorage.setItem('theme', t);
+      };
+    })();
+
+    // Theme menu functionality
+    const menu = document.getElementById('themeMenu');
+    document.querySelector('.theme-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      menu.classList.toggle('show');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', e => {
+      if(!e.target.closest('.theme-switcher')) menu.classList.remove('show');
+    });
+
+    // Keyboard shortcut: Alt+T
+    document.addEventListener('keydown', e => {
+      if(e.altKey && e.key.toLowerCase() === 't') {
+        e.preventDefault();
+        cycleTheme();
+      }
+    });
+
+    // Helper to cycle through list
+    function cycleTheme() {
+      const themes = ['dark','white','green','orange','yellow'];
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = themes[(themes.indexOf(current) + 1) % themes.length];
+      setTheme(next);
+    }
   </script>
+
   <!-- Enhanced Content Protection Script -->
-<script>
+  <script>
     // Only enable protection for non-admin users
     {% if not user.is_authenticated %}
     (function() {
@@ -884,14 +1210,12 @@ input, textarea, [contenteditable="true"] {
         // 1. Disable Right Click & Context Menu
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
-            showWarning('🚫 Right-click is disabled on this site');
             return false;
         });
         
         // 2. Disable Text Selection & Copy
         document.addEventListener('copy', function(e) {
             e.preventDefault();
-            showWarning('🚫 Content copying is protected');
             return false;
         });
         
@@ -914,12 +1238,13 @@ input, textarea, [contenteditable="true"] {
                 cursor: default !important;
             }
             
-            /* Allow selection in forms only */
-            input, textarea, [contenteditable="true"] {
+            /* Allow selection in forms and theme switcher */
+            input, textarea, [contenteditable="true"], .theme-switcher * {
                 -webkit-user-select: text !important;
                 -moz-user-select: text !important;
                 -ms-user-select: text !important;
                 user-select: text !important;
+                cursor: pointer !important;
             }
             
             /* Anti-screenshot measures */
@@ -955,9 +1280,6 @@ input, textarea, [contenteditable="true"] {
             if (e.key === 'PrintScreen' || e.keyCode === 44 || e.code === 'PrintScreen') {
                 e.preventDefault();
                 screenshotAttempts++;
-                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
-                flashWarning();
-                distortContent();
                 return false;
             }
             
@@ -965,9 +1287,6 @@ input, textarea, [contenteditable="true"] {
             if (e.altKey && (e.key === 'PrintScreen' || e.keyCode === 44)) {
                 e.preventDefault();
                 screenshotAttempts++;
-                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
-                flashWarning();
-                distortContent();
                 return false;
             }
             
@@ -975,16 +1294,12 @@ input, textarea, [contenteditable="true"] {
             if (e.metaKey && (e.key === 'PrintScreen' || e.keyCode === 44)) {
                 e.preventDefault();
                 screenshotAttempts++;
-                showWarning('🚫 Screenshot protection active - Attempt: ' + screenshotAttempts);
-                flashWarning();
-                distortContent();
                 return false;
             }
             
             // Ctrl + P (Print)
             if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
                 e.preventDefault();
-                showWarning('🚫 Printing is disabled on this site');
                 return false;
             }
             
@@ -993,7 +1308,6 @@ input, textarea, [contenteditable="true"] {
                 (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
                 (e.ctrlKey && e.keyCode === 85)) {
                 e.preventDefault();
-                showWarning('🚫 Developer tools are restricted');
                 return false;
             }
         });
@@ -1003,7 +1317,6 @@ input, textarea, [contenteditable="true"] {
             const originalToDataURL = HTMLCanvasElement.prototype.toDataURL;
             HTMLCanvasElement.prototype.toDataURL = function() {
                 console.warn('Canvas data extraction blocked');
-                showWarning('🚫 Screenshot protection active');
                 return '';
             };
         }
@@ -1015,18 +1328,9 @@ input, textarea, [contenteditable="true"] {
                                   window.outerHeight - window.innerHeight > 100;
             
             if (devToolsOpened) {
-                showWarning('🚫 Developer tools detected - Please close to continue');
                 distortContent();
             }
         }, 1000);
-        
-        // 9. Advanced Warning System
-        function showWarning(message) {
-            /* --------------  REMOVED VISUAL POP-UP  -------------- */
-            /*  all protection logic stays; nothing is painted on screen */
-        }
-        
-        function flashWarning() { /* no-op */ }
         
         function distortContent() { /* no-op */ }
         
@@ -1106,7 +1410,7 @@ input, textarea, [contenteditable="true"] {
         
     })();
     {% endif %}
-</script>
-
+  </script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

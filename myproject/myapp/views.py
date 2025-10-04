@@ -5,18 +5,27 @@
 # import statements
 # helps to render templates and interact with models
 # improves view functions for better functionality
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import (
-    Certificate, Project, Skill, ContactSubmission, 
+    Certificate, Project, Skill, 
     EmailTemplate, Profile, Resume, SocialProfile, SiteProfile, Service,
     Education, BackgroundInterest, 
     ProfessionalPhilosophy, ProfessionalExperience,
-    SkillSummary, SkillCategory, LearningPath, SocialPlatform, EmailAddress, EmailTemplates,
-    GuidelineSection, SecurityItem,
-    Method, FAQ
+    SkillSummary, SkillCategory, LearningPath, SocialPlatform, EmailAddress, EmailTemplates, AlternativeMethod,
+    EmailGuidelineSection, SecurityItem, FAQ
 )
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
+import logging
+from .models import ContactMessage, WatermarkRecord
+from django.contrib import messages
+from django.utils.timezone import now
 
-# veiw for certificate
+
+logger = logging.getLogger(__name__)
+
+# view for certificate
 # Updated to include filtering and search functionality
 # Also retrieves category choices from the model
 # Updated template context to include categories and search query
@@ -61,6 +70,7 @@ def certificate_list(request):
 def project_view(request):
     featured_projects = Project.objects.filter(is_featured=True)
     additional_projects = Project.objects.filter(is_featured=False)
+    
     return render(request, 'main/project.html', {
         'featured_projects': featured_projects,
         'additional_projects': additional_projects
@@ -103,15 +113,23 @@ def contact_view(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
-        
-        ContactSubmission.objects.create(
-            name=name,
-            email=email,
-            subject=subject,
-            message=message
-        )
-        return render(request, 'main/contact_success.html')
-        
+
+        try:
+            # Save the message to the database
+            contact_message = ContactMessage.objects.create(
+                name=name,
+                email=email,
+                subject=subject,
+                message=message
+            )
+
+            messages.success(request, '✅ Your message has been received!')
+            return redirect('contact_success')
+
+        except Exception as e:
+            messages.error(request, '⚠️ There was an error saving your message. Please try again.')
+            logger.error(f"Contact form error: {e}")
+
     return render(request, 'main/contact.html')
 
 
@@ -227,6 +245,7 @@ def social_page(request):
 def home(request):
     profile = SiteProfile.objects.first()
     services = Service.objects.all()
+    
     return render(request, 'main/home.html', {
         'profile': profile,
         'services': services,
@@ -247,8 +266,45 @@ def contact_success(request):
 # Updated to fetch project by ID or slug (not implemented here) 
 # Updated template to display detailed project information
 
-def project_detail_view(request):
-    return render(request, 'main/project_detail.html')
+
+def project_detail_view(request, project_id=None):
+    """
+    View for individual project details.
+    If project_id is provided, show that specific project.
+    Otherwise, show a default project detail page or list.
+    """
+    # If a specific project ID is provided
+    if project_id:
+        try:
+            project = get_object_or_404(Project, id=project_id)
+            
+            # Get related projects (excluding current project)
+            related_projects = Project.objects.exclude(id=project_id)[:3]
+            
+            context = {
+                'project': project,
+                'related_projects': related_projects,
+                'projects': Project.objects.all()  # For navigation
+            }
+            return render(request, 'main/project_detail.html', context)
+        except Project.DoesNotExist:
+            # If project doesn't exist, show 404 or redirect
+            from django.http import Http404
+            raise Http404("Project not found")
+    
+    # If no specific project, show the first project or a list
+    projects = Project.objects.all()
+    if projects.exists():
+        # FIXED: Use the correct URL name 'project_detail' (not 'project_details')
+        first_project = projects.first()
+        if first_project:
+            return redirect('project_detail', project_id=first_project.id)
+    
+    # No projects exist
+    context = {
+        'projects': projects
+    }
+    return render(request, 'main/project_detail.html', context)
 
 # base view
 # Renders the base template for the site
@@ -258,21 +314,75 @@ def base_view(request):
     return render(request, 'base.html')
 
 
-# veiw for email_page
+# view for email_page
 # Renders a page for email-related content
 # Updated template to display email-related information
 
 
-
+# views.py - Email view
 def email(request):
     context = {
-        "emails": EmailAddress.objects.all(),
-        "templates": EmailTemplates.objects.all(),
-        "guideline_sections": GuidelineSection.objects.prefetch_related("items"),
-        "security_items": SecurityItem.objects.all(),
-        "methods": Method.objects.all(),
-        "faqs": FAQ.objects.all(),
-        "default_contact_email": "kachimaxy1@gmail.com",
-        "contact_form_redirect_to_gmail": True,
+        # Email addresses
+        'emails': EmailAddress.objects.filter(is_active=True),
+        
+        # Email templates - Fixed: using EmailTemplate instead of EmailTemplates
+        'templates': EmailTemplates.objects.filter(is_active=True),
+        
+        # Email guidelines
+        'guideline_sections': EmailGuidelineSection.objects.filter(is_active=True).prefetch_related(
+            'items', 'subsections', 'subsections__items'
+        ),
+        
+        # Security items
+        'security_items': SecurityItem.objects.filter(is_active=True).prefetch_related('points'),
+        
+        # Alternative methods
+        'methods': AlternativeMethod.objects.filter(is_active=True),
+        
+        # FAQs
+        'faqs': FAQ.objects.filter(is_active=True),
+        
+        # CTA settings
+        'default_contact_email': 'kachimaxy1@gmail.com',
+        'contact_form_redirect_to_gmail': True,
+        'contact_form_subject': 'Contact Form Inquiry',
+        'contact_form_url': '/contact',
     }
-    return render(request, "email.html", context)
+    
+    return render(request, 'email.html', context)
+
+def get_client_ip(request):
+    """Helper to extract client IP address"""
+    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
+    return x_forwarded_for.split(",")[0].strip() if x_forwarded_for else request.META.get("REMOTE_ADDR") or "unknown"
+
+@csrf_exempt
+def report_screenshot(request):
+    """
+    Called when a screenshot or printscreen event is detected.
+    """
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body.decode("utf-8"))
+            path = data.get("path", "unknown")
+            event_type = data.get("event_type", "screenshot")
+            ip = get_client_ip(request)  # Now this function is defined above
+            user = request.user if request.user.is_authenticated else None
+
+            # Save record
+            watermark_record = WatermarkRecord.objects.create(
+                path=path,
+                ip_address=ip,
+                user=user,
+                user_agent=request.META.get("HTTP_USER_AGENT", "")[:500],
+                event_type=event_type
+            )
+
+            logger.warning(f"📸 {event_type} event on {path} from IP {ip}, user={user}")
+            
+            return JsonResponse({"status": "ok", "message": "event logged"})
+        except Exception as e:
+            logger.error(f"❌ report_screenshot failed: {e}")
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+    return JsonResponse({"status": "error", "message": "invalid method"}, status=405)

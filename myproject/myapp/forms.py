@@ -1,5 +1,5 @@
 from django import forms
-from .models import ContactSubmission, Certificate, Project, Skill, EmailTemplate
+from .models import ContactSubmission, Certificate, Project, Skill, EmailTemplates
 
 class ContactSubmissionForm(forms.ModelForm):
     class Meta:
@@ -26,5 +26,5 @@ class SkillForm(forms.ModelForm):
 
 class EmailTemplateForm(forms.ModelForm):
     class Meta:
-        model = EmailTemplate
+        model = EmailTemplates
         fields = '__all__'

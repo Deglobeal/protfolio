@@ -1,11 +1,18 @@
 from django.contrib import admin
 from .models import (
-    SiteProfile, Service, Certificate, Project, Skill, 
-    ContactSubmission, EmailTemplate, Profile, Resume, SocialProfile,
-    ContactDetail, Education, ProfessionalExperience, BackgroundInterest, ProfessionalPhilosophy,
-    ProfileDetail, SkillSummary, LearningPath, SocialPlatform, EmailAddress, EmailTemplates,
-    GuidelineSection, GuidelineItem,
-    SecurityItem, Method, FAQ
+    SiteProfile, Service, Certificate,
+    Project, Skill, ContactSubmission,  
+    Profile, Resume, SocialProfile,
+    ContactDetail, Education, 
+    ProfessionalExperience, BackgroundInterest, 
+    ProfessionalPhilosophy, ProfileDetail, 
+    SkillSummary, LearningPath, SocialPlatform, 
+    EmailAddress, EmailTemplates, 
+    EmailGuidelineSection, GuidelineItem,
+    GuidelineSubsection, SubsectionItem, 
+    SecurityItem, SecurityPoint,
+    AlternativeMethod, FAQ, WatermarkRecord, 
+    ContactMessage, ScreenshotEvent
 )
 # MODEL ADMINISTRATIONS FOR THE ADMIN INTERFACE
 # Register models FOR PROFILE MANAGEMENT here.
@@ -74,10 +81,6 @@ class ContactSubmissionAdmin(admin.ModelAdmin):
 
 
  # Register models FOR EMAIL TEMPLATE MANAGEMENT here.
-@admin.register(EmailTemplate)
-class EmailTemplateAdmin(admin.ModelAdmin):
-    list_display = ("template_type", "subject")
-    list_filter = ("template_type",)
 
 
 
@@ -172,18 +175,99 @@ class SocialPlatformAdmin(admin.ModelAdmin):
 # class EmailTemplateAdmin(admin.ModelAdmin):
 #     list_display = ("template_type", "subject")
 #     list_filter = ("template_type",)
-
-
+# admin.py - Email section
+# Inline admin classes for email section
 class GuidelineItemInline(admin.TabularInline):
     model = GuidelineItem
     extra = 1
 
-@admin.register(GuidelineSection)
-class GuidelineSectionAdmin(admin.ModelAdmin):
-    inlines = [GuidelineItemInline]
+class GuidelineSubsectionInline(admin.TabularInline):
+    model = GuidelineSubsection
+    extra = 1
 
-admin.site.register(EmailAddress)
-admin.site.register(EmailTemplates)
-admin.site.register(SecurityItem)
-admin.site.register(Method)
-admin.site.register(FAQ)
+class SubsectionItemInline(admin.TabularInline):
+    model = SubsectionItem
+    extra = 1
+
+class SecurityPointInline(admin.TabularInline):
+    model = SecurityPoint
+    extra = 1
+
+# Main admin classes for email section
+@admin.register(EmailAddress)
+class EmailAddressAdmin(admin.ModelAdmin):
+    list_display = ['title', 'address', 'response_time', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    search_fields = ['title', 'address']
+
+@admin.register(EmailTemplates)
+class EmailTemplateAdmin(admin.ModelAdmin):
+    list_display = ['title', 'key', 'subject', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    search_fields = ['title', 'subject']
+    prepopulated_fields = {'key': ['title']}
+
+@admin.register(EmailGuidelineSection)
+class EmailGuidelineSectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    inlines = [GuidelineItemInline, GuidelineSubsectionInline]
+    search_fields = ['title']
+
+@admin.register(GuidelineSubsection)
+class GuidelineSubsectionAdmin(admin.ModelAdmin):
+    list_display = ['title', 'section', 'order']
+    list_editable = ['order']
+    list_filter = ['section']
+    inlines = [SubsectionItemInline]
+
+@admin.register(SecurityItem)
+class SecurityItemAdmin(admin.ModelAdmin):
+    list_display = ['title', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    inlines = [SecurityPointInline]
+    search_fields = ['title']
+
+@admin.register(AlternativeMethod)
+class AlternativeMethodAdmin(admin.ModelAdmin):
+    list_display = ['title', 'display', 'best_for', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    search_fields = ['title', 'best_for']
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ['question', 'order', 'is_active']
+    list_editable = ['order', 'is_active']
+    list_filter = ['is_active']
+    search_fields = ['question', 'answer']
+
+    
+# wartermark admin
+
+@admin.register(WatermarkRecord)
+class WatermarkRecordAdmin(admin.ModelAdmin):
+    list_display = ("timestamp", "path", "ip_address", "user", "user_email", "event_type")
+    list_filter = ("event_type", "path", "timestamp")
+    search_fields = ("ip_address", "user__username", "user_email", "path")
+    readonly_fields = ("timestamp", "ip_address", "user", "path", "user_agent", "event_type")
+    
+    # Make it non-editable since these are audit records
+    def has_add_permission(self, request):
+        return False
+        
+    def has_change_permission(self, request, obj=None):
+        return False
+
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "subject", "created_at", "is_read")
+    list_filter = ("is_read", "created_at")
+    search_fields = ("name", "email", "subject", "message")
+    ordering = ("-created_at",)
+

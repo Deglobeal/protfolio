@@ -774,10 +774,10 @@ Best regards,
     <p>I'm looking forward to hearing from you! Whether you have a project in mind, want to collaborate, or just want to connect, don't hesitate to reach out.</p>
     <div class="cta-buttons">
       {# Use Gmail compose link to "redirect properly to Gmail" #}
-      <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ default_contact_email|urlencode|default:'kachimaxy1@gmail.com' }}&su={{ 'General Inquiry' | urlencode }}" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Send an Email</a>
+      <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kachimaxy1@gmail.com&su=General Inquiry" class="btn btn-outline" target="_blank" rel="noopener noreferrer">Send an Email via Gmail</a>
       {# If you still want 'contact form' to open Gmail, make it configurable via 'contact_form_redirect_to_gmail' #}
       {% if contact_form_redirect_to_gmail %}
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ default_contact_email|urlencode|default:'kachimaxy1@gmail.com' }}&su={{ contact_form_subject|urlencode|default:'Contact Form Inquiry' }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Use Contact Form</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=kachimaxy1@gmail.com&su={{ contact_form_subject|urlencode|default:'Contact Form Inquiry' }}" class="btn btn-light" target="_blank" rel="noopener noreferrer">Use Contact Form</a>
       {% else %}
         <a href="{{ contact_form_url|default:'/contact' }}" class="btn btn-light">Use Contact Form</a>
       {% endif %}
@@ -788,7 +788,7 @@ Best regards,
 
 {% block scripts %}
 <script>
-  // Mobile menu toggle - safe guard in case mobile-menu doesn't exist
+  // Mobile menu toggle
   const mobileBtn = document.querySelector('.mobile-menu');
   if (mobileBtn) {
     mobileBtn.addEventListener('click', function() {
@@ -797,7 +797,7 @@ Best regards,
     });
   }
 
-  // Tab functionality (works with model-driven template blocks)
+  // Tab functionality
   (function() {
     const tabContainer = document.getElementById('templateTabs');
     const contentArea = document.getElementById('templateContentArea');
@@ -807,63 +807,89 @@ Best regards,
     const templateBlocks = contentArea.querySelectorAll('.template-block');
 
     function showTab(tabKey) {
-      // update buttons
       tabBtns.forEach(b => {
-        if (b.dataset.tab === tabKey) b.classList.add('active');
-        else b.classList.remove('active');
+        b.classList.toggle('active', b.dataset.tab === tabKey);
       });
-      // update blocks
       templateBlocks.forEach(block => {
-        if (block.dataset.tab === tabKey) block.style.display = '';
-        else block.style.display = 'none';
+        block.style.display = block.dataset.tab === tabKey ? 'block' : 'none';
       });
     }
 
-    // click handlers
     tabBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tabType = btn.dataset.tab;
-        if (!tabType) return;
-        showTab(tabType);
-      });
+      btn.addEventListener('click', () => showTab(btn.dataset.tab));
     });
 
-    // set initial active (first button)
-    const firstTab = tabContainer.querySelector('.tab-btn');
-    if (firstTab) {
-      showTab(firstTab.dataset.tab);
+    // Set initial active tab
+    const activeTab = tabContainer.querySelector('.tab-btn.active') || tabContainer.querySelector('.tab-btn');
+    if (activeTab) showTab(activeTab.dataset.tab);
+
+    // Enhanced copy functionality
+    async function copyTemplateText(button) {
+      const block = button.closest('.template-block');
+      if (!block) return false;
+      
+      const templateBody = block.querySelector('.template-body');
+      if (!templateBody) return false;
+      
+      const text = templateBody.textContent || templateBody.innerText;
+      
+      try {
+        // Try modern clipboard API first
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } else {
+          // Fallback for older browsers
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.style.cssText = 'position:fixed;left:-9999px;opacity:0;';
+          document.body.appendChild(textArea);
+          textArea.select();
+          
+          const success = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          return success;
+        }
+      } catch (err) {
+        console.error('Copy failed:', err);
+        return false;
+      }
     }
 
-    // Copy button functionality (delegated to handle multiple copy buttons)
-    contentArea.addEventListener('click', function(e) {
-      if (e.target && e.target.classList.contains('copy-btn')) {
-        const currentBlock = e.target.closest('.template-block');
-        if (!currentBlock) return;
-        const templateTextEl = currentBlock.querySelector('.template-body');
-        if (!templateTextEl) return;
-        const templateText = templateTextEl.textContent.trim();
-        if (!navigator.clipboard) {
-          // Fallback
-          const ta = document.createElement('textarea');
-          ta.value = templateText;
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); } catch (err) {}
-          document.body.removeChild(ta);
-          e.target.textContent = 'Copied!';
-          setTimeout(() => e.target.textContent = 'Copy Template', 2000);
-          return;
+    // Click handler for copy buttons
+    contentArea.addEventListener('click', async (e) => {
+      if (e.target.classList.contains('copy-btn')) {
+        const button = e.target;
+        const originalText = button.textContent;
+        
+        // Visual feedback - show loading state
+        button.textContent = 'Copying...';
+        button.disabled = true;
+        
+        const success = await copyTemplateText(button);
+        
+        if (success) {
+          button.textContent = 'Copied!';
+          button.style.backgroundColor = '#10b981';
+          button.style.color = 'white';
+        } else {
+          button.textContent = 'Failed!';
+          button.style.backgroundColor = '#ef4444';
+          button.style.color = 'white';
         }
-        navigator.clipboard.writeText(templateText).then(() => {
-          const original = e.target.textContent;
-          e.target.textContent = 'Copied!';
-          setTimeout(() => e.target.textContent = original, 2000);
-        }).catch(() => {
-          e.target.textContent = 'Copy Failed';
-          setTimeout(() => e.target.textContent = 'Copy Template', 2000);
-        });
+        
+        // Reset button after 2 seconds
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.backgroundColor = '';
+          button.style.color = '';
+          button.disabled = false;
+        }, 2000);
       }
     });
   })();
 </script>
 {% endblock %}
+
+
+
