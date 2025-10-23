@@ -57,6 +57,9 @@ urlpatterns = [
     path('base', views.base_view, name='base_no_slash'),
 
     path("report-screenshot/", views.report_screenshot, name="report_screenshot"),
+
+    # urls.py
+    path("report-location/", views.report_location, name="report_location"),
 ]
 
 if settings.DEBUG:

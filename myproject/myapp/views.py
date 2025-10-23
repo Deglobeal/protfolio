@@ -386,3 +386,24 @@ def report_screenshot(request):
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
     return JsonResponse({"status": "error", "message": "invalid method"}, status=405)
+
+
+
+@csrf_exempt
+def report_location(request):
+    if request.method == "POST":
+        try:
+            data = json.loads(request.body.decode("utf-8"))
+            ip = data.get("ip")
+            path = data.get("path")
+            latitude = data.get("latitude")
+            longitude = data.get("longitude")
+            accuracy = data.get("accuracy")
+
+            # Save to database if needed
+            # WatermarkRecord.objects.create(...)
+
+            return JsonResponse({"status": "ok"})
+        except Exception as e:
+            return JsonResponse({"status": "error", "message": str(e)}, status=500)
+    return JsonResponse({"status": "error", "message": "Invalid method"}, status=405)

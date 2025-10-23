@@ -178,4 +178,5 @@ APPEND_SLASH = False  # Disable automatic slash appending
 WATERMARK_ADDRESS = "Lagos, Nigeria"
 WATERMARK_WARNING = "⚠ Unauthorized use or distribution is prohibited!"
 
+IPINFO_TOKEN = "fd78618ee198d9" # token for ipinfo.io API
 

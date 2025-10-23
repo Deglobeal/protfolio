@@ -5,17 +5,19 @@
 {% block main %}
 <style>
   /* ----------  DESIGN TOKENS  ---------- */
-  :root{
-    --primary:#2563eb;
-    --accent:#e11d48;
-    --dark:#0f172a;
-    --light:#f8fafc;
-    --gray:#64748b;
-    --radius:12px;
-    --shadow:0 4px 20px rgba(0,0,0,.08);
-    --transition:all .3s ease;
-    --font:'Inter',Segoe UI,Tahoma,Geneva,Verdana,sans-serif;
-  }
+  :root {
+    /* Default (light) Theme */
+    --bg: #f8fafc;
+    --bg-card: #ffffff;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --primary: #2563eb;
+    --accent: #e11d48;
+    --hero-gradient: linear-gradient(135deg, #2563eb, #e11d48);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    
+    }
 
   /* ----------  PAGE WRAPPER  ---------- */
   .contact-wrapper{
