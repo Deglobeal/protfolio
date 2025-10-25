@@ -18,9 +18,13 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 import logging
-from .models import ContactMessage, WatermarkRecord
+from .models import ContactMessage, WatermarkRecord, AutoReplyTemplate
 from django.contrib import messages
 from django.utils.timezone import now
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
+from django.template.loader import render_to_string
+
 
 
 logger = logging.getLogger(__name__)
@@ -112,7 +116,7 @@ def contact_view(request):
         name = request.POST.get('name')
         email = request.POST.get('email')
         subject = request.POST.get('subject')
-        message = request.POST.get('message')
+        message_text = request.POST.get('message')
 
         try:
             # Save the message to the database
@@ -120,10 +124,17 @@ def contact_view(request):
                 name=name,
                 email=email,
                 subject=subject,
-                message=message
+                message=message_text
             )
 
-            messages.success(request, '✅ Your message has been received!')
+            # Send auto-reply email
+            try:
+                send_auto_reply_email(name, email, subject, message_text)
+            except Exception as email_error:
+                # Log email error but don't crash the form submission
+                logger.error(f"Auto-reply email failed: {email_error}")
+
+            messages.success(request, '✅ Your message has been received! You should receive a confirmation email shortly.')
             return redirect('contact_success')
 
         except Exception as e:
@@ -131,6 +142,47 @@ def contact_view(request):
             logger.error(f"Contact form error: {e}")
 
     return render(request, 'main/contact.html')
+
+def send_auto_reply_email(name, email, original_subject, original_message):
+    """Send auto-reply email to the person who submitted the contact form"""
+    
+    # Get the active template
+    template = AutoReplyTemplate.get_active_template()
+    
+    if not template:
+        # Use default template if none exists
+        template_subject = "Thank you for contacting Gerard Ugwu"
+        template_message = f"""Hello {name},
+
+Thank you for reaching out! I've received your message and will get back to you within 24 hours.
+
+Here's a copy of your message:
+Subject: {original_subject}
+Message: {original_message}
+
+Best regards,
+Gerard Ugwu
+Backend Developer"""
+    else:
+        template_subject = template.subject
+        template_message = template.message.format(
+            name=name,
+            subject=original_subject,
+            message=original_message
+        )
+
+    # Send email
+    send_mail(
+        subject=template_subject,
+        message=strip_tags(template_message),  # Plain text version
+        from_email='kachimaxy1@gmail.com',
+        recipient_list=[email],
+        html_message=template_message,  # HTML version
+        fail_silently=False,
+    )
+    
+    logger.info(f"Auto-reply email sent to {email}")
+
 
 
 # view for email templates

@@ -12,8 +12,10 @@ from .models import (
     GuidelineSubsection, SubsectionItem, 
     SecurityItem, SecurityPoint,
     AlternativeMethod, FAQ, WatermarkRecord, 
-    ContactMessage, ScreenshotEvent
+    ContactMessage, AutoReplyTemplate
 )
+
+
 # MODEL ADMINISTRATIONS FOR THE ADMIN INTERFACE
 # Register models FOR PROFILE MANAGEMENT here.
 
@@ -271,3 +273,12 @@ class ContactMessageAdmin(admin.ModelAdmin):
     search_fields = ("name", "email", "subject", "message")
     ordering = ("-created_at",)
 
+@admin.register(AutoReplyTemplate)
+class AutoReplyTemplateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'is_active', 'created_at', 'updated_at')
+    list_editable = ('is_active',)
+    readonly_fields = ('created_at', 'updated_at')
+    
+    def has_add_permission(self, request):
+        # Allow adding new templates
+        return True

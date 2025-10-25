@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os, certifi, ssl
+import os
+import logging
+from django.core.exceptions import ImproperlyConfigured
+
+logger = logging.getLogger(__name__)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,13 +26,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+# ================================
+# SECURITY SETTINGS
+# ================================
+
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-un9fn8(j9%q3=7x=z#l5avlpkp+!1_(sicv&!x$ppw2v1^#ian'
+SECRET_KEY = os.environ.get('SECRET_KEY', 's&cdc6pvau)l56tib(!@sc!o@=11t^pet!(((#dmp8cv-mvk2n')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '.vercel.app', '.herokuapp.com']
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,10 +48,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic', # Whitenoise for static file serving
     'myapp',
+    'sslserver',
+    'django_extensions',
+
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,7 +140,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
+# Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# WhiteNoise configuration for static files
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
@@ -151,32 +173,171 @@ LOGIN_URL = '/accounts/login/' # URL for login page
 # Custom settings
 # Critical settings for security
 
-SECURE_SSL_REDIRECT = False  # Redirect HTTP to HTTPS
-SESSION_COOKIE_SECURE = False  # Only send session cookie over HTTPS
-CSRF_COOKIE_SECURE = False  # Only send CSRF cookie over HTTPS
+# HTTPS Settings
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Security Headers
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-X_FRAME_OPTIONS = 'DENY'  # Prevent clickjacking
+X_FRAME_OPTIONS = 'DENY'
 
-# HSTS settings
-# HSTS MEANS HTTP Strict Transport Security
+# HSTS Settings
 SECURE_HSTS_SECONDS = 31536000  # 1 year
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
-
-
 # settings.py - Add these to be extra safe
+
+
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]
 
-APPEND_SLASH = False  # Disable automatic slash appending
 
 
+# ================================
+# LOGGING
+# ================================
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'logs/django_errors.log'),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'myapp': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+
+# ================================
+# Gmail SMTP Email Configuration
+# ================================
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'kachimaxy1@gmail.com'
+EMAIL_HOST_PASSWORD = 'vytnaxnrqnouggyz'  # Gmail App Password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_TIMEOUT = 30
+
+
+# Auto-reply settings
+AUTO_REPLY_SUBJECT = "Thank you for contacting Gerard Ugwu"
+AUTO_REPLY_FROM = 'kachimaxy1@gmail.com'
+
+# ================================
+# CUSTOM SETTINGS
+# ================================
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Authentication URLs
+LOGIN_REDIRECT_URL = '/admin/'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_URL = '/admin/login/'
+
+# Custom settings
 WATERMARK_ADDRESS = "Lagos, Nigeria"
 WATERMARK_WARNING = "⚠ Unauthorized use or distribution is prohibited!"
+IPINFO_TOKEN = os.environ.get('IPINFO_TOKEN', 'fd78618ee198d9')
 
-IPINFO_TOKEN = "fd78618ee198d9" # token for ipinfo.io API
+# Disable automatic slash appending
+APPEND_SLASH = False
 
+# ================================
+# PERFORMANCE & CACHING
+# ================================
+
+# Cache configuration (using database cache as simple option)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'myapp_cache_table',
+    }
+}
+
+# Session configuration
+SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
+
+# ================================
+# FILE UPLOADS
+# ================================
+
+# File upload settings
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880  # 5MB
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 1000
+
+# ================================
+# ENVIRONMENT SPECIFIC SETTINGS
+# ================================
+
+# Detect environment
+ENVIRONMENT = os.environ.get('DJANGO_ENVIRONMENT', 'production')
+
+if ENVIRONMENT == 'development':
+    # Development-specific settings
+    DEBUG = True
+    ALLOWED_HOSTS = ['*']
+    SECURE_SSL_REDIRECT = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    
+    # Development database
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+
+# Production-specific security (only in production)
+if not DEBUG:
+    # Additional production security
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+
+# Ensure logs directory exists
+LOG_DIR = BASE_DIR / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465

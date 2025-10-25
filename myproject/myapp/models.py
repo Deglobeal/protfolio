@@ -642,3 +642,37 @@ class ScreenshotEvent(models.Model):
         if self.user:
             return f"Screenshot by {self.user} on {self.path} at {self.event_time}"
         return f"Screenshot from {self.ip_address} on {self.path} at {self.event_time}"
+
+
+class AutoReplyTemplate(models.Model):
+    name = models.CharField(max_length=100, default="Default Auto-Reply")
+    subject = models.CharField(max_length=200, default="Thank you for your message")
+    message = models.TextField(
+        default="""Hello {name},
+
+Thank you for reaching out! I've received your message and will get back to you within 24 hours.
+
+Here's a copy of your message:
+Subject: {subject}
+Message: {message}
+
+Best regards,
+Gerard Ugwu
+Backend Developer"""
+    )
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # Ensure only one active template exists
+        if self.is_active:
+            AutoReplyTemplate.objects.filter(is_active=True).update(is_active=False)
+        super().save(*args, **kwargs)
+
+    @classmethod
+    def get_active_template(cls):
+        return cls.objects.filter(is_active=True).first()
