@@ -35,7 +35,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 's&cdc6pvau)l56tib(!@sc!o@=11t^pet!(((
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '.vercel.app', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '.vercel.app', '.herokuapp.com', '.railway.com']
 
 
 
