@@ -15,6 +15,7 @@ import os, certifi, ssl
 import os
 import logging
 from django.core.exceptions import ImproperlyConfigured
+from decouple import config
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +36,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 's&cdc6pvau)l56tib(!@sc!o@=11t^pet!(((
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'testserver', '.vercel.app', '.herokuapp.com', '.railway.com']
+ALLOWED_HOSTS = [
+    config('ALLOWED_HOSTS', default='stunning-forgiveness.up.railway.app')
+]
 
 
 
@@ -194,6 +197,7 @@ SECURE_HSTS_PRELOAD = True
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
+    'https://stunning-forgiveness.up.railway.app'
 ]
 
 

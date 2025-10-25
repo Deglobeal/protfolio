@@ -1,9 +1,0 @@
-# Add this to .gitattributes
-*.css text
-*.js text
-*.html text
-*.py text
-*.txt text
-*.md text
-*.crt binary
-*.key binary
