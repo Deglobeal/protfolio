@@ -154,479 +154,166 @@ class RequestLoggingMiddleware:
         return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
 
 
+import json
+import logging
+import re
+import requests
+from django.utils.deprecation import MiddlewareMixin
+from django.http import JsonResponse
+
+logger = logging.getLogger(__name__)
+
 class WatermarkMiddleware(MiddlewareMixin):
     """
-    Injects watermark into sensitive HTML pages.
-    Watermark stays hidden during normal browsing,
-    only appears if user attempts a screenshot or printing.
+    Enhanced Watermark Middleware
+    - Works on both desktop and mobile devices
+    - Detects suspicious activity (print, dev tools, tab switch)
+    - Uses hybrid geolocation (IP + Browser GPS)
+    - Logs screenshot or suspicious attempts server-side
     """
 
-    SENSITIVE_PATHS = [
-        r'^/$', r'^/certificates', r'^/projects', r'^/skills',
-        r'^/contact', r'^/email', r'^/profile', r'^/resume',
-        r'^/social', r'^/contact_success', r'^/project_details',
-        r'^/project/\d+', r'^/base',
-    ]
-
-    IPINFO_TOKEN = "fd78618ee198d9"  # ✅ your ipinfo.io token
-
     def process_response(self, request, response):
-        try:
-            content_type = response.get('Content-Type', '')
-            if "text/html" in content_type and response.status_code == 200:
-                for pattern in self.SENSITIVE_PATHS:
-                    if re.match(pattern, request.path):
-                        response = self._inject_html_watermark(request, response)
-                        break
-        except Exception as e:
-            logger.exception("WatermarkMiddleware error: %s", e)
+        # Apply only to HTML responses
+        if not response.get("Content-Type", "").startswith("text/html"):
+            return response
 
+        # Limit to specific paths (customize this list)
+        protected_paths = [r"^/$", r"^/portfolio/?$", r"^/projects/?$", r"^/about/?$"]
+
+        for pattern in protected_paths:
+            if re.match(pattern, request.path):
+                try:
+                    client_ip = self.get_client_ip(request)
+                    location_data = self.get_location_data(client_ip)
+                    response.content = self.inject_watermark_html(response, location_data)
+                except Exception as e:
+                    logger.error(f"Watermark injection failed: {e}")
+                break
         return response
 
-    # -------------------- IP + Location Logic --------------------
-
+    # ---------------------------
+    # Helper: Get client IP
+    # ---------------------------
     def get_client_ip(self, request):
-        """Get the user's real IP even behind proxies."""
-        ip_headers = [
-            'HTTP_CF_CONNECTING_IP',      # Cloudflare
-            'HTTP_X_REAL_IP',             # Nginx/Proxy
-            'HTTP_X_FORWARDED_FOR',       # Standard proxies
-            'REMOTE_ADDR',                # Default
-        ]
-        for header in ip_headers:
-            ip = request.META.get(header)
-            if ip:
-                # X-Forwarded-For may contain multiple IPs
-                ip = ip.split(',')[0].strip()
-                if self._is_valid_ip(ip):
-                    return ip
-        return '127.0.0.1'
+        forwarded = request.META.get("HTTP_X_FORWARDED_FOR")
+        return forwarded.split(",")[0] if forwarded else request.META.get("REMOTE_ADDR", "0.0.0.0")
 
-    def _is_valid_ip(self, ip):
-        """Simple validation for IPv4/IPv6"""
-        return bool(re.match(r'^(\d{1,3}\.){3}\d{1,3}$', ip) or ':' in ip)
-
-    def get_location_data(self, ip_address):
-        """Retrieve location data for IP using ipinfo.io"""
-        # Handle localhost or private IPs
-        if ip_address in ['127.0.0.1', '::1', 'localhost'] or ip_address.startswith(
-            ('10.', '192.168.', '172.16.', '172.17.', '172.18.',
-             '172.19.', '172.20.', '172.21.', '172.22.', '172.23.',
-             '172.24.', '172.25.', '172.26.', '172.27.', '172.28.',
-             '172.29.', '172.30.', '172.31.')
-        ):
-            return {
-                'city': 'Local Network',
-                'region': 'Development',
-                'country': 'Local',
-                'location_string': 'Local Network/Development',
-                'google_maps_url': 'https://www.google.com/maps'
-            }
-
+    # ---------------------------
+    # Helper: Get IP-based location
+    # ---------------------------
+    def get_location_data(self, ip):
         try:
-            url = f"https://ipinfo.io/{ip_address}?token={self.IPINFO_TOKEN}"
-            logger.info(f"Looking up IP location: {ip_address}")
-            response = requests.get(url, timeout=5)
-
-            if response.status_code != 200:
-                logger.warning(f"Failed IP lookup ({response.status_code}): {ip_address}")
-                return {'location_string': 'Unknown Location', 'google_maps_url': '#'}
-
+            response = requests.get(f"https://ipinfo.io/{ip}/json", timeout=5)
             data = response.json()
-            logger.debug(f"IP data: {data}")
-
-            city = data.get('city', 'Unknown City')
-            region = data.get('region', 'Unknown Region')
-            country = data.get('country', 'Unknown Country')
-            org = data.get('org', 'Unknown ISP')
-            loc = data.get('loc', '')  # "lat,lon"
-
-            google_maps_url = "https://www.google.com/maps"
-            if loc and ',' in loc:
-                lat, lon = loc.split(',')
-                google_maps_url = f"https://www.google.com/maps?q={lat},{lon}&z=10"
-
-            location_string = f"{city}, {region}, {country}".replace('Unknown, ', '').strip(', ')
-
             return {
-                'city': city,
-                'region': region,
-                'country': country,
-                'isp': org,
-                'coordinates': loc,
-                'location_string': location_string,
-                'google_maps_url': google_maps_url,
+                "ip": ip,
+                "city": data.get("city", "Unknown"),
+                "region": data.get("region", ""),
+                "country": data.get("country", ""),
+                "loc": data.get("loc", ""),
             }
-
-        except requests.exceptions.Timeout:
-            logger.warning(f"Location lookup timed out for {ip_address}")
-        except requests.exceptions.RequestException as e:
-            logger.warning(f"Location lookup error for {ip_address}: {e}")
         except Exception as e:
-            logger.exception(f"Unexpected error in location lookup: {e}")
+            logger.warning(f"IP lookup failed: {e}")
+            return {"ip": ip, "city": "Unknown", "region": "", "country": "", "loc": ""}
 
-        # Default fallback
-        return {
-            'city': 'Unknown',
-            'region': 'Unknown',
-            'country': 'Unknown',
-            'location_string': 'Location Unknown',
-            'google_maps_url': 'https://www.google.com/maps'
-        }
-
-    # -------------------- Watermark Injection --------------------
-
-    def _inject_html_watermark(self, request, response):
-        """Inject watermark overlay with user, IP, and location info"""
-        client_ip = self.get_client_ip(request)
-        location_data = self.get_location_data(client_ip)
-        location_info = location_data.get('location_string', 'Location Unknown')
-        google_maps_url = location_data.get('google_maps_url', '#')
-        current_time = timezone.now().strftime('%Y-%m-%d %H:%M:%S %Z')
-
-        user_info = (
-            f"USER: {request.user.username} | {request.user.email}"
-            if getattr(request, "user", None) and request.user.is_authenticated
-            else "USER: Anonymous Visitor"
-        )
-
-        ip_warning = f"⚠️ UNAUTHORIZED SCREENSHOT - IP: {client_ip} - {location_info} - {current_time} ⚠️"
-        legal_warning = (
-            "LEGAL NOTICE: This content is protected by copyright. "
-            "Unauthorized screenshot, distribution, or reproduction is strictly prohibited."
-        )
-        user_identifier = f"{user_info} | IP: {client_ip} | LOC: {location_info} | TIME: {current_time}"
-
-        # Escape everything
+    # ---------------------------
+    # Helper: Inject HTML + JS
+    # ---------------------------
+    def inject_watermark_html(self, response, location_data):
         watermark_html = f"""
-<!-- Watermark Protection System -->
-<div id="__watermark_overlay" style="
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 999999999;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  overflow: hidden;
-">
-  <!-- Main warning banner - Top -->
-  <div style="
-    position: absolute;
-    top: 15%;
-    left: 5%;
-    right: 5%;
-    text-align: center;
-    font-size: clamp(20px, 3vw, 36px);
-    color: rgba(255, 0, 0, 0.8);
-    font-weight: 900;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    white-space: nowrap;
-    mix-blend-mode: multiply;
-    padding: 15px;
-    background: rgba(255,255,255,0.1);
-    border: 2px solid rgba(255,0,0,0.3);
-    border-radius: 8px;
-  ">
-    {escape(ip_warning)}
-  </div>
-  
-  <!-- Legal warning - Middle -->
-  <div style="
-    position: absolute;
-    top: 45%;
-    left: 5%;
-    right: 5%;
-    text-align: center;
-    font-size: clamp(14px, 1.8vw, 20px);
-    color: rgba(200, 0, 0, 0.7);
-    font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    line-height: 1.4;
-    mix-blend-mode: multiply;
-    padding: 12px;
-    background: rgba(255,255,255,0.05);
-    border-left: 3px solid rgba(255,0,0,0.4);
-    border-right: 3px solid rgba(255,0,0,0.4);
-  ">
-    {escape(legal_warning)}
-  </div>
-  
-  <!-- Diagonal watermark with user info -->
-  <div style="
-    position: absolute;
-    top: 30%;
-    left: 5%;
-    right: 5%;
-    text-align: center;
-    font-size: clamp(16px, 2.5vw, 28px);
-    color: rgba(0, 0, 255, 0.4);
-    transform: rotate(-30deg);
-    font-weight: 800;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
-    mix-blend-mode: multiply;
-  ">
-    {escape(user_identifier)}
-  </div>
-</div>
+        <div id="__watermark_overlay"
+            style="
+                position:fixed;
+                top:0;
+                left:0;
+                width:100%;
+                height:100%;
+                background:rgba(0,0,0,0.7);
+                color:white;
+                display:none;
+                z-index:9999;
+                font-size:1.5rem;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+                font-family:Arial, sans-serif;">
+            ⚠ Unauthorized Action Detected!<br>
+            Logged from IP: {location_data.get('ip')}<br>
+            {location_data.get('city')}, {location_data.get('country')}
+        </div>
 
-<!-- Always visible corner watermarks -->
-<div id="__watermark_bottom" style="
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  font-size: 12px;
-  color: rgba(128, 0, 128, 0.7);
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  mix-blend-mode: multiply;
-  padding: 6px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 4px;
-  pointer-events: none;
-  z-index: 999999998;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  border: 1px solid rgba(128, 0, 128, 0.3);
-">
-  <a href="{escape(google_maps_url)}" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer; pointer-events: auto;">
-    PROTECTED CONTENT | LOC: {escape(location_info)} | TIME: {escape(current_time)}
-  </a>
-</div>
+        <script>
+        (function() {{
+            const overlay = document.getElementById('__watermark_overlay');
 
-<div id="__watermark_left" style="
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  font-size: 12px;
-  color: rgba(255, 165, 0, 0.7);
-  font-weight: 600;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  mix-blend-mode: multiply;
-  padding: 6px;
-  background: rgba(255,255,255,0.8);
-  border-radius: 4px;
-  pointer-events: none;
-  z-index: 999999998;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  border: 1px solid rgba(255, 165, 0, 0.3);
-">
-  <a target="_blank" style="color: inherit; text-decoration: none; cursor: pointer; pointer-events: auto;">
-    SCREENSHOT PROTECTION | IP: {escape(client_ip)} |
-  </a>
-</div>
+            // Function to show warning overlay
+            const showWatermark = (reason) => {{
+                overlay.style.display = 'flex';
+                console.warn('⚠ Suspicious action detected:', reason);
+                setTimeout(() => overlay.style.display = 'none', 7000);
+                fetch('/report-screenshot/', {{
+                    method: 'POST',
+                    headers: {{'Content-Type': 'application/json'}},
+                    body: JSON.stringify({{reason, userAgent: navigator.userAgent}})
+                }});
+            }};
 
-<style>
-  /* Always show watermark during print */
-  @media print {{
-    #__watermark_overlay {{
-      display: block !important;
-    }}
-    #__watermark_bottom, #__watermark_left {{
-      display: block !important;
-      background: rgba(255,255,255,0.9) !important;
-    }}
-  }}
-  
-  /* Make links in watermarks clickable */
-  #__watermark_bottom a, #__watermark_left a {{
-    pointer-events: auto !important;
-  }}
-</style>
+            // Detect devtools via resize (works desktop)
+            let open = false;
+            setInterval(() => {{
+                if ((window.outerWidth - window.innerWidth > 160) || (window.outerHeight - window.innerHeight > 160)) {{
+                    if (!open) {{
+                        open = true;
+                        showWatermark('devtools_opened');
+                    }}
+                }} else {{
+                    open = false;
+                }}
+            }}, 1000);
 
-<script>
-  // Enhanced location tracking with multiple methods
-  let userLocation = '{escape(location_info)}';
-  let hasEnhancedLocation = false;
-  let googleMapsUrl = '{escape(google_maps_url)}';
-  
-  // Try to get more precise location from browser if available
-  function getEnhancedLocation() {{
-    if (navigator.geolocation && !hasEnhancedLocation) {{
-      navigator.geolocation.getCurrentPosition(
-        function(position) {{
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          const accuracy = position.coords.accuracy;
-          const enhancedLocation = `GPS: ${{lat.toFixed(4)}}, ${{lon.toFixed(4)}} (±${{Math.round(accuracy)}}m)`;
-          const newGoogleMapsUrl = `https://www.google.com/maps?q=${{lat}},${{lon}}&z=15`;
-          
-          // Update watermarks with enhanced location
-          const bottomWatermark = document.getElementById('__watermark_bottom');
-          const leftWatermark = document.getElementById('__watermark_left');
-          
-          if (bottomWatermark) {{
-            bottomWatermark.innerHTML = `<a href="${{newGoogleMapsUrl}}" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer; pointer-events: auto;">
-              PROTECTED CONTENT | LOC: ${{enhancedLocation}} | TIME: {escape(current_time)}
-            </a>`;
-          }}
-          if (leftWatermark) {{
-            leftWatermark.innerHTML = `<a href="${{newGoogleMapsUrl}}" target="_blank" style="color: inherit; text-decoration: none; cursor: pointer; pointer-events: auto;">
-              SCREENSHOT PROTECTION | IP: {escape(client_ip)} |
-            </a>`;
-          }}
-          
-          userLocation = enhancedLocation;
-          googleMapsUrl = newGoogleMapsUrl;
-          hasEnhancedLocation = true;
-          
-          // Report enhanced location to backend
-          reportEnhancedLocation(lat, lon, accuracy, 'browser_geolocation');
-        }},
-        function(error) {{
-          console.log('Browser geolocation not available or denied:', error.message);
-        }},
-        {{
-          enableHighAccuracy: true,
-          timeout: 10000,
-          maximumAge: 300000 // 5 minutes
-        }}
-      );
-    }}
-  }}
+            // Detect print
+            window.addEventListener('beforeprint', () => showWatermark('print_attempt'));
+            window.addEventListener('afterprint', () => overlay.style.display = 'none');
 
-  // Report enhanced GPS location to backend
-  function reportEnhancedLocation(lat, lon, accuracy, source) {{
-    fetch('/report-location/', {{
-      method: 'POST',
-      headers: {{
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCSRFToken()
-      }},
-      body: JSON.stringify({{
-        latitude: lat,
-        longitude: lon,
-        accuracy: accuracy,
-        source: source,
-        path: window.location.pathname,
-        ip: '{escape(client_ip)}',
-        timestamp: new Date().toISOString(),
-        google_maps_url: `https://www.google.com/maps?q=${{lat}},${{lon}}`
-      }})
-    }}).catch(function(err) {{ 
-      console.log('Location reporting failed:', err); 
-    }});
-  }}
+            // Detect right-click (desktop)
+            document.addEventListener('contextmenu', (e) => {{
+                e.preventDefault();
+                showWatermark('contextmenu_attempt');
+            }});
 
-  // Show watermark during print events
-  window.addEventListener('beforeprint', function() {{
-    document.getElementById('__watermark_overlay').style.display = 'block';
-    sendScreenshotEvent('print');
-  }});
-  
-  window.addEventListener('afterprint', function() {{
-    document.getElementById('__watermark_overlay').style.display = 'none';
-  }});
+            // Detect mobile screenshot (visibility/tab switch)
+            document.addEventListener('visibilitychange', () => {{
+                if (document.hidden) showWatermark('mobile_screenshot_or_tab_switch');
+            }});
 
-  // Detect PrintScreen key and show watermark
-  document.addEventListener('keyup', function(e) {{
-    if (e.key === 'PrintScreen' || (e.ctrlKey && e.key === 'p') || (e.metaKey && e.key === 'p')) {{
-      const wm = document.getElementById('__watermark_overlay');
-      wm.style.display = 'block';
-      sendScreenshotEvent('screenshot');
-      setTimeout(function() {{ wm.style.display = 'none'; }}, 10000);
-    }}
-  }});
+            // Get precise browser location (user consent)
+            if (navigator.geolocation) {{
+                navigator.geolocation.getCurrentPosition((pos) => {{
+                    const {{ latitude, longitude }} = pos.coords;
+                    fetch('/update-location/', {{
+                        method: 'POST',
+                        headers: {{'Content-Type': 'application/json'}},
+                        body: JSON.stringify({{latitude, longitude}})
+                    }});
+                    console.log('✅ Precise location:', latitude, longitude);
+                }}, (err) => console.warn('Geolocation denied:', err));
+            }}
 
-  // Detect right-click
-  document.addEventListener('contextmenu', function(e) {{
-    const wm = document.getElementById('__watermark_overlay');
-    wm.style.display = 'block';
-    setTimeout(function() {{ wm.style.display = 'none'; }}, 10000);
-    sendScreenshotEvent('context_menu');
-  }});
+            // Prevent re-flash across pages
+            if (!sessionStorage.getItem('wmInitialized')) {{
+                sessionStorage.setItem('wmInitialized', 'true');
+            }} else {{
+                overlay.style.display = 'none';
+            }}
+        }})();
+        </script>
+        """
 
-  // Detect dev tools opening
-  let devToolsOpen = false;
-  setInterval(function() {{
-    const widthThreshold = window.outerWidth - window.innerWidth > 100;
-    const heightThreshold = window.outerHeight - window.innerHeight > 100;
-    
-    if ((widthThreshold || heightThreshold) && !devToolsOpen) {{
-      devToolsOpen = true;
-      const wm = document.getElementById('__watermark_overlay');
-      wm.style.display = 'block';
-      sendScreenshotEvent('dev_tools');
-      setTimeout(function() {{ wm.style.display = 'none'; }}, 10000);
-    }}
-  }}, 1000);
-
-  // Report event to backend
-  function sendScreenshotEvent(eventType) {{
-    fetch('/report-screenshot/', {{
-      method: 'POST',
-      headers: {{
-        'Content-Type': 'application/json',
-        'X-CSRFToken': getCSRFToken()
-      }},
-      body: JSON.stringify({{
-        path: window.location.pathname,
-        event_type: eventType,
-        ip: '{escape(client_ip)}',
-        location: userLocation,
-        google_maps_url: googleMapsUrl,
-        timestamp: new Date().toISOString()
-      }})
-    }}).catch(function(err) {{ 
-      console.log('Screenshot reporting failed:', err); 
-    }});
-  }}
-
-  function getCSRFToken() {{
-    const name = 'csrftoken';
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {{
-      const cookies = document.cookie.split(';');
-      for (let i = 0; i < cookies.length; i++) {{
-        const cookie = cookies[i].trim();
-        if (cookie.substring(0, name.length + 1) === (name + '=')) {{
-          cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-          break;
-        }}
-      }}
-    }}
-    return cookieValue;
-  }}
-  
-  // Try to get enhanced location when page loads
-  document.addEventListener('DOMContentLoaded', function() {{
-    setTimeout(getEnhancedLocation, 1000);
-  }});
-  
-  // Log watermark status
-  console.log('🔒 Watermark protection active. IP: {escape(client_ip)}, Location: {escape(location_info)}');
-  console.log('🗺️  Google Maps link:', '{escape(google_maps_url)}');
-</script>
-"""
-
-        # Inject the watermark before </body>
-        lowered = response.content.lower()
-        idx = lowered.rfind(b"</body>")
-        if idx != -1:
-            response.content = (
-                response.content[:idx]
-                + watermark_html.encode("utf-8")
-                + response.content[idx:]
-            )
+        content = response.content.decode("utf-8")
+        if "</body>" in content:
+            response.content = content.replace("</body>", watermark_html + "</body>")
         else:
-            response.content += watermark_html.encode("utf-8")
-
-        if response.has_header("Content-Length"):
-            response["Content-Length"] = str(len(response.content))
-
-        logger.info(
-            f"Watermark injected for {request.path} "
-            f"[IP={client_ip}, Location={location_info}, User={getattr(request.user, 'username', 'Anonymous')}]"
-        )
-
+            response.content += watermark_html
         return response
 
     

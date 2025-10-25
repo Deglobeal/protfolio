@@ -582,33 +582,28 @@ class FAQ(models.Model):
 # watermark models.py - 
 
 class WatermarkRecord(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
-    path = models.CharField(max_length=512)
-    ip_address = models.CharField(max_length=64)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
-    user_email = models.CharField(max_length=254, blank=True, null=True)
-    user_agent = models.TextField(blank=True, null=True)
-    
-    # Add event_type to distinguish between different types of events
-    event_type = models.CharField(
-        max_length=20, 
-        default="screenshot",
-        choices=[
-            ('screenshot', 'Screenshot'),
-            ('print', 'Print'),
-            ('copy', 'Copy Attempt'),
-        ]
-    )
+    EVENT_CHOICES = [
+        ("screenshot", "Screenshot"),
+        ("print_attempt", "Print Attempt"),
+        ("devtools_opened", "DevTools Opened"),
+        ("contextmenu_attempt", "Right Click Attempt"),
+        ("mobile_screenshot", "Mobile Screenshot/Tab Switch"),
+        ("location_update", "Location Update"),
+    ]
 
-    class Meta:
-        ordering = ["-timestamp"]
-        verbose_name = "Watermark Record"
-        verbose_name_plural = "Watermark Records"
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True)
+    path = models.CharField(max_length=500)
+    event_type = models.CharField(max_length=50, choices=EVENT_CHOICES)
+    latitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
+    accuracy = models.FloatField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        if self.user:
-            return f"{self.timestamp} — {self.user} — {self.ip_address} — {self.path}"
-        return f"{self.timestamp} — {self.ip_address} — {self.path}"
+        return f"{self.event_type} from {self.ip_address} at {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
 
 class ContactMessage(models.Model):
     name = models.CharField(max_length=100)

@@ -403,59 +403,88 @@ def email(request):
     
     return render(request, 'email.html', context)
 
+
+# Helper function
 def get_client_ip(request):
-    """Helper to extract client IP address"""
-    x_forwarded_for = request.META.get("HTTP_X_FORWARDED_FOR")
-    return x_forwarded_for.split(",")[0].strip() if x_forwarded_for else request.META.get("REMOTE_ADDR") or "unknown"
+    """Extract IP address (supports proxy headers)."""
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        return x_forwarded_for.split(',')[0].strip()
+    return request.META.get('REMOTE_ADDR')
+
 
 @csrf_exempt
 def report_screenshot(request):
     """
-    Called when a screenshot or printscreen event is detected.
+    Called when a screenshot, print, devtools, or contextmenu event is detected.
     """
     if request.method == "POST":
         try:
             data = json.loads(request.body.decode("utf-8"))
-            path = data.get("path", "unknown")
+
+            path = data.get("path", request.path)
             event_type = data.get("event_type", "screenshot")
-            ip = get_client_ip(request)  # Now this function is defined above
+            ip = get_client_ip(request)
             user = request.user if request.user.is_authenticated else None
 
-            # Save record
-            watermark_record = WatermarkRecord.objects.create(
+            record = WatermarkRecord.objects.create(
                 path=path,
                 ip_address=ip,
                 user=user,
                 user_agent=request.META.get("HTTP_USER_AGENT", "")[:500],
-                event_type=event_type
+                event_type=event_type,
             )
 
-            logger.warning(f"📸 {event_type} event on {path} from IP {ip}, user={user}")
-            
-            return JsonResponse({"status": "ok", "message": "event logged"})
+            logger.warning(f"⚠ {event_type.upper()} on {path} from {ip} (user={user})")
+
+            return JsonResponse({"status": "ok", "message": "Event logged", "id": record.id}) # type: ignore
+
+        except json.JSONDecodeError:
+            logger.error("❌ Invalid JSON in report_screenshot")
+            return JsonResponse({"status": "error", "message": "Invalid JSON"}, status=400)
         except Exception as e:
             logger.error(f"❌ report_screenshot failed: {e}")
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
 
-    return JsonResponse({"status": "error", "message": "invalid method"}, status=405)
-
+    return JsonResponse({"status": "error", "message": "Invalid method"}, status=405)
 
 
 @csrf_exempt
 def report_location(request):
+    """
+    Receives GPS data from browser (if user allowed geolocation access)
+    """
     if request.method == "POST":
         try:
             data = json.loads(request.body.decode("utf-8"))
-            ip = data.get("ip")
-            path = data.get("path")
+
+            ip = get_client_ip(request)
+            user = request.user if request.user.is_authenticated else None
+            path = data.get("path", "unknown")
+
             latitude = data.get("latitude")
             longitude = data.get("longitude")
             accuracy = data.get("accuracy")
 
-            # Save to database if needed
-            # WatermarkRecord.objects.create(...)
+            record = WatermarkRecord.objects.create(
+                path=path,
+                ip_address=ip,
+                user=user,
+                event_type="location_update",
+                latitude=latitude,
+                longitude=longitude,
+                accuracy=accuracy,
+            )
 
-            return JsonResponse({"status": "ok"})
+            logger.info(f"📍 Location update from {ip} — ({latitude}, {longitude}) ±{accuracy}m")
+
+            return JsonResponse({"status": "ok", "message": "Location logged", "id": record.id}) # type: ignore
+
+        except json.JSONDecodeError:
+            logger.error("❌ Invalid JSON in report_location")
+            return JsonResponse({"status": "error", "message": "Invalid JSON"}, status=400)
         except Exception as e:
+            logger.error(f"❌ report_location failed: {e}")
             return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
     return JsonResponse({"status": "error", "message": "Invalid method"}, status=405)

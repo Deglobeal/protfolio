@@ -255,13 +255,19 @@ class FAQAdmin(admin.ModelAdmin):
 class WatermarkRecordAdmin(admin.ModelAdmin):
     list_display = ("timestamp", "path", "ip_address", "user", "user_email", "event_type")
     list_filter = ("event_type", "path", "timestamp")
-    search_fields = ("ip_address", "user__username", "user_email", "path")
+    search_fields = ("ip_address", "user__username", "user__email", "path")
     readonly_fields = ("timestamp", "ip_address", "user", "path", "user_agent", "event_type")
-    
-    # Make it non-editable since these are audit records
+    ordering = ("-timestamp",)
+    date_hierarchy = "timestamp"
+    list_per_page = 50
+
+    def user_email(self, obj):
+        return obj.user.email if obj.user else "-"
+    user_email.short_description = "User Email" # type: ignore
+
     def has_add_permission(self, request):
         return False
-        
+
     def has_change_permission(self, request, obj=None):
         return False
 
