@@ -37,7 +37,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 's&cdc6pvau)l56tib(!@sc!o@=11t^pet!(((
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = [
-    config('ALLOWED_HOSTS', default='stunning-forgiveness.up.railway.app')
+    "127.0.0.1",
+    "localhost",
+    "stunning-forgiveness.up.railway.app",
+    "stunning-forgiveness-production.up.railway.app",
 ]
 
 
