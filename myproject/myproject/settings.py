@@ -41,7 +41,9 @@ ALLOWED_HOSTS = [
     "localhost",
     "stunning-forgiveness.up.railway.app",
     "stunning-forgiveness-production.up.railway.app",
+    ".up.railway.app",  # Allow any Railway subdomain (safe for this project)
 ]
+
 
 
 
@@ -200,8 +202,10 @@ SECURE_HSTS_PRELOAD = True
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1:8000',
     'http://localhost:8000',
-    'https://stunning-forgiveness.up.railway.app'
+    'https://stunning-forgiveness.up.railway.app',
+    'https://stunning-forgiveness-production.up.railway.app',
 ]
+
 
 
 
