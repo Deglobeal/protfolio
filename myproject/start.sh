@@ -1,3 +1,5 @@
 #!/bin/bash
-echo "Starting Django app on Railway..."
+echo "🚀 Starting Django on Railway..."
+python manage.py collectstatic --noinput
+python manage.py migrate
 gunicorn myproject.wsgi --bind 0.0.0.0:$PORT
